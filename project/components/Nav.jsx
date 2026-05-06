@@ -1,0 +1,200 @@
+const Nav = () => {
+  const [open, setOpen] = React.useState(null);
+  const [scrolled, setScrolled] = React.useState(false);
+  const isSubpage = typeof window !== 'undefined' && window.__MOGO_SUBPAGE === true;
+  const wrapRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Close on outside click / Escape
+  React.useEffect(() => {
+    if (!open) return;
+    const onDown = (e) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(null);
+    };
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(null); };
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  const lightMode = scrolled || isSubpage;
+
+  const aboutItems = [
+    {slug:'about-us',   name:'About us',       desc:'Who we are and why we exist'},
+    {slug:'contact-us', name:'Contact us',     desc:'Call centre, WhatsApp, emergencies'},
+    {slug:'payments',   name:'Payments',       desc:'M-Pesa, USSD, bank transfer'},
+    {slug:'faq',        name:'FAQ',            desc:'Quick answers to common questions'},
+    {slug:'careers',    name:'Careers',        desc:'Work at Mogo Kenya'},
+    {slug:'saka',       name:'SAKA platform',  desc:'Stolen vehicle database'},
+  ];
+  const impactItems = [
+    {slug:'mogo-impact', name:'Mogo Impact',             desc:"Our contribution to Kenya's communities"},
+    {slug:'news',        name:'News',                    desc:'Press coverage and updates'},
+    {slug:'literacy',    name:'Financial literacy tool', desc:'Powered by Eleving SMART', external:'https://smart.eleving.com/en-ke/'},
+  ];
+  const pageHref = (slug) => isSubpage ? `${slug}.html` : `pages/${slug}.html`;
+  const productHref = (slug) => isSubpage ? `${slug}.html` : `products/${slug}.html`;
+
+  const triggerStyle = (key) => ({
+    padding:'8px 14px', fontSize:14.5, fontWeight:500, color:'inherit', borderRadius:8,
+    whiteSpace:'nowrap', display:'inline-flex', alignItems:'center', gap: 4,
+    border:'none', background: open === key ? (lightMode ? 'rgba(11,18,32,.06)' : 'rgba(255,255,255,.1)') : 'transparent',
+    cursor:'pointer', fontFamily:'inherit',
+  });
+
+  const Chevron = ({active}) => (
+    <svg width="10" height="10" viewBox="0 0 10 10" style={{transform: active ? 'rotate(180deg)' : 'none', transition:'transform .2s'}}>
+      <path d="M1 3l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+    </svg>
+  );
+
+  const Panel = ({eyebrow, title, blurb, items, hrefFn, showBadges}) => (
+    <div style={{
+      position:'absolute', top: '100%', left: 0, right: 0,
+      background:'#fff', color:'var(--m-ink)',
+      borderBottom:'1px solid var(--m-line)',
+      boxShadow:'0 24px 48px rgba(0,0,0,.08)',
+      padding: '32px 40px 40px', zIndex: 100,
+    }}>
+      <div style={{maxWidth: 1280, margin:'0 auto'}}>
+        <div style={{display:'grid', gridTemplateColumns:'220px 1fr', gap: 48}}>
+          <div>
+            <div className="h-eyebrow"><span className="dot"/>{eyebrow}</div>
+            {title && <p style={{marginTop: 14, fontSize:15, fontWeight:600, color:'var(--m-ink)'}}>{title}</p>}
+            <p style={{marginTop: title ? 6 : 14, fontSize: 13, color:'var(--m-muted)', lineHeight:1.5, maxWidth: 200}}>{blurb}</p>
+          </div>
+          <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 4}}>
+            {items.map(it => {
+              const href = it.external ? it.external : hrefFn(it.slug);
+              const target = it.external ? '_blank' : undefined;
+              const rel = it.external ? 'noopener noreferrer' : undefined;
+              return (
+                <a key={it.slug} href={href} target={target} rel={rel} onClick={()=>setOpen(null)} style={{
+                  padding:'14px 16px', borderRadius: 10, transition:'background .15s', textDecoration:'none', color:'inherit',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background='var(--m-cream)'}
+                onMouseLeave={(e) => e.currentTarget.style.background='transparent'}
+                >
+                  <div style={{display:'flex', alignItems:'center', gap:8}}>
+                    <strong style={{fontWeight:600, fontSize: 15}}>{it.name}</strong>
+                    {showBadges && it.tag === 'Most popular' && <span style={{fontSize:10, fontFamily:'var(--font-mono)', letterSpacing:'.08em', textTransform:'uppercase', padding:'2px 6px', borderRadius:4, background:'var(--m-green-soft)', color:'var(--m-green-deep)'}}>Popular</span>}
+                    {showBadges && it.isNew && <span style={{fontSize:10, fontFamily:'var(--font-mono)', letterSpacing:'.08em', textTransform:'uppercase', padding:'2px 6px', borderRadius:4, background:'var(--m-ink)', color:'#fff'}}>New</span>}
+                    {it.external && <ArrowUpRight size={12}/>}
+                  </div>
+                  <div style={{fontSize: 13, color:'var(--m-muted)', marginTop: 2, lineHeight:1.4}}>{it.desc || it.tagline}</div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <header
+      ref={wrapRef}
+      onMouseLeave={() => setOpen(null)}
+      style={{
+        position:'sticky', top: 0, zIndex: 50,
+        background: lightMode ? 'rgba(255,255,255,.92)' : 'transparent',
+        backdropFilter: lightMode ? 'blur(12px)' : 'none',
+        borderBottom: lightMode ? '1px solid var(--m-line)' : '1px solid transparent',
+        transition: 'background .2s, border-color .2s',
+        color: lightMode ? 'var(--m-ink)' : '#fff',
+      }}
+    >
+      <div className="shell" style={{display:'flex', alignItems:'center', justifyContent:'space-between', padding:'18px 28px', gap: 24, position:'relative'}}>
+        <a href={isSubpage ? '../index-v2.html' : 'index-v2.html'} style={{display:'flex', alignItems:'center', gap: 10}} aria-label="Mogo Kenya">
+          <div style={{height: 28, display:'flex', alignItems:'center', filter: lightMode ? 'none' : 'brightness(0) invert(1)'}}>
+            <img src={isSubpage ? '../assets/mogo-logo.svg' : 'assets/mogo-logo.svg'} alt="mogo" style={{height: 26, width:'auto'}}/>
+          </div>
+          <span style={{
+            fontFamily:'var(--font-mono)', fontSize:10, letterSpacing:'.18em', textTransform:'uppercase',
+            padding:'3px 8px', border: lightMode ? '1px solid var(--m-line)' : '1px solid rgba(255,255,255,.25)',
+            borderRadius: 6, color:'inherit',
+          }}>Kenya</span>
+        </a>
+
+        <nav style={{display:'flex', alignItems:'center', gap:4}}>
+          <button
+            onMouseEnter={() => setOpen('prod')}
+            onClick={() => setOpen(open === 'prod' ? null : 'prod')}
+            style={triggerStyle('prod')}
+          >
+            Products <Chevron active={open==='prod'}/>
+          </button>
+          {['How it works','Branches','Stories'].map(l => {
+            const href = isSubpage
+              ? `../index-v2.html#${l.toLowerCase().replace(/ /g,'')}`
+              : `#${l.toLowerCase().replace(/ /g,'')}`;
+            return (
+              <a key={l} href={href} onMouseEnter={()=>setOpen(null)} style={{
+                padding:'8px 14px', fontSize:14.5, fontWeight:500, color:'inherit', borderRadius:8, whiteSpace:'nowrap', textDecoration:'none',
+              }}>{l}</a>
+            );
+          })}
+          <button onMouseEnter={() => setOpen('about')}  onClick={() => setOpen(open === 'about'  ? null : 'about')}  style={triggerStyle('about')}>About <Chevron active={open==='about'}/></button>
+          <button onMouseEnter={() => setOpen('impact')} onClick={() => setOpen(open === 'impact' ? null : 'impact')} style={triggerStyle('impact')}>Our Impact <Chevron active={open==='impact'}/></button>
+        </nav>
+
+        <div style={{display:'flex', alignItems:'center', gap:10}}>
+          <a href={isSubpage ? '../index-v2.html#apply' : '#apply'} className="btn btn-primary">
+            Apply now <span className="arrow-pill"><ArrowRight/></span>
+          </a>
+        </div>
+
+        {open === 'prod' && (
+          <Panel
+            eyebrow="7 ways we finance"
+            blurb="From KES 50/day phone plans to KES 5M business loans — built for Kenyan earners."
+            items={window.MOGO_PRODUCTS}
+            hrefFn={productHref}
+            showBadges
+          />
+        )}
+        {open === 'about' && (
+          <Panel
+            eyebrow="Company"
+            title="About Mogo"
+            blurb="Reach our team, pay your loan, find answers, or explore a career with us."
+            items={aboutItems}
+            hrefFn={pageHref}
+          />
+        )}
+        {open === 'impact' && (
+          <Panel
+            eyebrow="Impact & news"
+            title="Our Impact"
+            blurb="Our footprint in Kenya, the latest news, and tools to help you grow."
+            items={impactItems}
+            hrefFn={pageHref}
+          />
+        )}
+      </div>
+    </header>
+  );
+};
+
+const ArrowRight = ({size=12}) => (
+  <svg width={size} height={size} viewBox="0 0 12 12" fill="none">
+    <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const ArrowUpRight = ({size=14}) => (
+  <svg width={size} height={size} viewBox="0 0 14 14" fill="none">
+    <path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+Object.assign(window, { Nav, ArrowRight, ArrowUpRight });
