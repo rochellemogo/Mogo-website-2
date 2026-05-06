@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>MOGO Kenya — Own your boda. Grow your hustle.</title>
+<title>MOGO Kenya — Finance Your Future. Jenga Kesho.</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,24 +27,43 @@ const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
 <body>
 <div id="root"></div>
 
+<!-- Core data must load first -->
 <script type="text/babel" src="components/data.jsx"></script>
+
+<!-- Navigation -->
 <script type="text/babel" src="components/Nav.jsx"></script>
-<script type="text/babel" src="components/Hero.jsx"></script>
+
+<!-- Hero + partner strip (v2 — "Finance Your Future") -->
 <script type="text/babel" src="components/Hero-v2.jsx"></script>
-<script type="text/babel" src="components/Mission.jsx"></script>
+
+<!-- Mission + persona cards (brand strategy applied) -->
+<script type="text/babel" src="components/Mission-v2.jsx"></script>
+
+<!-- Scrolling photo banner -->
+<script type="text/babel" src="components/PhotoCarousel.jsx"></script>
+
+<!-- Product grid, How It Works, Impact band -->
 <script type="text/babel" src="components/Products.jsx"></script>
 <script type="text/babel" src="components/HowItWorks.jsx"></script>
+
+<!-- Customer stories -->
 <script type="text/babel" src="components/Stories.jsx"></script>
+
+<!-- Branches map, CTA, Footer, TweaksPanel -->
 <script type="text/babel" src="components/Rest.jsx"></script>
 
+<!-- Global apply modal (intercepts every #apply link) -->
 <script type="text/babel" src="components/ApplyModal.jsx"></script>
+
 <script type="text/babel">
 const App = () => (
   <>
     <Nav/>
     <HeroV2/>
-    <InvestorStrip/>
-    <Mission/>
+    <InvestorStripV2/>
+    <MissionV2/>
+    <PhotoCarousel/>
+    <Personas/>
     <Products/>
     <HowItWorks/>
     <Impact/>
