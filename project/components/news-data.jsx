@@ -1,5 +1,6 @@
-// MOGO Kenya news articles. Original, brand-voiced press-release style copy.
-// Dates descend from Apr 2026 back. Tags are informational only — list is a single chronological feed.
+// MOGO Kenya news articles.
+// Static array is the immediate fallback. At runtime we also fetch content/news.json
+// (managed by Decap CMS) and dispatch 'mogo-news-updated' so components can re-render.
 
 const MOGO_NEWS = [
   {
@@ -304,5 +305,22 @@ const MOGO_NEWS = [
     ],
   },
 ];
+
+window.MOGO_NEWS = MOGO_NEWS;
+
+// Fetch CMS-managed JSON and notify components if it differs from the static copy
+(function () {
+  const base = window.__MOGO_SUBPAGE ? '../' : '';
+  fetch(base + 'content/news.json')
+    .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+    .then(function (data) {
+      const articles = Array.isArray(data) ? data : (data.articles || []);
+      if (articles.length) {
+        window.MOGO_NEWS = articles;
+        window.dispatchEvent(new CustomEvent('mogo-news-updated'));
+      }
+    })
+    .catch(function () {});
+}());
 
 Object.assign(window, { MOGO_NEWS });

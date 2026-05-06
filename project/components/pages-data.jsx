@@ -327,44 +327,65 @@ const MOGO_PAGES = {
     title: 'Mogo in the <em>news.</em>',
     eyebrow: 'News',
     kicker: "Press coverage, product launches, branch openings and milestones from across Kenya.",
-    render: () => {
-      const items = window.MOGO_NEWS || [];
-      return (
-        <section style={{padding:'72px 0 120px', background:'#fff'}}>
-          <div className="shell" style={{maxWidth: 1180}}>
-            <div style={{display:'flex', alignItems:'baseline', justifyContent:'space-between', borderBottom:'1px solid var(--m-line)', paddingBottom:20, marginBottom:8, fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
-              <span>{items.length} stories · newest first</span>
-              <span>Updated {items[0]?.dateLong || ''}</span>
-            </div>
-            <div>
-              {items.map((n, i) => (
-                <a key={n.slug} href={`./news-article.html?slug=${n.slug}`}
-                   style={{display:'grid', gridTemplateColumns:'220px 1fr auto', gap: 40, padding:'32px 0', borderBottom:'1px solid var(--m-line-2)', textDecoration:'none', color:'var(--m-ink)', alignItems:'start'}}>
-                  <div style={{aspectRatio:'4/3', background:`linear-gradient(135deg, hsl(${(i*37)%360} 24% 78%), hsl(${(i*37+60)%360} 20% 58%))`, borderRadius:'var(--r-lg)', position:'relative', overflow:'hidden'}}>
-                    <div className="grain"/>
-                    <div style={{position:'absolute', top:12, left:12, fontSize:10, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', padding:'5px 9px', background:'rgba(11,18,32,.55)', backdropFilter:'blur(10px)', color:'rgba(255,255,255,.9)', borderRadius:999}}>{n.tag}</div>
-                    <div style={{position:'absolute', bottom:10, right:12, fontSize:9, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'rgba(255,255,255,.82)'}}>Photo · {n.photoLabel}</div>
-                  </div>
-                  <div style={{paddingTop:4}}>
-                    <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:12, display:'flex', gap:12}}>
-                      <span>{n.date}</span>
-                      <span style={{color:'var(--m-line)'}}>·</span>
-                      <span>{n.tag}</span>
-                    </div>
-                    <h3 style={{fontSize:28, fontWeight:600, letterSpacing:'-.02em', lineHeight:1.15, margin:'0 0 14px', fontFamily:'var(--font-display)', maxWidth:640}}>{n.title}</h3>
-                    <p style={{fontSize:15.5, color:'var(--m-ink-2)', lineHeight:1.6, margin:0, maxWidth:640}}>{n.dek}</p>
-                  </div>
-                  <div style={{paddingTop:16, display:'flex', alignItems:'center', gap:8, fontSize:13, fontWeight:600, whiteSpace:'nowrap'}}>
-                    Read story <ArrowRight/>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-      );
-    },
+    render: () => <NewsPage />,
   },
+};
+
+// Stateful news list — fetches from content/news.json so CMS edits appear without a rebuild.
+const NewsPage = () => {
+  const [items, setItems] = React.useState(window.MOGO_NEWS || []);
+
+  React.useEffect(() => {
+    const base = window.__MOGO_SUBPAGE ? '../' : '';
+    fetch(base + 'content/news.json')
+      .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(function (data) {
+        const articles = Array.isArray(data) ? data : (data.articles || []);
+        if (articles.length) setItems(articles);
+      })
+      .catch(function () {});
+
+    const handler = () => setItems(window.MOGO_NEWS || []);
+    window.addEventListener('mogo-news-updated', handler);
+    return () => window.removeEventListener('mogo-news-updated', handler);
+  }, []);
+
+  return (
+    <section style={{padding:'72px 0 120px', background:'#fff'}}>
+      <div className="shell" style={{maxWidth: 1180}}>
+        <div style={{display:'flex', alignItems:'baseline', justifyContent:'space-between', borderBottom:'1px solid var(--m-line)', paddingBottom:20, marginBottom:8, fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
+          <span>{items.length} stories · newest first</span>
+          <span>Updated {items[0]?.dateLong || ''}</span>
+        </div>
+        <div>
+          {items.map((n, i) => (
+            <a key={n.slug} href={`./news-article.html?slug=${n.slug}`}
+               style={{display:'grid', gridTemplateColumns:'220px 1fr auto', gap: 40, padding:'32px 0', borderBottom:'1px solid var(--m-line-2)', textDecoration:'none', color:'var(--m-ink)', alignItems:'start'}}>
+              <div style={{aspectRatio:'4/3', borderRadius:'var(--r-lg)', position:'relative', overflow:'hidden',
+                background: n.photo ? 'var(--m-cream)' : `linear-gradient(135deg, hsl(${(i*37)%360} 24% 78%), hsl(${(i*37+60)%360} 20% 58%))`}}>
+                {n.photo
+                  ? <img src={n.photo} alt={n.title} style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}/>
+                  : <><div className="grain"/><div style={{position:'absolute', top:12, left:12, fontSize:10, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', padding:'5px 9px', background:'rgba(11,18,32,.55)', backdropFilter:'blur(10px)', color:'rgba(255,255,255,.9)', borderRadius:999}}>{n.tag}</div><div style={{position:'absolute', bottom:10, right:12, fontSize:9, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'rgba(255,255,255,.82)'}}>Photo · {n.photoLabel}</div></>
+                }
+              </div>
+              <div style={{paddingTop:4}}>
+                <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:12, display:'flex', gap:12}}>
+                  <span>{n.date}</span>
+                  <span style={{color:'var(--m-line)'}}>·</span>
+                  <span>{n.tag}</span>
+                </div>
+                <h3 style={{fontSize:28, fontWeight:600, letterSpacing:'-.02em', lineHeight:1.15, margin:'0 0 14px', fontFamily:'var(--font-display)', maxWidth:640}}>{n.title}</h3>
+                <p style={{fontSize:15.5, color:'var(--m-ink-2)', lineHeight:1.6, margin:0, maxWidth:640}}>{n.dek}</p>
+              </div>
+              <div style={{paddingTop:16, display:'flex', alignItems:'center', gap:8, fontSize:13, fontWeight:600, whiteSpace:'nowrap'}}>
+                Read story <ArrowRight/>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 Object.assign(window, { MOGO_PAGES });

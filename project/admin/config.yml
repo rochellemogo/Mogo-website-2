@@ -1,0 +1,203 @@
+# Decap CMS — MOGO Kenya
+# Backend: Netlify Identity + Git Gateway
+# To activate: enable Netlify Identity + Git Gateway in your Netlify dashboard,
+# then invite editors via Netlify Identity → Invite users.
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded images are stored in the repo and served from
+media_folder: "project/uploads"
+public_folder: "/uploads"
+
+# Optional: enable local backend for development (run `npx decap-server` in repo root)
+# local_backend: true
+
+collections:
+
+  # ─── NEWS ARTICLES ────────────────────────────────────────────────────────
+  - name: "news"
+    label: "News Articles"
+    files:
+      - name: "articles"
+        label: "All Articles"
+        file: "project/content/news.json"
+        fields:
+          - name: "articles"
+            label: "Articles"
+            label_singular: "Article"
+            widget: "list"
+            summary: "{{fields.title}} · {{fields.date}}"
+            fields:
+              - label: "Slug"
+                name: "slug"
+                widget: "string"
+                hint: "URL-safe identifier, e.g. mogo-opens-branch-thika-2026. No spaces."
+
+              - label: "Tag / Category"
+                name: "tag"
+                widget: "select"
+                options:
+                  - "Partnership"
+                  - "Expansion"
+                  - "Milestone"
+                  - "Impact"
+                  - "Community"
+                  - "Customer story"
+                  - "Product"
+                  - "Group news"
+
+              - label: "Short date"
+                name: "date"
+                widget: "string"
+                hint: "Shown in the article list, e.g. Apr 2026"
+
+              - label: "Full date"
+                name: "dateLong"
+                widget: "string"
+                hint: "Shown in the article header, e.g. 18 April 2026"
+
+              - label: "Headline"
+                name: "title"
+                widget: "string"
+
+              - label: "Summary (dek)"
+                name: "dek"
+                widget: "text"
+                hint: "One or two sentences shown in the article list."
+
+              - label: "Photo caption"
+                name: "photoLabel"
+                widget: "string"
+                hint: "Appears on the placeholder image, e.g. Signing ceremony · Nairobi"
+
+              - label: "Photo"
+                name: "photo"
+                widget: "image"
+                required: false
+                hint: "Upload a 16:8 landscape image. Leave blank to use the colour placeholder."
+
+              - label: "Body paragraphs"
+                name: "body"
+                widget: "list"
+                hint: "Add one paragraph per list item. Use the + button to add paragraphs."
+                field:
+                  label: "Paragraph"
+                  name: "paragraph"
+                  widget: "text"
+
+  # ─── SITE SETTINGS ────────────────────────────────────────────────────────
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "homepage"
+        label: "Homepage text"
+        file: "project/content/settings.json"
+        fields:
+
+          - label: "Hero headline"
+            name: "hero_headline"
+            widget: "string"
+            hint: "Large headline at the top of the page."
+
+          - label: "Hero tagline (Swahili)"
+            name: "hero_tagline"
+            widget: "string"
+            hint: "Italic Swahili line below the headline."
+
+          - label: "Hero body text"
+            name: "hero_body"
+            widget: "text"
+            hint: "Short paragraph under the tagline."
+
+          - label: "Mission headline"
+            name: "mission_headline"
+            widget: "string"
+
+          - label: "Mission body"
+            name: "mission_body"
+            widget: "text"
+
+          - label: "Access pillar description"
+            name: "mission_point1_desc"
+            widget: "text"
+
+          - label: "Earn pillar description"
+            name: "mission_point2_desc"
+            widget: "text"
+
+          - label: "Grow pillar description"
+            name: "mission_point3_desc"
+            widget: "text"
+
+          - label: "Impact stat 1 (number)"
+            name: "impact_stat1_num"
+            widget: "string"
+            hint: "e.g. KES 12B+"
+
+          - label: "Impact stat 1 (label)"
+            name: "impact_stat1_label"
+            widget: "string"
+
+          - label: "Impact stat 2 (number)"
+            name: "impact_stat2_num"
+            widget: "string"
+
+          - label: "Impact stat 2 (label)"
+            name: "impact_stat2_label"
+            widget: "string"
+
+          - label: "Impact stat 3 (number)"
+            name: "impact_stat3_num"
+            widget: "string"
+
+          - label: "Impact stat 3 (label)"
+            name: "impact_stat3_label"
+            widget: "string"
+
+          - label: "CTA headline"
+            name: "cta_headline"
+            widget: "string"
+            hint: "e.g. Your wheels are waiting."
+
+          - label: "CTA body"
+            name: "cta_body"
+            widget: "text"
+
+          - label: "Footer about text"
+            name: "footer_about"
+            widget: "text"
+
+          - label: "Partner brands (marquee)"
+            name: "partners"
+            widget: "list"
+            hint: "Brands shown in the scrolling strip below the hero."
+            field:
+              label: "Brand name"
+              name: "name"
+              widget: "string"
+
+  # ─── CUSTOMER STORIES ─────────────────────────────────────────────────────
+  - name: "stories"
+    label: "Customer Stories"
+    files:
+      - name: "homepage_stories"
+        label: "Homepage stories"
+        file: "project/content/stories.json"
+        fields:
+          - name: "stories"
+            label: "Stories"
+            label_singular: "Story"
+            widget: "list"
+            summary: "{{fields.name}} · {{fields.city}}"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "City", name: "city", widget: "string"}
+              - {label: "Role", name: "role", widget: "string", hint: "e.g. Boda rider · since 2024"}
+              - {label: "Quote", name: "quote", widget: "text"}
+              - {label: "Product label", name: "product", widget: "string", hint: "e.g. New Boda Loan"}
+              - label: "Card theme (colour)"
+                name: "theme"
+                widget: "select"
+                options: ["sunset", "lilac", "peach", "warm", "green", "cool", "navy"]

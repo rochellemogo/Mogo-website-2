@@ -1,0 +1,35 @@
+# Netlify deployment config for MOGO Kenya website
+# The website lives in project/ — that is the published root.
+
+[build]
+  publish = "project"
+  command = ""   # static site, no build step needed
+
+# ── Netlify Identity ──────────────────────────────────────────────────────────
+# After deploying:
+#   1. Go to Netlify dashboard → Site settings → Identity → Enable Identity
+#   2. Under Identity → Services → Enable Git Gateway
+#   3. Invite editors via Identity → Invite users (they get an email to set a password)
+#   4. Editors log in at https://yoursite.netlify.app/admin/
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Redirect the Netlify Identity invite/confirm email back to the site root
+# so the Identity widget can intercept the token and forward to /admin/
+[[redirects]]
+  from   = "/#invite_token=*"
+  to     = "/#invite_token=:splat"
+  status = 200
+
+[[redirects]]
+  from   = "/#confirmation_token=*"
+  to     = "/#confirmation_token=:splat"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options   = "SAMEORIGIN"
+    X-XSS-Protection  = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy   = "strict-origin-when-cross-origin"
