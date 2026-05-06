@@ -4,8 +4,11 @@
 # then invite editors via Netlify Identity → Invite users.
 
 backend:
-  name: git-gateway
+  name: github
+  repo: rochellemogo/Mogo-website-2
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 # Where uploaded images are stored in the repo and served from
 media_folder: "project/uploads"
