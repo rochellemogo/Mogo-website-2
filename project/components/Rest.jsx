@@ -189,45 +189,65 @@ const Branches = () => {
 
 };
 
-const CTA = () =>
-<section id="apply" style={{ padding: '80px 0', background: 'var(--m-cream)' }}>
-    <div className="shell">
-      <div style={{ background: 'var(--m-ink)', borderRadius: 'var(--r-xl)', padding: '96px 56px', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', right: -100, top: -100, width: 360, height: 360, borderRadius: 999, background: 'var(--m-green)', opacity: .22, filter: 'blur(80px)' }} />
-        <div style={{ position: 'absolute', right: 48, top: 48, width: 160, height: 160, animation: 'spin 20s linear infinite' }}>
-          <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
-            <defs><path id="cp2" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" /></defs>
-            <text fontFamily="JetBrains Mono" fontSize="7" letterSpacing="2.5" fill="#7AB800">
-              <textPath href="#cp2">APPLY · GET APPROVED · RIDE HOME · OWN IT · </textPath>
-            </text>
-          </svg>
-        </div>
-        <div style={{ position: 'relative', maxWidth: 700 }}>
-          <div className="h-eyebrow" style={{ color: 'var(--m-green)' }}><span className="dot" />Start today</div>
-          <h2 className="h-display" style={{ fontSize: 'clamp(48px, 6.5vw, 96px)', color: '#fff', margin: '24px 0 24px', fontWeight: 600, letterSpacing: '-.035em', lineHeight: .98 }}>
-            Your wheels<br />are <em style={{ fontStyle: 'italic', color: 'var(--m-green)', fontFamily: '"Instrument Serif", serif', fontWeight: 400 }}>waiting.</em>
-          </h2>
-          <p style={{ fontSize: 18, color: 'rgba(255,255,255,.72)', lineHeight: 1.55, marginBottom: 40, maxWidth: 520 }}>
-            Three-minute form. Real call from a MOGO officer same day. Get your loan today.
-          </p>
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href="#" className="btn btn-primary btn-lg">Apply online <span className="arrow-pill"><ArrowRight /></span></a>
-            <a href="tel:0709719000" className="btn btn-ghost-light btn-lg">Call · 0709 719 000</a>
+const CTA = () => {
+  const [s, setS] = React.useState(window.MOGO_SETTINGS || {});
+  React.useEffect(() => {
+    const h = () => setS(window.MOGO_SETTINGS || {});
+    window.addEventListener('mogo-settings-updated', h);
+    return () => window.removeEventListener('mogo-settings-updated', h);
+  }, []);
+
+  const phone = s.cta_phone || '0709 719 000';
+
+  return (
+    <section id="apply" style={{ padding: '80px 0', background: 'var(--m-cream)' }}>
+      <div className="shell">
+        <div style={{ background: 'var(--m-ink)', borderRadius: 'var(--r-xl)', padding: '96px 56px', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', right: -100, top: -100, width: 360, height: 360, borderRadius: 999, background: 'var(--m-green)', opacity: .22, filter: 'blur(80px)' }} />
+          <div style={{ position: 'absolute', right: 48, top: 48, width: 160, height: 160, animation: 'spin 20s linear infinite' }}>
+            <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
+              <defs><path id="cp2" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" /></defs>
+              <text fontFamily="JetBrains Mono" fontSize="7" letterSpacing="2.5" fill="#7AB800">
+                <textPath href="#cp2">APPLY · GET APPROVED · RIDE HOME · OWN IT · </textPath>
+              </text>
+            </svg>
+          </div>
+          <div style={{ position: 'relative', maxWidth: 700 }}>
+            <div className="h-eyebrow" style={{ color: 'var(--m-green)' }}><span className="dot" />Start today</div>
+            <h2 className="h-display" style={{ fontSize: 'clamp(48px, 6.5vw, 96px)', color: '#fff', margin: '24px 0 24px', fontWeight: 600, letterSpacing: '-.035em', lineHeight: .98 }}>
+              {s.cta_headline || 'Your wheels are waiting.'}
+            </h2>
+            <p style={{ fontSize: 18, color: 'rgba(255,255,255,.72)', lineHeight: 1.55, marginBottom: 40, maxWidth: 520 }}>
+              {s.cta_body || 'Three-minute form. Real call from a MOGO officer same day. Get your loan today.'}
+            </p>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <a href="#" className="btn btn-primary btn-lg">Apply online <span className="arrow-pill"><ArrowRight /></span></a>
+              <a href={`tel:${phone.replace(/\s/g,'')}`} className="btn btn-ghost-light btn-lg">Call · {phone}</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
+};
 
 
-const Footer = () =>
+const Footer = () => {
+  const [s, setS] = React.useState(window.MOGO_SETTINGS || {});
+  React.useEffect(() => {
+    const h = () => setS(window.MOGO_SETTINGS || {});
+    window.addEventListener('mogo-settings-updated', h);
+    return () => window.removeEventListener('mogo-settings-updated', h);
+  }, []);
+
+  return (
 <footer style={{ background: 'var(--m-ink)', color: 'rgba(255,255,255,.7)', padding: '80px 0 32px' }}>
     <div className="shell">
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr', gap: 40, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)' }}>
         <div>
           <img src="assets/mogo-logo.svg" alt="mogo" style={{ height: 28, marginBottom: 20 }} />
           <p style={{ fontSize: 14, lineHeight: 1.6, maxWidth: 340 }}>
-            Mogo Auto Kenya Ltd. Part of Eleving Group — a fintech operating in 15 countries across three continents. Building a Kenya where every hustle has the wheels it needs.
+            {s.footer_about || 'Mogo Auto Kenya Ltd. Part of Eleving Group — a fintech operating in 15 countries across three continents. Building a Kenya where every hustle has the wheels it needs.'}
           </p>
           <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
             {['F', 'X', 'IG', 'in', 'YT'].map((s) =>
@@ -248,7 +268,9 @@ const Footer = () =>
         </div>
       </div>
     </div>
-  </footer>;
+  </footer>
+  );
+};
 
 
 const FooterCol = ({ title, links }) =>

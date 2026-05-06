@@ -1,21 +1,45 @@
 {
+  "hero_badge": "Productivity financing · 100,000+ Kenyans backed · 84 branches",
   "hero_headline": "Finance your future.",
   "hero_tagline": "Jenga kesho yako.",
   "hero_body": "We back the bike, the car, the phone, the shop — the tools Kenyans actually earn with.",
+  "hero_image": "",
+
   "mission_headline": "Productivity financing.",
   "mission_body": "Mogo finances the tools Kenyans earn with - bikes, cars, devices, shop stock - and unlocks cash against assets they already own.",
+  "mission_point1_title": "Access",
   "mission_point1_desc": "Available to every working Kenyan with an ID and an M-Pesa number.",
+  "mission_point2_title": "Earn",
   "mission_point2_desc": "We finance the asset, not the lifestyle. Over 70% of our customers are self-employed — the bike, tuk-tuk, car or phone pays for itself.",
+  "mission_point3_title": "Grow",
   "mission_point3_desc": "From first boda to second branch. Customers graduate from asset finance to logbook unlocks to working capital.",
+
+  "how_headline": "Four steps from application to ownership.",
+  "how_subtitle": "No paperwork mountain. No surprises. Just an honest process built around the fastest path to your wheels.",
+  "how_step1_title": "Apply in 3 minutes",
+  "how_step1_desc": "Online or at any of our 84 branches. Just your ID and M-Pesa number.",
+  "how_step2_title": "Get a call same day",
+  "how_step2_desc": "A real MOGO officer confirms your exact terms. No hidden fees.",
+  "how_step3_title": "Sign & collect",
+  "how_step3_desc": "Face-to-face at your branch. Ride home in as little as 2 hours.",
+  "how_step4_title": "Repay via M-Pesa",
+  "how_step4_desc": "Weekly or monthly. Pay early, save interest. Own it outright.",
+
+  "impact_headline": "Fueling 200,000+ Kenyan livelihoods.",
   "impact_stat1_num": "KES 12B+",
   "impact_stat1_label": "Disbursed to Kenyans since 2018",
   "impact_stat2_num": "100,000+",
   "impact_stat2_label": "Bodas, tuk-tuks and cars financed",
   "impact_stat3_num": "84+",
   "impact_stat3_label": "Branches from Mombasa to Eldoret",
+
   "cta_headline": "Your wheels are waiting.",
   "cta_body": "Three-minute form. Real call from a MOGO officer same day. Get your loan today.",
+  "cta_phone": "0709 719 000",
+
   "footer_about": "Mogo Auto Kenya Ltd. Part of Eleving Group — a fintech operating in 15 countries across three continents. Building a Kenya where every hustle has the wheels it needs.",
+  "footer_phone": "0768 469 112",
+
   "partners": [
     "Boxer Motors",
     "TVS Kenya",

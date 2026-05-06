@@ -1,7 +1,7 @@
 # Decap CMS — MOGO Kenya
-# Backend: Netlify Identity + Git Gateway
-# To activate: enable Netlify Identity + Git Gateway in your Netlify dashboard,
-# then invite editors via Netlify Identity → Invite users.
+# Backend: GitHub OAuth (via Netlify OAuth proxy)
+# To add editors: invite them as collaborators on the GitHub repo,
+# then they log in at /admin/ using their GitHub account.
 
 backend:
   name: github
@@ -13,9 +13,6 @@ backend:
 # Where uploaded images are stored in the repo and served from
 media_folder: "project/uploads"
 public_folder: "/uploads"
-
-# Optional: enable local backend for development (run `npx decap-server` in repo root)
-# local_backend: true
 
 collections:
 
@@ -84,55 +81,160 @@ collections:
               - label: "Body paragraphs"
                 name: "body"
                 widget: "list"
-                hint: "Add one paragraph per list item. Use the + button to add paragraphs."
+                hint: "Add one paragraph per list item."
                 field:
                   label: "Paragraph"
                   name: "paragraph"
                   widget: "text"
+
+  # ─── CUSTOMER STORIES ─────────────────────────────────────────────────────
+  - name: "stories"
+    label: "Customer Stories"
+    files:
+      - name: "homepage_stories"
+        label: "Homepage stories"
+        file: "project/content/stories.json"
+        fields:
+          - name: "stories"
+            label: "Stories"
+            label_singular: "Story"
+            widget: "list"
+            summary: "{{fields.name}} · {{fields.city}}"
+            fields:
+              - {label: "Name",         name: "name",    widget: "string"}
+              - {label: "City",         name: "city",    widget: "string"}
+              - {label: "Role",         name: "role",    widget: "string", hint: "e.g. Boda rider · since 2024"}
+              - {label: "Quote",        name: "quote",   widget: "text"}
+              - {label: "Product label",name: "product", widget: "string", hint: "e.g. New Boda Loan"}
+              - label: "Card theme (colour)"
+                name: "theme"
+                widget: "select"
+                options: ["sunset", "lilac", "peach", "warm", "green", "cool", "navy"]
+              - label: "Photo"
+                name: "photo"
+                widget: "image"
+                required: false
+                hint: "Optional portrait photo. Leave blank to use the colour card."
 
   # ─── SITE SETTINGS ────────────────────────────────────────────────────────
   - name: "settings"
     label: "Site Settings"
     files:
       - name: "homepage"
-        label: "Homepage text"
+        label: "Homepage text & settings"
         file: "project/content/settings.json"
         fields:
+
+          # ── Hero ──────────────────────────────────────────────────────────
+          - label: "Hero badge text"
+            name: "hero_badge"
+            widget: "string"
+            hint: "Small pill badge at the top of the hero, e.g. 100,000+ Kenyans backed · 84 branches"
 
           - label: "Hero headline"
             name: "hero_headline"
             widget: "string"
-            hint: "Large headline at the top of the page."
+            hint: "Large headline. e.g. Finance your future."
 
           - label: "Hero tagline (Swahili)"
             name: "hero_tagline"
             widget: "string"
-            hint: "Italic Swahili line below the headline."
+            hint: "Italic line below the headline. e.g. Jenga kesho yako."
 
           - label: "Hero body text"
             name: "hero_body"
             widget: "text"
             hint: "Short paragraph under the tagline."
 
+          - label: "Hero background photo"
+            name: "hero_image"
+            widget: "image"
+            required: false
+            hint: "Optional. Upload a landscape photo to replace the default illustration. Recommended: 1440×900px."
+
+          # ── Mission ───────────────────────────────────────────────────────
           - label: "Mission headline"
             name: "mission_headline"
             widget: "string"
+            hint: "e.g. Productivity financing."
 
           - label: "Mission body"
             name: "mission_body"
             widget: "text"
 
-          - label: "Access pillar description"
+          - label: "Pillar 1 title"
+            name: "mission_point1_title"
+            widget: "string"
+            hint: "e.g. Access"
+
+          - label: "Pillar 1 description"
             name: "mission_point1_desc"
             widget: "text"
 
-          - label: "Earn pillar description"
+          - label: "Pillar 2 title"
+            name: "mission_point2_title"
+            widget: "string"
+            hint: "e.g. Earn"
+
+          - label: "Pillar 2 description"
             name: "mission_point2_desc"
             widget: "text"
 
-          - label: "Grow pillar description"
+          - label: "Pillar 3 title"
+            name: "mission_point3_title"
+            widget: "string"
+            hint: "e.g. Grow"
+
+          - label: "Pillar 3 description"
             name: "mission_point3_desc"
             widget: "text"
+
+          # ── How It Works ──────────────────────────────────────────────────
+          - label: "How It Works headline"
+            name: "how_headline"
+            widget: "string"
+
+          - label: "How It Works subtitle"
+            name: "how_subtitle"
+            widget: "text"
+
+          - label: "Step 1 title"
+            name: "how_step1_title"
+            widget: "string"
+
+          - label: "Step 1 description"
+            name: "how_step1_desc"
+            widget: "text"
+
+          - label: "Step 2 title"
+            name: "how_step2_title"
+            widget: "string"
+
+          - label: "Step 2 description"
+            name: "how_step2_desc"
+            widget: "text"
+
+          - label: "Step 3 title"
+            name: "how_step3_title"
+            widget: "string"
+
+          - label: "Step 3 description"
+            name: "how_step3_desc"
+            widget: "text"
+
+          - label: "Step 4 title"
+            name: "how_step4_title"
+            widget: "string"
+
+          - label: "Step 4 description"
+            name: "how_step4_desc"
+            widget: "text"
+
+          # ── Impact ────────────────────────────────────────────────────────
+          - label: "Impact headline"
+            name: "impact_headline"
+            widget: "string"
+            hint: "e.g. Fueling 200,000+ Kenyan livelihoods."
 
           - label: "Impact stat 1 (number)"
             name: "impact_stat1_num"
@@ -159,6 +261,7 @@ collections:
             name: "impact_stat3_label"
             widget: "string"
 
+          # ── CTA ───────────────────────────────────────────────────────────
           - label: "CTA headline"
             name: "cta_headline"
             widget: "string"
@@ -168,9 +271,20 @@ collections:
             name: "cta_body"
             widget: "text"
 
+          - label: "CTA phone number"
+            name: "cta_phone"
+            widget: "string"
+            hint: "e.g. 0709 719 000"
+
+          # ── Footer ────────────────────────────────────────────────────────
           - label: "Footer about text"
             name: "footer_about"
             widget: "text"
+
+          - label: "Footer phone number"
+            name: "footer_phone"
+            widget: "string"
+            hint: "e.g. 0768 469 112"
 
           - label: "Partner brands (marquee)"
             name: "partners"
@@ -180,27 +294,3 @@ collections:
               label: "Brand name"
               name: "name"
               widget: "string"
-
-  # ─── CUSTOMER STORIES ─────────────────────────────────────────────────────
-  - name: "stories"
-    label: "Customer Stories"
-    files:
-      - name: "homepage_stories"
-        label: "Homepage stories"
-        file: "project/content/stories.json"
-        fields:
-          - name: "stories"
-            label: "Stories"
-            label_singular: "Story"
-            widget: "list"
-            summary: "{{fields.name}} · {{fields.city}}"
-            fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "City", name: "city", widget: "string"}
-              - {label: "Role", name: "role", widget: "string", hint: "e.g. Boda rider · since 2024"}
-              - {label: "Quote", name: "quote", widget: "text"}
-              - {label: "Product label", name: "product", widget: "string", hint: "e.g. New Boda Loan"}
-              - label: "Card theme (colour)"
-                name: "theme"
-                widget: "select"
-                options: ["sunset", "lilac", "peach", "warm", "green", "cool", "navy"]

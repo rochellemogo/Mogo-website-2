@@ -105,3 +105,14 @@ const MOGO_PRODUCTS = [
 ];
 
 window.MOGO_PRODUCTS = MOGO_PRODUCTS;
+
+(function() {
+  var base = window.__MOGO_SUBPAGE ? '../' : '';
+  fetch(base + 'content/settings.json')
+    .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+    .then(function(data) {
+      window.MOGO_SETTINGS = data;
+      window.dispatchEvent(new CustomEvent('mogo-settings-updated'));
+    })
+    .catch(function() {});
+})();
