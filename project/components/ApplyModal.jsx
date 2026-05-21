@@ -54,9 +54,9 @@ const ApplyModal = () => {
   return (
     <div role="dialog" aria-modal="true"
       onClick={() => setOpen(false)}
-      style={{ position:'fixed', inset:0, zIndex:9999, background:'rgba(11,18,32,.55)', backdropFilter:'blur(6px)', display:'grid', placeItems:'center', padding:24, animation:'apply-fade .2s ease' }}
+      style={{ position:'fixed', inset:0, zIndex:9999, background:'rgba(11,18,32,.55)', backdropFilter:'blur(6px)', display:'flex', alignItems:'flex-start', justifyContent:'center', padding:'48px 24px', overflowY:'auto', animation:'apply-fade .2s ease' }}
     >
-      <div onClick={(e)=>e.stopPropagation()} style={{ background:'#fff', borderRadius:'var(--r-xl)', maxWidth: 520, width:'100%', padding:'40px', boxShadow:'0 30px 80px rgba(11,18,32,.35)', position:'relative', animation:'apply-pop .25s ease' }}>
+      <div onClick={(e)=>e.stopPropagation()} style={{ background:'#fff', borderRadius:'var(--r-xl)', maxWidth: 520, width:'100%', padding:'40px', boxShadow:'0 30px 80px rgba(11,18,32,.35)', position:'relative', margin:'auto', animation:'apply-pop .25s ease' }}>
         <button onClick={() => setOpen(false)} aria-label="Close"
           style={{ position:'absolute', top:16, right:16, width:36, height:36, borderRadius:999, border:'none', background:'var(--m-cream)', color:'var(--m-ink)', cursor:'pointer', display:'grid', placeItems:'center', fontSize:18 }}>
           ×
@@ -79,7 +79,7 @@ const ApplyModal = () => {
           <>
             <div className="h-eyebrow" style={{ marginBottom: 12 }}><span className="dot"/>Start your application</div>
             <h3 className="h-display" style={{ fontSize: 32, lineHeight:1.05, letterSpacing:'-.02em', margin:'0 0 8px', fontWeight:500 }}>
-              Get a call back <em style={{ fontStyle:'italic', color:'var(--m-green-ink)', fontFamily:'"Instrument Serif", serif', fontWeight:400 }}>same day.</em>
+              Get a call back <em style={{ fontStyle:'italic', color:'var(--m-green-ink)', fontFamily:'var(--font-accent)', fontWeight:400 }}>same day.</em>
             </h3>
             <p style={{ fontSize: 14.5, color:'var(--m-ink-2)', lineHeight:1.55, margin:'0 0 28px' }}>
               Fill in your details and a Mogo loan officer will reach out within one business hour to confirm terms and book your nearest branch.

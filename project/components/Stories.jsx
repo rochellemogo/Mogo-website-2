@@ -1,23 +1,9 @@
-const STORIES_STATIC = [
-  { name:"Julius", city:"Nairobi", role:"Boda rider · since 2024", quote:"I got my Boxer in 2 hours. 14 months later I owned it. My daily take-home is now 3× what it was.", product:"New Boda Loan", theme:"sunset" },
-  { name:"Mary", city:"Nakuru", role:"Salon owner · since 2025", quote:"The buyoff saved me KES 8,400 every month. Same car, same logbook — just lower payments.", product:"Buyoff Logbook", theme:"lilac" },
-  { name:"Elijah", city:"Thika", role:"Tuk-Tuk operator · since 2023", quote:"My tuk-tuk logbook funds my parts inventory. Next week I'm financing my second vehicle.", product:"Tuk-Tuk Logbook", theme:"peach" },
-];
-
 const Stories = () => {
-  const [stories, setStories] = React.useState(STORIES_STATIC);
-
-  React.useEffect(() => {
-    const base = window.__MOGO_SUBPAGE ? '../' : '';
-    fetch(base + 'content/stories.json')
-      .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
-      .then(function (data) {
-        const arr = Array.isArray(data) ? data : (data.stories || []);
-        if (arr.length) setStories(arr);
-      })
-      .catch(function () {});
-  }, []);
-
+  const stories = [
+    { name:"Julius", city:"Nairobi", role:"Boda rider · since 2024", quote:"I got my Boxer in 2 hours. 14 months later I owned it. My daily take-home is now 3× what it was.", product:"New Boda Loan", theme:"sunset" },
+    { name:"Mary", city:"Nakuru", role:"Salon owner · since 2025", quote:"The buyoff saved me KES 8,400 every month. Same car, same logbook — just lower payments.", product:"Buyoff Logbook", theme:"lilac" },
+    { name:"Elijah", city:"Thika", role:"Tuk-Tuk operator · since 2023", quote:"My tuk-tuk logbook funds my parts inventory. Next week I'm financing my second vehicle.", product:"Tuk-Tuk Logbook", theme:"peach" },
+  ];
   return (
     <section id="stories" style={{padding:'100px 0', background:'var(--m-cream)'}}>
       <div className="shell">
@@ -39,7 +25,7 @@ const Stories = () => {
                 </div>
               </div>
               <div style={{padding:'24px 28px 28px', display:'flex', flexDirection:'column', flex:1}}>
-                <p style={{fontFamily:'"Instrument Serif", serif', fontSize: 22, lineHeight:1.35, letterSpacing:'-.005em', margin:'0 0 24px', flex:1}}>"{s.quote}"</p>
+                <p style={{fontFamily:'var(--font-accent)', fontSize: 22, lineHeight:1.35, letterSpacing:'-.005em', margin:'0 0 24px', flex:1}}>"{s.quote}"</p>
                 <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', paddingTop:18, borderTop:'1px solid var(--m-line)'}}>
                   <div>
                     <div style={{fontWeight:600, fontSize:15}}>{s.name}</div>

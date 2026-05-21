@@ -6,7 +6,7 @@ const MOGO_PRODUCTS = [
     short: "Boda Financing",
     category: "Vehicles",
     tagline: "Own your bike. Ride to work.",
-    headline: "Ride home today. Own it in 14 months.",
+    headline: "Ride home today. Own it in 24 months.",
     desc: "New and pre-owned motorbikes from Boxer, TVS, Honda, Captain and more. Small down payment, weekly M-Pesa installments.",
     tag: "Most popular",
     price: "From KES 20k down",
@@ -14,6 +14,21 @@ const MOGO_PRODUCTS = [
     turnaround: "2 hours",
     theme: "sunset",
     featured: true,
+    catalogue: {
+      title: 'Available bikes',
+      subtitle: 'Pick your bike. We finance it. Down payment + daily figures are indicative — final terms confirmed at the branch.',
+      cols: ['Brand & model', 'Engine', 'Down payment', 'Daily payment', 'Term'],
+      items: [
+        { brand:'Boxer 100',     spec:'100cc commuter',     down:'KES 20,000', daily:'KES 350', term:'14 months', tag:'Most popular' },
+        { brand:'Boxer 150 X',   spec:'150cc workhorse',    down:'KES 25,000', daily:'KES 420', term:'14 months' },
+        { brand:'TVS HLX 125',   spec:'125cc commuter',     down:'KES 20,000', daily:'KES 380', term:'14 months' },
+        { brand:'TVS HLX 150 X', spec:'150cc dual-purpose', down:'KES 25,000', daily:'KES 440', term:'14 months' },
+        { brand:'Honda CB 125 F',spec:'125cc fuel-saver',   down:'KES 25,000', daily:'KES 460', term:'18 months' },
+        { brand:'Honda Ace 110', spec:'110cc starter',      down:'KES 20,000', daily:'KES 390', term:'14 months' },
+        { brand:'Captain 150',   spec:'150cc workhorse',    down:'KES 22,000', daily:'KES 410', term:'14 months' },
+        { brand:'Skygo 125',     spec:'125cc commuter',     down:'KES 20,000', daily:'KES 360', term:'14 months' },
+      ],
+    },
   },
   {
     slug: "boda-logbook-loans",
@@ -86,6 +101,37 @@ const MOGO_PRODUCTS = [
     turnaround: "Same day",
     theme: "warm",
     isNew: true,
+    catalogue: {
+      title: 'Available smartphones',
+      subtitle: 'Walk out with the phone today. Down payment + daily figures are indicative — final terms confirmed at the branch.',
+      cols: ['Phone', 'Spec', 'Down payment', 'Daily payment', 'Term'],
+      items: [
+        { brand:'Samsung Galaxy A05',   spec:'4GB / 64GB',  down:'KES 2,500', daily:'KES 50',  term:'9 months',  tag:'Cheapest' },
+        { brand:'Samsung Galaxy A15',   spec:'4GB / 128GB', down:'KES 3,500', daily:'KES 75',  term:'9 months' },
+        { brand:'Samsung Galaxy A25 5G',spec:'6GB / 128GB', down:'KES 5,000', daily:'KES 110', term:'9 months' },
+        { brand:'Xiaomi Redmi 13C',     spec:'4GB / 128GB', down:'KES 3,000', daily:'KES 70',  term:'9 months',  tag:'Most popular' },
+        { brand:'Xiaomi Redmi Note 13', spec:'8GB / 256GB', down:'KES 6,000', daily:'KES 140', term:'12 months' },
+        { brand:'Tecno Spark 20',       spec:'8GB / 128GB', down:'KES 3,500', daily:'KES 80',  term:'9 months' },
+        { brand:'Tecno Camon 20',       spec:'8GB / 256GB', down:'KES 5,500', daily:'KES 120', term:'12 months' },
+        { brand:'Infinix Hot 40',       spec:'8GB / 256GB', down:'KES 4,000', daily:'KES 95',  term:'9 months' },
+        { brand:'Infinix Note 40',      spec:'8GB / 256GB', down:'KES 5,500', daily:'KES 125', term:'12 months' },
+        { brand:'iPhone 13',            spec:'128GB',       down:'KES 12,000',daily:'KES 250', term:'12 months', tag:'Premium' },
+      ],
+    },
+  },
+  {
+    slug: "car-logbook-loans",
+    name: "Car Logbook Loans",
+    short: "Car Logbook",
+    category: "Logbook",
+    tagline: "Your car. Your cash. Keep driving.",
+    headline: "Unlock cash without parking your car.",
+    desc: "Use your existing car as collateral. Get working capital from KES 100,000 to KES 3M — keep driving while you repay.",
+    tag: "Existing car owners",
+    price: "KES 100k – 3M",
+    term: "Up to 36 months",
+    turnaround: "24 hours",
+    theme: "navy",
   },
   {
     slug: "msme-loans",
@@ -97,7 +143,7 @@ const MOGO_PRODUCTS = [
     desc: "Stock, equipment, expansion or bridge finance. Built for shopkeepers, salons, matatus, farmers and side-hustlers.",
     tag: "For business owners",
     price: "KES 100k – 5M",
-    term: "3–36 months",
+    term: "30-60 days",
     turnaround: "72 hours",
     theme: "navy",
     isNew: true,
@@ -106,6 +152,7 @@ const MOGO_PRODUCTS = [
 
 window.MOGO_PRODUCTS = MOGO_PRODUCTS;
 
+// Load CMS settings from content/settings.json
 (function() {
   var base = window.__MOGO_SUBPAGE ? '../' : '';
   fetch(base + 'content/settings.json')

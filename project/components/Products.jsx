@@ -9,7 +9,6 @@ const ProductTile = ({ p, isSubpage }) => {
     }}>
       <div style={{ position: 'relative', aspectRatio: '4/3', margin: 10, marginBottom: 0, borderRadius: 'calc(var(--r-xl) - 10px)', overflow: 'hidden' }}>
         <ProductImage theme={p.theme} slug={p.slug} />
-        <div className="ph-tag">{p.tag}</div>
         <div style={{ position: 'absolute', bottom: 16, right: 16, zIndex: 3 }} className="tile-arrow"><ArrowUpRight /></div>
         {p.isNew &&
         <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 3, padding: '6px 10px', borderRadius: 999, background: 'var(--m-ink)', color: '#fff', fontSize: 10, fontFamily: 'var(--font-mono)', letterSpacing: '.12em', textTransform: 'uppercase', fontWeight: 600 }}>New</div>
@@ -152,7 +151,6 @@ const Products = () => {
           <div data-featured-photo style={{ position: 'relative', padding: 10 }}>
             <div style={{ position: 'absolute', inset: 10, borderRadius: 'var(--r-lg)', overflow: 'hidden' }}>
               <ProductImage theme={featured.theme} slug={featured.slug} />
-              <div className="ph-tag">Julius · Embakasi</div>
             </div>
           </div>
         </a>

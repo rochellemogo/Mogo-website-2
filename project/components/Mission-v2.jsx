@@ -1,35 +1,23 @@
 // v2 Mission — productivity financing positioning
-const MissionV2 = () => {
-  const [s, setS] = React.useState(window.MOGO_SETTINGS || {});
-  React.useEffect(() => {
-    const h = () => setS(window.MOGO_SETTINGS || {});
-    window.addEventListener('mogo-settings-updated', h);
-    return () => window.removeEventListener('mogo-settings-updated', h);
-  }, []);
+const MissionV2 = () =>
+<section style={{ padding: '120px 0', background: '#fff' }}>
+    <div className="shell">
+      <div style={{ maxWidth: 1180 }}>
+        <h2 className="h-display" style={{ fontSize: 'clamp(44px, 6.5vw, 108px)', lineHeight: .98, letterSpacing: '-.035em', margin: '24px 0 0', fontWeight: 500 }}>
+          <em style={{ fontStyle: 'italic', color: 'var(--m-green-ink)', fontFamily: 'var(--font-accent)', fontWeight: 400, letterSpacing: '-.01em' }}>Productivity financing.</em>
+        </h2>
+        <p style={{ fontSize: 20, lineHeight: 1.5, color: 'var(--m-ink-2)', maxWidth: 680, margin: '32px 0 0' }}>Mogo finances the tools Kenyans earn with - bikes, cars, devices, shop stock -  and unlocks cash against assets they already own.
 
-  return (
-    <section data-mogo-mission style={{ padding: '120px 0', background: '#fff' }}>
-      <div className="shell">
-        <div style={{ maxWidth: 1180 }}>
-          <h2 className="h-display" style={{ fontSize: 'clamp(44px, 6.5vw, 108px)', lineHeight: .98, letterSpacing: '-.035em', margin: '24px 0 0', fontWeight: 500 }}>
-            <em style={{ fontStyle: 'italic', color: 'var(--m-green-ink)', fontFamily: '"Instrument Serif", serif', fontWeight: 400, letterSpacing: '-.01em' }}>
-              {s.mission_headline || 'Productivity financing.'}
-            </em>
-          </h2>
-          <p style={{ fontSize: 20, lineHeight: 1.5, color: 'var(--m-ink-2)', maxWidth: 680, margin: '32px 0 0' }}>
-            {s.mission_body || 'Mogo finances the tools Kenyans earn with - bikes, cars, devices, shop stock - and unlocks cash against assets they already own.'}
-          </p>
-        </div>
-
-        <div data-mission-grid style={{ marginTop: 80, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40, paddingTop: 48, borderTop: '1px solid var(--m-line)' }}>
-          <MissionPointV2 n="01" t={s.mission_point1_title || 'Access'} d={s.mission_point1_desc || 'Available to every working Kenyan with an ID and an M-Pesa number.'} />
-          <MissionPointV2 n="02" t={s.mission_point2_title || 'Earn'} d={s.mission_point2_desc || 'We finance the asset, not the lifestyle. Over 70% of our customers are self-employed — the bike, tuk-tuk, car or phone pays for itself.'} />
-          <MissionPointV2 n="03" t={s.mission_point3_title || 'Grow'} d={s.mission_point3_desc || 'From first boda to second branch. Customers graduate from asset finance to logbook unlocks to working capital.'} />
-        </div>
+      </p>
       </div>
-    </section>
-  );
-};
+
+      <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40, paddingTop: 48, borderTop: '1px solid var(--m-line)' }}>
+        <MissionPointV2 n="01" t="Access" d="Available to every working Kenyan with an ID and an M-Pesa number." />
+        <MissionPointV2 n="02" t="Earn" d="We finance the asset, not the lifestyle. Over 70% of our customers are self-employed — the bike, tuk-tuk, car or phone pays for itself." />
+        <MissionPointV2 n="03" t="Grow" d="From first boda to second branch. Customers graduate from asset finance to logbook unlocks to working capital." />
+      </div>
+    </div>
+  </section>;
 
 
 const IsIsNot_DISABLED = () => {
@@ -119,7 +107,7 @@ const Personas = () => {
                 </div>
               </div>
               <div style={{ padding: '28px 28px 32px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                <div style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontSize: 30, lineHeight: 1.05, color: p.accent, letterSpacing: '-.01em', margin: '0 0 16px' }}>"{p.line}"</div>
+                <div style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 30, lineHeight: 1.05, color: p.accent, letterSpacing: '-.01em', margin: '0 0 16px' }}>"{p.line}"</div>
                 <p style={{ fontSize: 14.5, color: 'var(--m-ink-2)', lineHeight: 1.55, margin: 0, flex: 1 }}>{p.quote}</p>
                 <a href={`products/${p.product.toLowerCase().includes('boda log') ? 'boda-logbook-loans' : p.product.toLowerCase().includes('boda') ? 'boda-financing' : p.product.toLowerCase().includes('car log') ? 'car-loans' : p.product.toLowerCase().includes('car') ? 'car-loans' : p.product.toLowerCase().includes('device') ? 'smartphone-loans' : 'check-off-loans'}.html`} style={{ marginTop: 20, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, color: 'var(--m-ink)', textDecoration: 'none' }}>
                   See the product <ArrowRight />
@@ -150,13 +138,13 @@ const CompetitiveLandscape = () => {
           {rows.map((r, i) =>
           <div key={i} style={{ display: 'grid', gridTemplateColumns: '180px 1fr 1fr', gap: 32, padding: '24px 0', borderBottom: '1px solid var(--m-line-2)', alignItems: 'baseline' }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 22, letterSpacing: '-.02em' }}>{r.brand}</div>
-              <div style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontSize: 22, color: 'var(--m-ink-2)' }}>"{r.line}"</div>
+              <div style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 22, color: 'var(--m-ink-2)' }}>"{r.line}"</div>
               <div style={{ fontSize: 14, color: 'var(--m-muted)', fontFamily: 'var(--font-mono)', letterSpacing: '.04em' }}>{r.owns}</div>
             </div>
           )}
           <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr 1fr', gap: 32, padding: '32px 0', borderBottom: '1px solid var(--m-line-2)', alignItems: 'baseline', background: 'var(--m-green-soft)', margin: '0 -24px', paddingLeft: 24, paddingRight: 24, borderRadius: 'var(--r-lg)' }}>
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 28, letterSpacing: '-.02em', color: 'var(--m-green-deep)' }}>Mogo</div>
-            <div style={{ fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontSize: 28, color: 'var(--m-green-deep)' }}>"Finance your future. Jenga kesho."</div>
+            <div style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 28, color: 'var(--m-green-deep)' }}>"Finance your future. Jenga kesho."</div>
             <div style={{ fontSize: 14, color: 'var(--m-green-deep)', fontFamily: 'var(--font-mono)', letterSpacing: '.04em', fontWeight: 600 }}>The income-generating asset. The bike, car, phone, shop.</div>
           </div>
         </div>
