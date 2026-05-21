@@ -39,7 +39,7 @@
 .mobile-nav-drawer__head { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid var(--m-line); }
 .mobile-nav-drawer__body { flex: 1; padding: 8px 8px 32px; }
 .mobile-nav-drawer__group { border-bottom: 1px solid var(--m-line); }
-.mobile-nav-drawer__row { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 18px 16px; background: transparent; font-family: inherit; font-size: 17px; font-weight: 500; color: var(--m-ink); text-align: left; border: none; }
+.mobile-nav-drawer__row { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 18px 16px; background: transparent; font-family: inherit; font-size: 17px; font-weight: 500; color: var(--m-ink); text-align: left; border: none; text-transform: uppercase; letter-spacing: .08em; }
 .mobile-nav-drawer__row[aria-expanded="true"] { color: var(--m-green-ink); }
 .mobile-nav-drawer__chev { width: 12px; height: 12px; transition: transform .2s; }
 .mobile-nav-drawer__row[aria-expanded="true"] .mobile-nav-drawer__chev { transform: rotate(180deg); }
