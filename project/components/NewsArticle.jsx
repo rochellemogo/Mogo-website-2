@@ -1,23 +1,10 @@
 // News article detail page component. Reads ?slug= from URL, renders article.
-// Also listens for 'mogo-news-updated' so CMS edits appear without a page reload.
 const NewsArticle = () => {
-  const slug = new URLSearchParams(window.location.search).get('slug');
-
-  const findArticle = () => {
-    const items = window.MOGO_NEWS || [];
-    return items.find(a => a.slug === slug) || items[0] || null;
-  };
-
-  const [article, setArticle] = React.useState(findArticle);
-
-  React.useEffect(() => {
-    const handler = () => setArticle(findArticle());
-    window.addEventListener('mogo-news-updated', handler);
-    return () => window.removeEventListener('mogo-news-updated', handler);
-  }, []);
-
   const items = window.MOGO_NEWS || [];
-  const idx = article ? items.findIndex(a => a.slug === article.slug) : -1;
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+  const article = items.find(a => a.slug === slug) || items[0];
+  const idx = items.findIndex(a => a.slug === article.slug);
   const prev = idx > 0 ? items[idx - 1] : null;
   const next = idx < items.length - 1 ? items[idx + 1] : null;
 
@@ -54,21 +41,15 @@ const NewsArticle = () => {
         </div>
       </section>
 
-      {/* Lead photo — real image if CMS has one, otherwise colour placeholder */}
+      {/* Lead photo placeholder */}
       <section style={{padding:'48px 0 0', background:'#fff'}}>
         <div className="shell" style={{maxWidth: 1040}}>
-          <div style={{aspectRatio:'16/8', borderRadius:'var(--r-xl)', position:'relative', overflow:'hidden',
-            background: article.photo ? 'var(--m-cream)' : `linear-gradient(135deg, hsl(${(idx*37)%360} 24% 78%), hsl(${(idx*37+60)%360} 20% 58%))`}}>
-            {article.photo
-              ? <img src={article.photo} alt={article.title} style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}/>
-              : <>
-                  <div className="grain"/>
-                  <div style={{position:'absolute', bottom:20, left:24, right:24, display:'flex', justifyContent:'space-between', alignItems:'flex-end', color:'rgba(255,255,255,.88)', fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase'}}>
-                    <span>Photo · {article.photoLabel}</span>
-                    <span>Drop image here · 16:8</span>
-                  </div>
-                </>
-            }
+          <div style={{aspectRatio:'16/8', background:`linear-gradient(135deg, hsl(${(idx*37)%360} 24% 78%), hsl(${(idx*37+60)%360} 20% 58%))`, borderRadius:'var(--r-xl)', position:'relative', overflow:'hidden'}}>
+            <div className="grain"/>
+            <div style={{position:'absolute', bottom:20, left:24, right:24, display:'flex', justifyContent:'space-between', alignItems:'flex-end', color:'rgba(255,255,255,.88)', fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase'}}>
+              <span>Photo · {article.photoLabel}</span>
+              <span>Drop image here · 16:8</span>
+            </div>
           </div>
         </div>
       </section>

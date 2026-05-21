@@ -4,7 +4,7 @@ const ProductPage = ({product}) => {
   const faqs = {
     "boda-financing": [
       ["What bikes can I choose from?", "Boxer, TVS, Honda, Captain and other approved partner brands. Both 125cc commuter bikes and 150cc workhorses."],
-      ["How much is the down payment?", "Typically KES 20,000 — sometimes less during promotions. No hidden fees on top."],
+      ["How much is the down payment?", "Typically KES 20,000."],
       ["Can I pay early?", "Yes. Early repayment saves you interest and you own the logbook outright the moment you finish."],
     ],
     "boda-logbook-loans": [
@@ -35,7 +35,7 @@ const ProductPage = ({product}) => {
     "msme-loans": [
       ["What counts as MSME?", "Any micro, small or medium business — duka, salon, farm, matatu, workshop, cyber. Registered or informal."],
       ["What can I use it for?", "Stock, equipment, expansion, bridging cashflow. We don't dictate what you do with it."],
-      ["Do I need collateral?", "Sometimes — depends on the amount. Smaller loans are often unsecured."],
+      ["Do I need collateral?", "No!"],
     ],
   }[product.slug] || [];
 
@@ -94,10 +94,10 @@ const ProductPage = ({product}) => {
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap: 20}}>
             {[
-              ['01', 'Apply', 'Online or at any of 84 branches. Just ID + M-Pesa number.'],
-              ['02', 'Get approved', 'A MOGO officer confirms your exact terms the same day.'],
-              ['03', 'Sign & collect', 'Face-to-face at your branch. Ride / pick up / receive cash.'],
-              ['04', 'Repay', 'Weekly or monthly via M-Pesa. Pay early, save interest.'],
+              ['01', 'Visit', 'Your nearest branch to express your interest. Just ID + M-Pesa number.'],
+              ['02', 'Get approved', 'An officer will visit your shop front to complete your application and explain your terms.'],
+              ['03', 'Sign', 'Face-to-face with an officer.'],
+              ['04', 'Repay', 'Daily via M-Pesa. Pay early, save interest.'],
             ].map(([n,t,d]) => (
               <div key={n} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding:'32px 28px', minHeight: 220}}>
                 <div style={{fontFamily:'var(--font-mono)', fontSize:12, color:'var(--m-green-ink)', letterSpacing:'.12em', marginBottom: 20}}>{n}</div>
@@ -120,13 +120,12 @@ const ProductPage = ({product}) => {
             <div>
               <ul style={{listStyle:'none', padding:0, margin:0, display:'flex', flexDirection:'column', gap: 0}}>
                 {[
-                  'Kenyan national ID or valid passport',
+                  'Kenyan national ID',
                   'Active M-Pesa number in your name',
                   'Proof of income (payslip, M-Pesa statement, or business records)',
                   product.slug.includes('logbook') ? 'Original logbook for the vehicle you own' : null,
                   product.slug === 'check-off-loans' ? 'Employer enrolled in our check-off programme' : null,
                   product.slug === 'msme-loans' ? 'At least 6 months in business (registered or informal)' : null,
-                  product.slug === 'smartphone-loans' ? 'Any Android 8.0+ or iPhone compatible with our payment lock' : null,
                   'No existing defaults on other MOGO products',
                 ].filter(Boolean).map((req, i, arr) => (
                   <li key={i} style={{display:'flex', alignItems:'flex-start', gap:16, padding:'20px 0', borderBottom: i < arr.length - 1 ? '1px solid var(--m-line)' : 'none'}}>
@@ -141,6 +140,41 @@ const ProductPage = ({product}) => {
           </div>
         </div>
       </section>
+
+      {/* Catalogue */}
+      {product.catalogue && (
+        <section style={{padding:'100px 0', background:'#fff'}}>
+          <div className="shell">
+            <div style={{display:'flex', justifyContent:'space-between', alignItems:'end', marginBottom: 40, flexWrap:'wrap', gap:24}}>
+              <div style={{maxWidth: 640}}>
+                <div className="h-eyebrow"><span className="dot"/>Catalogue</div>
+                <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 60px)'}}>{product.catalogue.title}</h2>
+                <p style={{marginTop: 16, fontSize:15.5, color:'var(--m-ink-2)', lineHeight:1.55}}>{product.catalogue.subtitle}</p>
+              </div>
+              <a href="../index.html#apply" className="btn btn-primary">Apply for one <span className="arrow-pill"><ArrowRight/></span></a>
+            </div>
+
+            <div className="catalogue-table-wrap" style={{border:'1px solid var(--m-line)', borderRadius:'var(--r-xl)', overflow:'hidden', background:'var(--m-cream)'}}>
+              <div className="catalogue-row catalogue-head" style={{display:'grid', gridTemplateColumns:'1.4fr 1.1fr 1fr 1fr .9fr', padding:'18px 28px', background:'var(--m-ink)', color:'#fff', fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.12em', textTransform:'uppercase'}}>
+                {product.catalogue.cols.map((c,i) => <div key={i}>{c}</div>)}
+              </div>
+              {product.catalogue.items.map((item, i) => (
+                <div key={i} className="catalogue-row" style={{display:'grid', gridTemplateColumns:'1.4fr 1.1fr 1fr 1fr .9fr', padding:'22px 28px', borderTop: i === 0 ? 'none' : '1px solid var(--m-line)', background: i % 2 === 0 ? '#fff' : 'var(--m-cream)', alignItems:'center'}}>
+                  <div style={{display:'flex', alignItems:'center', gap:14, flexWrap:'wrap'}}>
+                    <div style={{fontFamily:'var(--font-display)', fontSize:18, fontWeight:600, letterSpacing:'-.015em'}}>{item.brand}</div>
+                    {item.tag && <span style={{padding:'3px 8px', borderRadius:999, background:'var(--m-green-soft)', color:'var(--m-green-deep)', fontSize:10, fontFamily:'var(--font-mono)', letterSpacing:'.08em', textTransform:'uppercase', fontWeight:600}}>{item.tag}</span>}
+                  </div>
+                  <div style={{fontSize:14.5, color:'var(--m-ink-2)'}}>{item.spec}</div>
+                  <div style={{fontFamily:'var(--font-mono)', fontSize:14, fontWeight:600, color:'var(--m-ink)'}}>{item.down}</div>
+                  <div style={{fontFamily:'var(--font-mono)', fontSize:14, fontWeight:600, color:'var(--m-green-ink)'}}>{item.daily}</div>
+                  <div style={{fontSize:14, color:'var(--m-ink-2)'}}>{item.term}</div>
+                </div>
+              ))}
+            </div>
+            <p style={{marginTop:18, fontSize:12.5, color:'var(--m-muted)', fontFamily:'var(--font-mono)', letterSpacing:'.04em'}}>* Indicative pricing. Final terms confirmed at branch based on your profile and current promotions.</p>
+          </div>
+        </section>
+      )}
 
       {/* FAQ */}
       {faqs.length > 0 && (
@@ -168,7 +202,7 @@ const ProductPage = ({product}) => {
               <div className="h-eyebrow"><span className="dot"/>More from MOGO</div>
               <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 60px)'}}>Other ways we <em>finance.</em></h2>
             </div>
-            <a href="../index.html#products" className="btn btn-ghost">See all 7 products <ArrowRight/></a>
+            <a href="../index.html#products" className="btn btn-ghost">See all 8 products <ArrowRight/></a>
           </div>
           <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 20}}>
             {others.map(p => <ProductTile key={p.slug} p={p} isSubpage={true}/>)}
@@ -183,10 +217,10 @@ const ProductPage = ({product}) => {
             <div style={{position:'absolute', right:-80, top:-80, width: 320, height: 320, borderRadius: 999, background:'var(--m-green)', opacity:.22, filter:'blur(80px)'}}/>
             <div style={{position:'relative', maxWidth: 680}}>
               <h2 className="h-display" style={{fontSize:'clamp(40px, 5vw, 72px)', margin:'0 0 20px', letterSpacing:'-.03em', fontWeight:600}}>
-                Ready to apply for<br/><em style={{fontStyle:'italic', color:'var(--m-green)', fontFamily:'"Instrument Serif", serif', fontWeight:400}}>{product.name}?</em>
+                Ready to apply for<br/><em style={{fontStyle:'italic', color:'var(--m-green)', fontFamily:'var(--font-accent)', fontWeight:400}}>{product.name}?</em>
               </h2>
               <p style={{fontSize:17, color:'rgba(255,255,255,.72)', lineHeight:1.55, marginBottom: 32, maxWidth: 500}}>
-                Three-minute form. Real call from a MOGO officer same day. Get answers, not runarounds.
+                Three-minute form. Real call from a MOGO officer.
               </p>
               <div style={{display:'flex', gap:12, flexWrap:'wrap'}}>
                 <a href="../index.html#apply" className="btn btn-primary btn-lg">Apply online <span className="arrow-pill"><ArrowRight/></span></a>

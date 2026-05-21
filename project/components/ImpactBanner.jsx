@@ -1,12 +1,14 @@
 // ImpactBanner — continuous left-scrolling photo strip for the Mogo Impact page.
 const ImpactBanner = () => {
+  // [resource-id, fallback path]
   const slides = [
-    '../uploads/women photo-c433c1c0.jpg',
-    '../uploads/csr-2f61378b.jpg',
-    '../uploads/tree planting-8ba64093.jpg',
-    '../uploads/women backs-be370c94.jpg',
-    '../uploads/boda stage-a0c0b0d0.jpg',
+    ['impact01', '../uploads/women photo-c433c1c0.jpg'],
+    ['impact02', '../uploads/csr-2f61378b.jpg'],
+    ['impact03', '../uploads/tree planting-8ba64093.jpg'],
+    ['impact04', '../uploads/women backs-be370c94.jpg'],
+    ['impact05', '../uploads/boda stage-a0c0b0d0.jpg'],
   ];
+  const resolve = ([id, path]) => (window.__resources && window.__resources[id]) || path;
 
   return (
     <section style={{ padding: 0, background: '#fff' }}>
@@ -20,7 +22,7 @@ const ImpactBanner = () => {
               overflow: 'hidden',
               background: '#0B1220',
             }}>
-              <img src={src} alt=""
+              <img src={resolve(src)} alt=""
                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
           ))}

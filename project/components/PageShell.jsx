@@ -86,4 +86,44 @@ const CTAFooter = ({title, subtitle, cta='Apply now', href='../index.html#apply'
   </section>
 );
 
-Object.assign(window, { PageHero, Prose, StatsBand, TwoCol, Cards, CTAFooter });
+Object.assign(window, { PageHero, Prose, StatsBand, TwoCol, Cards, CTAFooter, StoryVideo });
+
+const StoryVideo = ({youtubeId, name, city, role, product, tagline, featured}) => {
+  const [playing, setPlaying] = React.useState(false);
+  const thumb = `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+  return (
+    <article style={{display:'flex', flexDirection:'column', gap: featured ? 24 : 14}}>
+      <div style={{position:'relative', aspectRatio: featured ? '16/9' : '4/3', borderRadius: featured ? 'var(--r-xl)' : 16, overflow:'hidden', background:'var(--m-ink)', cursor:'pointer'}} onClick={()=>setPlaying(true)}>
+        {playing ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`}
+            title={`${name} — Mogo customer story`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{position:'absolute', inset:0, width:'100%', height:'100%', border:'none'}}
+          />
+        ) : (
+          <>
+            <img src={thumb} alt={`${name} story`} style={{position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover'}} onError={(e)=>{e.currentTarget.style.display='none';}}/>
+            <div style={{position:'absolute', inset:0, background:'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 100%)'}}/>
+            {/* Play button */}
+            <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width: featured ? 88 : 56, height: featured ? 88 : 56, borderRadius:999, background:'rgba(255,255,255,.95)', display:'grid', placeItems:'center', boxShadow:'0 12px 36px rgba(0,0,0,.3)'}}>
+              <svg width={featured?28:18} height={featured?28:18} viewBox="0 0 18 18" fill="var(--m-ink)"><path d="M3 1l13 8-13 8z"/></svg>
+            </div>
+            {/* Bottom-left meta over thumb */}
+            <div style={{position:'absolute', left: featured?28:16, right: featured?28:16, bottom: featured?24:14, color:'#fff'}}>
+              <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.12em', textTransform:'uppercase', opacity:.85}}>{product}</div>
+              <div style={{fontSize: featured ? 30 : 18, fontWeight:700, marginTop:4, letterSpacing:'-.01em', lineHeight:1.2}}>“{tagline}”</div>
+            </div>
+          </>
+        )}
+      </div>
+      <div style={{display:'flex', alignItems:'baseline', justifyContent:'space-between', gap: 12}}>
+        <div>
+          <div style={{fontSize: featured?20:15, fontWeight:600, color:'var(--m-ink)'}}>{name}</div>
+          <div style={{fontSize:13, color:'var(--m-ink-2)', marginTop:2}}>{role} · {city}</div>
+        </div>
+      </div>
+    </article>
+  );
+};
