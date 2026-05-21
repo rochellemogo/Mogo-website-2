@@ -26,7 +26,7 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+        <div data-steps-grid style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
           {steps.map((step) =>
           <div key={step.n} style={{ background: 'var(--m-cream)', borderRadius: 'var(--r-xl)', padding: 14, display: 'flex', flexDirection: 'column' }}>
               <div style={{ position: 'relative', aspectRatio: '1/1', borderRadius: 'var(--r-lg)', overflow: 'hidden' }}>
@@ -54,7 +54,7 @@ const Impact = () => {
   }, []);
 
   return (
-    <section style={{ padding: '100px 0', background: 'var(--m-ink)', color: '#fff', position: 'relative', overflow: 'hidden' }}>
+    <section data-mogo-impact style={{ padding: '100px 0', background: 'var(--m-ink)', color: '#fff', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', top: -120, right: -120, width: 400, height: 400, borderRadius: 999, background: 'var(--m-green)', opacity: .15, filter: 'blur(100px)' }} />
       <div className="shell" style={{ position: 'relative' }}>
         <div style={{ maxWidth: 900, marginBottom: 72 }}>
@@ -64,7 +64,7 @@ const Impact = () => {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, borderTop: '1px solid rgba(255,255,255,.12)' }}>
+        <div data-impact-grid style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, borderTop: '1px solid rgba(255,255,255,.12)' }}>
           <ImpactNum n={s.impact_stat1_num || 'KES 12B+'}   l={s.impact_stat1_label || 'Disbursed to Kenyans since 2018'} />
           <ImpactNum n={s.impact_stat2_num || '100,000+'}    l={s.impact_stat2_label || 'Bodas, tuk-tuks and cars financed'} />
           <ImpactNum n={s.impact_stat3_num || '84+'}         l={s.impact_stat3_label || 'Branches from Mombasa to Eldoret'} />

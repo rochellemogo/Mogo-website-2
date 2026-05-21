@@ -15,7 +15,7 @@ const ProductTile = ({ p, isSubpage }) => {
         <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 3, padding: '6px 10px', borderRadius: 999, background: 'var(--m-ink)', color: '#fff', fontSize: 10, fontFamily: 'var(--font-mono)', letterSpacing: '.12em', textTransform: 'uppercase', fontWeight: 600 }}>New</div>
         }
       </div>
-      <div style={{ padding: '24px 26px 28px' }}>
+      <div data-tile-body style={{ padding: '24px 26px 28px' }}>
         <div style={{ fontSize: 12, fontFamily: 'var(--font-mono)', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--m-green-ink)', marginBottom: 10 }}>{p.price}</div>
         <h3 className="h-display" style={{ fontSize: 26, letterSpacing: '-.025em', margin: '0 0 8px', fontWeight: 600 }}>{p.name}</h3>
         <p style={{ fontSize: 14.5, color: 'var(--m-ink-2)', lineHeight: 1.5, margin: 0 }}>{p.tagline}</p>
@@ -130,8 +130,8 @@ const Products = () => {
         </div>
 
         {/* hero tile — boda financing */}
-        <a href={`products/${featured.slug}.html`} className="tile" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', background: 'var(--m-ink)', color: '#fff', borderRadius: 'var(--r-xl)', overflow: 'hidden', marginBottom: 20, minHeight: 440 }}>
-          <div style={{ padding: '56px' }}>
+        <a href={`products/${featured.slug}.html`} data-featured-tile className="tile" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', background: 'var(--m-ink)', color: '#fff', borderRadius: 'var(--r-xl)', overflow: 'hidden', marginBottom: 20, minHeight: 440 }}>
+          <div data-featured-text style={{ padding: '56px' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 12px', borderRadius: 999, background: 'rgba(122,184,0,.18)', color: 'var(--m-green)', fontSize: 12, fontFamily: 'var(--font-mono)', letterSpacing: '.1em', textTransform: 'uppercase', marginBottom: 28 }}>
               <span style={{ width: 6, height: 6, borderRadius: 999, background: 'var(--m-green)' }} /> {featured.tag} · 70% of customers
             </div>
@@ -139,7 +139,7 @@ const Products = () => {
               {featured.name}
             </h3>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,.75)', lineHeight: 1.55, maxWidth: 460, margin: '0 0 32px' }}>{featured.desc}</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, paddingTop: 28, borderTop: '1px solid rgba(255,255,255,.12)', marginBottom: 32 }}>
+            <div data-featured-stats style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, paddingTop: 28, borderTop: '1px solid rgba(255,255,255,.12)', marginBottom: 32 }}>
               {[['From', featured.price.replace('From ', '')], ['Term', featured.term], ['Turnaround', featured.turnaround]].map(([l, v]) =>
               <div key={l}>
                   <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', marginBottom: 6 }}>{l}</div>
@@ -149,7 +149,7 @@ const Products = () => {
             </div>
             <span className="btn btn-primary">Learn more <span className="arrow-pill"><ArrowRight /></span></span>
           </div>
-          <div style={{ position: 'relative', padding: 10 }}>
+          <div data-featured-photo style={{ position: 'relative', padding: 10 }}>
             <div style={{ position: 'absolute', inset: 10, borderRadius: 'var(--r-lg)', overflow: 'hidden' }}>
               <ProductImage theme={featured.theme} slug={featured.slug} />
               <div className="ph-tag">Julius · Embakasi</div>
@@ -158,7 +158,7 @@ const Products = () => {
         </a>
 
         {/* 6 smaller tiles — 3 × 2 grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        <div data-tile-grid style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           {others.map((p) => <ProductTile key={p.slug} p={p} isSubpage={false} />)}
         </div>
       </div>

@@ -8,7 +8,7 @@ const MissionV2 = () => {
   }, []);
 
   return (
-    <section style={{ padding: '120px 0', background: '#fff' }}>
+    <section data-mogo-mission style={{ padding: '120px 0', background: '#fff' }}>
       <div className="shell">
         <div style={{ maxWidth: 1180 }}>
           <h2 className="h-display" style={{ fontSize: 'clamp(44px, 6.5vw, 108px)', lineHeight: .98, letterSpacing: '-.035em', margin: '24px 0 0', fontWeight: 500 }}>
@@ -21,7 +21,7 @@ const MissionV2 = () => {
           </p>
         </div>
 
-        <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40, paddingTop: 48, borderTop: '1px solid var(--m-line)' }}>
+        <div data-mission-grid style={{ marginTop: 80, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40, paddingTop: 48, borderTop: '1px solid var(--m-line)' }}>
           <MissionPointV2 n="01" t={s.mission_point1_title || 'Access'} d={s.mission_point1_desc || 'Available to every working Kenyan with an ID and an M-Pesa number.'} />
           <MissionPointV2 n="02" t={s.mission_point2_title || 'Earn'} d={s.mission_point2_desc || 'We finance the asset, not the lifestyle. Over 70% of our customers are self-employed — the bike, tuk-tuk, car or phone pays for itself.'} />
           <MissionPointV2 n="03" t={s.mission_point3_title || 'Grow'} d={s.mission_point3_desc || 'From first boda to second branch. Customers graduate from asset finance to logbook unlocks to working capital.'} />

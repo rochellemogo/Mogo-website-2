@@ -77,9 +77,9 @@ const Branches = () => {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 40, alignItems: 'stretch' }}>
+        <div data-branches-grid style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 40, alignItems: 'stretch' }}>
           {/* MAP */}
-          <div style={{ background: 'var(--m-cream)', borderRadius: 'var(--r-xl)', padding: 32, border: '1px solid var(--m-line-2)', position: 'relative' }}>
+          <div data-branches-map style={{ background: 'var(--m-cream)', borderRadius: 'var(--r-xl)', padding: 32, border: '1px solid var(--m-line-2)', position: 'relative' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
               <div style={{ fontSize: 12, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '.12em', color: 'var(--m-ink-2)' }}>Mogo Kenya · branch network</div>
               <div style={{ fontSize: 12, fontFamily: 'JetBrains Mono', color: 'var(--m-ink-2)' }}>84 locations</div>
@@ -141,7 +141,7 @@ const Branches = () => {
           </div>
 
           {/* LIST */}
-          <div style={{ background: '#fff', borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+          <div data-branches-list style={{ background: '#fff', borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--m-line-2)', display: 'flex', alignItems: 'center', gap: 12, background: 'var(--m-cream)' }}>
               <span style={{ fontSize: 14 }}>🔍</span>
               <input
@@ -165,7 +165,7 @@ const Branches = () => {
                     <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.14em', color: 'var(--m-ink)' }}>{r.name}</span>
                     <span style={{ fontSize: 11, fontFamily: 'JetBrains Mono', color: 'var(--m-ink-2)', marginLeft: 'auto' }}>{r.branches.length}</span>
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }}>
+                  <div data-branch-row style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }}>
                     {r.branches.map((b) =>
                   <a key={b.n} href="#apply" style={{ padding: '12px 24px', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid var(--m-line-2)', color: 'var(--m-ink)', textDecoration: 'none', fontSize: 14, fontWeight: 500 }}>
                         <span style={{ width: 6, height: 6, borderRadius: 999, background: r.colour, opacity: .6 }} />
@@ -202,9 +202,9 @@ const CTA = () => {
   return (
     <section id="apply" style={{ padding: '80px 0', background: 'var(--m-cream)' }}>
       <div className="shell">
-        <div style={{ background: 'var(--m-ink)', borderRadius: 'var(--r-xl)', padding: '96px 56px', position: 'relative', overflow: 'hidden' }}>
+        <div data-cta-card style={{ background: 'var(--m-ink)', borderRadius: 'var(--r-xl)', padding: '96px 56px', position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', right: -100, top: -100, width: 360, height: 360, borderRadius: 999, background: 'var(--m-green)', opacity: .22, filter: 'blur(80px)' }} />
-          <div style={{ position: 'absolute', right: 48, top: 48, width: 160, height: 160, animation: 'spin 20s linear infinite' }}>
+          <div data-cta-spinner style={{ position: 'absolute', right: 48, top: 48, width: 160, height: 160, animation: 'spin 20s linear infinite' }}>
             <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
               <defs><path id="cp2" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" /></defs>
               <text fontFamily="JetBrains Mono" fontSize="7" letterSpacing="2.5" fill="#7AB800">
@@ -220,7 +220,7 @@ const CTA = () => {
             <p style={{ fontSize: 18, color: 'rgba(255,255,255,.72)', lineHeight: 1.55, marginBottom: 40, maxWidth: 520 }}>
               {s.cta_body || 'Three-minute form. Real call from a MOGO officer same day. Get your loan today.'}
             </p>
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <div data-cta-buttons style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <a href="#" className="btn btn-primary btn-lg">Apply online <span className="arrow-pill"><ArrowRight /></span></a>
               <a href={`tel:${phone.replace(/\s/g,'')}`} className="btn btn-ghost-light btn-lg">Call · {phone}</a>
             </div>
@@ -241,9 +241,9 @@ const Footer = () => {
   }, []);
 
   return (
-<footer style={{ background: 'var(--m-ink)', color: 'rgba(255,255,255,.7)', padding: '80px 0 32px' }}>
+<footer data-mogo-footer style={{ background: 'var(--m-ink)', color: 'rgba(255,255,255,.7)', padding: '80px 0 32px' }}>
     <div className="shell">
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr', gap: 40, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)' }}>
+      <div data-footer-cols style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr', gap: 40, paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,.1)' }}>
         <div>
           <img src="assets/mogo-logo.svg" alt="mogo" style={{ height: 28, marginBottom: 20 }} />
           <p style={{ fontSize: 14, lineHeight: 1.6, maxWidth: 340 }}>
@@ -260,7 +260,7 @@ const Footer = () => {
         <FooterCol title="Support" links={["Help center", "Contact us", "FAQ", "Complaints", "Whistleblower"]} />
         <FooterCol title="Legal" links={["Terms", "Privacy", "Best Price T&Cs", "CBK licence", "Data protection"]} />
       </div>
-      <div style={{ paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 13, flexWrap: 'wrap', gap: 16 }}>
+      <div data-footer-bottom style={{ paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 13, flexWrap: 'wrap', gap: 16 }}>
         <div>© 2026 Mogo Auto Kenya Ltd. All rights reserved.</div>
         <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
           <span>Licensed by the Central Bank of Kenya</span>
@@ -301,7 +301,7 @@ const TweaksPanel = () => {
   };
   if (!active) return null;
   return (
-    <div style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 100, background: '#fff', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,.2)', border: '1px solid var(--m-line)', width: open ? 280 : 'auto' }}>
+    <div data-tweaks-panel style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 100, background: '#fff', borderRadius: 16, boxShadow: '0 20px 60px rgba(0,0,0,.2)', border: '1px solid var(--m-line)', width: open ? 280 : 'auto' }}>
       <button onClick={() => setOpen(!open)} style={{ width: '100%', padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontWeight: 600, fontSize: 14 }}>
         Tweaks <span style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform .2s' }}>▾</span>
       </button>

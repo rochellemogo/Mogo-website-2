@@ -29,7 +29,7 @@ const Stories = () => {
           <a href="#" className="btn btn-ghost">Read more stories <ArrowRight/></a>
         </div>
 
-        <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 20}}>
+        <div data-stories-grid style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 20}}>
           {stories.map(s => (
             <article key={s.name} style={{background:'#fff', borderRadius:'var(--r-xl)', overflow:'hidden', border:'1px solid var(--m-line-2)', display:'flex', flexDirection:'column'}}>
               <div style={{padding: 10, paddingBottom: 0}}>
