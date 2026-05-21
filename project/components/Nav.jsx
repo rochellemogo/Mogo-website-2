@@ -4,6 +4,7 @@ const Nav = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [mobileSection, setMobileSection] = React.useState(null);
   const isSubpage = typeof window !== 'undefined' && window.__MOGO_SUBPAGE === true;
+  const inProductsFolder = isSubpage && window.location.pathname.includes('/products/');
   const wrapRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -47,8 +48,17 @@ const Nav = () => {
     {slug:'news',        name:'News',                    desc:'Press coverage and updates'},
     {slug:'literacy',    name:'Financial literacy tool', desc:'Powered by Eleving SMART', external:'https://smart.eleving.com/en-ke/'},
   ];
-  const pageHref = (slug) => isSubpage ? `${slug}.html` : `pages/${slug}.html`;
-  const productHref = (slug) => isSubpage ? `${slug}.html` : `products/${slug}.html`;
+  // Correctly resolve hrefs regardless of which subfolder we're in
+  const pageHref = (slug) => {
+    if (!isSubpage) return `pages/${slug}.html`;
+    if (inProductsFolder) return `../pages/${slug}.html`;
+    return `${slug}.html`; // already in pages/
+  };
+  const productHref = (slug) => {
+    if (!isSubpage) return `products/${slug}.html`;
+    if (inProductsFolder) return `${slug}.html`; // same folder
+    return `../products/${slug}.html`; // from pages/ or other subpages
+  };
 
   const triggerStyle = (key) => ({
     padding:'8px 14px', fontSize:13, fontWeight:500, letterSpacing:'.08em', textTransform:'uppercase',
@@ -134,23 +144,19 @@ const Nav = () => {
             Products <Chevron active={open==='prod'}/>
           </button>
           {[['How it works','howitworks'],['Branches','branches']].map(([l, anchor]) => {
-            const href = isSubpage ? `../index-v2.html#${anchor}` : `#${anchor}`;
+            const href = isSubpage ? `../index.html#${anchor}` : `#${anchor}`;
             return (
               <a key={l} href={href} onMouseEnter={()=>setOpen(null)} style={{padding:'8px 14px', fontSize:13, fontWeight:500, letterSpacing:'.08em', textTransform:'uppercase', color:'inherit', borderRadius:8, whiteSpace:'nowrap', textDecoration:'none'}}>{l}</a>
             );
           })}
           <button onMouseEnter={() => setOpen('about')}  onClick={() => setOpen(open === 'about'  ? null : 'about')}  style={triggerStyle('about')}>About us <Chevron active={open==='about'}/></button>
           <button onMouseEnter={() => setOpen('impact')} onClick={() => setOpen(open === 'impact' ? null : 'impact')} style={triggerStyle('impact')}>Our Impact <Chevron active={open==='impact'}/></button>
-          {(() => { const href = isSubpage ? `our-stories.html` : `pages/our-stories.html`; return (
-            <a href={href} onMouseEnter={()=>setOpen(null)} style={{padding:'8px 14px', fontSize:13, fontWeight:500, letterSpacing:'.08em', textTransform:'uppercase', color:'inherit', borderRadius:8, whiteSpace:'nowrap', textDecoration:'none'}}>Our Stories</a>
-          ); })()}
-          {(() => { const href = isSubpage ? `saka.html` : `pages/saka.html`; return (
-            <a href={href} onMouseEnter={()=>setOpen(null)} style={{padding:'8px 14px', fontSize:13, fontWeight:500, letterSpacing:'.08em', textTransform:'uppercase', color:'inherit', borderRadius:8, whiteSpace:'nowrap', textDecoration:'none'}}>SAKA</a>
-          ); })()}
+          <a href={pageHref('our-stories')} onMouseEnter={()=>setOpen(null)} style={{padding:'8px 14px', fontSize:13, fontWeight:500, letterSpacing:'.08em', textTransform:'uppercase', color:'inherit', borderRadius:8, whiteSpace:'nowrap', textDecoration:'none'}}>Our Stories</a>
+          <a href={pageHref('saka')} onMouseEnter={()=>setOpen(null)} style={{padding:'8px 14px', fontSize:13, fontWeight:500, letterSpacing:'.08em', textTransform:'uppercase', color:'inherit', borderRadius:8, whiteSpace:'nowrap', textDecoration:'none'}}>SAKA</a>
         </nav>
 
         <div className="nav-cta" style={{display:'flex', alignItems:'center', gap:10}}>
-          <a href={isSubpage ? '../index-v2.html#apply' : '#apply'} className="btn btn-primary">
+          <a href={isSubpage ? '../index.html#apply' : '#apply'} className="btn btn-primary">
             <span className="nav-cta-full">Apply now</span><span className="nav-cta-short">Apply</span> <span className="arrow-pill"><ArrowRight/></span>
           </a>
         </div>
@@ -196,7 +202,7 @@ const Nav = () => {
                 {mobileSection==='prod' && (
                   <div className="mobile-nav-drawer__sub">
                     {window.MOGO_PRODUCTS?.map(p => (
-                      <a key={p.slug} href={isSubpage ? `${p.slug}.html` : `products/${p.slug}.html`} onClick={() => setMobileOpen(false)}>
+                      <a key={p.slug} href={productHref(p.slug)} onClick={() => setMobileOpen(false)}>
                         {p.name}<small>{p.tagline}</small>
                       </a>
                     ))}
@@ -205,7 +211,7 @@ const Nav = () => {
               </div>
 
               {[['How it works','howitworks'],['Branches','branches']].map(([l, anchor]) => {
-                const href = isSubpage ? `../index-v2.html#${anchor}` : `#${anchor}`;
+                const href = isSubpage ? `../index.html#${anchor}` : `#${anchor}`;
                 return (
                   <div className="mobile-nav-drawer__group" key={l}>
                     <a href={href} onClick={() => setMobileOpen(false)} style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%', padding:'18px 16px', fontSize:17, fontWeight:500, color:'var(--m-ink)', textDecoration:'none', textTransform:'uppercase', letterSpacing:'.08em'}}>{l}</a>
@@ -249,15 +255,13 @@ const Nav = () => {
               </div>
 
               {(() => {
-                const storiesHref = isSubpage ? `our-stories.html` : `pages/our-stories.html`;
-                const sakaHref = isSubpage ? `saka.html` : `pages/saka.html`;
                 return (
                   <>
                     <div className="mobile-nav-drawer__group">
-                      <a href={storiesHref} onClick={() => setMobileOpen(false)} style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%', padding:'18px 16px', fontSize:17, fontWeight:500, color:'var(--m-ink)', textDecoration:'none', textTransform:'uppercase', letterSpacing:'.08em'}}>Our Stories</a>
+                      <a href={pageHref('our-stories')} onClick={() => setMobileOpen(false)} style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%', padding:'18px 16px', fontSize:17, fontWeight:500, color:'var(--m-ink)', textDecoration:'none', textTransform:'uppercase', letterSpacing:'.08em'}}>Our Stories</a>
                     </div>
                     <div className="mobile-nav-drawer__group">
-                      <a href={sakaHref} onClick={() => setMobileOpen(false)} style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%', padding:'18px 16px', fontSize:17, fontWeight:500, color:'var(--m-ink)', textDecoration:'none', textTransform:'uppercase', letterSpacing:'.08em'}}>SAKA</a>
+                      <a href={pageHref('saka')} onClick={() => setMobileOpen(false)} style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%', padding:'18px 16px', fontSize:17, fontWeight:500, color:'var(--m-ink)', textDecoration:'none', textTransform:'uppercase', letterSpacing:'.08em'}}>SAKA</a>
                     </div>
                   </>
                 );
@@ -391,7 +395,7 @@ const MobileNavToggle = ({ isSubpage, aboutItems, impactItems, pageHref, product
 
             {['How it works','Branches','Stories'].map(l => {
               const href = isSubpage
-                ? `../index-v2.html#${l.toLowerCase().replace(/ /g,'')}`
+                ? `../index.html#${l.toLowerCase().replace(/ /g,'')}`
                 : `#${l.toLowerCase().replace(/ /g,'')}`;
               return (
                 <div className="mobile-nav-drawer__group" key={l}>
@@ -437,7 +441,7 @@ const MobileNavToggle = ({ isSubpage, aboutItems, impactItems, pageHref, product
           </div>
 
           <div className="mobile-nav-drawer__cta">
-            <a href={isSubpage ? '../index-v2.html#apply' : '#apply'} className="btn btn-primary" onClick={close}>
+            <a href={isSubpage ? '../index.html#apply' : '#apply'} className="btn btn-primary" onClick={close}>
               Apply now <span className="arrow-pill"><ArrowRight/></span>
             </a>
           </div>
