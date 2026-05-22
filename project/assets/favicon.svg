@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#0B1220"/>
+  <!-- M letterform in MOGO green, drawn as a path for crisp rendering at all sizes -->
+  <path d="M5 24V9h3.2l4.8 8.4 4.8-8.4H21v15h-3V14.5l-4 7h-2l-4-7V24H5z" fill="#7AB800"/>
+  <!-- Small green dot — echoes the brand swoosh -->
+  <circle cx="26" cy="9" r="2.5" fill="#7AB800" opacity="0.7"/>
+</svg>
