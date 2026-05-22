@@ -4,96 +4,96 @@
       "name": "Nairobi Metro",
       "colour": "#7AB800",
       "branches": [
-        { "n": "Nairobi CBD",    "addr": "Kimathi Street, CBD" },
-        { "n": "Industrial Area","addr": "Enterprise Road" },
-        { "n": "Westlands",      "addr": "Waiyaki Way" },
-        { "n": "Ngara",          "addr": "Ngara Road" },
-        { "n": "Kasarani",       "addr": "Thika Superhighway" },
-        { "n": "Embakasi",       "addr": "Airport North Road" },
-        { "n": "Kitengela",      "addr": "Namanga Road" },
-        { "n": "Rongai",         "addr": "Magadi Road" },
-        { "n": "Kiambu",         "addr": "Kiambu Road" },
-        { "n": "Kikuyu",         "addr": "Kikuyu–Limuru Road" },
-        { "n": "Thika",          "addr": "Kenyatta Highway" },
-        { "n": "Ruiru",          "addr": "Ruiru Bypass" },
-        { "n": "Limuru",         "addr": "Limuru Town" },
-        { "n": "Juja",           "addr": "Thika Superhighway" },
-        { "n": "Machakos",       "addr": "Mombasa Road" },
-        { "n": "Athi River",     "addr": "Mombasa Road" }
+        { "n": "Nairobi CBD",    "addr": "Kimathi Street, CBD",       "lat": -1.2833, "lng": 36.8172 },
+        { "n": "Industrial Area","addr": "Enterprise Road",           "lat": -1.3015, "lng": 36.8375 },
+        { "n": "Westlands",      "addr": "Waiyaki Way",               "lat": -1.2676, "lng": 36.8082 },
+        { "n": "Ngara",          "addr": "Ngara Road",                "lat": -1.2779, "lng": 36.8287 },
+        { "n": "Kasarani",       "addr": "Thika Superhighway",        "lat": -1.2312, "lng": 36.8977 },
+        { "n": "Embakasi",       "addr": "Airport North Road",        "lat": -1.3239, "lng": 36.8868 },
+        { "n": "Kitengela",      "addr": "Namanga Road",              "lat": -1.4743, "lng": 36.9577 },
+        { "n": "Rongai",         "addr": "Magadi Road",               "lat": -1.3934, "lng": 36.7448 },
+        { "n": "Kiambu",         "addr": "Kiambu Road",               "lat": -1.1714, "lng": 36.8353 },
+        { "n": "Kikuyu",         "addr": "Kikuyu–Limuru Road",        "lat": -1.2526, "lng": 36.6630 },
+        { "n": "Thika",          "addr": "Kenyatta Highway",          "lat": -1.0332, "lng": 37.0693 },
+        { "n": "Ruiru",          "addr": "Ruiru Bypass",              "lat": -1.1454, "lng": 36.9609 },
+        { "n": "Limuru",         "addr": "Limuru Town",               "lat": -1.1113, "lng": 36.6397 },
+        { "n": "Juja",           "addr": "Thika Superhighway",        "lat": -1.1019, "lng": 37.0147 },
+        { "n": "Machakos",       "addr": "Mombasa Road",              "lat": -1.5177, "lng": 37.2634 },
+        { "n": "Athi River",     "addr": "Mombasa Road",              "lat": -1.4565, "lng": 36.9783 }
       ]
     },
     {
       "name": "Coast",
       "colour": "#E96A3B",
       "branches": [
-        { "n": "Mombasa",   "addr": "Moi Avenue, Mombasa" },
-        { "n": "Nyali",     "addr": "Links Road, Nyali" },
-        { "n": "Likoni",    "addr": "Likoni Ferry Road" },
-        { "n": "Kilifi",    "addr": "Mombasa–Malindi Road" },
-        { "n": "Malindi",   "addr": "Lamu Road" },
-        { "n": "Mtwapa",    "addr": "Mombasa–Malindi Road" },
-        { "n": "Ukunda",    "addr": "Diani Beach Road" },
-        { "n": "Voi",       "addr": "Mombasa–Nairobi Highway" },
-        { "n": "Mariakani", "addr": "Mombasa–Nairobi Highway" }
+        { "n": "Mombasa",   "addr": "Moi Avenue, Mombasa",          "lat": -4.0435, "lng": 39.6682 },
+        { "n": "Nyali",     "addr": "Links Road, Nyali",            "lat": -4.0162, "lng": 39.7174 },
+        { "n": "Likoni",    "addr": "Likoni Ferry Road",            "lat": -4.0851, "lng": 39.6640 },
+        { "n": "Kilifi",    "addr": "Mombasa–Malindi Road",         "lat": -3.6305, "lng": 39.8499 },
+        { "n": "Malindi",   "addr": "Lamu Road",                    "lat": -3.2138, "lng": 40.1169 },
+        { "n": "Mtwapa",    "addr": "Mombasa–Malindi Road",         "lat": -3.9527, "lng": 39.7355 },
+        { "n": "Ukunda",    "addr": "Diani Beach Road",             "lat": -4.2938, "lng": 39.5693 },
+        { "n": "Voi",       "addr": "Mombasa–Nairobi Highway",      "lat": -3.3964, "lng": 38.5567 },
+        { "n": "Mariakani", "addr": "Mombasa–Nairobi Highway",      "lat": -3.8646, "lng": 39.4693 }
       ]
     },
     {
       "name": "Central",
       "colour": "#F4B93A",
       "branches": [
-        { "n": "Nyeri",     "addr": "Kenyatta Road" },
-        { "n": "Karatina",  "addr": "Karatina Town" },
-        { "n": "Muranga",   "addr": "Murang'a Town" },
-        { "n": "Kerugoya",  "addr": "Kutus Road" },
-        { "n": "Embu",      "addr": "Embu–Meru Road" },
-        { "n": "Meru",      "addr": "Meru–Maua Road" },
-        { "n": "Chuka",     "addr": "Embu–Meru Road" },
-        { "n": "Maua",      "addr": "Maua Town" },
-        { "n": "Nanyuki",   "addr": "Nanyuki–Nyeri Road" }
+        { "n": "Nyeri",    "addr": "Kenyatta Road",       "lat": -0.4169, "lng": 36.9495 },
+        { "n": "Karatina", "addr": "Karatina Town",       "lat": -0.4815, "lng": 37.1226 },
+        { "n": "Muranga",  "addr": "Murang'a Town",       "lat": -0.7197, "lng": 37.1540 },
+        { "n": "Kerugoya", "addr": "Kutus Road",          "lat": -0.4993, "lng": 37.2831 },
+        { "n": "Embu",     "addr": "Embu–Meru Road",      "lat": -0.5316, "lng": 37.4503 },
+        { "n": "Meru",     "addr": "Meru–Maua Road",      "lat":  0.0469, "lng": 37.6461 },
+        { "n": "Chuka",    "addr": "Embu–Meru Road",      "lat": -0.3340, "lng": 37.6444 },
+        { "n": "Maua",     "addr": "Maua Town",           "lat":  0.2310, "lng": 37.9388 },
+        { "n": "Nanyuki",  "addr": "Nanyuki–Nyeri Road",  "lat":  0.0117, "lng": 37.0746 }
       ]
     },
     {
       "name": "Rift Valley",
       "colour": "#3B7CC9",
       "branches": [
-        { "n": "Nakuru",     "addr": "Kenyatta Avenue" },
-        { "n": "Naivasha",   "addr": "Moi South Lake Road" },
-        { "n": "Eldoret",    "addr": "Uganda Road" },
-        { "n": "Kitale",     "addr": "Kitale–Eldoret Road" },
-        { "n": "Kericho",    "addr": "Kericho–Nakuru Road" },
-        { "n": "Bomet",      "addr": "Sotik–Bomet Road" },
-        { "n": "Narok",      "addr": "Maasai Mara Road" },
-        { "n": "Kapsabet",   "addr": "Kapsabet–Eldoret Road" },
-        { "n": "Iten",       "addr": "Iten–Kabarnet Road" },
-        { "n": "Nyahururu",  "addr": "Nyahururu–Nakuru Road" },
-        { "n": "Molo",       "addr": "Molo–Elburgon Road" }
+        { "n": "Nakuru",    "addr": "Kenyatta Avenue",          "lat": -0.3031, "lng": 36.0800 },
+        { "n": "Naivasha",  "addr": "Moi South Lake Road",      "lat": -0.7175, "lng": 36.4316 },
+        { "n": "Eldoret",   "addr": "Uganda Road",              "lat":  0.5203, "lng": 35.2698 },
+        { "n": "Kitale",    "addr": "Kitale–Eldoret Road",      "lat":  1.0154, "lng": 35.0062 },
+        { "n": "Kericho",   "addr": "Kericho–Nakuru Road",      "lat": -0.3700, "lng": 35.2834 },
+        { "n": "Bomet",     "addr": "Sotik–Bomet Road",         "lat": -0.7812, "lng": 35.3417 },
+        { "n": "Narok",     "addr": "Maasai Mara Road",         "lat": -1.0831, "lng": 35.8718 },
+        { "n": "Kapsabet",  "addr": "Kapsabet–Eldoret Road",    "lat":  0.2044, "lng": 35.1041 },
+        { "n": "Iten",      "addr": "Iten–Kabarnet Road",       "lat":  0.6699, "lng": 35.5099 },
+        { "n": "Nyahururu", "addr": "Nyahururu–Nakuru Road",    "lat": -0.0303, "lng": 36.3700 },
+        { "n": "Molo",      "addr": "Molo–Elburgon Road",       "lat": -0.2477, "lng": 35.7310 }
       ]
     },
     {
       "name": "Western & Nyanza",
       "colour": "#8B5CF6",
       "branches": [
-        { "n": "Kisumu",   "addr": "Oginga Odinga Street" },
-        { "n": "Kakamega", "addr": "Kakamega–Kisumu Road" },
-        { "n": "Bungoma",  "addr": "Bungoma–Webuye Road" },
-        { "n": "Busia",    "addr": "Busia–Malaba Road" },
-        { "n": "Webuye",   "addr": "Webuye–Bungoma Road" },
-        { "n": "Mumias",   "addr": "Mumias–Bungoma Road" },
-        { "n": "Kisii",    "addr": "Kisii–Migori Road" },
-        { "n": "Migori",   "addr": "Migori–Isebania Road" },
-        { "n": "Homa Bay", "addr": "Homa Bay–Kisumu Road" },
-        { "n": "Siaya",    "addr": "Siaya–Bondo Road" },
-        { "n": "Awendo",   "addr": "Awendo–Migori Road" }
+        { "n": "Kisumu",   "addr": "Oginga Odinga Street",  "lat": -0.0917, "lng": 34.7679 },
+        { "n": "Kakamega", "addr": "Kakamega–Kisumu Road",  "lat":  0.2827, "lng": 34.7519 },
+        { "n": "Bungoma",  "addr": "Bungoma–Webuye Road",   "lat":  0.5635, "lng": 34.5606 },
+        { "n": "Busia",    "addr": "Busia–Malaba Road",     "lat":  0.4606, "lng": 34.1113 },
+        { "n": "Webuye",   "addr": "Webuye–Bungoma Road",   "lat":  0.6147, "lng": 34.7706 },
+        { "n": "Mumias",   "addr": "Mumias–Bungoma Road",   "lat":  0.3367, "lng": 34.4870 },
+        { "n": "Kisii",    "addr": "Kisii–Migori Road",     "lat": -0.6695, "lng": 34.7756 },
+        { "n": "Migori",   "addr": "Migori–Isebania Road",  "lat": -1.0634, "lng": 34.4731 },
+        { "n": "Homa Bay", "addr": "Homa Bay–Kisumu Road",  "lat": -0.5268, "lng": 34.4571 },
+        { "n": "Siaya",    "addr": "Siaya–Bondo Road",      "lat": -0.0607, "lng": 34.2879 },
+        { "n": "Awendo",   "addr": "Awendo–Migori Road",    "lat": -0.9884, "lng": 34.4670 }
       ]
     },
     {
       "name": "Eastern & North",
       "colour": "#D946A3",
       "branches": [
-        { "n": "Kitui",   "addr": "Kitui–Mwingi Road" },
-        { "n": "Mwingi",  "addr": "Mwingi–Garissa Road" },
-        { "n": "Garissa", "addr": "Garissa Town" },
-        { "n": "Isiolo",  "addr": "Isiolo–Meru Road" }
+        { "n": "Kitui",   "addr": "Kitui–Mwingi Road",   "lat": -1.3671, "lng": 38.0107 },
+        { "n": "Mwingi",  "addr": "Mwingi–Garissa Road", "lat": -0.9387, "lng": 38.0609 },
+        { "n": "Garissa", "addr": "Garissa Town",         "lat": -0.4532, "lng": 39.6461 },
+        { "n": "Isiolo",  "addr": "Isiolo–Meru Road",    "lat":  0.3546, "lng": 37.5820 }
       ]
     }
   ]

@@ -47,7 +47,14 @@ const BRANCHES_FALLBACK = [
 
 const Branches = () => {
   const [regions, setRegions] = React.useState(BRANCHES_FALLBACK);
+  const [active, setActive]   = React.useState("All");
+  const [q, setQ]             = React.useState("");
+  const [selKey, setSelKey]   = React.useState(null);
+  const mapDivRef  = React.useRef(null);
+  const leafletRef = React.useRef(null);
+  const markersRef = React.useRef({});
 
+  // ── Load branches from CMS JSON ──────────────────────────────────────────
   React.useEffect(() => {
     const base = window.__MOGO_SUBPAGE ? '../' : '';
     fetch(base + 'content/branches.json')
@@ -59,17 +66,89 @@ const Branches = () => {
       .catch(function() {});
   }, []);
 
+  // ── Load Leaflet & init map ───────────────────────────────────────────────
+  React.useEffect(() => {
+    if (!document.getElementById('leaflet-css')) {
+      const link = document.createElement('link');
+      link.id = 'leaflet-css'; link.rel = 'stylesheet';
+      link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      document.head.appendChild(link);
+    }
+    function initMap() {
+      if (!mapDivRef.current || leafletRef.current) return;
+      const L = window.L;
+      const map = L.map(mapDivRef.current, {
+        center: [-0.8, 37.5], zoom: 6, scrollWheelZoom: false,
+      });
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
+        subdomains: 'abcd', maxZoom: 19,
+      }).addTo(map);
+      leafletRef.current = map;
+    }
+    if (window.L) { initMap(); }
+    else {
+      const s = document.createElement('script');
+      s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      s.onload = initMap;
+      document.head.appendChild(s);
+    }
+    return function() {
+      if (leafletRef.current) { leafletRef.current.remove(); leafletRef.current = null; }
+    };
+  }, []);
 
-  const total = regions.reduce((a, r) => a + r.branches.length, 0);
-  const [active, setActive] = React.useState("All");
-  const [q, setQ] = React.useState("");
+  // ── Sync markers when regions or map loads ────────────────────────────────
+  React.useEffect(() => {
+    const map = leafletRef.current;
+    const L   = window.L;
+    if (!map || !L) return;
+    // Remove old markers
+    Object.values(markersRef.current).forEach(function(m) { m.remove(); });
+    markersRef.current = {};
+    // Add fresh markers
+    regions.forEach(function(region) {
+      (region.branches || []).forEach(function(b) {
+        if (!b.lat || !b.lng) return;
+        const key = region.name + ':' + b.n;
+        const marker = L.circleMarker([b.lat, b.lng], {
+          radius: 7, fillColor: region.colour,
+          color: '#fff', weight: 2, opacity: 1, fillOpacity: 0.9,
+        });
+        marker.bindPopup(
+          '<strong style="font-family:sans-serif">' + b.n + '</strong>' +
+          '<br/><span style="font-size:12px;color:#666">' + (b.addr || '') + '</span>'
+        );
+        marker.on('click', function() {
+          setSelKey(key);
+          setActive(region.name);
+          setTimeout(function() {
+            const el = document.querySelector('[data-bkey="' + key + '"]');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 100);
+        });
+        marker.addTo(map);
+        markersRef.current[key] = marker;
+      });
+    });
+  }, [regions]);
 
-  const filtered = regions.
-  filter((r) => active === "All" || r.name === active).
-  map((r) => ({ ...r, branches: r.branches.filter((b) => b.n.toLowerCase().includes(q.toLowerCase())) })).
-  filter((r) => r.branches.length);
+  function flyTo(region, b) {
+    const key = region.name + ':' + b.n;
+    setSelKey(key);
+    if (b.lat && b.lng && leafletRef.current && window.L) {
+      leafletRef.current.flyTo([b.lat, b.lng], 14, { duration: 0.7 });
+      var mk = markersRef.current[key];
+      if (mk) setTimeout(function() { mk.openPopup(); }, 750);
+    }
+  }
 
-  const activeColour = active === "All" ? "#7AB800" : regions.find((r) => r.name === active)?.colour || "#7AB800";
+  const total    = regions.reduce(function(a, r) { return a + (r.branches || []).length; }, 0);
+  const filtered = regions
+    .filter(function(r) { return active === 'All' || r.name === active; })
+    .map(function(r) { return Object.assign({}, r, { branches: (r.branches || []).filter(function(b) { return b.n.toLowerCase().includes(q.toLowerCase()); }) }); })
+    .filter(function(r) { return r.branches.length; });
+  const activeColour = active === 'All' ? '#7AB800' : (regions.find(function(r) { return r.name === active; }) || {}).colour || '#7AB800';
 
   return (
     <section id="branches" style={{ padding: '100px 0', background: '#fff' }}>
@@ -78,105 +157,110 @@ const Branches = () => {
           <div style={{ maxWidth: 640 }}>
             <div className="h-eyebrow"><span className="dot" />Find us</div>
             <h2 className="mega-head" style={{ fontSize: 'clamp(42px, 5.5vw, 80px)' }}>
-              84+ branches,<br />one <em>handshake</em> away.
+              {total}+ branches,<br />one <em>handshake</em> away.
             </h2>
-            <p style={{ fontSize: 17, lineHeight: 1.55, color: 'var(--m-ink-2)', maxWidth: 520, margin: '28px 0 0' }}>Find us in person at one of the locations below.
-
+            <p style={{ fontSize: 17, lineHeight: 1.55, color: 'var(--m-ink-2)', maxWidth: 520, margin: '28px 0 0' }}>
+              Click any branch below to pin it on the map.
             </p>
           </div>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <a href="#apply" className="btn btn-dark">Find your nearest branch <span className="arrow-pill"><ArrowRight /></span></a>
+            <a href="#apply" className="btn btn-dark">Apply now <span className="arrow-pill"><ArrowRight /></span></a>
             <a href="tel:0768469112" className="btn btn-ghost">Call 0768 469 112</a>
           </div>
         </div>
 
         <div data-branches-grid style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 40, alignItems: 'stretch' }}>
-          {/* MAP */}
-          <div data-branches-map style={{ background: 'var(--m-cream)', borderRadius: 'var(--r-xl)', padding: 32, border: '1px solid var(--m-line-2)', position: 'relative' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-              <div style={{ fontSize: 12, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '.12em', color: 'var(--m-ink-2)' }}>Mogo Kenya · branch network</div>
-              <div style={{ fontSize: 12, fontFamily: 'JetBrains Mono', color: 'var(--m-ink-2)' }}>84 locations</div>
-            </div>
-            <div style={{ position: 'relative', aspectRatio: '4/5', borderRadius: 'var(--r-lg)', overflow: 'hidden', border: '1px solid var(--m-line-2)' }}>
-              {/* Google Maps embed — Kenya overview. For custom per-branch
-                  pins clustered by region, swap this iframe for the JS Maps
-                  API and provide a Google Maps key. */}
-              <iframe
-                title="Mogo Kenya branch network"
-                src="https://www.google.com/maps?q=Mogo+Kenya&hl=en&z=6&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0, display: 'block', filter: 'saturate(.9) contrast(.95)' }}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
+
+          {/* ── MAP ─────────────────────────────────────────────────────── */}
+          <div data-branches-map style={{ borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ padding: '14px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--m-cream)', borderBottom: '1px solid var(--m-line-2)' }}>
+              <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.12em', color: 'var(--m-ink-2)' }}>Mogo Kenya · branch network</span>
+              <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--m-ink-2)' }}>{total} locations</span>
             </div>
 
-            {/* Region legend */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 20 }}>
-              <button onClick={() => setActive("All")} style={{ padding: '7px 13px', background: active === "All" ? 'var(--m-ink)' : '#fff', color: active === "All" ? '#fff' : 'var(--m-ink)', border: '1px solid var(--m-line-2)', borderRadius: 999, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>All · {total}</button>
-              {regions.map((r) =>
-              <button key={r.name} onClick={() => setActive(r.name)} style={{ padding: '7px 13px', background: active === r.name ? r.colour : '#fff', color: active === r.name ? '#fff' : 'var(--m-ink)', border: '1px solid var(--m-line-2)', borderRadius: 999, fontSize: 12, fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ width: 7, height: 7, borderRadius: 999, background: active === r.name ? '#fff' : r.colour }} />
-                  {r.name} · {r.branches.length}
-                </button>
-              )}
+            {/* Leaflet map */}
+            <div ref={mapDivRef} style={{ flex: 1, minHeight: 380 }} />
+
+            {/* Region filter pills */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, padding: '14px 20px', borderTop: '1px solid var(--m-line-2)', background: 'var(--m-cream)' }}>
+              <button onClick={function() { setActive('All'); setSelKey(null); if (leafletRef.current) leafletRef.current.setView([-0.8, 37.5], 6); }}
+                style={{ padding: '6px 12px', background: active === 'All' ? 'var(--m-ink)' : '#fff', color: active === 'All' ? '#fff' : 'var(--m-ink)', border: '1px solid var(--m-line-2)', borderRadius: 999, fontSize: 11, fontWeight: 600, cursor: 'pointer' }}>
+                All · {total}
+              </button>
+              {regions.map(function(r) {
+                const on = active === r.name;
+                return (
+                  <button key={r.name} onClick={function() { setActive(r.name); setSelKey(null); }}
+                    style={{ padding: '6px 12px', background: on ? r.colour : '#fff', color: on ? '#fff' : 'var(--m-ink)', border: '1px solid var(--m-line-2)', borderRadius: 999, fontSize: 11, fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                    <span style={{ width: 7, height: 7, borderRadius: 999, background: on ? '#fff' : r.colour }} />
+                    {r.name} · {(r.branches || []).length}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
-          {/* LIST */}
+          {/* ── LIST ────────────────────────────────────────────────────── */}
           <div data-branches-list style={{ background: '#fff', borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-            <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--m-line-2)', display: 'flex', alignItems: 'center', gap: 12, background: 'var(--m-cream)' }}>
-              <span style={{ fontSize: 14 }}>🔍</span>
-              <input
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
+            <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--m-line-2)', display: 'flex', alignItems: 'center', gap: 10, background: 'var(--m-cream)' }}>
+              <span>🔍</span>
+              <input value={q} onChange={function(e) { setQ(e.target.value); }}
                 placeholder="Search a town or neighbourhood…"
-                style={{ flex: 1, border: 'none', background: 'transparent', fontSize: 15, fontFamily: 'Inter Tight', outline: 'none', color: 'var(--m-ink)' }} />
-              
-              {q && <button onClick={() => setQ("")} style={{ border: 'none', background: 'transparent', fontSize: 13, color: 'var(--m-ink-2)', cursor: 'pointer' }}>Clear</button>}
+                style={{ flex: 1, border: 'none', background: 'transparent', fontSize: 14, outline: 'none', color: 'var(--m-ink)' }} />
+              {q && <button onClick={function() { setQ(''); }} style={{ border: 'none', background: 'transparent', fontSize: 13, color: 'var(--m-ink-2)', cursor: 'pointer' }}>Clear</button>}
             </div>
-            <div style={{ flex: 1, maxHeight: 560, overflowY: 'auto', padding: '8px 0' }}>
-              {filtered.length === 0 &&
-              <div style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--m-ink-2)' }}>
+
+            <div style={{ flex: 1, maxHeight: 460, overflowY: 'auto' }}>
+              {filtered.length === 0 && (
+                <div style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--m-ink-2)' }}>
                   No branches match "{q}". Try Mombasa, Kisii or Meru.
                 </div>
-              }
-              {filtered.map((r) =>
-              <div key={r.name}>
-                  <div style={{ padding: '14px 24px 8px', display: 'flex', alignItems: 'center', gap: 8, position: 'sticky', top: 0, background: '#fff', zIndex: 1, borderBottom: '1px solid var(--m-line-2)' }}>
-                    <span style={{ width: 8, height: 8, borderRadius: 999, background: r.colour }} />
-                    <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.14em', color: 'var(--m-ink)' }}>{r.name}</span>
-                    <span style={{ fontSize: 11, fontFamily: 'JetBrains Mono', color: 'var(--m-ink-2)', marginLeft: 'auto' }}>{r.branches.length}</span>
-                  </div>
-                  <div data-branch-row style={{ display: 'flex', flexDirection: 'column' }}>
-                    {r.branches.map((b) =>
-                  <a key={b.n} href="#apply" style={{ padding: '14px 24px', display: 'flex', alignItems: 'flex-start', gap: 12, borderBottom: '1px solid var(--m-line-2)', color: 'var(--m-ink)', textDecoration: 'none' }}>
-                        <span style={{ width: 8, height: 8, borderRadius: 999, background: r.colour, marginTop: 6, flexShrink: 0 }} />
-                        <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontSize: 14.5, fontWeight: 600, lineHeight: 1.3 }}>{b.n}</div>
-                          <div style={{ fontSize: 12.5, color: 'var(--m-muted)', lineHeight: 1.4, marginTop: 2 }}>{b.addr || '—'}</div>
-                        </div>
-                        <span style={{ fontSize: 11, color: 'var(--m-muted)', fontFamily: 'var(--font-mono)', marginTop: 4 }}>→</span>
-                      </a>
-                  )}
-                  </div>
-                </div>
               )}
+              {filtered.map(function(r) {
+                return (
+                  <div key={r.name}>
+                    <div style={{ padding: '12px 20px 8px', display: 'flex', alignItems: 'center', gap: 8, position: 'sticky', top: 0, background: '#fff', zIndex: 1, borderBottom: '1px solid var(--m-line-2)' }}>
+                      <span style={{ width: 8, height: 8, borderRadius: 999, background: r.colour }} />
+                      <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.14em' }}>{r.name}</span>
+                      <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--m-ink-2)', marginLeft: 'auto' }}>{r.branches.length}</span>
+                    </div>
+                    {r.branches.map(function(b) {
+                      const key = r.name + ':' + b.n;
+                      const isSel = selKey === key;
+                      const hasPin = !!(b.lat && b.lng);
+                      return (
+                        <button key={b.n} data-bkey={key}
+                          onClick={function() { flyTo(r, b); }}
+                          title={hasPin ? 'Show on map' : b.addr}
+                          style={{ padding: '12px 20px', display: 'flex', alignItems: 'flex-start', gap: 10, borderBottom: '1px solid var(--m-line-2)', color: 'var(--m-ink)', background: isSel ? r.colour + '1a' : 'transparent', border: 'none', width: '100%', cursor: hasPin ? 'pointer' : 'default', textAlign: 'left', transition: 'background .15s' }}>
+                          <span style={{ width: 8, height: 8, borderRadius: 999, background: r.colour, marginTop: 5, flexShrink: 0 }} />
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: 14, fontWeight: isSel ? 700 : 600, lineHeight: 1.3 }}>{b.n}</div>
+                            <div style={{ fontSize: 12, color: 'var(--m-muted)', marginTop: 2 }}>{b.addr || '—'}</div>
+                          </div>
+                          {hasPin && <span style={{ fontSize: 13, opacity: isSel ? 1 : 0.4, marginTop: 2, flexShrink: 0 }}>📍</span>}
+                        </button>
+                      );
+                    })}
+                  </div>
+                );
+              })}
             </div>
-            <div style={{ padding: '14px 24px', borderTop: '1px solid var(--m-line-2)', background: 'var(--m-cream)', fontSize: 12, color: 'var(--m-ink-2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span>Open Mon–Sat · Call centre 24/7</span>
-              <span style={{ fontFamily: 'JetBrains Mono', fontWeight: 600, color: activeColour }}>
-                {filtered.reduce((a, r) => a + r.branches.length, 0)} shown
+
+            <div style={{ padding: '12px 20px', borderTop: '1px solid var(--m-line-2)', background: 'var(--m-cream)', fontSize: 12, color: 'var(--m-ink-2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span>Tap a branch to see it on the map</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, color: activeColour }}>
+                {filtered.reduce(function(a, r) { return a + r.branches.length; }, 0)} shown
               </span>
             </div>
           </div>
+
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
+
 
 const CTA = () =>
 <section id="apply" style={{ padding: '80px 0', background: 'var(--m-cream)' }}>
