@@ -5,7 +5,7 @@ const Mission = () => (
         <div className="h-eyebrow"><span className="dot"/>Our mission</div>
         <h2 className="h-display" style={{fontSize:'clamp(44px, 6.5vw, 108px)', lineHeight:.98, letterSpacing:'-.035em', margin:'24px 0 0', fontWeight:500}}>
           Unlocking progress<br/>
-          for Kenya's <em style={{fontStyle:'italic', color:'var(--m-green-ink)', fontFamily:'"Instrument Serif", serif', fontWeight:400, letterSpacing:'-.01em'}}>everyday earners.</em>
+          for Kenya's <em style={{fontStyle:'italic', color:'var(--m-green-ink)', fontFamily:'var(--font-accent)', fontWeight:400, letterSpacing:'-.01em'}}>everyday earners.</em>
         </h2>
       </div>
       <div style={{marginTop: 72, display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 40, paddingTop: 40, borderTop:'1px solid var(--m-line)'}}>
