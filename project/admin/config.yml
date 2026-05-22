@@ -196,6 +196,12 @@ collections:
             required: false
             hint: "Value for the Authorization header, e.g. Bearer your-token. Use a read-limited key — this value is stored in the repository."
 
+          - label: "Impact Report PDF URL"
+            name: "impact_report_url"
+            widget: "string"
+            required: false
+            hint: "Full HTTPS URL to the ESG / Impact Report PDF. Must be publicly accessible. Update this whenever a new report is published."
+
   # ─── PRODUCTS ─────────────────────────────────────────────────────────────
   - name: "products"
     label: "🏍️ Products"

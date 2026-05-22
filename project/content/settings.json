@@ -70,5 +70,7 @@
   "form_privacy_text": "By submitting you agree to be contacted by Mogo Auto Ltd. We never share your details.",
 
   "form_api_endpoint": "",
-  "form_api_key": ""
+  "form_api_key": "",
+
+  "impact_report_url": "https://www.mogo.co.ke/esg/pdf/mogo-esg-report-2026.pdf"
 }

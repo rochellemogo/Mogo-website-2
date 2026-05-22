@@ -216,17 +216,65 @@ const ImpactPillars = () => {
   );
 };
 
-Object.assign(window, { ImpactPillars, IMPACT_PILLARS, ImpactReport });
+Object.assign(window, { ImpactPillars, IMPACT_PILLARS });
 
 // ---------- ESG / Impact Report section ----------
-const REPORT_URL = 'https://www.mogo.co.ke/esg/pdf/mogo-esg-report-2026.pdf';
+// ImpactReport and ReportPreview are defined here (after ImpactPillars) and
+// exported in a second Object.assign below so window.ImpactReport is valid.
+
+const DEFAULT_REPORT_URL = 'https://www.mogo.co.ke/esg/pdf/mogo-esg-report-2026.pdf';
+
+const ReportPreview = ({reportUrl, onTryInline}) => (
+  <div style={{height:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:20, padding: 44, background:'linear-gradient(180deg, #fff, var(--m-cream))', color:'var(--m-ink)', textAlign:'center'}}>
+    {/* Mock PDF cover */}
+    <div style={{width: 132, height: 168, borderRadius:10, background:'#fff', border:'1px solid var(--m-line)', boxShadow:'0 16px 36px rgba(0,0,0,.12)', position:'relative', overflow:'hidden', display:'flex', flexDirection:'column'}}>
+      <div style={{height: 8, background:'var(--m-green)'}}/>
+      <div style={{flex:1, padding:'14px 12px', display:'flex', flexDirection:'column', justifyContent:'space-between', textAlign:'left'}}>
+        <div>
+          <div style={{fontFamily:'var(--font-mono)', fontSize:8, letterSpacing:'.12em', color:'var(--m-muted)', fontWeight:700, marginBottom:8}}>MOGO · ESG 2026</div>
+          <div style={{fontFamily:'var(--font-display)', fontSize:13, fontWeight:800, lineHeight:1.1, color:'var(--m-ink)'}}>Impact<br/>Report</div>
+        </div>
+        <div style={{display:'flex', flexDirection:'column', gap:3}}>
+          {[1,.85,.6,.9,.5].map((w,i) => <div key={i} style={{height:3, width:`${w*100}%`, background:'var(--m-line)', borderRadius:2}}/>)}
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style={{fontFamily:'var(--font-display)', fontSize:22, fontWeight:800, letterSpacing:'-.015em'}}>Mogo Kenya · ESG Report 2026</div>
+      <div style={{fontSize:14, color:'var(--m-ink-2)', marginTop:6, maxWidth: 320}}>Click to preview inline, or open in a new tab.</div>
+    </div>
+
+    <div style={{display:'flex', flexWrap:'wrap', gap:10, justifyContent:'center'}}>
+      <button onClick={onTryInline} className="btn btn-dark">Preview inline</button>
+      <a href={reportUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+        Open in new tab <span className="arrow-pill"><ArrowRight/></span>
+      </a>
+    </div>
+  </div>
+);
 
 const ImpactReport = () => {
   const [showEmbed, setShowEmbed] = React.useState(false);
+  const [reportUrl, setReportUrl] = React.useState(
+    (window.MOGO_SETTINGS && window.MOGO_SETTINGS.impact_report_url) || DEFAULT_REPORT_URL
+  );
+
+  React.useEffect(() => {
+    const onSettings = () => {
+      const url = (window.MOGO_SETTINGS && window.MOGO_SETTINGS.impact_report_url) || DEFAULT_REPORT_URL;
+      setReportUrl(url);
+      setShowEmbed(false);
+    };
+    window.addEventListener('mogo-settings-updated', onSettings);
+    return () => window.removeEventListener('mogo-settings-updated', onSettings);
+  }, []);
+
+  // Google Docs viewer works cross-origin without X-Frame-Options restrictions
+  const embedUrl = 'https://docs.google.com/viewer?url=' + encodeURIComponent(reportUrl) + '&embedded=true';
 
   return (
     <section id="impact-report" style={{padding:'96px 0', background:'var(--m-ink)', color:'#fff', position:'relative', overflow:'hidden'}}>
-      {/* Decorative blob */}
       <div aria-hidden="true" style={{position:'absolute', right:-120, top:-120, width: 420, height: 420, borderRadius: 999, background:'var(--m-green)', opacity:.22, filter:'blur(100px)', pointerEvents:'none'}}/>
 
       <div className="shell impact-report-grid" style={{position:'relative', display:'grid', gridTemplateColumns:'1fr 1fr', gap: 56, alignItems:'center'}}>
@@ -241,10 +289,10 @@ const ImpactReport = () => {
           </p>
 
           <div style={{display:'flex', flexWrap:'wrap', gap:12, marginBottom: 32}}>
-            <a href={REPORT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
+            <a href={reportUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
               Read the 2026 report <span className="arrow-pill"><ArrowRight/></span>
             </a>
-            <a href={REPORT_URL} download className="btn btn-ghost-light btn-lg">
+            <a href={reportUrl} download className="btn btn-ghost-light btn-lg">
               Download PDF
             </a>
           </div>
@@ -263,16 +311,16 @@ const ImpactReport = () => {
           </ul>
         </div>
 
-        {/* PREVIEW CARD — clicking opens inline iframe; defaults to placeholder to avoid loading PDFs cross-origin on first paint */}
+        {/* PREVIEW CARD */}
         <div className="impact-report-frame" style={{position:'relative', borderRadius:'var(--r-xl)', overflow:'hidden', background:'#fff', boxShadow:'0 30px 80px rgba(0,0,0,.4)', aspectRatio:'3/4'}}>
           {showEmbed ? (
             <iframe
-              src={`${REPORT_URL}#view=FitH&toolbar=1`}
+              src={embedUrl}
               title="Mogo Kenya ESG Report 2026"
               style={{width:'100%', height:'100%', border:'none', display:'block', background:'#fff'}}
             />
           ) : (
-            <ReportPreview onTryInline={()=>setShowEmbed(true)}/>
+            <ReportPreview reportUrl={reportUrl} onTryInline={() => setShowEmbed(true)}/>
           )}
         </div>
       </div>
@@ -280,32 +328,4 @@ const ImpactReport = () => {
   );
 };
 
-const ReportPreview = ({onTryInline}) => (
-  <div style={{height:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:20, padding: 44, background:'linear-gradient(180deg, #fff, var(--m-cream))', color:'var(--m-ink)', textAlign:'center'}}>
-    {/* Mock PDF cover */}
-    <div style={{width: 132, height: 168, borderRadius:10, background:'#fff', border:'1px solid var(--m-line)', boxShadow:'0 16px 36px rgba(0,0,0,.12)', position:'relative', overflow:'hidden', display:'flex', flexDirection:'column'}}>
-      <div style={{height: 8, background:'var(--m-green)'}}/>
-      <div style={{flex:1, padding:'14px 12px', display:'flex', flexDirection:'column', justifyContent:'space-between', textAlign:'left'}}>
-        <div>
-          <div style={{fontFamily:'var(--font-mono)', fontSize:8, letterSpacing:'.12em', color:'var(--m-muted)', fontWeight:700, marginBottom:8}}>MOGO · ESG 2026</div>
-          <div style={{fontFamily:'var(--font-display)', fontSize:13, fontWeight:800, lineHeight:1.1, color:'var(--m-ink)'}}>Impact<br/>Report</div>
-        </div>
-        <div style={{display:'flex', flexDirection:'column', gap:3}}>
-          {[1,.85,.6,.9,.5].map((w,i) => <div key={i} style={{height:3, width:`${w*100}%`, background:'var(--m-line)', borderRadius:2}}/>)}
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div style={{fontFamily:'var(--font-display)', fontSize:22, fontWeight:800, letterSpacing:'-.015em'}}>Mogo Kenya · ESG Report 2026</div>
-      <div style={{fontSize:14, color:'var(--m-ink-2)', marginTop:6, maxWidth: 320}}>Click below to preview inline, or open the full report in a new tab.</div>
-    </div>
-
-    <div style={{display:'flex', flexWrap:'wrap', gap:10, justifyContent:'center'}}>
-      <button onClick={onTryInline} className="btn btn-dark">Preview inline</button>
-      <a href={REPORT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-        Open in new tab <span className="arrow-pill"><ArrowRight/></span>
-      </a>
-    </div>
-  </div>
-);
+Object.assign(window, { ImpactReport, ReportPreview });
