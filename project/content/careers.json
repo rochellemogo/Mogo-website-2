@@ -1,0 +1,10 @@
+{
+  "jobs": [
+    { "title": "Branch Sales Officer",      "dept": "Retail · Multiple branches",        "type": "Full-time" },
+    { "title": "Credit Analyst",            "dept": "Credit · Nairobi HQ",               "type": "Full-time" },
+    { "title": "Recoveries Officer",        "dept": "Collections · Mombasa",             "type": "Full-time" },
+    { "title": "Field Agent — Boda Loans",  "dept": "Sales · Kisumu / Nakuru / Eldoret", "type": "Full-time" },
+    { "title": "Software Engineer",         "dept": "Technology · Nairobi HQ",           "type": "Full-time" },
+    { "title": "Customer Experience Agent", "dept": "Call centre · Nairobi",             "type": "Full-time · Shifts" }
+  ]
+}

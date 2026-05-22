@@ -163,3 +163,19 @@ window.MOGO_PRODUCTS = MOGO_PRODUCTS;
     })
     .catch(function() {});
 })();
+
+// Load CMS products from content/products.json — overrides the defaults above.
+// Components listen for 'mogo-products-updated' to re-render with new data.
+(function() {
+  var base = window.__MOGO_SUBPAGE ? '../' : '';
+  fetch(base + 'content/products.json')
+    .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+    .then(function(data) {
+      var prods = Array.isArray(data) ? data : (data.products || []);
+      if (prods.length) {
+        window.MOGO_PRODUCTS = prods;
+        window.dispatchEvent(new CustomEvent('mogo-products-updated'));
+      }
+    })
+    .catch(function() {});
+})();

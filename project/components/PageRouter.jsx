@@ -1,18 +1,157 @@
 // Page content for all About / Impact sub-pages
 
-// ---------- Customer story videos ----------
-const MOGO_STORIES = [
-  { youtubeId:'IQYAWWWnR44', name:'Julius Mwangi',    city:'Nairobi',  role:'Boda rider',     product:'New Boda Loan',     tagline:"Got my Boxer in 2 hours. 14 months later I owned it." },
-  { youtubeId:'IQYAWWWnR44', name:'Mary Wanjiku',     city:'Nakuru',   role:'Salon owner',    product:'Buyoff Logbook',    tagline:'Saved KES 8,400 a month — same car, lower payments.' },
-  { youtubeId:'IQYAWWWnR44', name:'Peter Otieno',     city:'Kisumu',   role:'Tuk-tuk owner',  product:'Tuk-Tuk Loan',      tagline:'Two tuk-tuks, two riders. The numbers finally work.' },
-  { youtubeId:'IQYAWWWnR44', name:'Grace Achieng',    city:'Mombasa',  role:'Shop owner',     product:'MSME Loan',         tagline:'Stocked the shop for the whole season in one go.' },
-  { youtubeId:'IQYAWWWnR44', name:'Samuel Kiprop',    city:'Eldoret',  role:'Driver',         product:'Car Loan',          tagline:"My first car. My family's first holiday." },
-  { youtubeId:'IQYAWWWnR44', name:'Rose Njeri',       city:'Thika',    role:'Teacher',        product:'Check-Off Loan',    tagline:'Paid school fees on time. No drama. No stress.' },
-  { youtubeId:'IQYAWWWnR44', name:'David Kamau',      city:'Nyeri',    role:'Boda rider',     product:'Boda Logbook',      tagline:"Topped up against my boda. Bought a second one." },
-  { youtubeId:'IQYAWWWnR44', name:'Esther Wambui',    city:'Machakos', role:'Hawker',         product:'Smartphone Loan',   tagline:'KES 50 a day. M-Pesa changed my whole business.' },
-  { youtubeId:'IQYAWWWnR44', name:'Anthony Mutua',    city:'Kitui',    role:'Mechanic',       product:'MSME Loan',         tagline:'Bought tools. Hired two apprentices. Got busier.' },
+// ---------- Customer story videos — fetched from content/videos.json ----------
+const STORIES_FALLBACK = [
+  { youtubeId:'IQYAWWWnR44', name:'Julius Mwangi',  city:'Nairobi',  role:'Boda rider',    product:'New Boda Loan',  tagline:"Got my Boxer in 2 hours. 14 months later I owned it." },
+  { youtubeId:'IQYAWWWnR44', name:'Mary Wanjiku',   city:'Nakuru',   role:'Salon owner',   product:'Buyoff Logbook', tagline:'Saved KES 8,400 a month — same car, lower payments.' },
+  { youtubeId:'IQYAWWWnR44', name:'Peter Otieno',   city:'Kisumu',   role:'Tuk-tuk owner', product:'Tuk-Tuk Loan',   tagline:'Two tuk-tuks, two riders. The numbers finally work.' },
+  { youtubeId:'IQYAWWWnR44', name:'Grace Achieng',  city:'Mombasa',  role:'Shop owner',    product:'MSME Loan',      tagline:'Stocked the shop for the whole season in one go.' },
+  { youtubeId:'IQYAWWWnR44', name:'Samuel Kiprop',  city:'Eldoret',  role:'Driver',        product:'Car Loan',       tagline:"My first car. My family's first holiday." },
+  { youtubeId:'IQYAWWWnR44', name:'Rose Njeri',     city:'Thika',    role:'Teacher',       product:'Check-Off Loan', tagline:'Paid school fees on time. No drama. No stress.' },
+  { youtubeId:'IQYAWWWnR44', name:'David Kamau',    city:'Nyeri',    role:'Boda rider',    product:'Boda Logbook',   tagline:"Topped up against my boda. Bought a second one." },
+  { youtubeId:'IQYAWWWnR44', name:'Esther Wambui',  city:'Machakos', role:'Hawker',        product:'Smartphone Loan',tagline:'KES 50 a day. M-Pesa changed my whole business.' },
+  { youtubeId:'IQYAWWWnR44', name:'Anthony Mutua',  city:'Kitui',    role:'Mechanic',      product:'MSME Loan',      tagline:'Bought tools. Hired two apprentices. Got busier.' },
 ];
+window.MOGO_STORIES = STORIES_FALLBACK;
 Object.assign(window, { MOGO_STORIES });
+
+// ─── OurStoriesPage — fetches videos.json so CMS edits appear live ───────────
+const OurStoriesPage = () => {
+  const [videos, setVideos] = React.useState(window.MOGO_STORIES || STORIES_FALLBACK);
+
+  React.useEffect(() => {
+    const base = window.__MOGO_SUBPAGE ? '../' : '';
+    fetch(base + 'content/videos.json')
+      .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(function(data) {
+        const v = data.stories || data.videos || data;
+        if (Array.isArray(v) && v.length) { window.MOGO_STORIES = v; setVideos(v); }
+      })
+      .catch(function() {});
+  }, []);
+
+  return (
+    <>
+      <section style={{padding:'72px 0 48px', background:'#fff'}}>
+        <div className="shell" style={{maxWidth: 1180}}>
+          {videos[0] && <StoryVideo {...videos[0]} featured/>}
+        </div>
+      </section>
+      <section style={{padding:'24px 0 96px', background:'#fff'}}>
+        <div className="shell" style={{maxWidth: 1180}}>
+          <div style={{display:'flex', alignItems:'baseline', justifyContent:'space-between', borderBottom:'1px solid var(--m-line)', paddingBottom:20, marginBottom:32, fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
+            <span>{videos.length} stories</span>
+            <span>More coming soon</span>
+          </div>
+          <div className="our-stories-grid" style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 28}}>
+            {videos.slice(1).map((v, i) => <StoryVideo key={i} {...v}/>)}
+          </div>
+        </div>
+      </section>
+      <CTAFooter
+        title="Got a story to share? We'd love to hear it."
+        subtitle="If Mogo helped you grow your hustle, we want to put you on camera. Drop us a line and we'll come to you."
+        cta="Email our team"
+        href="mailto:stories@mogo.co.ke"
+      />
+    </>
+  );
+};
+
+// ─── CareersPage — fetches careers.json so job listings are CMS-editable ─────
+const CAREERS_FALLBACK = [
+  { title:'Branch Sales Officer',      dept:'Retail · Multiple branches',        type:'Full-time' },
+  { title:'Credit Analyst',            dept:'Credit · Nairobi HQ',               type:'Full-time' },
+  { title:'Recoveries Officer',        dept:'Collections · Mombasa',             type:'Full-time' },
+  { title:'Field Agent — Boda Loans',  dept:'Sales · Kisumu / Nakuru / Eldoret', type:'Full-time' },
+  { title:'Software Engineer',         dept:'Technology · Nairobi HQ',           type:'Full-time' },
+  { title:'Customer Experience Agent', dept:'Call centre · Nairobi',             type:'Full-time · Shifts' },
+];
+
+const CareersPage = () => {
+  const [jobs, setJobs] = React.useState(CAREERS_FALLBACK);
+
+  React.useEffect(() => {
+    const base = window.__MOGO_SUBPAGE ? '../' : '';
+    fetch(base + 'content/careers.json')
+      .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(function(data) {
+        const j = data.jobs || data;
+        if (Array.isArray(j) && j.length) setJobs(j);
+      })
+      .catch(function() {});
+  }, []);
+
+  return (
+    <div style={{background:'#fff', borderRadius:'var(--r-xl)', border:'1px solid var(--m-line-2)', overflow:'hidden'}}>
+      {jobs.map((r, i) => (
+        <a key={i} href="mailto:careers@mogo.co.ke" style={{display:'grid', gridTemplateColumns:'2fr 2fr 1fr 40px', padding:'22px 28px', gap: 20, alignItems:'center', color:'var(--m-ink)', textDecoration:'none', borderBottom: i < jobs.length - 1 ? '1px solid var(--m-line-2)' : 'none'}}>
+          <div style={{fontSize:18, fontWeight:600}}>{r.title}</div>
+          <div style={{fontSize:14, color:'var(--m-ink-2)'}}>{r.dept}</div>
+          <div style={{fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:600}}>{r.type}</div>
+          <ArrowRight/>
+        </a>
+      ))}
+    </div>
+  );
+};
+
+// ─── FAQPage — fetches faq.json so questions are CMS-editable ────────────────
+const FAQ_FALLBACK = [
+  { title:'Applying', questions:[
+    {q:'Who can apply for a Mogo loan?',  a:'Any Kenyan national with a valid ID, an M-Pesa number and a clear repayment plan. Depending on the product, we may ask for additional documents like a logbook, payslip or CRB clearance.'},
+    {q:'How long does approval take?',    a:'Most applications are approved within 24 hours. Boda and smartphone loans can be approved the same day if you walk into a branch with the required documents.'},
+    {q:'Do I need a bank account?',       a:'No. An active M-Pesa line is enough for most of our products. Salary-based check-off loans will use your bank or payroll details.'},
+  ]},
+  { title:'Repayments', questions:[
+    {q:'How do I make payments?',          a:'M-Pesa Paybill 7034211 (your agreement number as account), USSD *695#, WhatsApp on +254 768 469 112 or direct bank transfer to our NCBA account.'},
+    {q:'Can I pay off my loan early?',     a:'Yes. Early settlement is allowed on all Mogo products. Contact us to get your settlement figure.'},
+    {q:"What happens if I miss a payment?",a:"Call us on 0768 469 112 as soon as possible. We'd much rather restructure your loan than hand you a penalty. Repeated missed payments may affect your CRB record."},
+  ]},
+  { title:'Vehicles & Logbooks', questions:[
+    {q:'Do I keep using my car/boda during the loan?', a:"Yes. You keep using your vehicle the whole time. For logbook loans, we hold the logbook as security — you ride it every day."},
+    {q:'What vehicles do you finance?',               a:"Any age, make or model — local and imported. For new bodas we partner with trusted dealers across Kenya."},
+    {q:'What if my vehicle is stolen?',               a:"Call 0719 089 999 immediately. We operate 24/7 and work with SAKA, our stolen-vehicle database, to help recover it."},
+  ]},
+  { title:'Emergency & Safety', questions:[
+    {q:'Who do I call after an accident?', a:'0719 089 999 — available 24/7 for accidents and theft. Have your agreement number ready.'},
+    {q:'Is my data safe with Mogo?',       a:'Yes. We comply with the Kenya Data Protection Act and our privacy policy is published in full on our site.'},
+  ]},
+];
+
+const FAQPage = () => {
+  const [groups, setGroups] = React.useState(FAQ_FALLBACK);
+
+  React.useEffect(() => {
+    const base = window.__MOGO_SUBPAGE ? '../' : '';
+    fetch(base + 'content/faq.json')
+      .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(function(data) {
+        const g = data.groups || data;
+        if (Array.isArray(g) && g.length) setGroups(g);
+      })
+      .catch(function() {});
+  }, []);
+
+  return (
+    <section style={{padding:'96px 0', background:'#fff'}}>
+      <div className="shell" style={{maxWidth: 960}}>
+        {groups.map((g, gi) => (
+          <div key={gi} style={{marginBottom: 64}}>
+            <div className="h-eyebrow"><span className="dot"/>{g.title}</div>
+            <div style={{marginTop: 20, borderTop:'1px solid var(--m-line-2)'}}>
+              {(g.questions || g.qs || []).map((item, i) => {
+                const q = item.q || item[0];
+                const a = item.a || item[1];
+                return <FAQItem key={i} q={q} a={a}/>;
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 const MOGO_PAGES = {
   'about-us': {
@@ -158,43 +297,7 @@ const MOGO_PAGES = {
     title: 'Frequently <em>asked.</em>',
     eyebrow: 'FAQ',
     kicker: "Quick answers to the questions we hear most. Can't find yours? Call 0768 469 112 — 24 hours a day, every day.",
-    render: () => {
-      const groups = [
-        { title:'Applying', qs:[
-          ['Who can apply for a Mogo loan?', 'Any Kenyan national with a valid ID, an M-Pesa number and a clear repayment plan. Depending on the product, we may ask for additional documents like a logbook, payslip or CRB clearance.'],
-          ['How long does approval take?', 'Most applications are approved within 24 hours. Boda and smartphone loans can be approved the same day if you walk into a branch with the required documents.'],
-          ['Do I need a bank account?', 'No. An active M-Pesa line is enough for most of our products. Salary-based check-off loans will use your bank or payroll details.'],
-        ]},
-        { title:'Repayments', qs:[
-          ['How do I make payments?', 'M-Pesa Paybill 7034211 (your agreement number as account), USSD *695#, WhatsApp on +254 768 469 112 or direct bank transfer to our NCBA account.'],
-          ['Can I pay off my loan early?', 'Yes. Early settlement is allowed on all Mogo products. Contact us to get your settlement figure.'],
-          ['What happens if I miss a payment?', "Call us on 0768 469 112 as soon as possible. We'd much rather restructure your loan than hand you a penalty. Repeated missed payments may affect your CRB record."],
-        ]},
-        { title:'Vehicles & Logbooks', qs:[
-          ['Do I keep using my car/boda during the loan?', "Yes. You keep using your vehicle the whole time. For logbook loans, we hold the logbook as security — you ride it every day."],
-          ['What vehicles do you finance?', "Any age, make or model — local and imported. For new bodas we partner with trusted dealers across Kenya."],
-          ['What if my vehicle is stolen?', "Call 0719 089 999 immediately. We operate 24/7 and work with SAKA, our stolen-vehicle database, to help recover it."],
-        ]},
-        { title:'Emergency & Safety', qs:[
-          ['Who do I call after an accident?', '0719 089 999 — available 24/7 for accidents and theft. Have your agreement number ready.'],
-          ['Is my data safe with Mogo?', 'Yes. We comply with the Kenya Data Protection Act and our privacy policy is published in full on our site.'],
-        ]},
-      ];
-      return (
-        <section style={{padding:'96px 0', background:'#fff'}}>
-          <div className="shell" style={{maxWidth: 960}}>
-            {groups.map((g,gi) => (
-              <div key={gi} style={{marginBottom: 64}}>
-                <div className="h-eyebrow"><span className="dot"/>{g.title}</div>
-                <div style={{marginTop: 20, borderTop:'1px solid var(--m-line-2)'}}>
-                  {g.qs.map(([q,a],i) => <FAQItem key={i} q={q} a={a}/>)}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      );
-    },
+    render: () => <FAQPage/>,
   },
 
   'careers': {
@@ -221,23 +324,7 @@ const MOGO_PAGES = {
               </div>
               <a href="mailto:careers@mogo.co.ke" className="btn btn-dark">Send your CV <span className="arrow-pill"><ArrowRight/></span></a>
             </div>
-            <div style={{background:'#fff', borderRadius:'var(--r-xl)', border:'1px solid var(--m-line-2)', overflow:'hidden'}}>
-              {[
-                ['Branch Sales Officer',          'Retail · Multiple branches',   'Full-time'],
-                ['Credit Analyst',                'Credit · Nairobi HQ',          'Full-time'],
-                ['Recoveries Officer',            'Collections · Mombasa',        'Full-time'],
-                ['Field Agent — Boda Loans',      'Sales · Kisumu / Nakuru / Eldoret', 'Full-time'],
-                ['Software Engineer',             'Technology · Nairobi HQ',      'Full-time'],
-                ['Customer Experience Agent',     'Call centre · Nairobi',        'Full-time · Shifts'],
-              ].map((r,i,arr) => (
-                <a key={i} href="mailto:careers@mogo.co.ke" style={{display:'grid', gridTemplateColumns:'2fr 2fr 1fr 40px', padding:'22px 28px', gap: 20, alignItems:'center', color:'var(--m-ink)', textDecoration:'none', borderBottom: i<arr.length-1 ? '1px solid var(--m-line-2)' : 'none'}}>
-                  <div style={{fontSize:18, fontWeight:600}}>{r[0]}</div>
-                  <div style={{fontSize:14, color:'var(--m-ink-2)'}}>{r[1]}</div>
-                  <div style={{fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:600}}>{r[2]}</div>
-                  <ArrowRight/>
-                </a>
-              ))}
-            </div>
+            <CareersPage/>
             <p style={{fontSize:14, color:'var(--m-ink-2)', marginTop:24}}>
               Don't see your role? Send us your CV at <a href="mailto:careers@mogo.co.ke" style={{color:'var(--m-green-ink)', fontWeight:600}}>careers@mogo.co.ke</a> — we'll keep it on file.
             </p>
@@ -251,39 +338,7 @@ const MOGO_PAGES = {
     title: '<em>Real</em> Kenyans.<br/>Real businesses.',
     eyebrow: 'Our stories',
     kicker: "From the boda riders of Nairobi to the salon owners of Nakuru — meet the people building Kenya's hustle economy with Mogo on their side.",
-    render: () => {
-      const videos = (window.MOGO_STORIES || []);
-      return (
-        <>
-          {/* Featured video */}
-          <section style={{padding:'72px 0 48px', background:'#fff'}}>
-            <div className="shell" style={{maxWidth: 1180}}>
-              {videos[0] && <StoryVideo {...videos[0]} featured/>}
-            </div>
-          </section>
-
-          {/* Grid of remaining videos */}
-          <section style={{padding:'24px 0 96px', background:'#fff'}}>
-            <div className="shell" style={{maxWidth: 1180}}>
-              <div style={{display:'flex', alignItems:'baseline', justifyContent:'space-between', borderBottom:'1px solid var(--m-line)', paddingBottom:20, marginBottom:32, fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
-                <span>{videos.length} stories</span>
-                <span>More coming soon</span>
-              </div>
-              <div className="our-stories-grid" style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 28}}>
-                {videos.slice(1).map((v, i) => <StoryVideo key={i} {...v}/>)}
-              </div>
-            </div>
-          </section>
-
-          <CTAFooter
-            title="Got a story to share? We'd love to hear it."
-            subtitle="If Mogo helped you grow your hustle, we want to put you on camera. Drop us a line and we'll come to you."
-            cta="Email our team"
-            href="mailto:stories@mogo.co.ke"
-          />
-        </>
-      );
-    },
+    render: () => <OurStoriesPage/>,
   },
 
   'saka': {

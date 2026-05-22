@@ -1,50 +1,63 @@
-const Branches = () => {
-  // Organised by region. Coordinates are approximate lat/lng for a simple KE-shaped map.
-  const regions = [
+const BRANCHES_FALLBACK = [
   { name: "Nairobi Metro", colour: "#7AB800", branches: [
-    { n: "Nairobi CBD", x: .53, y: .55, addr: "Kimathi Street, CBD" }, { n: "Industrial Area", x: .54, y: .57, addr: "Enterprise Road" },
-    { n: "Westlands", x: .52, y: .54, addr: "Waiyaki Way" }, { n: "Ngara", x: .53, y: .54, addr: "Ngara Road" },
-    { n: "Kasarani", x: .54, y: .52, addr: "Thika Superhighway" }, { n: "Embakasi", x: .55, y: .57, addr: "Airport North Road" },
-    { n: "Kitengela", x: .55, y: .60, addr: "Namanga Road" }, { n: "Rongai", x: .52, y: .58, addr: "Magadi Road" },
-    { n: "Kiambu", x: .52, y: .52, addr: "Kiambu Road" }, { n: "Kikuyu", x: .51, y: .55, addr: "Kikuyu–Limuru Road" },
-    { n: "Thika", x: .56, y: .50, addr: "Kenyatta Highway" }, { n: "Ruiru", x: .55, y: .53, addr: "Ruiru Bypass" },
-    { n: "Limuru", x: .50, y: .53, addr: "Limuru Town" }, { n: "Juja", x: .56, y: .52, addr: "Thika Superhighway" },
-    { n: "Machakos", x: .58, y: .60, addr: "Mombasa Road" }, { n: "Athi River", x: .56, y: .59, addr: "Mombasa Road" }]
+    { n: "Nairobi CBD",    addr: "Kimathi Street, CBD" }, { n: "Industrial Area", addr: "Enterprise Road" },
+    { n: "Westlands",      addr: "Waiyaki Way" },         { n: "Ngara",          addr: "Ngara Road" },
+    { n: "Kasarani",       addr: "Thika Superhighway" },  { n: "Embakasi",       addr: "Airport North Road" },
+    { n: "Kitengela",      addr: "Namanga Road" },        { n: "Rongai",         addr: "Magadi Road" },
+    { n: "Kiambu",         addr: "Kiambu Road" },         { n: "Kikuyu",         addr: "Kikuyu–Limuru Road" },
+    { n: "Thika",          addr: "Kenyatta Highway" },    { n: "Ruiru",          addr: "Ruiru Bypass" },
+    { n: "Limuru",         addr: "Limuru Town" },         { n: "Juja",           addr: "Thika Superhighway" },
+    { n: "Machakos",       addr: "Mombasa Road" },        { n: "Athi River",     addr: "Mombasa Road" }]
   },
   { name: "Coast", colour: "#E96A3B", branches: [
-    { n: "Mombasa", x: .76, y: .78, addr: "Moi Avenue, Mombasa" }, { n: "Nyali", x: .77, y: .77, addr: "Links Road, Nyali" },
-    { n: "Likoni", x: .76, y: .79, addr: "Likoni Ferry Road" }, { n: "Kilifi", x: .78, y: .74, addr: "Mombasa–Malindi Road" },
-    { n: "Malindi", x: .80, y: .72, addr: "Lamu Road" }, { n: "Mtwapa", x: .77, y: .77, addr: "Mombasa–Malindi Road" },
-    { n: "Ukunda", x: .75, y: .82, addr: "Diani Beach Road" }, { n: "Voi", x: .68, y: .72, addr: "Mombasa–Nairobi Highway" },
-    { n: "Mariakani", x: .74, y: .77, addr: "Mombasa–Nairobi Highway" }]
+    { n: "Mombasa",   addr: "Moi Avenue, Mombasa" }, { n: "Nyali",     addr: "Links Road, Nyali" },
+    { n: "Likoni",    addr: "Likoni Ferry Road" },    { n: "Kilifi",    addr: "Mombasa–Malindi Road" },
+    { n: "Malindi",   addr: "Lamu Road" },            { n: "Mtwapa",    addr: "Mombasa–Malindi Road" },
+    { n: "Ukunda",    addr: "Diani Beach Road" },     { n: "Voi",       addr: "Mombasa–Nairobi Highway" },
+    { n: "Mariakani", addr: "Mombasa–Nairobi Highway" }]
   },
   { name: "Central", colour: "#F4B93A", branches: [
-    { n: "Nyeri", x: .52, y: .45, addr: "Kenyatta Road" }, { n: "Karatina", x: .53, y: .46, addr: "Karatina Town" },
-    { n: "Muranga", x: .54, y: .48, addr: "Murang'a Town" }, { n: "Kerugoya", x: .55, y: .47, addr: "Kutus Road" },
-    { n: "Embu", x: .57, y: .48, addr: "Embu–Meru Road" }, { n: "Meru", x: .58, y: .44, addr: "Meru–Maua Road" },
-    { n: "Chuka", x: .57, y: .46, addr: "Embu–Meru Road" }, { n: "Maua", x: .60, y: .43, addr: "Maua Town" },
-    { n: "Nanyuki", x: .54, y: .42, addr: "Nanyuki–Nyeri Road" }]
+    { n: "Nyeri",    addr: "Kenyatta Road" },  { n: "Karatina", addr: "Karatina Town" },
+    { n: "Muranga",  addr: "Murang'a Town" },  { n: "Kerugoya", addr: "Kutus Road" },
+    { n: "Embu",     addr: "Embu–Meru Road" }, { n: "Meru",     addr: "Meru–Maua Road" },
+    { n: "Chuka",    addr: "Embu–Meru Road" }, { n: "Maua",     addr: "Maua Town" },
+    { n: "Nanyuki",  addr: "Nanyuki–Nyeri Road" }]
   },
   { name: "Rift Valley", colour: "#3B7CC9", branches: [
-    { n: "Nakuru", x: .42, y: .52, addr: "Kenyatta Avenue" }, { n: "Naivasha", x: .47, y: .54, addr: "Moi South Lake Road" },
-    { n: "Eldoret", x: .34, y: .42, addr: "Uganda Road" }, { n: "Kitale", x: .32, y: .38, addr: "Kitale–Eldoret Road" },
-    { n: "Kericho", x: .36, y: .54, addr: "Kericho–Nakuru Road" }, { n: "Bomet", x: .37, y: .56, addr: "Sotik–Bomet Road" },
-    { n: "Narok", x: .42, y: .58, addr: "Maasai Mara Road" }, { n: "Kapsabet", x: .34, y: .46, addr: "Kapsabet–Eldoret Road" },
-    { n: "Iten", x: .36, y: .40, addr: "Iten–Kabarnet Road" }, { n: "Nyahururu", x: .48, y: .46, addr: "Nyahururu–Nakuru Road" },
-    { n: "Molo", x: .40, y: .53, addr: "Molo–Elburgon Road" }]
+    { n: "Nakuru",    addr: "Kenyatta Avenue" },      { n: "Naivasha",  addr: "Moi South Lake Road" },
+    { n: "Eldoret",   addr: "Uganda Road" },          { n: "Kitale",    addr: "Kitale–Eldoret Road" },
+    { n: "Kericho",   addr: "Kericho–Nakuru Road" },  { n: "Bomet",     addr: "Sotik–Bomet Road" },
+    { n: "Narok",     addr: "Maasai Mara Road" },     { n: "Kapsabet",  addr: "Kapsabet–Eldoret Road" },
+    { n: "Iten",      addr: "Iten–Kabarnet Road" },   { n: "Nyahururu", addr: "Nyahururu–Nakuru Road" },
+    { n: "Molo",      addr: "Molo–Elburgon Road" }]
   },
   { name: "Western & Nyanza", colour: "#8B5CF6", branches: [
-    { n: "Kisumu", x: .30, y: .52, addr: "Oginga Odinga Street" }, { n: "Kakamega", x: .29, y: .46, addr: "Kakamega–Kisumu Road" },
-    { n: "Bungoma", x: .28, y: .42, addr: "Bungoma–Webuye Road" }, { n: "Busia", x: .24, y: .44, addr: "Busia–Malaba Road" },
-    { n: "Webuye", x: .30, y: .44, addr: "Webuye–Bungoma Road" }, { n: "Mumias", x: .27, y: .46, addr: "Mumias–Bungoma Road" },
-    { n: "Kisii", x: .32, y: .58, addr: "Kisii–Migori Road" }, { n: "Migori", x: .30, y: .62, addr: "Migori–Isebania Road" },
-    { n: "Homa Bay", x: .30, y: .58, addr: "Homa Bay–Kisumu Road" }, { n: "Siaya", x: .27, y: .50, addr: "Siaya–Bondo Road" },
-    { n: "Awendo", x: .31, y: .60, addr: "Awendo–Migori Road" }]
+    { n: "Kisumu",   addr: "Oginga Odinga Street" }, { n: "Kakamega", addr: "Kakamega–Kisumu Road" },
+    { n: "Bungoma",  addr: "Bungoma–Webuye Road" },  { n: "Busia",    addr: "Busia–Malaba Road" },
+    { n: "Webuye",   addr: "Webuye–Bungoma Road" },  { n: "Mumias",   addr: "Mumias–Bungoma Road" },
+    { n: "Kisii",    addr: "Kisii–Migori Road" },    { n: "Migori",   addr: "Migori–Isebania Road" },
+    { n: "Homa Bay", addr: "Homa Bay–Kisumu Road" }, { n: "Siaya",    addr: "Siaya–Bondo Road" },
+    { n: "Awendo",   addr: "Awendo–Migori Road" }]
   },
   { name: "Eastern & North", colour: "#D946A3", branches: [
-    { n: "Kitui", x: .62, y: .58, addr: "Kitui–Mwingi Road" }, { n: "Mwingi", x: .63, y: .54, addr: "Mwingi–Garissa Road" },
-    { n: "Garissa", x: .72, y: .54, addr: "Garissa Town" }, { n: "Isiolo", x: .60, y: .40, addr: "Isiolo–Meru Road" }]
-  }];
+    { n: "Kitui",   addr: "Kitui–Mwingi Road" }, { n: "Mwingi",  addr: "Mwingi–Garissa Road" },
+    { n: "Garissa", addr: "Garissa Town" },       { n: "Isiolo",  addr: "Isiolo–Meru Road" }]
+  }
+];
+
+const Branches = () => {
+  const [regions, setRegions] = React.useState(BRANCHES_FALLBACK);
+
+  React.useEffect(() => {
+    const base = window.__MOGO_SUBPAGE ? '../' : '';
+    fetch(base + 'content/branches.json')
+      .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+      .then(function(data) {
+        const r = data.regions || data;
+        if (Array.isArray(r) && r.length) setRegions(r);
+      })
+      .catch(function() {});
+  }, []);
 
 
   const total = regions.reduce((a, r) => a + r.branches.length, 0);

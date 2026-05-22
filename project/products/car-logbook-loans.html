@@ -24,17 +24,30 @@
 <script type="text/babel" src="../components/ApplyModal.jsx"></script>
 <script type="text/babel">
 const slug = "car-logbook-loans";
-const product = window.MOGO_PRODUCTS.find(p => p.slug === slug) || window.MOGO_PRODUCTS[0];
-document.title = product.name + ' · MOGO Kenya';
-const App = () => (
-  <>
-    <Nav/>
-    <ProductPage product={product}/>
-    <Footer/>
-    <ApplyModal/>
-    <TweaksPanel/>
-  </>
-);
+const App = () => {
+  const [product, setProduct] = React.useState(
+    (window.MOGO_PRODUCTS || []).find(p => p.slug === slug) || (window.MOGO_PRODUCTS || [])[0] || null
+  );
+  React.useEffect(() => {
+    if (product) document.title = product.name + ' · MOGO Kenya';
+    const onUpdate = () => {
+      const p = (window.MOGO_PRODUCTS || []).find(p => p.slug === slug);
+      if (p) setProduct(p);
+    };
+    window.addEventListener('mogo-products-updated', onUpdate);
+    return () => window.removeEventListener('mogo-products-updated', onUpdate);
+  }, []);
+  if (!product) return null;
+  return (
+    <>
+      <Nav/>
+      <ProductPage product={product}/>
+      <Footer/>
+      <ApplyModal/>
+      <TweaksPanel/>
+    </>
+  );
+};
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
 </body>

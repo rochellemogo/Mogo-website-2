@@ -1,0 +1,13 @@
+{
+  "stories": [
+    { "youtubeId": "IQYAWWWnR44", "name": "Julius Mwangi",  "city": "Nairobi",  "role": "Boda rider",    "product": "New Boda Loan",  "tagline": "Got my Boxer in 2 hours. 14 months later I owned it." },
+    { "youtubeId": "IQYAWWWnR44", "name": "Mary Wanjiku",   "city": "Nakuru",   "role": "Salon owner",   "product": "Buyoff Logbook", "tagline": "Saved KES 8,400 a month — same car, lower payments." },
+    { "youtubeId": "IQYAWWWnR44", "name": "Peter Otieno",   "city": "Kisumu",   "role": "Tuk-tuk owner", "product": "Tuk-Tuk Loan",   "tagline": "Two tuk-tuks, two riders. The numbers finally work." },
+    { "youtubeId": "IQYAWWWnR44", "name": "Grace Achieng",  "city": "Mombasa",  "role": "Shop owner",    "product": "MSME Loan",      "tagline": "Stocked the shop for the whole season in one go." },
+    { "youtubeId": "IQYAWWWnR44", "name": "Samuel Kiprop",  "city": "Eldoret",  "role": "Driver",        "product": "Car Loan",       "tagline": "My first car. My family's first holiday." },
+    { "youtubeId": "IQYAWWWnR44", "name": "Rose Njeri",     "city": "Thika",    "role": "Teacher",       "product": "Check-Off Loan", "tagline": "Paid school fees on time. No drama. No stress." },
+    { "youtubeId": "IQYAWWWnR44", "name": "David Kamau",    "city": "Nyeri",    "role": "Boda rider",    "product": "Boda Logbook",   "tagline": "Topped up against my boda. Bought a second one." },
+    { "youtubeId": "IQYAWWWnR44", "name": "Esther Wambui",  "city": "Machakos", "role": "Hawker",        "product": "Smartphone Loan","tagline": "KES 50 a day. M-Pesa changed my whole business." },
+    { "youtubeId": "IQYAWWWnR44", "name": "Anthony Mutua",  "city": "Kitui",    "role": "Mechanic",      "product": "MSME Loan",      "tagline": "Bought tools. Hired two apprentices. Got busier." }
+  ]
+}

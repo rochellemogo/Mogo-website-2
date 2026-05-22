@@ -1,0 +1,35 @@
+{
+  "groups": [
+    {
+      "title": "Applying",
+      "questions": [
+        { "q": "Who can apply for a Mogo loan?",  "a": "Any Kenyan national with a valid ID, an M-Pesa number and a clear repayment plan. Depending on the product, we may ask for additional documents like a logbook, payslip or CRB clearance." },
+        { "q": "How long does approval take?",    "a": "Most applications are approved within 24 hours. Boda and smartphone loans can be approved the same day if you walk into a branch with the required documents." },
+        { "q": "Do I need a bank account?",       "a": "No. An active M-Pesa line is enough for most of our products. Salary-based check-off loans will use your bank or payroll details." }
+      ]
+    },
+    {
+      "title": "Repayments",
+      "questions": [
+        { "q": "How do I make payments?",          "a": "M-Pesa Paybill 7034211 (your agreement number as account), USSD *695#, WhatsApp on +254 768 469 112 or direct bank transfer to our NCBA account." },
+        { "q": "Can I pay off my loan early?",     "a": "Yes. Early settlement is allowed on all Mogo products. Contact us to get your settlement figure." },
+        { "q": "What happens if I miss a payment?","a": "Call us on 0768 469 112 as soon as possible. We'd much rather restructure your loan than hand you a penalty. Repeated missed payments may affect your CRB record." }
+      ]
+    },
+    {
+      "title": "Vehicles & Logbooks",
+      "questions": [
+        { "q": "Do I keep using my car/boda during the loan?", "a": "Yes. You keep using your vehicle the whole time. For logbook loans, we hold the logbook as security — you ride it every day." },
+        { "q": "What vehicles do you finance?",               "a": "Any age, make or model — local and imported. For new bodas we partner with trusted dealers across Kenya." },
+        { "q": "What if my vehicle is stolen?",               "a": "Call 0719 089 999 immediately. We operate 24/7 and work with SAKA, our stolen-vehicle database, to help recover it." }
+      ]
+    },
+    {
+      "title": "Emergency & Safety",
+      "questions": [
+        { "q": "Who do I call after an accident?",  "a": "0719 089 999 — available 24/7 for accidents and theft. Have your agreement number ready." },
+        { "q": "Is my data safe with Mogo?",        "a": "Yes. We comply with the Kenya Data Protection Act and our privacy policy is published in full on our site." }
+      ]
+    }
+  ]
+}

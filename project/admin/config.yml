@@ -1,14 +1,16 @@
 # Decap CMS — MOGO Kenya
-# Backend: GitHub OAuth (via Netlify OAuth proxy)
-# To add editors: invite them as collaborators on the GitHub repo,
-# then they log in at /admin/ using their GitHub account.
+# Backend: Netlify Identity + Git Gateway
+#
+# One-time dashboard setup (done once per site):
+#   1. Netlify dashboard → Site settings → Identity → Enable Identity
+#   2. Identity → Registration → set to "Invite only"
+#   3. Identity → Services → Enable Git Gateway
+#   4. Invite editors: Identity → Invite users → enter their email
+#   5. They'll receive an email, set a password, and log in at /admin/
 
 backend:
-  name: github
-  repo: rochellemogo/Mogo-website-2
+  name: git-gateway
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
 
 # Where uploaded images are stored in the repo and served from
 media_folder: "project/uploads"
@@ -18,7 +20,7 @@ collections:
 
   # ─── NEWS ARTICLES ────────────────────────────────────────────────────────
   - name: "news"
-    label: "News Articles"
+    label: "📰 News Articles"
     files:
       - name: "articles"
         label: "All Articles"
@@ -30,39 +32,31 @@ collections:
             widget: "list"
             summary: "{{fields.title}} · {{fields.date}}"
             fields:
-              - label: "Slug"
+              - label: "Slug (URL)"
                 name: "slug"
                 widget: "string"
-                hint: "URL-safe identifier, e.g. mogo-opens-branch-thika-2026. No spaces."
+                hint: "URL identifier — no spaces. e.g. mogo-opens-branch-thika-2026"
 
-              - label: "Tag / Category"
+              - label: "Category tag"
                 name: "tag"
                 widget: "select"
-                options:
-                  - "Partnership"
-                  - "Expansion"
-                  - "Milestone"
-                  - "Impact"
-                  - "Community"
-                  - "Customer story"
-                  - "Product"
-                  - "Group news"
+                options: ["Partnership","Expansion","Milestone","Impact","Community","Customer story","Product","Group news"]
 
               - label: "Short date"
                 name: "date"
                 widget: "string"
-                hint: "Shown in the article list, e.g. Apr 2026"
+                hint: "e.g. Apr 2026"
 
               - label: "Full date"
                 name: "dateLong"
                 widget: "string"
-                hint: "Shown in the article header, e.g. 18 April 2026"
+                hint: "e.g. 18 April 2026"
 
               - label: "Headline"
                 name: "title"
                 widget: "string"
 
-              - label: "Summary (dek)"
+              - label: "Summary (shown in list)"
                 name: "dek"
                 widget: "text"
                 hint: "One or two sentences shown in the article list."
@@ -70,29 +64,29 @@ collections:
               - label: "Photo caption"
                 name: "photoLabel"
                 widget: "string"
-                hint: "Appears on the placeholder image, e.g. Signing ceremony · Nairobi"
+                hint: "Appears on placeholder, e.g. Signing ceremony · Nairobi"
 
               - label: "Photo"
                 name: "photo"
                 widget: "image"
                 required: false
-                hint: "Upload a 16:8 landscape image. Leave blank to use the colour placeholder."
+                hint: "Upload a landscape image (16:9). Leave blank to use a colour placeholder."
 
               - label: "Body paragraphs"
                 name: "body"
                 widget: "list"
-                hint: "Add one paragraph per list item."
+                hint: "Add one paragraph per item."
                 field:
                   label: "Paragraph"
                   name: "paragraph"
                   widget: "text"
 
-  # ─── CUSTOMER STORIES ─────────────────────────────────────────────────────
+  # ─── CUSTOMER STORIES (homepage testimonials) ──────────────────────────────
   - name: "stories"
-    label: "Customer Stories"
+    label: "💬 Customer Stories"
     files:
       - name: "homepage_stories"
-        label: "Homepage stories"
+        label: "Homepage testimonial cards"
         file: "project/content/stories.json"
         fields:
           - name: "stories"
@@ -101,24 +95,183 @@ collections:
             widget: "list"
             summary: "{{fields.name}} · {{fields.city}}"
             fields:
-              - {label: "Name",         name: "name",    widget: "string"}
-              - {label: "City",         name: "city",    widget: "string"}
-              - {label: "Role",         name: "role",    widget: "string", hint: "e.g. Boda rider · since 2024"}
-              - {label: "Quote",        name: "quote",   widget: "text"}
-              - {label: "Product label",name: "product", widget: "string", hint: "e.g. New Boda Loan"}
-              - label: "Card theme (colour)"
+              - {label: "Name",          name: "name",    widget: "string"}
+              - {label: "City",          name: "city",    widget: "string"}
+              - {label: "Role",          name: "role",    widget: "string", hint: "e.g. Boda rider · since 2024"}
+              - {label: "Quote",         name: "quote",   widget: "text"}
+              - {label: "Product label", name: "product", widget: "string", hint: "e.g. New Boda Loan"}
+              - label: "Card colour theme"
                 name: "theme"
                 widget: "select"
-                options: ["sunset", "lilac", "peach", "warm", "green", "cool", "navy"]
-              - label: "Photo"
+                options: ["sunset","lilac","peach","warm","green","cool","navy"]
+              - label: "Photo (optional)"
                 name: "photo"
                 widget: "image"
                 required: false
-                hint: "Optional portrait photo. Leave blank to use the colour card."
+                hint: "Portrait photo. Leave blank to use the colour card."
+
+  # ─── OUR STORIES VIDEOS ───────────────────────────────────────────────────
+  - name: "videos"
+    label: "🎬 Our Stories Videos"
+    files:
+      - name: "our_stories"
+        label: "Our Stories page — video list"
+        file: "project/content/videos.json"
+        fields:
+          - name: "stories"
+            label: "Videos"
+            label_singular: "Video"
+            widget: "list"
+            summary: "{{fields.name}} · {{fields.city}}"
+            hint: "First video is shown as the featured/hero video. Remaining appear in the grid."
+            fields:
+              - label: "YouTube Video ID"
+                name: "youtubeId"
+                widget: "string"
+                hint: "The ID from the YouTube URL — e.g. for youtube.com/watch?v=ABC123, enter ABC123"
+              - {label: "Person's name", name: "name",    widget: "string"}
+              - {label: "City",          name: "city",    widget: "string"}
+              - {label: "Role",          name: "role",    widget: "string", hint: "e.g. Boda rider"}
+              - {label: "Product used",  name: "product", widget: "string", hint: "e.g. New Boda Loan"}
+              - {label: "Tagline / pull-quote", name: "tagline", widget: "text"}
+
+  # ─── PRODUCTS ─────────────────────────────────────────────────────────────
+  - name: "products"
+    label: "🏍️ Products"
+    files:
+      - name: "product_list"
+        label: "All Products"
+        file: "project/content/products.json"
+        fields:
+          - name: "products"
+            label: "Products"
+            label_singular: "Product"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - label: "Slug (URL)"
+                name: "slug"
+                widget: "string"
+                hint: "Must match the HTML page name, e.g. boda-financing. Do not change unless the page file is renamed too."
+
+              - {label: "Full name",   name: "name",     widget: "string", hint: "e.g. Boda Financing"}
+              - {label: "Short name",  name: "short",    widget: "string", hint: "Used in navigation, e.g. Boda Financing"}
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["Vehicles","Logbook","Cash","Devices","Business"]
+
+              - {label: "Tagline",   name: "tagline",    widget: "string", hint: "Short phrase, e.g. Own your bike. Ride to work."}
+              - {label: "Headline",  name: "headline",   widget: "string", hint: "Main heading on the product page."}
+              - {label: "Description", name: "desc",     widget: "text",   hint: "Two to three sentences describing the product."}
+              - {label: "Badge text", name: "tag",       widget: "string", hint: "Small badge, e.g. Most popular"}
+              - {label: "Price range", name: "price",    widget: "string", hint: "e.g. From KES 20k down"}
+              - {label: "Loan term",   name: "term",     widget: "string", hint: "e.g. 12–24 months"}
+              - {label: "Turnaround",  name: "turnaround", widget: "string", hint: "e.g. 2 hours"}
+
+              - label: "Colour theme"
+                name: "theme"
+                widget: "select"
+                options: ["sunset","green","peach","cool","navy","lilac","warm"]
+
+              - {label: "Mark as featured (shown first on homepage)", name: "featured", widget: "boolean", default: false}
+              - {label: "Show 'New' badge",                            name: "isNew",    widget: "boolean", default: false}
+
+              - label: "Price table (optional)"
+                name: "catalogue"
+                widget: "object"
+                required: false
+                collapsed: true
+                hint: "Add a price table to the product page (e.g. list of bike models with prices)."
+                fields:
+                  - {label: "Table title",    name: "title",    widget: "string", hint: "e.g. Available bikes"}
+                  - {label: "Table subtitle",  name: "subtitle", widget: "text",   hint: "Short line shown above the table."}
+                  - name: "items"
+                    label: "Table rows"
+                    label_singular: "Row"
+                    widget: "list"
+                    summary: "{{fields.brand}} — {{fields.down}}"
+                    fields:
+                      - {label: "Model / Brand", name: "brand", widget: "string"}
+                      - {label: "Spec",          name: "spec",  widget: "string"}
+                      - {label: "Down payment",  name: "down",  widget: "string", hint: "e.g. KES 20,000"}
+                      - {label: "Daily payment", name: "daily", widget: "string", hint: "e.g. KES 350"}
+                      - {label: "Term",          name: "term",  widget: "string", hint: "e.g. 14 months"}
+                      - {label: "Badge (optional)", name: "tag", widget: "string", required: false, hint: "e.g. Most popular"}
+
+  # ─── BRANCHES ─────────────────────────────────────────────────────────────
+  - name: "branches"
+    label: "📍 Branch Locations"
+    files:
+      - name: "branch_list"
+        label: "All Branches (by region)"
+        file: "project/content/branches.json"
+        fields:
+          - name: "regions"
+            label: "Regions"
+            label_singular: "Region"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - {label: "Region name",  name: "name",   widget: "string", hint: "e.g. Nairobi Metro"}
+              - {label: "Region colour (hex)", name: "colour", widget: "string", hint: "e.g. #7AB800"}
+              - name: "branches"
+                label: "Branches in this region"
+                label_singular: "Branch"
+                widget: "list"
+                summary: "{{fields.n}} — {{fields.addr}}"
+                fields:
+                  - {label: "Branch name",    name: "n",    widget: "string", hint: "e.g. Nairobi CBD"}
+                  - {label: "Street address", name: "addr", widget: "string", hint: "e.g. Kimathi Street, CBD"}
+
+  # ─── CAREERS / JOB LISTINGS ───────────────────────────────────────────────
+  - name: "careers"
+    label: "💼 Job Listings"
+    files:
+      - name: "jobs"
+        label: "Open Roles"
+        file: "project/content/careers.json"
+        fields:
+          - name: "jobs"
+            label: "Open roles"
+            label_singular: "Role"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.dept}}"
+            fields:
+              - {label: "Job title",   name: "title", widget: "string", hint: "e.g. Branch Sales Officer"}
+              - {label: "Department / location", name: "dept", widget: "string", hint: "e.g. Retail · Multiple branches"}
+              - label: "Employment type"
+                name: "type"
+                widget: "select"
+                options: ["Full-time","Part-time","Contract","Full-time · Shifts","Internship"]
+
+  # ─── FAQ ──────────────────────────────────────────────────────────────────
+  - name: "faq"
+    label: "❓ FAQ"
+    files:
+      - name: "faq_list"
+        label: "Frequently Asked Questions"
+        file: "project/content/faq.json"
+        fields:
+          - name: "groups"
+            label: "Question groups"
+            label_singular: "Group"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "Group heading", name: "title", widget: "string", hint: "e.g. Applying"}
+              - name: "questions"
+                label: "Questions"
+                label_singular: "Question"
+                widget: "list"
+                summary: "{{fields.q}}"
+                fields:
+                  - {label: "Question", name: "q", widget: "string"}
+                  - {label: "Answer",   name: "a", widget: "text"}
 
   # ─── SITE SETTINGS ────────────────────────────────────────────────────────
   - name: "settings"
-    label: "Site Settings"
+    label: "⚙️ Site Settings"
     files:
       - name: "homepage"
         label: "Homepage text & settings"
@@ -134,159 +287,68 @@ collections:
           - label: "Hero headline"
             name: "hero_headline"
             widget: "string"
-            hint: "Large headline. e.g. Finance your future."
 
-          - label: "Hero tagline (Swahili)"
+          - label: "Hero tagline (Swahili line)"
             name: "hero_tagline"
             widget: "string"
-            hint: "Italic line below the headline. e.g. Jenga kesho yako."
 
           - label: "Hero body text"
             name: "hero_body"
             widget: "text"
-            hint: "Short paragraph under the tagline."
 
           - label: "Hero background photo"
             name: "hero_image"
             widget: "image"
             required: false
-            hint: "Optional. Upload a landscape photo to replace the default illustration. Recommended: 1440×900px."
+            hint: "Optional. Upload a landscape photo to replace the default. Recommended: 1440×900px."
 
           # ── Mission ───────────────────────────────────────────────────────
           - label: "Mission headline"
             name: "mission_headline"
             widget: "string"
-            hint: "e.g. Productivity financing."
 
           - label: "Mission body"
             name: "mission_body"
             widget: "text"
 
-          - label: "Pillar 1 title"
-            name: "mission_point1_title"
-            widget: "string"
-            hint: "e.g. Access"
-
-          - label: "Pillar 1 description"
-            name: "mission_point1_desc"
-            widget: "text"
-
-          - label: "Pillar 2 title"
-            name: "mission_point2_title"
-            widget: "string"
-            hint: "e.g. Earn"
-
-          - label: "Pillar 2 description"
-            name: "mission_point2_desc"
-            widget: "text"
-
-          - label: "Pillar 3 title"
-            name: "mission_point3_title"
-            widget: "string"
-            hint: "e.g. Grow"
-
-          - label: "Pillar 3 description"
-            name: "mission_point3_desc"
-            widget: "text"
+          - {label: "Pillar 1 title",       name: "mission_point1_title", widget: "string"}
+          - {label: "Pillar 1 description", name: "mission_point1_desc",  widget: "text"}
+          - {label: "Pillar 2 title",       name: "mission_point2_title", widget: "string"}
+          - {label: "Pillar 2 description", name: "mission_point2_desc",  widget: "text"}
+          - {label: "Pillar 3 title",       name: "mission_point3_title", widget: "string"}
+          - {label: "Pillar 3 description", name: "mission_point3_desc",  widget: "text"}
 
           # ── How It Works ──────────────────────────────────────────────────
-          - label: "How It Works headline"
-            name: "how_headline"
-            widget: "string"
-
-          - label: "How It Works subtitle"
-            name: "how_subtitle"
-            widget: "text"
-
-          - label: "Step 1 title"
-            name: "how_step1_title"
-            widget: "string"
-
-          - label: "Step 1 description"
-            name: "how_step1_desc"
-            widget: "text"
-
-          - label: "Step 2 title"
-            name: "how_step2_title"
-            widget: "string"
-
-          - label: "Step 2 description"
-            name: "how_step2_desc"
-            widget: "text"
-
-          - label: "Step 3 title"
-            name: "how_step3_title"
-            widget: "string"
-
-          - label: "Step 3 description"
-            name: "how_step3_desc"
-            widget: "text"
-
-          - label: "Step 4 title"
-            name: "how_step4_title"
-            widget: "string"
-
-          - label: "Step 4 description"
-            name: "how_step4_desc"
-            widget: "text"
+          - {label: "How It Works headline", name: "how_headline",  widget: "string"}
+          - {label: "How It Works subtitle", name: "how_subtitle",  widget: "text"}
+          - {label: "Step 1 title",          name: "how_step1_title", widget: "string"}
+          - {label: "Step 1 description",    name: "how_step1_desc",  widget: "text"}
+          - {label: "Step 2 title",          name: "how_step2_title", widget: "string"}
+          - {label: "Step 2 description",    name: "how_step2_desc",  widget: "text"}
+          - {label: "Step 3 title",          name: "how_step3_title", widget: "string"}
+          - {label: "Step 3 description",    name: "how_step3_desc",  widget: "text"}
+          - {label: "Step 4 title",          name: "how_step4_title", widget: "string"}
+          - {label: "Step 4 description",    name: "how_step4_desc",  widget: "text"}
 
           # ── Impact ────────────────────────────────────────────────────────
-          - label: "Impact headline"
-            name: "impact_headline"
-            widget: "string"
-            hint: "e.g. Fueling 200,000+ Kenyan livelihoods."
-
-          - label: "Impact stat 1 (number)"
-            name: "impact_stat1_num"
-            widget: "string"
-            hint: "e.g. KES 12B+"
-
-          - label: "Impact stat 1 (label)"
-            name: "impact_stat1_label"
-            widget: "string"
-
-          - label: "Impact stat 2 (number)"
-            name: "impact_stat2_num"
-            widget: "string"
-
-          - label: "Impact stat 2 (label)"
-            name: "impact_stat2_label"
-            widget: "string"
-
-          - label: "Impact stat 3 (number)"
-            name: "impact_stat3_num"
-            widget: "string"
-
-          - label: "Impact stat 3 (label)"
-            name: "impact_stat3_label"
-            widget: "string"
+          - {label: "Impact headline",        name: "impact_headline",   widget: "string"}
+          - {label: "Impact stat 1 (number)", name: "impact_stat1_num",  widget: "string", hint: "e.g. KES 12B+"}
+          - {label: "Impact stat 1 (label)",  name: "impact_stat1_label",widget: "string"}
+          - {label: "Impact stat 2 (number)", name: "impact_stat2_num",  widget: "string"}
+          - {label: "Impact stat 2 (label)",  name: "impact_stat2_label",widget: "string"}
+          - {label: "Impact stat 3 (number)", name: "impact_stat3_num",  widget: "string"}
+          - {label: "Impact stat 3 (label)",  name: "impact_stat3_label",widget: "string"}
 
           # ── CTA ───────────────────────────────────────────────────────────
-          - label: "CTA headline"
-            name: "cta_headline"
-            widget: "string"
-            hint: "e.g. Your wheels are waiting."
-
-          - label: "CTA body"
-            name: "cta_body"
-            widget: "text"
-
-          - label: "CTA phone number"
-            name: "cta_phone"
-            widget: "string"
-            hint: "e.g. 0709 719 000"
+          - {label: "CTA headline",     name: "cta_headline", widget: "string"}
+          - {label: "CTA body",         name: "cta_body",     widget: "text"}
+          - {label: "CTA phone number", name: "cta_phone",    widget: "string", hint: "e.g. 0709 719 000"}
 
           # ── Footer ────────────────────────────────────────────────────────
-          - label: "Footer about text"
-            name: "footer_about"
-            widget: "text"
+          - {label: "Footer about text",   name: "footer_about",  widget: "text"}
+          - {label: "Footer phone number", name: "footer_phone",  widget: "string"}
 
-          - label: "Footer phone number"
-            name: "footer_phone"
-            widget: "string"
-            hint: "e.g. 0768 469 112"
-
-          - label: "Partner brands (marquee)"
+          - label: "Partner brands (scrolling strip)"
             name: "partners"
             widget: "list"
             hint: "Brands shown in the scrolling strip below the hero."

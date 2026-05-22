@@ -1,0 +1,100 @@
+{
+  "regions": [
+    {
+      "name": "Nairobi Metro",
+      "colour": "#7AB800",
+      "branches": [
+        { "n": "Nairobi CBD",    "addr": "Kimathi Street, CBD" },
+        { "n": "Industrial Area","addr": "Enterprise Road" },
+        { "n": "Westlands",      "addr": "Waiyaki Way" },
+        { "n": "Ngara",          "addr": "Ngara Road" },
+        { "n": "Kasarani",       "addr": "Thika Superhighway" },
+        { "n": "Embakasi",       "addr": "Airport North Road" },
+        { "n": "Kitengela",      "addr": "Namanga Road" },
+        { "n": "Rongai",         "addr": "Magadi Road" },
+        { "n": "Kiambu",         "addr": "Kiambu Road" },
+        { "n": "Kikuyu",         "addr": "Kikuyu–Limuru Road" },
+        { "n": "Thika",          "addr": "Kenyatta Highway" },
+        { "n": "Ruiru",          "addr": "Ruiru Bypass" },
+        { "n": "Limuru",         "addr": "Limuru Town" },
+        { "n": "Juja",           "addr": "Thika Superhighway" },
+        { "n": "Machakos",       "addr": "Mombasa Road" },
+        { "n": "Athi River",     "addr": "Mombasa Road" }
+      ]
+    },
+    {
+      "name": "Coast",
+      "colour": "#E96A3B",
+      "branches": [
+        { "n": "Mombasa",   "addr": "Moi Avenue, Mombasa" },
+        { "n": "Nyali",     "addr": "Links Road, Nyali" },
+        { "n": "Likoni",    "addr": "Likoni Ferry Road" },
+        { "n": "Kilifi",    "addr": "Mombasa–Malindi Road" },
+        { "n": "Malindi",   "addr": "Lamu Road" },
+        { "n": "Mtwapa",    "addr": "Mombasa–Malindi Road" },
+        { "n": "Ukunda",    "addr": "Diani Beach Road" },
+        { "n": "Voi",       "addr": "Mombasa–Nairobi Highway" },
+        { "n": "Mariakani", "addr": "Mombasa–Nairobi Highway" }
+      ]
+    },
+    {
+      "name": "Central",
+      "colour": "#F4B93A",
+      "branches": [
+        { "n": "Nyeri",     "addr": "Kenyatta Road" },
+        { "n": "Karatina",  "addr": "Karatina Town" },
+        { "n": "Muranga",   "addr": "Murang'a Town" },
+        { "n": "Kerugoya",  "addr": "Kutus Road" },
+        { "n": "Embu",      "addr": "Embu–Meru Road" },
+        { "n": "Meru",      "addr": "Meru–Maua Road" },
+        { "n": "Chuka",     "addr": "Embu–Meru Road" },
+        { "n": "Maua",      "addr": "Maua Town" },
+        { "n": "Nanyuki",   "addr": "Nanyuki–Nyeri Road" }
+      ]
+    },
+    {
+      "name": "Rift Valley",
+      "colour": "#3B7CC9",
+      "branches": [
+        { "n": "Nakuru",     "addr": "Kenyatta Avenue" },
+        { "n": "Naivasha",   "addr": "Moi South Lake Road" },
+        { "n": "Eldoret",    "addr": "Uganda Road" },
+        { "n": "Kitale",     "addr": "Kitale–Eldoret Road" },
+        { "n": "Kericho",    "addr": "Kericho–Nakuru Road" },
+        { "n": "Bomet",      "addr": "Sotik–Bomet Road" },
+        { "n": "Narok",      "addr": "Maasai Mara Road" },
+        { "n": "Kapsabet",   "addr": "Kapsabet–Eldoret Road" },
+        { "n": "Iten",       "addr": "Iten–Kabarnet Road" },
+        { "n": "Nyahururu",  "addr": "Nyahururu–Nakuru Road" },
+        { "n": "Molo",       "addr": "Molo–Elburgon Road" }
+      ]
+    },
+    {
+      "name": "Western & Nyanza",
+      "colour": "#8B5CF6",
+      "branches": [
+        { "n": "Kisumu",   "addr": "Oginga Odinga Street" },
+        { "n": "Kakamega", "addr": "Kakamega–Kisumu Road" },
+        { "n": "Bungoma",  "addr": "Bungoma–Webuye Road" },
+        { "n": "Busia",    "addr": "Busia–Malaba Road" },
+        { "n": "Webuye",   "addr": "Webuye–Bungoma Road" },
+        { "n": "Mumias",   "addr": "Mumias–Bungoma Road" },
+        { "n": "Kisii",    "addr": "Kisii–Migori Road" },
+        { "n": "Migori",   "addr": "Migori–Isebania Road" },
+        { "n": "Homa Bay", "addr": "Homa Bay–Kisumu Road" },
+        { "n": "Siaya",    "addr": "Siaya–Bondo Road" },
+        { "n": "Awendo",   "addr": "Awendo–Migori Road" }
+      ]
+    },
+    {
+      "name": "Eastern & North",
+      "colour": "#D946A3",
+      "branches": [
+        { "n": "Kitui",   "addr": "Kitui–Mwingi Road" },
+        { "n": "Mwingi",  "addr": "Mwingi–Garissa Road" },
+        { "n": "Garissa", "addr": "Garissa Town" },
+        { "n": "Isiolo",  "addr": "Isiolo–Meru Road" }
+      ]
+    }
+  ]
+}
