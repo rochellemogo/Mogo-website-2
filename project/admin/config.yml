@@ -104,6 +104,38 @@ collections:
               name: "name"
               widget: "string"
 
+          - label: "Apply form headline"
+            name: "form_headline"
+            widget: "string"
+            hint: "Main headline in the apply pop-up, e.g. Get a call back same day."
+
+          - label: "Apply form subtext"
+            name: "form_subtext"
+            widget: "text"
+            hint: "Description shown below the headline in the apply pop-up."
+
+          - label: "Apply form — success headline"
+            name: "form_success_headline"
+            widget: "string"
+            hint: "Shown after successful submission, e.g. Karibu!"
+
+          - label: "Apply form — success body"
+            name: "form_success_body"
+            widget: "text"
+            hint: "Message shown after submission. Use {name} for first name and {phone} for their number."
+
+          - label: "ERP API endpoint URL"
+            name: "form_api_endpoint"
+            widget: "string"
+            required: false
+            hint: "URL to POST application data to. Leave blank to show confirmation only (no data forwarded). Must be HTTPS and accept POST with JSON body."
+
+          - label: "ERP API authorization header"
+            name: "form_api_key"
+            widget: "string"
+            required: false
+            hint: "Value for the Authorization header, e.g. Bearer your-token. Use a read-limited key — this value is stored in the repository."
+
   # ─── PRODUCTS ─────────────────────────────────────────────────────────────
   - name: "products"
     label: "🏍️ Products"
@@ -142,6 +174,12 @@ collections:
                 name: "theme"
                 widget: "select"
                 options: ["sunset","green","peach","cool","navy","lilac","warm"]
+
+              - label: "Product photo"
+                name: "image"
+                widget: "image"
+                required: false
+                hint: "Optional. Upload a photo (portrait 4:5 ratio works best). Leave blank to use the colour gradient."
 
               - {label: "Mark as featured (shows first on homepage)", name: "featured", widget: "boolean", default: false}
               - {label: "Show 'New' badge",                           name: "isNew",    widget: "boolean", default: false}
@@ -331,6 +369,51 @@ collections:
                 name: "type"
                 widget: "select"
                 options: ["Full-time","Part-time","Contract","Full-time · Shifts","Internship"]
+
+  # ─── PHOTOS & MEDIA ───────────────────────────────────────────────────────
+  - name: "media"
+    label: "📷 Photos & Media"
+    files:
+      - name: "site_photos"
+        label: "All site photos"
+        file: "project/content/media.json"
+        fields:
+          - name: "carousel"
+            label: "Homepage photo strip"
+            label_singular: "Photo"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            hint: "The scrolling photo strip shown on the homepage. Add, remove, or drag to reorder."
+            fields:
+              - label: "Photo"
+                name: "src"
+                widget: "image"
+                hint: "Landscape photo. Recommended: 800×600 px or larger."
+              - label: "Alt text"
+                name: "alt"
+                widget: "string"
+                required: false
+                hint: "Brief description of the photo for screen readers."
+
+          - name: "impact_photos"
+            label: "Impact page photos (Our Impact)"
+            label_singular: "Photo"
+            widget: "list"
+            summary: "{{fields.tag}}"
+            hint: "4 photos — one per impact pillar, in order: Financial Literacy, Community Activations, Community Building, CSR."
+            fields:
+              - label: "Photo"
+                name: "src"
+                widget: "image"
+                hint: "Portrait photo. Recommended: 600×750 px or larger."
+              - label: "Photo caption tag"
+                name: "tag"
+                widget: "string"
+                hint: "Short label shown on the photo, e.g. Chairman training · Nairobi"
+              - label: "Alt text"
+                name: "alt"
+                widget: "string"
+                required: false
 
   # ─── FAQ ──────────────────────────────────────────────────────────────────
   - name: "faq"

@@ -46,10 +46,11 @@ const BRANCHES_FALLBACK = [
 ];
 
 const Branches = () => {
-  const [regions, setRegions] = React.useState(BRANCHES_FALLBACK);
-  const [active, setActive]   = React.useState("All");
-  const [q, setQ]             = React.useState("");
-  const [selKey, setSelKey]   = React.useState(null);
+  const [regions, setRegions]   = React.useState(BRANCHES_FALLBACK);
+  const [active, setActive]     = React.useState("All");
+  const [q, setQ]               = React.useState("");
+  const [selKey, setSelKey]     = React.useState(null);
+  const [mapReady, setMapReady] = React.useState(false);
   const mapDivRef  = React.useRef(null);
   const leafletRef = React.useRef(null);
   const markersRef = React.useRef({});
@@ -85,6 +86,7 @@ const Branches = () => {
         subdomains: 'abcd', maxZoom: 19,
       }).addTo(map);
       leafletRef.current = map;
+      setMapReady(true);
     }
     if (window.L) { initMap(); }
     else {
@@ -98,7 +100,7 @@ const Branches = () => {
     };
   }, []);
 
-  // ── Sync markers when regions or map loads ────────────────────────────────
+  // ── Sync markers when regions load or map initialises ────────────────────
   React.useEffect(() => {
     const map = leafletRef.current;
     const L   = window.L;
@@ -106,18 +108,21 @@ const Branches = () => {
     // Remove old markers
     Object.values(markersRef.current).forEach(function(m) { m.remove(); });
     markersRef.current = {};
-    // Add fresh markers
+    // Add fresh markers — all MOGO green
     regions.forEach(function(region) {
       (region.branches || []).forEach(function(b) {
         if (!b.lat || !b.lng) return;
         const key = region.name + ':' + b.n;
         const marker = L.circleMarker([b.lat, b.lng], {
-          radius: 7, fillColor: region.colour,
-          color: '#fff', weight: 2, opacity: 1, fillOpacity: 0.9,
+          radius: 8, fillColor: '#7AB800',
+          color: '#fff', weight: 2.5, opacity: 1, fillOpacity: 0.88,
         });
         marker.bindPopup(
-          '<strong style="font-family:sans-serif">' + b.n + '</strong>' +
-          '<br/><span style="font-size:12px;color:#666">' + (b.addr || '') + '</span>'
+          '<div style="font-family:sans-serif;min-width:140px">' +
+          '<strong style="font-size:14px">' + b.n + '</strong>' +
+          '<br/><span style="font-size:12px;color:#555;margin-top:4px;display:block">' + (b.addr || '') + '</span>' +
+          '<span style="font-size:11px;color:#7AB800;font-weight:600;margin-top:6px;display:block">' + region.name + '</span>' +
+          '</div>'
         );
         marker.on('click', function() {
           setSelKey(key);
@@ -131,7 +136,7 @@ const Branches = () => {
         markersRef.current[key] = marker;
       });
     });
-  }, [regions]);
+  }, [regions, mapReady]);
 
   function flyTo(region, b) {
     const key = region.name + ':' + b.n;

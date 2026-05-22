@@ -8,7 +8,10 @@ const ProductTile = ({ p, isSubpage }) => {
       border: '1px solid var(--m-line-2)'
     }}>
       <div style={{ position: 'relative', aspectRatio: '4/3', margin: 10, marginBottom: 0, borderRadius: 'calc(var(--r-xl) - 10px)', overflow: 'hidden' }}>
-        <ProductImage theme={p.theme} slug={p.slug} />
+        {p.image
+          ? <img src={p.image} alt={p.name} style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}/>
+          : <ProductImage theme={p.theme} slug={p.slug} />
+        }
         <div style={{ position: 'absolute', bottom: 16, right: 16, zIndex: 3 }} className="tile-arrow"><ArrowUpRight /></div>
         {p.isNew &&
         <div style={{ position: 'absolute', top: 16, right: 16, zIndex: 3, padding: '6px 10px', borderRadius: 999, background: 'var(--m-ink)', color: '#fff', fontSize: 10, fontFamily: 'var(--font-mono)', letterSpacing: '.12em', textTransform: 'uppercase', fontWeight: 600 }}>New</div>
@@ -113,8 +116,15 @@ const ShopSilhouette = () =>
 
 
 const Products = () => {
-  const featured = window.MOGO_PRODUCTS.find((p) => p.featured);
-  const others = window.MOGO_PRODUCTS.filter((p) => !p.featured);
+  const [prods, setProds] = React.useState(window.MOGO_PRODUCTS || []);
+  React.useEffect(() => {
+    const onUpdate = () => setProds((window.MOGO_PRODUCTS || []).slice());
+    window.addEventListener('mogo-products-updated', onUpdate);
+    return () => window.removeEventListener('mogo-products-updated', onUpdate);
+  }, []);
+  const featured = prods.find((p) => p.featured);
+  const others = prods.filter((p) => !p.featured);
+  if (!featured) return null;
   return (
     <section id="products" style={{ padding: '100px 0', background: 'var(--m-cream)' }}>
       <div className="shell">
@@ -150,7 +160,10 @@ const Products = () => {
           </div>
           <div data-featured-photo style={{ position: 'relative', padding: 10 }}>
             <div style={{ position: 'absolute', inset: 10, borderRadius: 'var(--r-lg)', overflow: 'hidden' }}>
-              <ProductImage theme={featured.theme} slug={featured.slug} />
+              {featured.image
+                ? <img src={featured.image} alt={featured.name} style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}/>
+                : <ProductImage theme={featured.theme} slug={featured.slug} />
+              }
             </div>
           </div>
         </a>

@@ -74,7 +74,26 @@ const IMPACT_PILLARS = [
   },
 ];
 
+const IMPACT_PHOTOS_FALLBACK = IMPACT_PILLARS.map(function(p) {
+  return { src: p.photoPath, alt: p.photoTag, tag: p.photoTag };
+});
+
 const ImpactPillars = () => {
+  const [impactPhotos, setImpactPhotos] = React.useState(
+    (window.MOGO_MEDIA && window.MOGO_MEDIA.impact_photos) || IMPACT_PHOTOS_FALLBACK
+  );
+
+  React.useEffect(() => {
+    const onUpdate = () => {
+      const m = window.MOGO_MEDIA;
+      if (m && Array.isArray(m.impact_photos) && m.impact_photos.length) {
+        setImpactPhotos(m.impact_photos);
+      }
+    };
+    window.addEventListener('mogo-media-updated', onUpdate);
+    return () => window.removeEventListener('mogo-media-updated', onUpdate);
+  }, []);
+
   return (
     <>
       {/* Section opener: jump nav */}
@@ -101,6 +120,10 @@ const ImpactPillars = () => {
 
       {IMPACT_PILLARS.map((p, i) => {
         const flip = i % 2 === 1;
+        const photo = impactPhotos[i] || {};
+        const photoSrc = photo.src || p.photoPath;
+        const photoAlt = photo.alt || p.photoTag;
+        const photoTag = photo.tag || p.photoTag;
         return (
           <section
             key={p.n}
@@ -164,7 +187,7 @@ const ImpactPillars = () => {
                     background:`linear-gradient(135deg, ${p.accent}33, ${p.accent}0a)`,
                     boxShadow:'0 22px 60px rgba(11,18,32,.12)',
                   }}>
-                    <img src={(window.__resources && window.__resources[p.photoId]) || p.photoPath} alt={p.photoTag}
+                    <img src={photoSrc} alt={photoAlt}
                          style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}
                          onError={(e)=>{e.currentTarget.style.display='none';}}/>
                     <div style={{position:'absolute', inset:0, background:`linear-gradient(180deg, transparent 55%, rgba(0,0,0,.45) 100%)`}}/>
@@ -172,7 +195,7 @@ const ImpactPillars = () => {
                       {p.n} / {String(IMPACT_PILLARS.length).padStart(2,'0')}
                     </div>
                     <div style={{position:'absolute', bottom:16, left:16, right:16, color:'#fff', fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.12em', textTransform:'uppercase'}}>
-                      Photo · {p.photoTag}
+                      Photo · {photoTag}
                     </div>
                   </div>
                 </div>

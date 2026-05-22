@@ -13,6 +13,7 @@
       "term": "12–24 months",
       "turnaround": "2 hours",
       "theme": "sunset",
+      "image": "",
       "featured": true,
       "isNew": false,
       "catalogue": {
@@ -43,6 +44,7 @@
       "term": "Up to 24 months",
       "turnaround": "Same day",
       "theme": "green",
+      "image": "",
       "featured": false,
       "isNew": false,
       "catalogue": null
@@ -60,6 +62,7 @@
       "term": "Up to 24 months",
       "turnaround": "Same day",
       "theme": "peach",
+      "image": "",
       "featured": false,
       "isNew": false,
       "catalogue": null
@@ -77,6 +80,7 @@
       "term": "Up to 48 months",
       "turnaround": "Same-day approval",
       "theme": "cool",
+      "image": "",
       "featured": false,
       "isNew": false,
       "catalogue": null
@@ -94,6 +98,7 @@
       "term": "Up to 36 months",
       "turnaround": "24 hours",
       "theme": "navy",
+      "image": "",
       "featured": false,
       "isNew": false,
       "catalogue": null
@@ -111,6 +116,7 @@
       "term": "Up to 60 months",
       "turnaround": "48 hours",
       "theme": "lilac",
+      "image": "",
       "featured": false,
       "isNew": true,
       "catalogue": null
@@ -128,6 +134,7 @@
       "term": "6–12 months",
       "turnaround": "Same day",
       "theme": "warm",
+      "image": "",
       "featured": false,
       "isNew": true,
       "catalogue": {
@@ -160,6 +167,7 @@
       "term": "30-60 days",
       "turnaround": "72 hours",
       "theme": "navy",
+      "image": "",
       "featured": false,
       "isNew": true,
       "catalogue": null

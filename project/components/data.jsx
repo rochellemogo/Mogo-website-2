@@ -179,3 +179,16 @@ window.MOGO_PRODUCTS = MOGO_PRODUCTS;
     })
     .catch(function() {});
 })();
+
+// Load CMS media from content/media.json (carousel + impact photos).
+// Components listen for 'mogo-media-updated' to re-render with new photos.
+(function() {
+  var base = window.__MOGO_SUBPAGE ? '../' : '';
+  fetch(base + 'content/media.json')
+    .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+    .then(function(data) {
+      window.MOGO_MEDIA = data;
+      window.dispatchEvent(new CustomEvent('mogo-media-updated'));
+    })
+    .catch(function() {});
+})();

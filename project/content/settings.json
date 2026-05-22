@@ -49,5 +49,12 @@
     "Infinix",
     "Itel",
     "Samsung"
-  ]
+  ],
+
+  "form_headline": "Get a call back same day.",
+  "form_subtext": "Fill in your details and a Mogo loan officer will reach out within one business hour to confirm terms and book your nearest branch.",
+  "form_success_headline": "Karibu!",
+  "form_success_body": "A Mogo officer will call you on {phone} within one business hour to confirm your details.",
+  "form_api_endpoint": "",
+  "form_api_key": ""
 }
