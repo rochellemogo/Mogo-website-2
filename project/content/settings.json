@@ -55,6 +55,20 @@
   "form_subtext": "Fill in your details and a Mogo loan officer will reach out within one business hour to confirm terms and book your nearest branch.",
   "form_success_headline": "Karibu!",
   "form_success_body": "A Mogo officer will call you on {phone} within one business hour to confirm your details.",
+
+  "form_field_name_label": "Full name",
+  "form_field_name_placeholder": "e.g. Jane Wanjiru",
+  "form_field_phone_label": "Phone number",
+  "form_field_phone_placeholder": "+254 7XX XXX XXX",
+  "form_field_email_label": "Email",
+  "form_field_email_placeholder": "you@example.com",
+  "form_field_address_label": "Address",
+  "form_field_address_placeholder": "Estate, town and county",
+  "form_field_product_label": "Product of interest",
+  "form_field_product_placeholder": "— Select a product —",
+  "form_submit_text": "Submit application",
+  "form_privacy_text": "By submitting you agree to be contacted by Mogo Auto Ltd. We never share your details.",
+
   "form_api_endpoint": "",
   "form_api_key": ""
 }

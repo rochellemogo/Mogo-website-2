@@ -49,12 +49,27 @@ const ApplyModal = () => {
   if (!open) return null;
 
   const s = settings;
-  const headline      = s.form_headline || 'Get a call back same day.';
-  const subtext       = s.form_subtext  || 'Fill in your details and a Mogo loan officer will reach out within one business hour.';
-  const successHead   = s.form_success_headline || 'Karibu!';
+  const headline       = s.form_headline || 'Get a call back same day.';
+  const subtext        = s.form_subtext  || 'Fill in your details and a Mogo loan officer will reach out within one business hour.';
+  const successHead    = s.form_success_headline || 'Karibu!';
   const successBodyTpl = s.form_success_body || 'A Mogo officer will call you on {phone} within one business hour to confirm your details.';
-  const successBody   = successBodyTpl.replace('{name}', form.name.split(' ')[0] || 'rafiki').replace('{phone}', form.phone);
-  const supportPhone  = s.cta_phone || '0709 719 000';
+  const successBody    = successBodyTpl.replace('{name}', form.name.split(' ')[0] || 'rafiki').replace('{phone}', form.phone);
+  const supportPhone   = s.cta_phone || '0709 719 000';
+
+  const fl = {
+    nameLbl:        s.form_field_name_label        || 'Full name',
+    namePh:         s.form_field_name_placeholder  || 'e.g. Jane Wanjiru',
+    phoneLbl:       s.form_field_phone_label       || 'Phone number',
+    phonePh:        s.form_field_phone_placeholder || '+254 7XX XXX XXX',
+    emailLbl:       s.form_field_email_label       || 'Email',
+    emailPh:        s.form_field_email_placeholder || 'you@example.com',
+    addressLbl:     s.form_field_address_label     || 'Address',
+    addressPh:      s.form_field_address_placeholder || 'Estate, town and county',
+    productLbl:     s.form_field_product_label     || 'Product of interest',
+    productPh:      s.form_field_product_placeholder || '— Select a product —',
+    submitTxt:      s.form_submit_text             || 'Submit application',
+    privacyTxt:     s.form_privacy_text            || 'By submitting you agree to be contacted by Mogo Auto Ltd. We never share your details.',
+  };
 
   const set  = (k) => (e) => setForm({ ...form, [k]: e.target.value });
   const blur = (k) => () => setTouched({ ...touched, [k]: true });
@@ -144,34 +159,36 @@ const ApplyModal = () => {
 
             <form onSubmit={submit} style={{ display:'grid', gap:18 }}>
               <div>
-                <label style={labelStyle} htmlFor="apply-name">Full name</label>
-                <input id="apply-name" type="text" autoComplete="name" placeholder="e.g. Jane Wanjiru"
+                <label style={labelStyle} htmlFor="apply-name">{fl.nameLbl}</label>
+                <input id="apply-name" type="text" autoComplete="name" placeholder={fl.namePh}
                   value={form.name} onChange={set('name')} onBlur={blur('name')} style={fieldStyle('name')}/>
               </div>
               <div>
-                <label style={labelStyle} htmlFor="apply-phone">Phone number</label>
-                <input id="apply-phone" type="tel" autoComplete="tel" placeholder="+254 7XX XXX XXX"
+                <label style={labelStyle} htmlFor="apply-phone">{fl.phoneLbl}</label>
+                <input id="apply-phone" type="tel" autoComplete="tel" placeholder={fl.phonePh}
                   value={form.phone} onChange={set('phone')} onBlur={blur('phone')}
                   style={fieldStyle('phone', touched.phone && !/^\+?[\d\s-]{7,}$/.test(form.phone))}/>
               </div>
               <div>
-                <label style={labelStyle} htmlFor="apply-email">Email</label>
-                <input id="apply-email" type="email" autoComplete="email" placeholder="you@example.com"
+                <label style={labelStyle} htmlFor="apply-email">{fl.emailLbl}</label>
+                <input id="apply-email" type="email" autoComplete="email" placeholder={fl.emailPh}
                   value={form.email} onChange={set('email')} onBlur={blur('email')}
                   style={fieldStyle('email', touched.email && !/\S+@\S+\.\S+/.test(form.email))}/>
               </div>
               <div>
-                <label style={labelStyle} htmlFor="apply-address">Address</label>
-                <input id="apply-address" type="text" autoComplete="street-address" placeholder="Estate, town and county"
+                <label style={labelStyle} htmlFor="apply-address">{fl.addressLbl}</label>
+                <input id="apply-address" type="text" autoComplete="street-address" placeholder={fl.addressPh}
                   value={form.address} onChange={set('address')} onBlur={blur('address')} style={fieldStyle('address')}/>
               </div>
 
               {products.length > 0 && (
                 <div>
-                  <label style={labelStyle} htmlFor="apply-product">Product of interest <span style={{fontWeight:400, opacity:.6}}>(optional)</span></label>
+                  <label style={labelStyle} htmlFor="apply-product">
+                    {fl.productLbl} <span style={{fontWeight:400, opacity:.6}}>(optional)</span>
+                  </label>
                   <select id="apply-product" value={form.product} onChange={set('product')}
                     style={{ ...fieldStyle('product', false), appearance:'none', backgroundImage:'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'8\' viewBox=\'0 0 12 8\'%3E%3Cpath d=\'M1 1l5 5 5-5\' stroke=\'%23666\' stroke-width=\'1.5\' fill=\'none\'/%3E%3C/svg%3E")', backgroundRepeat:'no-repeat', backgroundPosition:'right 14px center', paddingRight:40 }}>
-                    <option value="">— Select a product —</option>
+                    <option value="">{fl.productPh}</option>
                     {products.map(function(p) {
                       return <option key={p.slug} value={p.slug}>{p.name}</option>;
                     })}
@@ -183,11 +200,11 @@ const ApplyModal = () => {
                 style={{ marginTop:8, justifyContent:'center', width:'100%', opacity: submitting ? .7 : 1 }}>
                 {submitting
                   ? 'Sending…'
-                  : <><span>Submit application</span> <span className="arrow-pill"><ArrowRight/></span></>
+                  : <><span>{fl.submitTxt}</span> <span className="arrow-pill"><ArrowRight/></span></>
                 }
               </button>
               <p style={{ fontSize:12, color:'var(--m-ink-2)', textAlign:'center', margin:0, lineHeight:1.5 }}>
-                By submitting you agree to be contacted by Mogo Auto Ltd. We never share your details.
+                {fl.privacyTxt}
               </p>
             </form>
           </>

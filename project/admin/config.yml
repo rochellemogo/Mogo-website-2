@@ -124,6 +124,66 @@ collections:
             widget: "text"
             hint: "Message shown after submission. Use {name} for first name and {phone} for their number."
 
+          - label: "Field — Full name label"
+            name: "form_field_name_label"
+            widget: "string"
+            default: "Full name"
+
+          - label: "Field — Full name placeholder"
+            name: "form_field_name_placeholder"
+            widget: "string"
+            default: "e.g. Jane Wanjiru"
+
+          - label: "Field — Phone label"
+            name: "form_field_phone_label"
+            widget: "string"
+            default: "Phone number"
+
+          - label: "Field — Phone placeholder"
+            name: "form_field_phone_placeholder"
+            widget: "string"
+            default: "+254 7XX XXX XXX"
+
+          - label: "Field — Email label"
+            name: "form_field_email_label"
+            widget: "string"
+            default: "Email"
+
+          - label: "Field — Email placeholder"
+            name: "form_field_email_placeholder"
+            widget: "string"
+            default: "you@example.com"
+
+          - label: "Field — Address label"
+            name: "form_field_address_label"
+            widget: "string"
+            default: "Address"
+
+          - label: "Field — Address placeholder"
+            name: "form_field_address_placeholder"
+            widget: "string"
+            default: "Estate, town and county"
+
+          - label: "Field — Product dropdown label"
+            name: "form_field_product_label"
+            widget: "string"
+            default: "Product of interest"
+
+          - label: "Field — Product dropdown placeholder"
+            name: "form_field_product_placeholder"
+            widget: "string"
+            default: "— Select a product —"
+
+          - label: "Submit button text"
+            name: "form_submit_text"
+            widget: "string"
+            default: "Submit application"
+
+          - label: "Privacy / consent note"
+            name: "form_privacy_text"
+            widget: "text"
+            default: "By submitting you agree to be contacted by Mogo Auto Ltd. We never share your details."
+
           - label: "ERP API endpoint URL"
             name: "form_api_endpoint"
             widget: "string"
@@ -395,8 +455,25 @@ collections:
                 required: false
                 hint: "Brief description of the photo for screen readers."
 
+          - name: "impact_banner"
+            label: "Impact page photo strip"
+            label_singular: "Photo"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            hint: "The scrolling photo strip on the Our Impact page. Add, remove, or drag to reorder."
+            fields:
+              - label: "Photo"
+                name: "src"
+                widget: "image"
+                hint: "Landscape photo. Recommended: 800×600 px or larger."
+              - label: "Alt text"
+                name: "alt"
+                widget: "string"
+                required: false
+                hint: "Brief description for screen readers."
+
           - name: "impact_photos"
-            label: "Impact page photos (Our Impact)"
+            label: "Impact pillar photos (Our Impact)"
             label_singular: "Photo"
             widget: "list"
             summary: "{{fields.tag}}"

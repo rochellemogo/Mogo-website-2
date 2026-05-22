@@ -12,6 +12,13 @@
     { "src": "/uploads/boda stage.jpg",         "alt": "Boda stage" },
     { "src": "/uploads/stage.jpg",              "alt": "MOGO stage event" }
   ],
+  "impact_banner": [
+    { "src": "/uploads/women photo-c433c1c0.jpg",  "alt": "Chairman training programme" },
+    { "src": "/uploads/csr-2f61378b.jpg",          "alt": "Community building" },
+    { "src": "/uploads/tree planting-8ba64093.jpg", "alt": "Tree planting" },
+    { "src": "/uploads/women backs-be370c94.jpg",   "alt": "MOGO community event" },
+    { "src": "/uploads/boda stage-a0c0b0d0.jpg",    "alt": "Boda stage activation" }
+  ],
   "impact_photos": [
     {
       "src": "/uploads/women photo-c433c1c0.jpg",
