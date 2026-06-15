@@ -1,23 +1,71 @@
 {
   "carousel": [
-    { "src": "/uploads/Boda crowd.jpg",        "alt": "Boda riders" },
-    { "src": "/uploads/women photo.jpg",        "alt": "MOGO customers" },
-    { "src": "/uploads/Boda riders.jpg",        "alt": "Boda riders on the road" },
-    { "src": "/uploads/csr.jpg",                "alt": "Community activity" },
-    { "src": "/uploads/boda front.jpg",         "alt": "Boda financing" },
-    { "src": "/uploads/tree planting.jpg",      "alt": "Tree planting" },
-    { "src": "/uploads/oppo launch.jpg",        "alt": "Product launch event" },
-    { "src": "/uploads/women backs.jpg",        "alt": "MOGO event" },
-    { "src": "/uploads/meeting.jpg",            "alt": "Team meeting" },
-    { "src": "/uploads/boda stage.jpg",         "alt": "Boda stage" },
-    { "src": "/uploads/stage.jpg",              "alt": "MOGO stage event" }
+    {
+      "src": "/uploads/Boda crowd.jpg",
+      "alt": "Boda riders"
+    },
+    {
+      "src": "/uploads/mogo-outdoor-shoot-28.jpg",
+      "alt": "Boda riders feature photo"
+    },
+    {
+      "src": "/uploads/Boda riders.jpg",
+      "alt": "Boda riders on the road"
+    },
+    {
+      "src": "/uploads/csr.jpg",
+      "alt": "Community activity"
+    },
+    {
+      "src": "/uploads/boda front.jpg",
+      "alt": "Boda financing"
+    },
+    {
+      "src": "/uploads/tree planting.jpg",
+      "alt": "Tree planting"
+    },
+    {
+      "src": "/uploads/oppo launch.jpg",
+      "alt": "Product launch event"
+    },
+    {
+      "src": "/uploads/women backs.jpg",
+      "alt": "MOGO event"
+    },
+    {
+      "src": "/uploads/meeting.jpg",
+      "alt": "Team meeting"
+    },
+    {
+      "src": "/uploads/boda stage.jpg",
+      "alt": "Boda stage"
+    },
+    {
+      "src": "/uploads/stage.jpg",
+      "alt": "MOGO stage event"
+    }
   ],
   "impact_banner": [
-    { "src": "/uploads/women photo-c433c1c0.jpg",  "alt": "Chairman training programme" },
-    { "src": "/uploads/csr-2f61378b.jpg",          "alt": "Community building" },
-    { "src": "/uploads/tree planting-8ba64093.jpg", "alt": "Tree planting" },
-    { "src": "/uploads/women backs-be370c94.jpg",   "alt": "MOGO community event" },
-    { "src": "/uploads/boda stage-a0c0b0d0.jpg",    "alt": "Boda stage activation" }
+    {
+      "src": "/uploads/women photo-c433c1c0.jpg",
+      "alt": "Chairman training programme"
+    },
+    {
+      "src": "/uploads/csr-2f61378b.jpg",
+      "alt": "Community building"
+    },
+    {
+      "src": "/uploads/tree planting-8ba64093.jpg",
+      "alt": "Tree planting"
+    },
+    {
+      "src": "/uploads/women backs-be370c94.jpg",
+      "alt": "MOGO community event"
+    },
+    {
+      "src": "/uploads/boda stage-a0c0b0d0.jpg",
+      "alt": "Boda stage activation"
+    }
   ],
   "impact_photos": [
     {
