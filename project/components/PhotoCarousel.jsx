@@ -4,7 +4,7 @@
 // in index-v2.html stays unchanged.
 const PhotoCarousel = () => {
   const s = window.MOGO_SETTINGS || {};
-  const feature = s.feature_image || (window.__resources && window.__resources.homeFeature) || '/uploads/Boda riders.jpg';
+  const feature = s.feature_image || (window.__resources && window.__resources.homeFeature) || '/uploads/mogo-outdoor-shoot-28.jpg';
 
   return (
     <section style={{ padding: '100px 0', background: '#fff' }}>
