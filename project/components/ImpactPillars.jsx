@@ -96,22 +96,23 @@ const ImpactPillars = () => {
 
   return (
     <>
-      {/* Section opener: jump nav */}
-      <section style={{padding:'56px 0 24px', background:'#fff', borderBottom:'1px solid var(--m-line-2)'}}>
+      {/* Jump nav — flat, no rounded cards */}
+      <section style={{padding:'40px 0', background:'#fff', borderBottom:'1px solid var(--m-line-2)'}}>
         <div className="shell">
-          <div className="impact-jumpnav" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap: 14}}>
+          <div className="impact-jumpnav" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)'}}>
             {IMPACT_PILLARS.map((p, i) => (
-              <a key={p.n} href={`#pillar-${i+1}`} className="impact-jumpnav__card" style={{
-                display:'block', padding:'18px 20px', borderRadius:'var(--r-lg)',
-                background:'var(--m-cream)', border:'1px solid var(--m-line-2)',
+              <a key={p.n} href={`#pillar-${i+1}`} style={{
+                display:'block', padding:'16px 20px',
+                borderLeft: i === 0 ? `3px solid ${p.accent}` : `3px solid transparent`,
                 textDecoration:'none', color:'var(--m-ink)',
-                transition:'transform .15s, box-shadow .15s, border-color .15s',
-              }}>
-                <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:10}}>
-                  <span style={{fontFamily: 'inherit', fontSize:11, fontWeight:700, letterSpacing:'.14em', color:'var(--m-muted)'}}>{p.n}</span>
-                  <span style={{width:10, height:10, borderRadius:999, background: p.accent}}/>
-                </div>
-                <div style={{fontSize:15, fontWeight:700, lineHeight:1.25}}>{p.eyebrow}</div>
+                borderRight:'1px solid var(--m-line-2)',
+                transition:'border-color .15s',
+              }}
+              onMouseEnter={(e)=>{ e.currentTarget.style.borderLeftColor = p.accent; }}
+              onMouseLeave={(e)=>{ e.currentTarget.style.borderLeftColor = i===0 ? p.accent : 'transparent'; }}
+              >
+                <div style={{fontSize:11, fontFamily:'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-muted)', marginBottom:6}}>{p.n}</div>
+                <div style={{fontSize:15, fontWeight:700, lineHeight:1.25, color:'var(--m-ink)'}}>{p.eyebrow}</div>
               </a>
             ))}
           </div>
@@ -123,89 +124,68 @@ const ImpactPillars = () => {
         const photo = impactPhotos[i] || {};
         const photoSrc = photo.src || p.photoPath;
         const photoAlt = photo.alt || p.photoTag;
-        const photoTag = photo.tag || p.photoTag;
         return (
           <section
             key={p.n}
             id={`pillar-${i+1}`}
             className="impact-pillar"
             style={{
-              padding:'104px 0',
+              padding:'96px 0',
               background: i % 2 === 0 ? '#fff' : 'var(--m-cream)',
               borderBottom:'1px solid var(--m-line-2)',
               scrollMarginTop: 80,
             }}>
             <div className="shell">
-              <div className="impact-pillar-grid" style={{
-                display:'grid',
-                gridTemplateColumns: flip ? '1fr 1fr' : '1fr 1fr',
-                gap: 72, alignItems:'center',
-              }}>
+              <div className="impact-pillar-grid" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap: 72, alignItems:'center'}}>
+
                 {/* TEXT */}
                 <div data-pillar-text style={{order: flip ? 2 : 1}}>
-                  <div style={{display:'inline-flex', alignItems:'center', gap:10, padding:'6px 12px', borderRadius:999, background:`${p.accent}1a`, color: p.accent, fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', fontWeight:700, marginBottom: 20}}>
-                    <span style={{fontWeight:900}}>{p.n}</span>
-                    <span style={{opacity:.4}}>·</span>
-                    <span>{p.badge}</span>
-                  </div>
-                  <div className="h-eyebrow" style={{marginBottom:6}}><span className="dot" style={{background: p.accent}}/>{p.eyebrow}</div>
-                  <h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 56px)', lineHeight:1.02, marginTop:12, marginBottom:20}}
+                  <div style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color: p.accent, fontWeight:700, marginBottom:16}}>{p.eyebrow}</div>
+                  <h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 56px)', lineHeight:1.02, marginBottom:20}}
                       dangerouslySetInnerHTML={{__html: p.title}}/>
-                  <p style={{fontSize:17, lineHeight:1.65, color:'var(--m-ink-2)', margin:'0 0 24px'}}>{p.body}</p>
+                  <p style={{fontSize:17, lineHeight:1.65, color:'var(--m-ink-2)', margin:'0 0 28px'}}>{p.body}</p>
 
-                  <ul style={{listStyle:'none', padding:0, margin:'0 0 28px', display:'flex', flexDirection:'column', gap:10}}>
+                  <ul style={{listStyle:'none', padding:0, margin:'0 0 32px', display:'flex', flexDirection:'column', gap:12}}>
                     {p.bullets.map((b, j) => (
-                      <li key={j} style={{display:'flex', alignItems:'flex-start', gap:12, fontSize:15.5, lineHeight:1.5}}>
-                        <span style={{flexShrink:0, marginTop:6, width:6, height:6, borderRadius:999, background: p.accent}}/>
+                      <li key={j} style={{display:'flex', alignItems:'flex-start', gap:14, fontSize:15.5, lineHeight:1.5, paddingBottom:12, borderBottom:'1px solid var(--m-line-2)'}}>
+                        <span style={{flexShrink:0, marginTop:8, width:4, height:4, background: p.accent}}/>
                         <span>{b}</span>
                       </li>
                     ))}
                   </ul>
 
                   {p.partners && (
-                    <div style={{marginBottom: 28}}>
-                      <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700, marginBottom:10}}>Partners</div>
-                      <div style={{display:'flex', flexWrap:'wrap', gap:8}}>
+                    <div style={{marginBottom:32}}>
+                      <div style={{fontSize:11, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700, marginBottom:10}}>Partners</div>
+                      <div style={{display:'flex', flexWrap:'wrap', gap:16}}>
                         {p.partners.map(pt => (
-                          <span key={pt} style={{padding:'6px 12px', borderRadius:999, background:'#fff', border:'1px solid var(--m-line-2)', fontSize:13, fontWeight:600}}>{pt}</span>
+                          <span key={pt} style={{fontSize:14, fontWeight:600, color:'var(--m-ink)'}}>{pt}</span>
                         ))}
                       </div>
                     </div>
                   )}
 
-                  <div style={{display:'inline-flex', alignItems:'baseline', gap:14, paddingTop:24, borderTop:'1px solid var(--m-line-2)'}}>
-                    <div style={{fontFamily:'var(--font-display)', fontSize:48, fontWeight:900, color: p.accent, letterSpacing:'-.02em', lineHeight:1}}>{p.stat.n}</div>
-                    <div style={{fontSize:13, color:'var(--m-ink-2)', maxWidth:200, lineHeight:1.4}}>{p.stat.label}</div>
+                  <div style={{display:'flex', alignItems:'baseline', gap:14, paddingTop:24, borderTop:'2px solid var(--m-line-2)'}}>
+                    <div style={{fontFamily:'var(--font-display)', fontSize:52, fontWeight:900, color: p.accent, letterSpacing:'-.02em', lineHeight:1}}>{p.stat.n}</div>
+                    <div style={{fontSize:14, color:'var(--m-ink-2)', maxWidth:200, lineHeight:1.4}}>{p.stat.label}</div>
                   </div>
                 </div>
 
-                {/* IMAGE */}
-                <div data-pillar-img style={{order: flip ? 1 : 2, position:'relative'}}>
-                  <div style={{
-                    position:'relative', aspectRatio:'4/5',
-                    borderRadius:'var(--r-xl)', overflow:'hidden',
-                    background:`linear-gradient(135deg, ${p.accent}33, ${p.accent}0a)`,
-                    boxShadow:'0 22px 60px rgba(11,18,32,.12)',
-                  }}>
+                {/* IMAGE — no rounded corners, no overlays */}
+                <div data-pillar-img style={{order: flip ? 1 : 2}}>
+                  <div style={{position:'relative', aspectRatio:'3/2', overflow:'hidden', background:'var(--m-cream)'}}>
                     <img src={photoSrc} alt={photoAlt}
                          style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}
                          onError={(e)=>{e.currentTarget.style.display='none';}}/>
-                    <div style={{position:'absolute', inset:0, background:`linear-gradient(180deg, transparent 55%, rgba(0,0,0,.45) 100%)`}}/>
-                    <div style={{position:'absolute', top:16, left:16, padding:'6px 12px', borderRadius:999, background:'rgba(255,255,255,.92)', color:'var(--m-ink)', fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', fontWeight:700}}>
-                      {p.n} / {String(IMPACT_PILLARS.length).padStart(2,'0')}
-                    </div>
-                    <div style={{position:'absolute', bottom:16, left:16, right:16, color:'#fff', fontSize:12, fontFamily: 'inherit', letterSpacing:'.12em', textTransform:'uppercase'}}>
-                      Photo · {photoTag}
-                    </div>
                   </div>
                 </div>
+
               </div>
             </div>
           </section>
         );
       })}
 
-      {/* Footer CTA */}
       <CTAFooter
         title="Partner with us on <em>impact.</em>"
         subtitle="Stage chairmen, NGOs, county partners or manufacturers — if you've got an idea for the next activation, we want to hear it."
