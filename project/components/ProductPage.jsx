@@ -270,7 +270,7 @@ const ProductPage = ({product}) => {
       <section style={{padding:'100px 0', background:'#fff'}}>
         <div className="shell">
           <div style={{maxWidth: 900, marginBottom: 48}}>
-            <h2 className="mega-head" style={{fontSize:'clamp(38px, 4.5vw, 64px)'}}>How it <em style={{fontStyle:'italic', color:'var(--m-green-ink)', fontFamily:'var(--font-accent)', fontWeight:400}}>works.</em></h2>
+            <h2 className="mega-head" style={{fontSize:'clamp(38px, 4.5vw, 64px)'}}>How it <em style={{fontStyle:'italic', color:'var(--m-green-ink)', fontWeight:400}}>works.</em></h2>
             {isPhone && (
               <p style={{fontSize:17, color:'var(--m-ink-2)', lineHeight:1.55, marginTop: 18, maxWidth: 560}}>
                 The whole process takes <strong style={{color:'var(--m-ink)'}}>30 minutes or less</strong> — done in person at a participating phone shop.
@@ -294,7 +294,7 @@ const ProductPage = ({product}) => {
         <div className="shell">
           <div className="pp-split" style={{display:'grid', gridTemplateColumns:'1fr 1.2fr', gap: 80, alignItems:'start'}}>
             <div>
-              <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 60px)'}}>What you'll <em style={{fontStyle:'italic', color:'var(--m-green-ink)', fontFamily:'var(--font-accent)', fontWeight:400}}>need.</em></h2>
+              <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 60px)'}}>What you'll <em style={{fontStyle:'italic', color:'var(--m-green-ink)', fontWeight:400}}>need.</em></h2>
             </div>
             <div>
               <ul style={{listStyle:'none', padding:0, margin:0, display:'flex', flexDirection:'column', gap: 0}}>
@@ -481,7 +481,7 @@ const ProductPage = ({product}) => {
             <div style={{position:'absolute', right:-80, top:-80, width: 320, height: 320, borderRadius: 999, background:'var(--m-green)', opacity:.22, filter:'blur(80px)'}}/>
             <div style={{position:'relative', maxWidth: 680}}>
               <h2 className="h-display" style={{fontSize:'clamp(40px, 5vw, 72px)', margin:'0 0 20px', letterSpacing:'-.03em', fontWeight:600}}>
-                Ready to apply for<br/><em style={{fontStyle:'italic', color:'var(--m-green)', fontFamily:'var(--font-accent)', fontWeight:400}}>{product.name}?</em>
+                Ready to apply for<br/><em style={{fontStyle:'italic', color:'var(--m-green)', fontWeight:400}}>{product.name}?</em>
               </h2>
               <p style={{fontSize:17, color:'rgba(255,255,255,.72)', lineHeight:1.55, marginBottom: 32, maxWidth: 500}}>
                 {isPhone ? 'Done in person at a participating phone shop. Bring your ID and M-Pesa — in 30 minutes or less.' : 'Three-minute form. Real call from a MOGO officer.'}

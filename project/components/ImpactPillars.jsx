@@ -282,7 +282,7 @@ const ImpactReport = () => {
         <div>
           <div className="h-eyebrow" style={{color:'var(--m-green)'}}><span className="dot" style={{background:'var(--m-green)'}}/>ESG · 2026 Report</div>
           <h2 className="mega-head" style={{fontSize:'clamp(34px, 4.2vw, 56px)', lineHeight:1.02, marginTop:12, marginBottom:20, color:'#fff'}}>
-            Read our <em style={{fontStyle:'italic', color:'var(--m-green)', fontFamily:'var(--font-accent)', fontWeight:400}}>Impact<br/>Report</em> here.
+            Read our <em style={{fontStyle:'italic', color:'var(--m-green)', fontWeight:400}}>Impact<br/>Report</em> here.
           </h2>
           <p style={{fontSize:17, lineHeight:1.65, color:'rgba(255,255,255,.78)', margin:'0 0 28px', maxWidth: 520}}>
             Every year we publish a full Environmental, Social and Governance report covering our lending practices, community programmes, environmental footprint and the policies that govern how we work.

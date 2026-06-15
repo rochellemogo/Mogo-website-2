@@ -64,7 +64,7 @@ const Impact = () =>
       <div className="section-intro" data-impact-head style={{ marginBottom: 52, alignItems: 'end' }}>
         <div>
           <h2 className="h-display" style={{ fontSize: 'clamp(44px, 6.5vw, 100px)', lineHeight: .98, letterSpacing: '-.035em', margin: '0', fontWeight: 500 }}>
-            Fueling <em style={{ fontStyle: 'italic', color: 'var(--m-green)', fontFamily: 'var(--font-accent)', fontWeight: 400 }}>200,000+</em><br />Kenyan livelihoods.
+            Fueling <em style={{ fontStyle: 'italic', color: 'var(--m-green)', fontWeight: 400 }}>200,000+</em><br />Kenyan livelihoods.
           </h2>
         </div>
         <p style={{ fontSize: 16, color: 'rgba(255,255,255,.6)', lineHeight: 1.6, maxWidth: 380, margin: 0 }}>

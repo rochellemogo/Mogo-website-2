@@ -153,7 +153,7 @@ const CTA = () =>
         </div>
         <div style={{ position: 'relative', maxWidth: 700 }}>
           <h2 className="h-display" style={{ fontSize: 'clamp(48px, 6.5vw, 96px)', color: '#fff', margin: '0 0 24px', fontWeight: 600, letterSpacing: '-.035em', lineHeight: .98 }}>
-            Your wheels<br />are <em style={{ fontStyle: 'italic', color: 'var(--m-green)', fontFamily: 'var(--font-accent)', fontWeight: 400 }}>waiting.</em>
+            Your wheels<br />are <em style={{ fontStyle: 'italic', color: 'var(--m-green)', fontWeight: 400 }}>waiting.</em>
           </h2>
           <p style={{ fontSize: 18, color: 'rgba(255,255,255,.72)', lineHeight: 1.55, marginBottom: 40, maxWidth: 520 }}>
             Three-minute form. Real call from a MOGO officer same day. Get your loan today.

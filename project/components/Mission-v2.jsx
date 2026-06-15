@@ -107,7 +107,7 @@ const Personas = () => {
                 </div>
               </div>
               <div style={{ padding: '28px 28px 32px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                <div style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 30, lineHeight: 1.05, color: p.accent, letterSpacing: '-.01em', margin: '0 0 16px' }}>"{p.line}"</div>
+                <div style={{ fontStyle: 'italic', fontSize: 30, lineHeight: 1.05, color: p.accent, letterSpacing: '-.01em', margin: '0 0 16px' }}>"{p.line}"</div>
                 <p style={{ fontSize: 14.5, color: 'var(--m-ink-2)', lineHeight: 1.55, margin: 0, flex: 1 }}>{p.quote}</p>
                 <a href={`products/${p.product.toLowerCase().includes('boda log') ? 'boda-logbook-loans' : p.product.toLowerCase().includes('boda') ? 'boda-financing' : p.product.toLowerCase().includes('car log') ? 'car-loans' : p.product.toLowerCase().includes('car') ? 'car-loans' : p.product.toLowerCase().includes('device') ? 'smartphone-loans' : 'check-off-loans'}.html`} style={{ marginTop: 20, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 600, color: 'var(--m-ink)', textDecoration: 'none' }}>
                   See the product <ArrowRight />
@@ -138,13 +138,13 @@ const CompetitiveLandscape = () => {
           {rows.map((r, i) =>
           <div key={i} style={{ display: 'grid', gridTemplateColumns: '180px 1fr 1fr', gap: 32, padding: '24px 0', borderBottom: '1px solid var(--m-line-2)', alignItems: 'baseline' }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 22, letterSpacing: '-.02em' }}>{r.brand}</div>
-              <div style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 22, color: 'var(--m-ink-2)' }}>"{r.line}"</div>
+              <div style={{ fontStyle: 'italic', fontSize: 22, color: 'var(--m-ink-2)' }}>"{r.line}"</div>
               <div style={{ fontSize: 14, color: 'var(--m-muted)', fontFamily: 'var(--font-mono)', letterSpacing: '.04em' }}>{r.owns}</div>
             </div>
           )}
           <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr 1fr', gap: 32, padding: '32px 0', borderBottom: '1px solid var(--m-line-2)', alignItems: 'baseline', background: 'var(--m-green-soft)', margin: '0 -24px', paddingLeft: 24, paddingRight: 24, borderRadius: 'var(--r-lg)' }}>
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 28, letterSpacing: '-.02em', color: 'var(--m-green-deep)' }}>Mogo</div>
-            <div style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 28, color: 'var(--m-green-deep)' }}>"Finance your future. Jenga kesho."</div>
+            <div style={{ fontStyle: 'italic', fontSize: 28, color: 'var(--m-green-deep)' }}>"Finance your future. Jenga kesho."</div>
             <div style={{ fontSize: 14, color: 'var(--m-green-deep)', fontFamily: 'var(--font-mono)', letterSpacing: '.04em', fontWeight: 600 }}>The income-generating asset. The bike, car, phone, shop.</div>
           </div>
         </div>

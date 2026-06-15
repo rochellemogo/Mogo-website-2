@@ -288,7 +288,7 @@ const DealersModal = () => {
         <div style={{ padding:'32px 36px 24px', borderBottom:'1px solid var(--m-line-2)' }}>
           <div className="h-eyebrow" style={{ marginBottom: 10 }}><span className="dot"/>{copy.eyebrow}</div>
           <h3 className="h-display" style={{ fontSize:'clamp(26px, 3.5vw, 38px)', lineHeight:1.02, letterSpacing:'-.025em', margin:'0 0 10px', fontWeight:500 }}>
-            {copy.before}<em style={{ fontStyle:'italic', color:'var(--m-green-ink)', fontFamily:'var(--font-accent)', fontWeight:400, paddingRight:'.4em' }}>{copy.em}</em>{copy.after}
+            {copy.before}<em style={{ fontStyle:'italic', color:'var(--m-green-ink)', fontWeight:400, paddingRight:'.4em' }}>{copy.em}</em>{copy.after}
           </h3>
           <p style={{ fontSize:14.5, color:'var(--m-ink-2)', lineHeight:1.55, margin:0, maxWidth: 620 }}>
             {copy.sub}

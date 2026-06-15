@@ -182,7 +182,7 @@ const ApplyModal = () => {
           <>
             <div className="h-eyebrow" style={{ marginBottom: 12 }}><span className="dot"/>Start your application</div>
             <h3 className="h-display" style={{ fontSize: 32, lineHeight:1.05, letterSpacing:'-.02em', margin:'0 0 8px', fontWeight:500 }}>
-              Get a call back <em style={{ fontStyle:'italic', color:'var(--m-green-ink)', fontFamily:'var(--font-accent)', fontWeight:400 }}>same day.</em>
+              Get a call back <em style={{ fontStyle:'italic', color:'var(--m-green-ink)', fontWeight:400 }}>same day.</em>
             </h3>
             <p style={{ fontSize: 14.5, color:'var(--m-ink-2)', lineHeight:1.55, margin:'0 0 28px' }}>
               Fill in your details and a Mogo loan officer will reach out within one business hour to confirm terms and book your nearest branch.

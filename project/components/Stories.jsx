@@ -25,7 +25,7 @@ const Stories = () => {
                 </div>
               </div>
               <div style={{padding:'24px 28px 28px', display:'flex', flexDirection:'column', flex:1}}>
-                <p style={{fontFamily:'var(--font-accent)', fontSize: 22, lineHeight:1.35, letterSpacing:'-.005em', margin:'0 0 24px', flex:1}}>"{s.quote}"</p>
+                <p style={{fontSize: 22, lineHeight:1.35, letterSpacing:'-.005em', margin:'0 0 24px', flex:1}}>"{s.quote}"</p>
                 <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', paddingTop:18, borderTop:'1px solid var(--m-line)'}}>
                   <div>
                     <div style={{fontWeight:600, fontSize:15}}>{s.name}</div>
