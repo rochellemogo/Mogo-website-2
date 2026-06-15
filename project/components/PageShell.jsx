@@ -55,7 +55,7 @@ const Cards = ({title, eyebrow, cards, cols=3, bg='#fff'}) => (
     <div className="shell">
       {eyebrow && <div className="h-eyebrow"><span className="dot"/>{eyebrow}</div>}
       {title && <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 64px)', marginTop: 12, marginBottom: 48}} dangerouslySetInnerHTML={{__html:title}}/>}
-      <div style={{display:'grid', gridTemplateColumns:`repeat(${cols}, 1fr)`, gap: 20}}>
+      <div data-cards-grid={cols} style={{display:'grid', gridTemplateColumns:`repeat(${cols}, 1fr)`, gap: 20}}>
         {cards.map((c,i) => (
           <div key={i} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding: 32, border:'1px solid var(--m-line-2)'}}>
             {c.label && <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:12}}>{c.label}</div>}

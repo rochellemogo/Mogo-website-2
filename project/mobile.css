@@ -324,3 +324,12 @@ body.mobile-nav-open { overflow: hidden; }
   [data-theft-row] { grid-template-columns: 1fr !important; }
   .saka-emergency-num { font-size: 28px !important; }
 }
+
+/* ─── CARDS COMPONENT ────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  [data-cards-grid] { grid-template-columns: 1fr !important; gap: 12px !important; }
+  [data-cards-grid] > div { padding: 24px !important; }
+}
+@media (max-width: 480px) {
+  [data-cards-grid] > div { padding: 20px !important; }
+}
