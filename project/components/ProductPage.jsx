@@ -224,7 +224,7 @@ const ProductPage = ({product}) => {
   ].filter(Boolean);
 
   return (
-    <>
+    <div data-product-page>
       {/* Hero */}
       <section style={{padding:'80px 0 100px', background:'var(--m-cream)', borderBottom:'1px solid var(--m-line)'}}>
         <div className="shell">
@@ -494,7 +494,7 @@ const ProductPage = ({product}) => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

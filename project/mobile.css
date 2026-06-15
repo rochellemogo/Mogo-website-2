@@ -241,11 +241,14 @@ body.mobile-nav-open { overflow: hidden; }
 
 /* ─── PRODUCT PAGES ──────────────────────────────────────────────────────── */
 @media (max-width: 860px) {
+  [data-product-page] > section { padding: 56px 0 !important; }
+  [data-product-page] > section:first-child { padding: 44px 0 60px !important; }
   .pp-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
   .pp-hero-media { aspect-ratio: 3/2 !important; }
   .pp-hero-stats { grid-template-columns: repeat(3, 1fr) !important; gap: 12px !important; }
   .pp-hero-stats > div > div:last-child { font-size: 18px !important; }
   .pp-steps { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .pp-steps > div { min-height: 0 !important; padding: 24px 20px !important; }
   .pp-split { grid-template-columns: 1fr !important; gap: 32px !important; }
   .pp-split-faq { grid-template-columns: 1fr !important; gap: 24px !important; }
   .pp-cards-2 { grid-template-columns: 1fr !important; }
