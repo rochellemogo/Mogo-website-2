@@ -182,7 +182,7 @@ const TheftReport = () => {
             </svg>
           </div>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:14}}>
+        <div data-theft-row style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:14}}>
           <div>
             <label style={labelStyle} htmlFor="tr-plate">Plate number</label>
             <input id="tr-plate" type="text" placeholder="KDA 123A" value={form.plate} onChange={set('plate')} style={{...fieldStyle('plate'), fontFamily: 'inherit', letterSpacing:'.04em'}}/>
@@ -192,7 +192,7 @@ const TheftReport = () => {
             <input id="tr-year" type="number" inputMode="numeric" placeholder="2019" min="1950" max="2026" value={form.year} onChange={set('year')} style={fieldStyle('year')}/>
           </div>
         </div>
-        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:14}}>
+        <div data-theft-row style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:14}}>
           <div>
             <label style={labelStyle} htmlFor="tr-make">Make</label>
             <input id="tr-make" type="text" placeholder="Toyota" value={form.make} onChange={set('make')} style={fieldStyle('make')}/>
@@ -629,7 +629,7 @@ const MOGO_PAGES = {
     render: () => (
       <>
         <section style={{padding:'96px 0', background:'#fff'}}>
-          <div className="shell" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap: 48, alignItems:'start'}}>
+          <div data-saka-grid className="shell" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap: 48, alignItems:'start'}}>
             <div>
               <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 60px)', marginTop:12, marginBottom:24}}>Check <em>a vehicle.</em></h2>
               <p style={{fontSize:17, color:'var(--m-ink-2)', lineHeight:1.6, marginBottom:28}}>
@@ -644,7 +644,7 @@ const MOGO_PAGES = {
               </p>
               <div style={{background:'var(--m-ink)', borderRadius:'var(--r-xl)', padding: 32, color:'#fff', marginBottom:20}}>
                 <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'#E96A3B', fontWeight:600, marginBottom:14}}>Emergency · 24/7</div>
-                <div style={{fontSize:40, fontWeight:600, letterSpacing:'-.02em', fontFamily:'var(--font-display)', marginBottom:20}}>0719 089 999</div>
+                <div className="saka-emergency-num" style={{fontSize:40, fontWeight:600, letterSpacing:'-.02em', fontFamily:'var(--font-display)', marginBottom:20}}>0719 089 999</div>
                 <a href="tel:0719089999" className="btn btn-primary">Call now <span className="arrow-pill"><ArrowRight/></span></a>
               </div>
               <TheftReport/>

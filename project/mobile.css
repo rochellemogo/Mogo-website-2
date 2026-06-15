@@ -259,4 +259,23 @@ body.mobile-nav-open { overflow: hidden; }
 @media (max-width: 860px) {
   section[data-safari-yetu] { padding: 72px 0 56px !important; }
   .safari-arrows { display: none !important; }
+  .safari-track { padding: 0 20px !important; }
+  .safari-node { width: calc(80vw - 40px) !important; flex: 0 0 calc(80vw - 40px) !important; }
+}
+@media (max-width: 480px) {
+  .safari-node { width: calc(90vw - 36px) !important; flex: 0 0 calc(90vw - 36px) !important; }
+}
+
+/* ─── PROSE (About/sub-pages) ────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-prose] { padding: 56px 0 !important; }
+  section[data-prose] .shell { max-width: 100% !important; }
+  section[data-prose] h2 { font-size: clamp(28px, 7vw, 42px) !important; }
+}
+
+/* ─── SAKA PAGE ──────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  [data-saka-grid] { grid-template-columns: 1fr !important; gap: 48px !important; }
+  [data-theft-row] { grid-template-columns: 1fr !important; }
+  .saka-emergency-num { font-size: 28px !important; }
 }

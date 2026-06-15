@@ -18,7 +18,7 @@ const PageHero = ({eyebrow, title, kicker, accent="var(--m-green)"}) => (
 );
 
 const Prose = ({children, title, tight}) => (
-  <section style={{padding: tight ? '56px 0' : '88px 0', background:'#fff'}}>
+  <section data-prose style={{padding: tight ? '56px 0' : '88px 0', background:'#fff'}}>
     <div className="shell" style={{maxWidth: 880}}>
       {title && <h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 52px)', marginBottom: 28}} dangerouslySetInnerHTML={{__html:title}}/>}
       <div style={{fontSize:17, lineHeight:1.65, color:'var(--m-ink-2)'}}>{children}</div>
