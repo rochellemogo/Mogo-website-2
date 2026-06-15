@@ -91,7 +91,7 @@ const Branches = () => {
           </div>
 
           {/* LIST */}
-          <div data-branches-list style={{ background: '#fff', borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+          <div data-branches-list style={{ background: '#fff', borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: 0 }}>
             <div style={{ padding: '13px 18px', borderBottom: '1px solid var(--m-line-2)', display: 'flex', alignItems: 'center', gap: 10, background: 'var(--m-cream)' }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--m-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
               <input
