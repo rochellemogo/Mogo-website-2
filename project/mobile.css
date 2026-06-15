@@ -2,7 +2,8 @@
    Loaded after styles.css. Breakpoints: 860px / 560px / 480px */
 
 @media (max-width: 860px) {
-  html, body { overflow-x: hidden; }
+  html { overflow-x: clip; }
+  body { overflow-x: hidden; }
   body { line-height: 1.5; }
   .shell { padding: 0 20px !important; max-width: 100% !important; }
   .btn { padding: 13px 20px; font-size: 15px; }
