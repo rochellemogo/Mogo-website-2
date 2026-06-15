@@ -275,13 +275,30 @@ body.mobile-nav-open { overflow: hidden; }
 
 /* ─── SAFARI YETU ────────────────────────────────────────────────────────── */
 @media (max-width: 860px) {
-  section[data-safari-yetu] { padding: 72px 0 56px !important; }
+  section[data-safari-yetu] { padding: 72px 0 48px !important; }
   .safari-arrows { display: none !important; }
-  .safari-track { padding: 0 20px !important; }
-  .safari-node { width: calc(80vw - 40px) !important; flex: 0 0 calc(80vw - 40px) !important; }
-}
-@media (max-width: 480px) {
-  .safari-node { width: calc(90vw - 36px) !important; flex: 0 0 calc(90vw - 36px) !important; }
+  /* Hide timeline chrome */
+  .safari-spine, .safari-connector, .safari-dot { display: none !important; }
+  /* Flatten track to simple flex row */
+  .safari-track {
+    min-height: 0 !important;
+    padding: 4px 20px 20px !important;
+    align-items: stretch !important;
+  }
+  /* Each node: static, auto height, card-width */
+  .safari-node {
+    position: static !important;
+    height: auto !important;
+    width: calc(82vw - 32px) !important;
+    flex: 0 0 calc(82vw - 32px) !important;
+  }
+  /* Cards: static layout, full height */
+  .safari-card {
+    position: static !important;
+    top: auto !important;
+    height: auto !important;
+    min-height: 260px;
+  }
 }
 
 /* ─── PROSE (About/sub-pages) ────────────────────────────────────────────── */
