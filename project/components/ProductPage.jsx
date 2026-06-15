@@ -421,7 +421,7 @@ const ProductPage = ({product}) => {
 
             <div className="catalogue-table-wrap" style={{border:'1px solid var(--m-line)', borderRadius:'var(--r-xl)', overflow:'hidden', background:'var(--m-cream)'}}>
               <div className="catalogue-row catalogue-head" style={{display:'grid', gridTemplateColumns:'1.4fr 1.1fr 1fr 1fr .9fr', padding:'18px 28px', background:'var(--m-ink)', color:'#fff', fontFamily: 'inherit', fontSize:11, letterSpacing:'.12em', textTransform:'uppercase'}}>
-                {product.catalogue.cols.map((c,i) => <div key={i}>{c}</div>)}
+                {(product.catalogue.cols || []).map((c,i) => <div key={i}>{c}</div>)}
               </div>
               {product.catalogue.items.map((item, i) => (
                 <div key={i} className="catalogue-row" style={{display:'grid', gridTemplateColumns:'1.4fr 1.1fr 1fr 1fr .9fr', padding:'22px 28px', borderTop: i === 0 ? 'none' : '1px solid var(--m-line)', background: i % 2 === 0 ? '#fff' : 'var(--m-cream)', alignItems:'center'}}>

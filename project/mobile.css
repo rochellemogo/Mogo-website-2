@@ -163,3 +163,100 @@ body.mobile-nav-open { overflow: hidden; }
 @media (max-width: 560px) {
   div[data-tweaks-panel] { bottom: 12px !important; right: 12px !important; left: 12px !important; width: auto !important; max-width: none !important; }
 }
+
+/* ─── STORIES CAROUSEL ─────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  section#stories { padding: 72px 0 !important; }
+  section#stories [data-stories-carousel] article { flex: 0 0 calc(80vw - 40px) !important; }
+  section#stories [data-stories-carousel] [data-story-img] { padding: 8px 8px 0 !important; }
+  section#stories [data-stories-carousel] [data-story-img] > div { aspect-ratio: 3/2 !important; }
+  section#stories [data-stories-carousel] article > div:last-child p { font-size: 18px !important; }
+}
+@media (max-width: 480px) {
+  section#stories [data-stories-carousel] article { flex: 0 0 calc(92vw - 36px) !important; }
+}
+
+/* ─── PAGE HERO ─────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-page-hero] { padding: 48px 0 64px !important; }
+  section[data-page-hero] h1 { font-size: clamp(40px, 10vw, 72px) !important; }
+  section[data-page-hero] p { font-size: 17px !important; }
+}
+
+/* ─── STATS BAND ────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-stats-band] { padding: 60px 0 !important; }
+  section[data-stats-band] > .shell > div { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+}
+@media (max-width: 480px) {
+  section[data-stats-band] > .shell > div { grid-template-columns: 1fr !important; }
+}
+
+/* ─── TWO COL ────────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-two-col] { padding: 64px 0 !important; }
+  section[data-two-col] > .shell { grid-template-columns: 1fr !important; gap: 28px !important; }
+}
+
+/* ─── CTA FOOTER ─────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-cta-footer] { padding: 56px 0 !important; }
+  section[data-cta-footer] > .shell > div { flex-direction: column !important; padding: 40px 24px !important; align-items: flex-start !important; }
+  section[data-cta-footer] > .shell > div > div:last-child { width: 100%; }
+  section[data-cta-footer] .btn { width: 100%; justify-content: center; }
+}
+
+/* ─── IMPACT PILLARS ─────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .impact-jumpnav { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .impact-pillar { padding: 64px 0 !important; }
+  .impact-pillar-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .impact-pillar-grid [data-pillar-text] { order: 1 !important; }
+  .impact-pillar-grid [data-pillar-img] { order: 2 !important; }
+  .impact-pillar-grid [data-pillar-img] > div { aspect-ratio: 4/3 !important; }
+  .impact-report-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .impact-report-frame { aspect-ratio: auto !important; min-height: 400px !important; }
+}
+@media (max-width: 480px) {
+  .impact-jumpnav { grid-template-columns: 1fr !important; }
+}
+
+/* ─── IMPACT STATS MOBILE SPACING ───────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-mogo-impact] [data-impact-grid] > div { padding: 28px 20px !important; }
+  section[data-mogo-impact] [data-impact-n] { font-size: clamp(44px, 11vw, 60px) !important; }
+}
+
+/* ─── PRODUCT PAGES ──────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .pp-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .pp-hero-media { aspect-ratio: 3/2 !important; }
+  .pp-hero-stats { grid-template-columns: repeat(3, 1fr) !important; gap: 12px !important; }
+  .pp-hero-stats > div > div:last-child { font-size: 18px !important; }
+  .pp-steps { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .pp-split { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .pp-split-faq { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .pp-cards-2 { grid-template-columns: 1fr !important; }
+  .pp-cards-3 { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .pp-bp-bullets { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .pp-darkcard { padding: 40px 24px !important; }
+  .catalogue-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .catalogue-row { min-width: 560px; }
+  .catalogue-head { min-width: 560px; }
+}
+@media (max-width: 480px) {
+  .pp-steps { grid-template-columns: 1fr !important; }
+  .pp-cards-3 { grid-template-columns: 1fr !important; }
+  .pp-hero-stats { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ─── ABOUT PAGE ─────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .ft-award-block { grid-template-columns: 1fr !important; }
+}
+
+/* ─── SAFARI YETU ────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-safari-yetu] { padding: 72px 0 56px !important; }
+  .safari-arrows { display: none !important; }
+}

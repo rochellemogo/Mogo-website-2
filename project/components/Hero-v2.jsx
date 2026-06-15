@@ -35,7 +35,7 @@ const HeroV2 = () =>
         <span style={{ color: 'var(--m-green)' }}> your future.</span>
       </h1>
       <div data-hero-jenga style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(26px, 3vw, 46px)', color: 'rgba(255,255,255,.8)', margin: '18px 0 0', letterSpacing: '-.02em' }}>
-        Jenga kesho yako.
+        Jenga kesho.
       </div>
 
       <p data-hero-blurb style={{ fontSize: 20, lineHeight: 1.5, color: 'rgba(255,255,255,.78)', maxWidth: 620, margin: '36px 0 40px' }}>We back the bike, the car, the phone, the shop — the tools Kenyans actually earn with.

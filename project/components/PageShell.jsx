@@ -3,7 +3,7 @@
 // Each block: { kind: 'prose'|'cards'|'list'|'cta'|'split'|'grid-stats'|'contacts'|'payments'|'faq'|'news'|'partners', ... }
 
 const PageHero = ({eyebrow, title, kicker, accent="var(--m-green)"}) => (
-  <section style={{background:'var(--m-cream)', padding:'64px 0 88px', borderBottom:'1px solid var(--m-line-2)'}}>
+  <section data-page-hero style={{background:'var(--m-cream)', padding:'64px 0 88px', borderBottom:'1px solid var(--m-line-2)'}}>
     <div className="shell">
       <div style={{display:'flex', gap:8, alignItems:'center', fontSize:12, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:28}}>
         <a href="../index-v2.html" style={{color:'inherit', textDecoration:'none'}}>Home</a>
@@ -27,7 +27,7 @@ const Prose = ({children, title, tight}) => (
 );
 
 const StatsBand = ({stats, bg='var(--m-ink)', fg='#fff', accent='var(--m-green)'}) => (
-  <section style={{background: bg, color: fg, padding:'88px 0'}}>
+  <section data-stats-band style={{background: bg, color: fg, padding:'88px 0'}}>
     <div className="shell">
       <div style={{display:'grid', gridTemplateColumns:`repeat(${stats.length}, 1fr)`, gap: 40}}>
         {stats.map((s,i) => (
@@ -42,7 +42,7 @@ const StatsBand = ({stats, bg='var(--m-ink)', fg='#fff', accent='var(--m-green)'
 );
 
 const TwoCol = ({left, right, bg='#fff'}) => (
-  <section style={{padding:'96px 0', background: bg}}>
+  <section data-two-col style={{padding:'96px 0', background: bg}}>
     <div className="shell" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap: 64, alignItems:'start'}}>
       <div>{left}</div>
       <div>{right}</div>
@@ -69,7 +69,7 @@ const Cards = ({title, eyebrow, cards, cols=3, bg='#fff'}) => (
 );
 
 const CTAFooter = ({title, subtitle, cta='Apply now', href='../index-v2.html#apply', secondary}) => (
-  <section style={{padding:'80px 0', background:'var(--m-cream)'}}>
+  <section data-cta-footer style={{padding:'80px 0', background:'var(--m-cream)'}}>
     <div className="shell">
       <div style={{background:'var(--m-ink)', borderRadius:'var(--r-xl)', padding:'72px 56px', color:'#fff', display:'flex', alignItems:'center', justifyContent:'space-between', gap: 40, flexWrap:'wrap'}}>
         <div style={{maxWidth: 640}}>

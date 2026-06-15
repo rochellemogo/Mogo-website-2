@@ -142,7 +142,7 @@ const ImpactPillars = () => {
                 gap: 72, alignItems:'center',
               }}>
                 {/* TEXT */}
-                <div style={{order: flip ? 2 : 1}}>
+                <div data-pillar-text style={{order: flip ? 2 : 1}}>
                   <div style={{display:'inline-flex', alignItems:'center', gap:10, padding:'6px 12px', borderRadius:999, background:`${p.accent}1a`, color: p.accent, fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', fontWeight:700, marginBottom: 20}}>
                     <span style={{fontWeight:900}}>{p.n}</span>
                     <span style={{opacity:.4}}>·</span>
@@ -180,7 +180,7 @@ const ImpactPillars = () => {
                 </div>
 
                 {/* IMAGE */}
-                <div style={{order: flip ? 1 : 2, position:'relative'}}>
+                <div data-pillar-img style={{order: flip ? 1 : 2, position:'relative'}}>
                   <div style={{
                     position:'relative', aspectRatio:'4/5',
                     borderRadius:'var(--r-xl)', overflow:'hidden',

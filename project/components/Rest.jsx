@@ -70,7 +70,7 @@ const Branches = () => {
           </div>
         </div>
 
-        <div data-branches-grid style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 24, alignItems: 'start' }}>
+        <div data-branches-grid style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 24, alignItems: 'stretch' }}>
           {/* MAP */}
           <div data-branches-map style={{ background: 'var(--m-cream)', borderRadius: 'var(--r-xl)', padding: 16, border: '1px solid var(--m-line-2)', position: 'relative' }}>
             <div style={{ position: 'relative', aspectRatio: '4/3', borderRadius: 'var(--r-lg)', overflow: 'hidden', border: '1px solid var(--m-line-2)' }}>
@@ -101,7 +101,7 @@ const Branches = () => {
                 style={{ flex: 1, border: 'none', background: 'transparent', fontSize: 14, fontFamily: 'inherit', outline: 'none', color: 'var(--m-ink)' }} />
               {q && <button onClick={() => setQ("")} style={{ border: 'none', background: 'transparent', fontSize: 12, color: 'var(--m-ink-2)', cursor: 'pointer' }}>Clear</button>}
             </div>
-            <div style={{ maxHeight: 360, overflowY: 'auto', padding: '4px 0' }}>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '4px 0', minHeight: 0 }}>
               {filtered.length === 0 &&
                 <div style={{ padding: '48px 20px', textAlign: 'center', color: 'var(--m-ink-2)', fontSize: 14 }}>
                   No branches match "{q}". Try Mombasa, Kisii or Meru.

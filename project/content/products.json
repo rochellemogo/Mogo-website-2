@@ -19,6 +19,7 @@
       "catalogue": {
         "title": "Available bikes",
         "subtitle": "Pick your bike. We finance it. Down payment + daily figures are indicative — final terms confirmed at the branch.",
+        "cols": ["Brand & model", "Engine", "Down payment", "Daily payment", "Term"],
         "items": [
           { "brand": "Boxer 100",      "spec": "100cc commuter",     "down": "KES 20,000", "daily": "KES 350", "term": "14 months", "tag": "Most popular" },
           { "brand": "Boxer 150 X",    "spec": "150cc workhorse",    "down": "KES 25,000", "daily": "KES 420", "term": "14 months", "tag": "" },
@@ -140,6 +141,7 @@
       "catalogue": {
         "title": "Available smartphones",
         "subtitle": "Walk out with the phone today. Down payment + daily figures are indicative — final terms confirmed at the branch.",
+        "cols": ["Phone", "Spec", "Down payment", "Daily payment", "Term"],
         "items": [
           { "brand": "Samsung Galaxy A05",    "spec": "4GB / 64GB",  "down": "KES 2,500",  "daily": "KES 50",  "term": "9 months",  "tag": "Cheapest" },
           { "brand": "Samsung Galaxy A15",    "spec": "4GB / 128GB", "down": "KES 3,500",  "daily": "KES 75",  "term": "9 months",  "tag": "" },
