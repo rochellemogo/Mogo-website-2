@@ -1,6 +1,6 @@
 // v2 Mission — productivity financing positioning
 const MissionV2 = () =>
-<section style={{ padding: '120px 0', background: '#fff' }}>
+<section data-mission-v2 style={{ padding: '120px 0', background: '#fff' }}>
     <div className="shell">
       <div style={{ maxWidth: 1180 }}>
         <h2 className="h-display" style={{ fontSize: 'clamp(44px, 6.5vw, 108px)', lineHeight: .98, letterSpacing: '-.035em', margin: '24px 0 0', fontWeight: 600 }}>
@@ -11,7 +11,7 @@ const MissionV2 = () =>
       </p>
       </div>
 
-      <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40, paddingTop: 48, borderTop: '1px solid var(--m-line)' }}>
+      <div data-mission-points style={{ marginTop: 80, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40, paddingTop: 48, borderTop: '1px solid var(--m-line)' }}>
         <MissionPointV2 n="01" t="Access" d="Available to every working Kenyan with an ID and an M-Pesa number." />
         <MissionPointV2 n="02" t="Earn" d="We finance the asset, not the lifestyle. Over 70% of our customers are self-employed — the bike, tuk-tuk, car or phone pays for itself." />
         <MissionPointV2 n="03" t="Grow" d="From first boda to second branch. Customers graduate from asset finance to logbook unlocks to working capital." />
@@ -129,7 +129,7 @@ const CompetitiveLandscape = () => {
   { brand: 'M-Kopa', line: 'Power to your own.', owns: 'Smartphones. Digital cash. E-mobility.' }];
 
   return (
-    <section style={{ padding: '120px 0', background: '#fff' }}>
+    <section data-mission-v2 style={{ padding: '120px 0', background: '#fff' }}>
       <div className="shell" style={{ maxWidth: 1180 }}>
         <div className="h-eyebrow"><span className="dot" />The space we occupy</div>
         <h2 className="mega-head" style={{ margin: '18px 0 48px' }}>Everyone owns something.<br /><em>Mogo owns the hustle.</em></h2>
