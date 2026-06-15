@@ -264,7 +264,13 @@ body.mobile-nav-open { overflow: hidden; }
 
 /* ─── ABOUT PAGE ─────────────────────────────────────────────────────────── */
 @media (max-width: 860px) {
-  .ft-award-block { grid-template-columns: 1fr !important; }
+  .ft-award-block { grid-template-columns: 1fr !important; gap: 20px !important; }
+  /* Mission section stacks on mobile */
+  section[data-prose] > .shell { max-width: 100% !important; }
+}
+@media (max-width: 860px) {
+  section[data-about-mission] { padding: 64px 0 !important; }
+  section[data-about-mission] > .shell { grid-template-columns: 1fr !important; gap: 28px !important; }
 }
 
 /* ─── SAFARI YETU ────────────────────────────────────────────────────────── */

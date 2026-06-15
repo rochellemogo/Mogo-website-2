@@ -363,24 +363,49 @@ const AboutPageBody = () => {
   return (
     <>
       <PageHero eyebrow={d.hero_eyebrow} title={d.hero_title} kicker={d.hero_kicker}/>
-      <TwoCol
-        left={<><div className="h-eyebrow"><span className="dot"/>Our mission</div><h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 64px)', marginTop:12}} dangerouslySetInnerHTML={{__html: d.mission_headline}}/></>}
-        right={<div style={{fontSize:18, lineHeight:1.65, color:'var(--m-ink-2)'}}>{missionParas.map((p,i)=><p key={i} style={{margin:i>0?'18px 0 0':0}}>{p}</p>)}</div>}
-      />
+
+      {/* Mission — full-width asymmetric layout */}
+      <section data-about-mission style={{padding:'96px 0', background:'#fff', borderBottom:'1px solid var(--m-line-2)'}}>
+        <div className="shell" style={{display:'grid', gridTemplateColumns:'1fr 1.2fr', gap:64, alignItems:'start'}}>
+          <div>
+            <div style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:700, marginBottom:20}}>Our mission</div>
+            <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 64px)', lineHeight:1.02}} dangerouslySetInnerHTML={{__html: d.mission_headline}}/>
+          </div>
+          <div style={{fontSize:18, lineHeight:1.7, color:'var(--m-ink-2)', paddingTop:8}}>
+            {missionParas.map((p,i) => <p key={i} style={{margin: i > 0 ? '20px 0 0' : 0}}>{p}</p>)}
+          </div>
+        </div>
+      </section>
+
       <StatsBand stats={[{n:d.stat1_n,label:d.stat1_label},{n:d.stat2_n,label:d.stat2_label},{n:d.stat3_n,label:d.stat3_label}]}/>
       <SafariYetu/>
-      <Prose title={d.eleving_title}>
-        <p>{d.eleving_body1}</p>
-        {d.eleving_body2 && <p style={{marginTop:18}}>{d.eleving_body2}</p>}
-        <div style={{marginTop:36,display:'grid',gridTemplateColumns:'1.4fr 1fr',gap:32,alignItems:'center',padding:'28px 32px',background:'var(--m-cream)',border:'1px solid var(--m-line-2)',borderRadius:'var(--r-xl)'}} className="ft-award-block">
-          <div>
-            <div style={{fontSize:11, fontFamily: 'inherit',letterSpacing:'.14em',textTransform:'uppercase',color:'var(--m-green-ink)',marginBottom:12}}><span className="dot" style={{display:'inline-block',width:6,height:6,borderRadius:999,background:'var(--m-green)',marginRight:8,verticalAlign:'middle'}}/>Recognition</div>
-            <p style={{fontSize:15.5,lineHeight:1.55,color:'var(--m-ink)',margin:0}}>{d.award_text}</p>
+
+      {/* Eleving Group section */}
+      <section data-prose style={{padding:'88px 0', background:'#fff', borderBottom:'1px solid var(--m-line-2)'}}>
+        <div className="shell" style={{maxWidth:880}}>
+          <h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 52px)', marginBottom:28}} dangerouslySetInnerHTML={{__html: d.eleving_title}}/>
+          <div style={{fontSize:17, lineHeight:1.65, color:'var(--m-ink-2)'}}>
+            <p>{d.eleving_body1}</p>
+            {d.eleving_body2 && <p style={{marginTop:18}}>{d.eleving_body2}</p>}
           </div>
-          {d.award_badge_image ? <img src={d.award_badge_image} alt="Award badge" style={{maxWidth:200,marginLeft:'auto',borderRadius:12,display:'block'}}/> : <div style={{aspectRatio:'1/1',maxWidth:200,marginLeft:'auto',background:'repeating-linear-gradient(135deg,#fff 0 10px,#faf5ec 10px 20px)',border:'1px dashed var(--m-line-2)',borderRadius:12,display:'grid',placeItems:'center',textAlign:'center',padding:18}}><div style={{fontFamily: 'inherit',fontSize:10,letterSpacing:'.14em',textTransform:'uppercase',color:'var(--m-muted)'}}>Drop award badge here</div></div>}
+
+          {/* Award block — flat, no rounded corners */}
+          <div className="ft-award-block" style={{marginTop:48, display:'grid', gridTemplateColumns:'1fr auto', gap:40, alignItems:'center', padding:'32px 0', borderTop:'1px solid var(--m-line-2)', borderBottom:'1px solid var(--m-line-2)'}}>
+            <div>
+              <div style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:700, marginBottom:14}}>Recognition</div>
+              <p style={{fontSize:15.5, lineHeight:1.6, color:'var(--m-ink)', margin:0}}>{d.award_text}</p>
+            </div>
+            {d.award_badge_image && <img src={d.award_badge_image} alt="Award badge" style={{maxWidth:160, display:'block'}}/>}
+          </div>
+
+          {/* Countries — plain text list, no pills */}
+          <div style={{marginTop:36}}>
+            <div style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700, marginBottom:14}}>Active in {countries.length} countries</div>
+            <p style={{fontSize:15, lineHeight:1.7, color:'var(--m-ink-2)'}}>{countries.join(' · ')}</p>
+          </div>
         </div>
-        <div style={{marginTop:36,display:'flex',flexWrap:'wrap',gap:8}}>{countries.map(c=><span key={c} style={{padding:'6px 12px',border:'1px solid var(--m-line-2)',borderRadius:999,fontSize:13,fontWeight:500}}>{c}</span>)}</div>
-      </Prose>
+      </section>
+
       <CTAFooter title={d.cta_title} subtitle={d.cta_subtitle}/>
     </>
   );
