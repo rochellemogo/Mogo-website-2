@@ -73,7 +73,7 @@ const Branches = () => {
         <div data-branches-grid style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 24, alignItems: 'stretch' }}>
           {/* MAP */}
           <div data-branches-map style={{ background: 'var(--m-cream)', borderRadius: 'var(--r-xl)', padding: 16, border: '1px solid var(--m-line-2)', position: 'relative' }}>
-            <div style={{ position: 'relative', aspectRatio: '4/3', borderRadius: 'var(--r-lg)', overflow: 'hidden', border: '1px solid var(--m-line-2)' }}>
+            <div style={{ position: 'relative', height: 'clamp(300px, 34vw, 460px)', borderRadius: 'var(--r-lg)', overflow: 'hidden', border: '1px solid var(--m-line-2)' }}>
               {/* Google Maps embed — Kenya overview. For custom per-branch
                   pins clustered by region, swap this iframe for the JS Maps
                   API and provide a Google Maps key. */}
@@ -91,7 +91,7 @@ const Branches = () => {
           </div>
 
           {/* LIST */}
-          <div data-branches-list style={{ background: '#fff', borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: 0 }}>
+          <div data-branches-list style={{ background: '#fff', borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', display: 'flex', flexDirection: 'column', overflow: 'hidden', minHeight: 0, maxHeight: 'calc(clamp(300px, 34vw, 460px) + 32px)' }}>
             <div style={{ padding: '13px 18px', borderBottom: '1px solid var(--m-line-2)', display: 'flex', alignItems: 'center', gap: 10, background: 'var(--m-cream)' }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--m-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
               <input
