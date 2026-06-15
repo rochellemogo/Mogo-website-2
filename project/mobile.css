@@ -126,6 +126,7 @@ body.mobile-nav-open { overflow: hidden; }
   section#branches { padding: 72px 0 !important; }
   section#branches [data-branches-grid] { grid-template-columns: 1fr !important; gap: 16px !important; }
   section#branches [data-branches-map] { padding: 20px !important; }
+  section#branches [data-branches-list] { max-height: 380px !important; }
   section#branches [data-branches-list] [data-branch-row] { grid-template-columns: 1fr !important; }
   section#branches [data-branches-cta] { width: 100%; }
   section#branches [data-branches-cta] .btn { width: 100%; justify-content: center; }
