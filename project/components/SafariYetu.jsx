@@ -108,11 +108,11 @@ const SafariYetu = () => {
                   {/* Metrics */}
                   <div style={{display:'flex', gap: 10, marginTop: 14, paddingTop: 12, borderTop:'1px dashed var(--m-line-2)'}}>
                     <div style={{flex:1}}>
-                      <div style={{fontSize:9.5, fontFamily:'var(--font-mono)', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-muted)', marginBottom:3}}>Issuances</div>
+                      <div style={{fontSize:9.5, fontFamily: 'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-muted)', marginBottom:3}}>Issuances</div>
                       <div style={{fontSize: 16, fontWeight: 700, color:'#7AB800', fontFamily:'var(--font-display)', letterSpacing:'-.01em'}}>{m.issuance}</div>
                     </div>
                     <div style={{flex:1}}>
-                      <div style={{fontSize:9.5, fontFamily:'var(--font-mono)', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-muted)', marginBottom:3}}>Customers</div>
+                      <div style={{fontSize:9.5, fontFamily: 'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-muted)', marginBottom:3}}>Customers</div>
                       <div style={{fontSize: 16, fontWeight: 700, color:'#003478', fontFamily:'var(--font-display)', letterSpacing:'-.01em'}}>{m.customers}</div>
                     </div>
                   </div>

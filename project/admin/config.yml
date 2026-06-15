@@ -54,6 +54,12 @@ collections:
             required: false
             hint: "Optional. Upload a landscape photo. Recommended: 1440×900px."
 
+          - label: "Feature photo (dark editorial banner)"
+            name: "feature_image"
+            widget: "image"
+            required: false
+            hint: "Upload a landscape photo for the 'Backing the people who move Kenya' dark banner section. Recommended: 1440×700px."
+
           - label: "Mission headline"
             name: "mission_headline"
             widget: "string"

@@ -104,11 +104,9 @@ const Nav = () => {
                 >
                   <div style={{display:'flex', alignItems:'center', gap:8}}>
                     <strong style={{fontWeight:600, fontSize: 15}}>{it.name}</strong>
-                    {showBadges && it.tag === 'Most popular' && <span style={{fontSize:10, fontFamily:'var(--font-mono)', letterSpacing:'.08em', textTransform:'uppercase', padding:'2px 6px', borderRadius:4, background:'var(--m-green-soft)', color:'var(--m-green-deep)'}}>Popular</span>}
-                    {showBadges && it.isNew && <span style={{fontSize:10, fontFamily:'var(--font-mono)', letterSpacing:'.08em', textTransform:'uppercase', padding:'2px 6px', borderRadius:4, background:'var(--m-ink)', color:'#fff'}}>New</span>}
                     {it.external && <ArrowUpRight size={12}/>}
                   </div>
-                  <div style={{fontSize: 13, color:'var(--m-muted)', marginTop: 2, lineHeight:1.4}}>{it.desc || it.tagline}</div>
+                  <div style={{fontSize: 13, color:'var(--m-muted)', marginTop: 2, lineHeight:1.4}}>{it.tagline}</div>
                 </a>
               );
             })}

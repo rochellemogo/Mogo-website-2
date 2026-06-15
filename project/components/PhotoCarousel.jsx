@@ -3,7 +3,8 @@
 // a gradient scrim. Component keeps the name PhotoCarousel so the page mount
 // in index-v2.html stays unchanged.
 const PhotoCarousel = () => {
-  const feature = (window.__resources && window.__resources.homeFeature) || 'assets/home-feature.jpg';
+  const s = window.MOGO_SETTINGS || {};
+  const feature = s.feature_image || (window.__resources && window.__resources.homeFeature) || '/uploads/Boda riders.jpg';
 
   return (
     <section style={{ padding: '100px 0', background: '#fff' }}>

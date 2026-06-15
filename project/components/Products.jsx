@@ -50,15 +50,12 @@ const ProductTile = ({ p, isSubpage }) => {
           <span style={{ display: 'grid', placeItems: 'center', width: 52, height: 52, borderRadius: 14, background: tint.bg, color: tint.ink }}>
             <ProductIcon slug={p.slug} size={26} />
           </span>
-          {p.isNew &&
-            <span style={{ padding: '5px 10px', borderRadius: 999, background: 'var(--m-ink)', color: '#fff', fontSize: 10, fontFamily: 'var(--font-mono)', letterSpacing: '.12em', textTransform: 'uppercase', fontWeight: 600 }}>New</span>
-          }
         </div>
-        <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--m-muted)', marginBottom: 10 }}>{p.category}</div>
+        <div style={{ fontSize: 11, fontFamily: 'inherit', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--m-muted)', marginBottom: 10 }}>{p.category}</div>
         <h3 className="h-display" style={{ fontSize: 24, letterSpacing: '-.025em', margin: '0 0 8px', fontWeight: 600 }}>{p.name}</h3>
         <p style={{ fontSize: 14.5, color: 'var(--m-ink-2)', lineHeight: 1.5, margin: '0 0 20px' }}>{p.tagline}</p>
         <div style={{ marginTop: 'auto', paddingTop: 18, borderTop: '1px solid var(--m-line-2)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: 13.5, fontFamily: 'var(--font-mono)', letterSpacing: '.02em', color: 'var(--m-green-ink)', fontWeight: 500 }}>{p.price}</span>
+          <span style={{ fontSize: 13.5, fontFamily: 'inherit', letterSpacing: '.02em', color: 'var(--m-green-ink)', fontWeight: 500 }}>{p.price}</span>
           <span className="product-card-arrow" style={{ width: 36, height: 36, borderRadius: 999, display: 'grid', placeItems: 'center', background: 'var(--m-cream)', color: 'var(--m-ink)', transition: 'background .2s, color .2s, transform .2s' }}><ArrowUpRight /></span>
         </div>
       </div>
@@ -247,7 +244,7 @@ const Products = () => {
                     <div data-featured-stats style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 18, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,.12)', marginBottom: 24, marginTop: 'auto' }}>
                       {[['From', active.price.replace('From ', '')], ['Term', active.term], ['Turnaround', active.turnaround]].map(([l, v]) =>
                       <div key={l}>
-                          <div style={{ fontSize: 10, fontFamily: 'var(--font-mono)', letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', marginBottom: 5 }}>{l}</div>
+                          <div style={{ fontSize: 10, fontFamily: 'inherit', letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', marginBottom: 5 }}>{l}</div>
                           <div style={{ fontFamily: 'var(--font-display)', fontSize: 18, letterSpacing: '-.02em', fontWeight: 600 }}>{v}</div>
                         </div>
                       )}
@@ -256,7 +253,7 @@ const Products = () => {
                   </div>
                   <div data-featured-photo style={{ position: 'relative', background: tint.bg, display: 'grid', placeItems: 'center', overflow: 'hidden', transition: 'background .35s ease' }}>
                     <span style={{ position: 'relative', color: tint.ink }}><ProductIcon slug={active.slug} size={108} /></span>
-                    <div style={{ position: 'absolute', left: 28, bottom: 22, fontFamily: 'var(--font-mono)', fontSize: 10.5, letterSpacing: '.12em', textTransform: 'uppercase', color: tint.ink, opacity: .7, fontWeight: 600 }}>{active.category}</div>
+                    <div style={{ position: 'absolute', left: 28, bottom: 22, fontFamily: 'inherit', fontSize: 10.5, letterSpacing: '.12em', textTransform: 'uppercase', color: tint.ink, opacity: .7, fontWeight: 600 }}>{active.category}</div>
                   </div>
                 </div>
               );

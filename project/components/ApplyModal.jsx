@@ -66,8 +66,7 @@ const ConsentItem = ({ item, checked, onToggle, error }) => {
       <button type="button" onClick={() => setExpanded(e => !e)}
         style={{
           display: 'flex', alignItems: 'center', gap: 5, padding: '0 16px 12px 48px',
-          background: 'none', border: 'none', cursor: 'pointer',
-          fontFamily: 'var(--font-mono)', fontSize: 10.5, letterSpacing: '.1em',
+          background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 10.5, letterSpacing: '.1em',
           textTransform: 'uppercase', color: 'var(--m-green-ink)', fontWeight: 500,
         }}>
         {expanded ? 'Read less' : 'Read more'}

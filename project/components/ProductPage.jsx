@@ -228,7 +228,7 @@ const ProductPage = ({product}) => {
       {/* Hero */}
       <section style={{padding:'80px 0 100px', background:'var(--m-cream)', borderBottom:'1px solid var(--m-line)'}}>
         <div className="shell">
-          <div style={{display:'flex', alignItems:'center', gap:10, marginBottom: 32, fontSize:13, color:'var(--m-muted)', fontFamily:'var(--font-mono)', letterSpacing:'.08em', textTransform:'uppercase'}}>
+          <div style={{display:'flex', alignItems:'center', gap:10, marginBottom: 32, fontSize:13, color:'var(--m-muted)', fontFamily: 'inherit', letterSpacing:'.08em', textTransform:'uppercase'}}>
             <a href="../index-v2.html" style={{color:'var(--m-muted)'}}>Home</a>
             <span>›</span>
             <a href="../index-v2.html#products" style={{color:'var(--m-muted)'}}>Products</a>
@@ -247,7 +247,7 @@ const ProductPage = ({product}) => {
               <div className="pp-hero-stats" style={{display:'grid', gridTemplateColumns:'repeat(3, auto)', gap:32, paddingTop: 28, borderTop:'1px solid var(--m-line)', marginBottom: 36}}>
                 {[['Amount', product.price],['Term', product.term],['Turnaround', product.turnaround]].map(([l,v]) => (
                   <div key={l}>
-                    <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-muted)', marginBottom:6}}>{l}</div>
+                    <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-muted)', marginBottom:6}}>{l}</div>
                     <div style={{fontFamily:'var(--font-display)', fontSize:22, letterSpacing:'-.02em', fontWeight:600}}>{v}</div>
                   </div>
                 ))}
@@ -280,7 +280,7 @@ const ProductPage = ({product}) => {
           <div className="pp-steps" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap: 20}}>
             {steps.map(([n,t,d]) => (
               <div key={n} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding:'32px 28px', minHeight: 220}}>
-                <div style={{fontFamily:'var(--font-mono)', fontSize:12, color:'var(--m-green-ink)', letterSpacing:'.12em', marginBottom: 20}}>{n}</div>
+                <div style={{fontFamily: 'inherit', fontSize:12, color:'var(--m-green-ink)', letterSpacing:'.12em', marginBottom: 20}}>{n}</div>
                 <h3 className="h-display" style={{fontSize:22, fontWeight:600, letterSpacing:'-.02em', margin:'0 0 8px'}}>{t}</h3>
                 <p style={{fontSize:14, color:'var(--m-ink-2)', lineHeight:1.5, margin:0}}>{d}</p>
               </div>
@@ -350,7 +350,7 @@ const ProductPage = ({product}) => {
             <div className="pp-cards-2" style={{display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 24}}>
               {loanOptions.map((opt) => (
                 <div key={opt.name} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', border:'1px solid var(--m-line-2)', padding:'36px 34px', display:'flex', flexDirection:'column'}}>
-                  <div style={{display:'inline-flex', alignSelf:'flex-start', alignItems:'center', gap:8, padding:'6px 12px', borderRadius:999, background:'var(--m-green-soft)', color:'var(--m-green-deep)', fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', fontWeight:600, marginBottom: 22}}>
+                  <div style={{display:'inline-flex', alignSelf:'flex-start', alignItems:'center', gap:8, padding:'6px 12px', borderRadius:999, background:'var(--m-green-soft)', color:'var(--m-green-deep)', fontSize:11, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', fontWeight:600, marginBottom: 22}}>
                     {opt.badge}
                   </div>
                   <h3 className="h-display" style={{fontSize:28, fontWeight:600, letterSpacing:'-.025em', margin:'0 0 8px'}}>{opt.name}</h3>
@@ -420,23 +420,23 @@ const ProductPage = ({product}) => {
             </div>
 
             <div className="catalogue-table-wrap" style={{border:'1px solid var(--m-line)', borderRadius:'var(--r-xl)', overflow:'hidden', background:'var(--m-cream)'}}>
-              <div className="catalogue-row catalogue-head" style={{display:'grid', gridTemplateColumns:'1.4fr 1.1fr 1fr 1fr .9fr', padding:'18px 28px', background:'var(--m-ink)', color:'#fff', fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.12em', textTransform:'uppercase'}}>
+              <div className="catalogue-row catalogue-head" style={{display:'grid', gridTemplateColumns:'1.4fr 1.1fr 1fr 1fr .9fr', padding:'18px 28px', background:'var(--m-ink)', color:'#fff', fontFamily: 'inherit', fontSize:11, letterSpacing:'.12em', textTransform:'uppercase'}}>
                 {product.catalogue.cols.map((c,i) => <div key={i}>{c}</div>)}
               </div>
               {product.catalogue.items.map((item, i) => (
                 <div key={i} className="catalogue-row" style={{display:'grid', gridTemplateColumns:'1.4fr 1.1fr 1fr 1fr .9fr', padding:'22px 28px', borderTop: i === 0 ? 'none' : '1px solid var(--m-line)', background: i % 2 === 0 ? '#fff' : 'var(--m-cream)', alignItems:'center'}}>
                   <div style={{display:'flex', alignItems:'center', gap:14, flexWrap:'wrap'}}>
                     <div style={{fontFamily:'var(--font-display)', fontSize:18, fontWeight:600, letterSpacing:'-.015em'}}>{item.brand}</div>
-                    {item.tag && <span style={{padding:'3px 8px', borderRadius:999, background:'var(--m-green-soft)', color:'var(--m-green-deep)', fontSize:10, fontFamily:'var(--font-mono)', letterSpacing:'.08em', textTransform:'uppercase', fontWeight:600}}>{item.tag}</span>}
+                    {item.tag && <span style={{padding:'3px 8px', borderRadius:999, background:'var(--m-green-soft)', color:'var(--m-green-deep)', fontSize:10, fontFamily: 'inherit', letterSpacing:'.08em', textTransform:'uppercase', fontWeight:600}}>{item.tag}</span>}
                   </div>
                   <div style={{fontSize:14.5, color:'var(--m-ink-2)'}}>{item.spec}</div>
-                  <div style={{fontFamily:'var(--font-mono)', fontSize:14, fontWeight:600, color:'var(--m-ink)'}}>{item.down}</div>
-                  <div style={{fontFamily:'var(--font-mono)', fontSize:14, fontWeight:600, color:'var(--m-green-ink)'}}>{item.daily}</div>
+                  <div style={{fontFamily: 'inherit', fontSize:14, fontWeight:600, color:'var(--m-ink)'}}>{item.down}</div>
+                  <div style={{fontFamily: 'inherit', fontSize:14, fontWeight:600, color:'var(--m-green-ink)'}}>{item.daily}</div>
                   <div style={{fontSize:14, color:'var(--m-ink-2)'}}>{item.term}</div>
                 </div>
               ))}
             </div>
-            <p style={{marginTop:18, fontSize:12.5, color:'var(--m-muted)', fontFamily:'var(--font-mono)', letterSpacing:'.04em'}}>* Indicative pricing. Final terms confirmed at branch based on your profile and current promotions.</p>
+            <p style={{marginTop:18, fontSize:12.5, color:'var(--m-muted)', fontFamily: 'inherit', letterSpacing:'.04em'}}>* Indicative pricing. Final terms confirmed at branch based on your profile and current promotions.</p>
           </div>
         </section>
       )}

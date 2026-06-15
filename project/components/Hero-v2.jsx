@@ -48,7 +48,7 @@ const HeroV2 = () =>
       </div>
     </div>
 
-    <div data-hero-corner style={{ position: 'absolute', bottom: 40, right: 40, zIndex: 3, display: 'flex', alignItems: 'center', gap: 12, color: 'rgba(255,255,255,.6)', fontSize: 12, fontFamily: 'var(--font-mono)', letterSpacing: '.14em', textTransform: 'uppercase' }}>
+    <div data-hero-corner style={{ position: 'absolute', bottom: 40, right: 40, zIndex: 3, display: 'flex', alignItems: 'center', gap: 12, color: 'rgba(255,255,255,.6)', fontSize: 12, fontFamily: 'inherit', letterSpacing: '.14em', textTransform: 'uppercase' }}>
       <span>Access · Earn · Grow</span>
       <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6" stroke="currentColor" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
     </div>
@@ -60,7 +60,7 @@ const InvestorStripV2 = () => {
   return (
     <section data-mogo-strip style={{ padding: '36px 0', background: '#fff', borderBottom: '1px solid var(--m-line)' }}>
       <div className="shell" style={{ display: 'flex', alignItems: 'center', gap: 32, flexWrap: 'wrap', justifyContent: 'center' }}>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--m-muted)', whiteSpace: 'nowrap' }}>BRANDS WE WORK WITH</span>
+        <span style={{ fontFamily: 'inherit', fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--m-muted)', whiteSpace: 'nowrap' }}>BRANDS WE WORK WITH</span>
         <div style={{ overflow: 'hidden', flex: 1, maskImage: 'linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)' }}>
           <div className="marquee">
             {[...logos, ...logos].map((l, i) =>

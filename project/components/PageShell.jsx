@@ -5,7 +5,7 @@
 const PageHero = ({eyebrow, title, kicker, accent="var(--m-green)"}) => (
   <section style={{background:'var(--m-cream)', padding:'64px 0 88px', borderBottom:'1px solid var(--m-line-2)'}}>
     <div className="shell">
-      <div style={{display:'flex', gap:8, alignItems:'center', fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:28}}>
+      <div style={{display:'flex', gap:8, alignItems:'center', fontSize:12, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:28}}>
         <a href="../index-v2.html" style={{color:'inherit', textDecoration:'none'}}>Home</a>
         <span>/</span>
         <span style={{color:'var(--m-ink)'}}>{eyebrow}</span>
@@ -58,7 +58,7 @@ const Cards = ({title, eyebrow, cards, cols=3, bg='#fff'}) => (
       <div style={{display:'grid', gridTemplateColumns:`repeat(${cols}, 1fr)`, gap: 20}}>
         {cards.map((c,i) => (
           <div key={i} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding: 32, border:'1px solid var(--m-line-2)'}}>
-            {c.label && <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:12}}>{c.label}</div>}
+            {c.label && <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:12}}>{c.label}</div>}
             <h3 style={{fontSize:22, fontWeight:600, letterSpacing:'-.01em', marginBottom: 12}}>{c.title}</h3>
             <p style={{fontSize:14.5, lineHeight:1.55, color:'var(--m-ink-2)'}}>{c.body}</p>
           </div>
@@ -221,7 +221,7 @@ const FeaturedStory = () => {
           <div style={{position:'absolute', inset:0, display:'flex', flexDirection:'column', justifyContent:'space-between', padding:'clamp(28px,4vw,64px)'}}>
             <div style={{display:'flex', alignItems:'center', gap:10}}>
               <span style={{width:9, height:9, borderRadius:999, background:'var(--m-green)', boxShadow:'0 0 0 4px rgba(122,184,0,.22)'}}/>
-              <span style={{fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.16em', textTransform:'uppercase', color:'rgba(255,255,255,.85)'}}>Featured · From our channel</span>
+              <span style={{fontSize:12, fontFamily: 'inherit', letterSpacing:'.16em', textTransform:'uppercase', color:'rgba(255,255,255,.85)'}}>Featured · From our channel</span>
             </div>
             <div style={{maxWidth: 760}}>
               <h2 className="h-display" style={{fontSize:'clamp(34px,5vw,72px)', lineHeight:1, letterSpacing:'-.03em', color:'#fff', margin:0, fontWeight:700}}>

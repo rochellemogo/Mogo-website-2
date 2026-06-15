@@ -124,7 +124,7 @@ const Branches = () => {
                           <div style={{ fontSize: 14.5, fontWeight: 600, lineHeight: 1.3 }}>{b.n}</div>
                           <div style={{ fontSize: 12.5, color: 'var(--m-muted)', lineHeight: 1.4, marginTop: 2 }}>{b.addr || '—'}</div>
                         </div>
-                        <span style={{ fontSize: 11, color: 'var(--m-muted)', fontFamily: 'var(--font-mono)', marginTop: 4 }}>→</span>
+                        <span style={{ fontSize: 11, color: 'var(--m-muted)', fontFamily: 'inherit', marginTop: 4 }}>→</span>
                       </a>
                   )}
                   </div>
@@ -234,7 +234,7 @@ const Footer = () =>
 
 const FooterCol = ({ title, links }) =>
 <div>
-    <div style={{ fontSize: 12, fontFamily: 'var(--font-mono)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', marginBottom: 16 }}>{title}</div>
+    <div style={{ fontSize: 12, fontFamily: 'inherit', letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,.5)', marginBottom: 16 }}>{title}</div>
     <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
       {links.map((l) => <li key={l}><a href="#" style={{ fontSize: 14 }}>{l}</a></li>)}
     </ul>
@@ -267,7 +267,7 @@ const TweaksPanel = () => {
       {open &&
       <div style={{ padding: '0 18px 18px', display: 'flex', flexDirection: 'column', gap: 16, borderTop: '1px solid var(--m-line)', paddingTop: 14 }}>
           <div>
-            <label style={{ fontSize: 11, fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '.08em', color: 'var(--m-muted)', display: 'block', marginBottom: 8 }}>Primary green</label>
+            <label style={{ fontSize: 11, fontFamily: 'inherit', textTransform: 'uppercase', letterSpacing: '.08em', color: 'var(--m-muted)', display: 'block', marginBottom: 8 }}>Primary green</label>
             <div style={{ display: 'flex', gap: 6 }}>
               {['#7AB800', '#5C8A00', '#8FD600', '#4CAF50'].map((c) =>
             <button key={c} onClick={() => set('--m-green', c)} style={{ width: 28, height: 28, borderRadius: 8, background: c, border: '2px solid #fff', outline: '1px solid var(--m-line)' }} />
@@ -275,7 +275,7 @@ const TweaksPanel = () => {
             </div>
           </div>
           <div>
-            <label style={{ fontSize: 11, fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '.08em', color: 'var(--m-muted)', display: 'block', marginBottom: 8 }}>Cream warmth</label>
+            <label style={{ fontSize: 11, fontFamily: 'inherit', textTransform: 'uppercase', letterSpacing: '.08em', color: 'var(--m-muted)', display: 'block', marginBottom: 8 }}>Cream warmth</label>
             <div style={{ display: 'flex', gap: 6 }}>
               {['#F4EFE3', '#FFFFFF', '#ECE5D2', '#FBF7EC', '#EDE7F2'].map((c) =>
             <button key={c} onClick={() => set('--m-cream', c)} style={{ width: 28, height: 28, borderRadius: 8, background: c, border: '2px solid #fff', outline: '1px solid var(--m-line)' }} />
@@ -283,7 +283,7 @@ const TweaksPanel = () => {
             </div>
           </div>
           <div>
-            <label style={{ fontSize: 11, fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '.08em', color: 'var(--m-muted)', display: 'block', marginBottom: 8 }}>Display font</label>
+            <label style={{ fontSize: 11, fontFamily: 'inherit', textTransform: 'uppercase', letterSpacing: '.08em', color: 'var(--m-muted)', display: 'block', marginBottom: 8 }}>Display font</label>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
               {[
             { l: 'Poppins (modern fintech)', v: '"Poppins", sans-serif' },

@@ -25,14 +25,14 @@ const NewsArticle = () => {
       {/* Article header */}
       <section style={{background:'var(--m-cream)', padding:'56px 0 72px', borderBottom:'1px solid var(--m-line-2)'}}>
         <div className="shell" style={{maxWidth: 880}}>
-          <div style={{display:'flex', gap:8, alignItems:'center', fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:40}}>
+          <div style={{display:'flex', gap:8, alignItems:'center', fontSize:12, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:40}}>
             <a href="../index.html" style={{color:'inherit', textDecoration:'none'}}>Home</a>
             <span>/</span>
             <a href="./news.html" style={{color:'inherit', textDecoration:'none'}}>News</a>
             <span>/</span>
             <span style={{color:'var(--m-ink)'}}>{article.tag}</span>
           </div>
-          <div style={{display:'flex', gap:16, alignItems:'center', marginBottom:28, fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
+          <div style={{display:'flex', gap:16, alignItems:'center', marginBottom:28, fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
             <span style={{padding:'5px 10px', border:'1px solid var(--m-line)', borderRadius:999, color:'var(--m-green-ink)'}}>{article.tag}</span>
             <span>{article.dateLong}</span>
           </div>
@@ -46,7 +46,7 @@ const NewsArticle = () => {
         <div className="shell" style={{maxWidth: 1040}}>
           <div style={{aspectRatio:'16/8', background:`linear-gradient(135deg, hsl(${(idx*37)%360} 24% 78%), hsl(${(idx*37+60)%360} 20% 58%))`, borderRadius:'var(--r-xl)', position:'relative', overflow:'hidden'}}>
             <div className="grain"/>
-            <div style={{position:'absolute', bottom:20, left:24, right:24, display:'flex', justifyContent:'space-between', alignItems:'flex-end', color:'rgba(255,255,255,.88)', fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase'}}>
+            <div style={{position:'absolute', bottom:20, left:24, right:24, display:'flex', justifyContent:'space-between', alignItems:'flex-end', color:'rgba(255,255,255,.88)', fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase'}}>
               <span>Photo · {article.photoLabel}</span>
               <span>Drop image here · 16:8</span>
             </div>
@@ -66,7 +66,7 @@ const NewsArticle = () => {
               fontWeight: i === 0 ? 500 : 400,
             }}>{para}</p>
           ))}
-          <div style={{marginTop:48, paddingTop:28, borderTop:'1px solid var(--m-line-2)', display:'flex', justifyContent:'space-between', alignItems:'center', fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
+          <div style={{marginTop:48, paddingTop:28, borderTop:'1px solid var(--m-line-2)', display:'flex', justifyContent:'space-between', alignItems:'center', fontSize:12, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
             <span>End · Mogo Kenya Newsroom</span>
             <span>{article.dateLong}</span>
           </div>
@@ -79,13 +79,13 @@ const NewsArticle = () => {
           <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:20, borderTop:'1px solid var(--m-line)', paddingTop: 32}}>
             {prev ? (
               <a href={`./news-article.html?slug=${prev.slug}`} style={{display:'block', padding:'28px 32px', background:'var(--m-cream)', borderRadius:'var(--r-lg)', textDecoration:'none', color:'var(--m-ink)', border:'1px solid var(--m-line-2)'}}>
-                <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:10}}>← Newer · {prev.date}</div>
+                <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:10}}>← Newer · {prev.date}</div>
                 <div style={{fontSize:18, fontWeight:600, letterSpacing:'-.01em', lineHeight:1.25}}>{prev.title}</div>
               </a>
             ) : <div/>}
             {next ? (
               <a href={`./news-article.html?slug=${next.slug}`} style={{display:'block', padding:'28px 32px', background:'var(--m-cream)', borderRadius:'var(--r-lg)', textDecoration:'none', color:'var(--m-ink)', border:'1px solid var(--m-line-2)', textAlign:'right'}}>
-                <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:10}}>Older · {next.date} →</div>
+                <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:10}}>Older · {next.date} →</div>
                 <div style={{fontSize:18, fontWeight:600, letterSpacing:'-.01em', lineHeight:1.25}}>{next.title}</div>
               </a>
             ) : <div/>}

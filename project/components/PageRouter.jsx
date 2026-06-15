@@ -45,8 +45,7 @@ const SakaCheck = () => {
   };
 
   const tabStyle = (active) => ({
-    flex: 1, padding: '10px 12px', borderRadius: 8, border: 'none', cursor: 'pointer',
-    fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.1em', textTransform: 'uppercase',
+    flex: 1, padding: '10px 12px', borderRadius: 8, border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 11, letterSpacing: '.1em', textTransform: 'uppercase',
     fontWeight: 600, transition: 'all .15s',
     background: active ? 'var(--m-ink)' : 'transparent',
     color: active ? '#fff' : 'var(--m-ink-2)',
@@ -60,14 +59,14 @@ const SakaCheck = () => {
         <button type="button" onClick={() => reset('chassis')} style={tabStyle(mode === 'chassis')}>Chassis number</button>
       </div>
 
-      <label style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
+      <label style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
         {mode === 'plate' ? 'Registration plate' : 'Chassis number'}
       </label>
       <div style={{display:'flex', gap:8, marginTop:12}}>
         <input value={value} placeholder={placeholder}
           onChange={(e) => { setValue(e.target.value); setResult(null); }}
           onKeyDown={(e) => { if (e.key === 'Enter') check(); }}
-          style={{flex:1, minWidth:0, padding:'14px 16px', fontSize:15, fontFamily:'var(--font-mono)', border:'1px solid var(--m-line-2)', borderRadius:10, background:'#fff', outline:'none', letterSpacing:'.04em'}}/>
+          style={{flex:1, minWidth:0, padding:'14px 16px', fontSize:15, fontFamily: 'inherit', border:'1px solid var(--m-line-2)', borderRadius:10, background:'#fff', outline:'none', letterSpacing:'.04em'}}/>
         <button type="button" onClick={check} className="btn btn-dark" style={{flexShrink:0}}>Check SAKA</button>
       </div>
 
@@ -137,7 +136,7 @@ const TheftReport = () => {
     borderRadius:10, background:'rgba(255,255,255,.06)', color:'#fff',
     fontFamily:'inherit', outline:'none', transition:'border-color .15s',
   });
-  const labelStyle = { display:'block', fontSize:10.5, fontFamily:'var(--font-mono)', letterSpacing:'.12em', textTransform:'uppercase', color:'rgba(255,255,255,.55)', marginBottom:6 };
+  const labelStyle = { display:'block', fontSize:10.5, fontFamily: 'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'rgba(255,255,255,.55)', marginBottom:6 };
 
   if (submitted) {
     return (
@@ -186,7 +185,7 @@ const TheftReport = () => {
         <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:14}}>
           <div>
             <label style={labelStyle} htmlFor="tr-plate">Plate number</label>
-            <input id="tr-plate" type="text" placeholder="KDA 123A" value={form.plate} onChange={set('plate')} style={{...fieldStyle('plate'), fontFamily:'var(--font-mono)', letterSpacing:'.04em'}}/>
+            <input id="tr-plate" type="text" placeholder="KDA 123A" value={form.plate} onChange={set('plate')} style={{...fieldStyle('plate'), fontFamily: 'inherit', letterSpacing:'.04em'}}/>
           </div>
           <div>
             <label style={labelStyle} htmlFor="tr-year">Year</label>
@@ -205,7 +204,7 @@ const TheftReport = () => {
         </div>
         <div>
           <label style={labelStyle} htmlFor="tr-chassis">Chassis number</label>
-          <input id="tr-chassis" type="text" placeholder="KMFG41BP000123" value={form.chassis} onChange={set('chassis')} style={{...fieldStyle('chassis'), fontFamily:'var(--font-mono)', letterSpacing:'.04em'}}/>
+          <input id="tr-chassis" type="text" placeholder="KMFG41BP000123" value={form.chassis} onChange={set('chassis')} style={{...fieldStyle('chassis'), fontFamily: 'inherit', letterSpacing:'.04em'}}/>
         </div>
 
         <div>
@@ -288,7 +287,7 @@ const NewsList = () => {
                   <div className="grain"/>
                 </div>
                 <div style={{paddingTop:4}}>
-                  <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:12, display:'flex', gap:12}}>
+                  <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:12, display:'flex', gap:12}}>
                     <span>{n.date}</span>
                     <span style={{color:'var(--m-line)'}}>·</span>
                     <span>{n.tag}</span>
@@ -314,7 +313,7 @@ const NewsList = () => {
               {Array.from({length: pages}).map((_, p) => (
                 <button key={p} onClick={()=>go(p)}
                   aria-current={p===page}
-                  style={{width:40, height:40, borderRadius:999, border:'1px solid '+(p===page?'var(--m-ink)':'var(--m-line-2)'), background: p===page?'var(--m-ink)':'#fff', color: p===page?'#fff':'var(--m-ink)', fontSize:13.5, fontWeight:600, cursor:'pointer', fontFamily:'var(--font-mono)'}}>
+                  style={{width:40, height:40, borderRadius:999, border:'1px solid '+(p===page?'var(--m-ink)':'var(--m-line-2)'), background: p===page?'var(--m-ink)':'#fff', color: p===page?'#fff':'var(--m-ink)', fontSize:13.5, fontWeight:600, cursor:'pointer', fontFamily: 'inherit'}}>
                   {p+1}
                 </button>
               ))}
@@ -375,10 +374,10 @@ const AboutPageBody = () => {
         {d.eleving_body2 && <p style={{marginTop:18}}>{d.eleving_body2}</p>}
         <div style={{marginTop:36,display:'grid',gridTemplateColumns:'1.4fr 1fr',gap:32,alignItems:'center',padding:'28px 32px',background:'var(--m-cream)',border:'1px solid var(--m-line-2)',borderRadius:'var(--r-xl)'}} className="ft-award-block">
           <div>
-            <div style={{fontSize:11,fontFamily:'var(--font-mono)',letterSpacing:'.14em',textTransform:'uppercase',color:'var(--m-green-ink)',marginBottom:12}}><span className="dot" style={{display:'inline-block',width:6,height:6,borderRadius:999,background:'var(--m-green)',marginRight:8,verticalAlign:'middle'}}/>Recognition</div>
+            <div style={{fontSize:11, fontFamily: 'inherit',letterSpacing:'.14em',textTransform:'uppercase',color:'var(--m-green-ink)',marginBottom:12}}><span className="dot" style={{display:'inline-block',width:6,height:6,borderRadius:999,background:'var(--m-green)',marginRight:8,verticalAlign:'middle'}}/>Recognition</div>
             <p style={{fontSize:15.5,lineHeight:1.55,color:'var(--m-ink)',margin:0}}>{d.award_text}</p>
           </div>
-          {d.award_badge_image ? <img src={d.award_badge_image} alt="Award badge" style={{maxWidth:200,marginLeft:'auto',borderRadius:12,display:'block'}}/> : <div style={{aspectRatio:'1/1',maxWidth:200,marginLeft:'auto',background:'repeating-linear-gradient(135deg,#fff 0 10px,#faf5ec 10px 20px)',border:'1px dashed var(--m-line-2)',borderRadius:12,display:'grid',placeItems:'center',textAlign:'center',padding:18}}><div style={{fontFamily:'var(--font-mono)',fontSize:10,letterSpacing:'.14em',textTransform:'uppercase',color:'var(--m-muted)'}}>Drop award badge here</div></div>}
+          {d.award_badge_image ? <img src={d.award_badge_image} alt="Award badge" style={{maxWidth:200,marginLeft:'auto',borderRadius:12,display:'block'}}/> : <div style={{aspectRatio:'1/1',maxWidth:200,marginLeft:'auto',background:'repeating-linear-gradient(135deg,#fff 0 10px,#faf5ec 10px 20px)',border:'1px dashed var(--m-line-2)',borderRadius:12,display:'grid',placeItems:'center',textAlign:'center',padding:18}}><div style={{fontFamily: 'inherit',fontSize:10,letterSpacing:'.14em',textTransform:'uppercase',color:'var(--m-muted)'}}>Drop award badge here</div></div>}
         </div>
         <div style={{marginTop:36,display:'flex',flexWrap:'wrap',gap:8}}>{countries.map(c=><span key={c} style={{padding:'6px 12px',border:'1px solid var(--m-line-2)',borderRadius:999,fontSize:13,fontWeight:500}}>{c}</span>)}</div>
       </Prose>
@@ -447,9 +446,9 @@ const MOGO_PAGES = {
               {eyebrow:'Media · press enquiries', title:'Becky', body:'Press, interviews and media partnerships. Call or WhatsApp.', action:{label:'Call Becky', href:'tel:0727826832'}, accent:'#003478', subtitle:'0727 826 832'},
             ].map((c,i) => (
               <div key={i} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding:32, border:'1px solid var(--m-line-2)', display:'flex', flexDirection:'column', gap:14}}>
-                <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color: c.accent, fontWeight:600}}>{c.eyebrow}</div>
+                <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color: c.accent, fontWeight:600}}>{c.eyebrow}</div>
                 <div style={{fontSize:32, fontWeight:600, letterSpacing:'-.02em', lineHeight:1.1, fontFamily:'var(--font-display)'}}>{c.title}</div>
-                {c.subtitle && <div style={{fontSize:18, fontWeight:600, color:'var(--m-ink)', marginTop:-6, fontFamily:'var(--font-mono)', letterSpacing:'.02em'}}>{c.subtitle}</div>}
+                {c.subtitle && <div style={{fontSize:18, fontWeight:600, color:'var(--m-ink)', marginTop:-6, fontFamily: 'inherit', letterSpacing:'.02em'}}>{c.subtitle}</div>}
                 <div style={{fontSize:14.5, color:'var(--m-ink-2)', lineHeight:1.55, flex:1}}>{c.body}</div>
                 <a href={c.action.href} style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:14, fontWeight:600, color:'var(--m-ink)', textDecoration:'none', marginTop:8}}>
                   {c.action.label} <ArrowRight/>
@@ -489,7 +488,7 @@ const MOGO_PAGES = {
                 <dl style={{display:'grid', gridTemplateColumns:'140px 1fr', rowGap:12, columnGap:16, margin:0}}>
                   {m.steps.map(([k,v],j) => (
                     <React.Fragment key={j}>
-                      <dt style={{fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-ink-2)', paddingTop:4}}>{k}</dt>
+                      <dt style={{fontSize:12, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-ink-2)', paddingTop:4}}>{k}</dt>
                       <dd style={{margin:0, fontSize:16, fontWeight:500, color:'var(--m-ink)'}}>{v}</dd>
                     </React.Fragment>
                   ))}
@@ -590,7 +589,7 @@ const MOGO_PAGES = {
                 <a key={i} href="mailto:careers@mogo.co.ke" style={{display:'grid', gridTemplateColumns:'2fr 2fr 1fr 40px', padding:'22px 28px', gap: 20, alignItems:'center', color:'var(--m-ink)', textDecoration:'none', borderBottom: i<arr.length-1 ? '1px solid var(--m-line-2)' : 'none'}}>
                   <div style={{fontSize:18, fontWeight:600}}>{r[0]}</div>
                   <div style={{fontSize:14, color:'var(--m-ink-2)'}}>{r[1]}</div>
-                  <div style={{fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:600}}>{r[2]}</div>
+                  <div style={{fontSize:12, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:600}}>{r[2]}</div>
                   <ArrowRight/>
                 </a>
               ))}
@@ -632,21 +631,19 @@ const MOGO_PAGES = {
         <section style={{padding:'96px 0', background:'#fff'}}>
           <div className="shell" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap: 48, alignItems:'start'}}>
             <div>
-              <div className="h-eyebrow"><span className="dot"/>Check a vehicle</div>
-              <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 60px)', marginTop:12, marginBottom:24}}>Before you <em>buy,</em><br/>check SAKA.</h2>
+              <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 60px)', marginTop:12, marginBottom:24}}>Check <em>a vehicle.</em></h2>
               <p style={{fontSize:17, color:'var(--m-ink-2)', lineHeight:1.6, marginBottom:28}}>
                 Enter a registration plate or chassis number. If it's in our stolen database, SAKA will flag it — and help law enforcement get it back to its owner.
               </p>
               <SakaCheck/>
             </div>
             <div>
-              <div className="h-eyebrow"><span className="dot" style={{background:'#E96A3B'}}/>Report a theft</div>
-              <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 60px)', marginTop:12, marginBottom:24}}>If it's <em>gone,</em><br/>call first.</h2>
+              <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 60px)', marginTop:12, marginBottom:24}}>Report <em>a theft.</em></h2>
               <p style={{fontSize:17, color:'var(--m-ink-2)', lineHeight:1.6, marginBottom:28}}>
                 Our emergency line runs 24/7. Call with your agreement number and the last known location — we'll file the report with authorities and add your vehicle to SAKA.
               </p>
               <div style={{background:'var(--m-ink)', borderRadius:'var(--r-xl)', padding: 32, color:'#fff', marginBottom:20}}>
-                <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'#E96A3B', fontWeight:600, marginBottom:14}}>Emergency · 24/7</div>
+                <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'#E96A3B', fontWeight:600, marginBottom:14}}>Emergency · 24/7</div>
                 <div style={{fontSize:40, fontWeight:600, letterSpacing:'-.02em', fontFamily:'var(--font-display)', marginBottom:20}}>0719 089 999</div>
                 <a href="tel:0719089999" className="btn btn-primary">Call now <span className="arrow-pill"><ArrowRight/></span></a>
               </div>

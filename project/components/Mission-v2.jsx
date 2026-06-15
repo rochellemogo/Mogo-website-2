@@ -43,7 +43,7 @@ const IsIsNot_DISABLED = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: '1px solid rgba(255,255,255,.12)', borderRadius: 'var(--r-xl)', overflow: 'hidden' }}>
           <div style={{ padding: '40px', borderRight: '1px solid rgba(255,255,255,.12)' }}>
-            <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--m-green)', marginBottom: 32 }}>Mogo IS</div>
+            <div style={{ fontSize: 11, fontFamily: 'inherit', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--m-green)', marginBottom: 32 }}>Mogo IS</div>
             {items.map((it, i) =>
             <div key={i} style={{ padding: '20px 0', borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,.08)' }}>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 600, letterSpacing: '-.02em', marginBottom: 6 }}>
@@ -54,7 +54,7 @@ const IsIsNot_DISABLED = () => {
             )}
           </div>
           <div style={{ padding: '40px', background: 'rgba(255,255,255,.02)' }}>
-            <div style={{ fontSize: 11, fontFamily: 'var(--font-mono)', letterSpacing: '.18em', textTransform: 'uppercase', color: '#FFB37A', marginBottom: 32 }}>Mogo is NOT</div>
+            <div style={{ fontSize: 11, fontFamily: 'inherit', letterSpacing: '.18em', textTransform: 'uppercase', color: '#FFB37A', marginBottom: 32 }}>Mogo is NOT</div>
             {items.map((it, i) =>
             <div key={i} style={{ padding: '20px 0', borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,.08)' }}>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 600, letterSpacing: '-.02em', marginBottom: 6, color: 'rgba(255,255,255,.55)' }}>
@@ -98,12 +98,12 @@ const Personas = () => {
               <div style={{ position: 'relative', aspectRatio: '5/4', overflow: 'hidden' }}>
                 <ProductImage theme={p.theme} slug={p.product.toLowerCase().includes('boda') ? 'boda' : p.product.toLowerCase().includes('car') ? 'car' : p.product.toLowerCase().includes('device') ? 'smart' : 'check'} />
                 <div style={{ position: 'absolute', top: 14, left: 14, right: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
-                  <div style={{ padding: '5px 10px', borderRadius: 999, background: 'rgba(11,18,32,.55)', backdropFilter: 'blur(10px)', fontSize: 10, fontFamily: 'var(--font-mono)', letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.9)' }}>{p.product}</div>
-                  <div style={{ fontSize: 10, fontFamily: 'var(--font-mono)', letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.92)', textShadow: '0 1px 6px rgba(0,0,0,.4)' }}>{p.loc}</div>
+                  <div style={{ padding: '5px 10px', borderRadius: 999, background: 'rgba(11,18,32,.55)', backdropFilter: 'blur(10px)', fontSize: 10, fontFamily: 'inherit', letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.9)' }}>{p.product}</div>
+                  <div style={{ fontSize: 10, fontFamily: 'inherit', letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.92)', textShadow: '0 1px 6px rgba(0,0,0,.4)' }}>{p.loc}</div>
                 </div>
                 <div style={{ position: 'absolute', bottom: 14, left: 14, right: 14, color: '#fff' }}>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 600, letterSpacing: '-.02em', lineHeight: 1.05 }}>{p.name}</div>
-                  <div style={{ fontSize: 12, fontFamily: 'var(--font-mono)', letterSpacing: '.1em', textTransform: 'uppercase', opacity: .85, marginTop: 4 }}>{p.age} · {p.role}</div>
+                  <div style={{ fontSize: 12, fontFamily: 'inherit', letterSpacing: '.1em', textTransform: 'uppercase', opacity: .85, marginTop: 4 }}>{p.age} · {p.role}</div>
                 </div>
               </div>
               <div style={{ padding: '28px 28px 32px', display: 'flex', flexDirection: 'column', flex: 1 }}>
@@ -139,13 +139,13 @@ const CompetitiveLandscape = () => {
           <div key={i} style={{ display: 'grid', gridTemplateColumns: '180px 1fr 1fr', gap: 32, padding: '24px 0', borderBottom: '1px solid var(--m-line-2)', alignItems: 'baseline' }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 22, letterSpacing: '-.02em' }}>{r.brand}</div>
               <div style={{ fontStyle: 'italic', fontSize: 22, color: 'var(--m-ink-2)' }}>"{r.line}"</div>
-              <div style={{ fontSize: 14, color: 'var(--m-muted)', fontFamily: 'var(--font-mono)', letterSpacing: '.04em' }}>{r.owns}</div>
+              <div style={{ fontSize: 14, color: 'var(--m-muted)', fontFamily: 'inherit', letterSpacing: '.04em' }}>{r.owns}</div>
             </div>
           )}
           <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr 1fr', gap: 32, padding: '32px 0', borderBottom: '1px solid var(--m-line-2)', alignItems: 'baseline', background: 'var(--m-green-soft)', margin: '0 -24px', paddingLeft: 24, paddingRight: 24, borderRadius: 'var(--r-lg)' }}>
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 28, letterSpacing: '-.02em', color: 'var(--m-green-deep)' }}>Mogo</div>
             <div style={{ fontStyle: 'italic', fontSize: 28, color: 'var(--m-green-deep)' }}>"Finance your future. Jenga kesho."</div>
-            <div style={{ fontSize: 14, color: 'var(--m-green-deep)', fontFamily: 'var(--font-mono)', letterSpacing: '.04em', fontWeight: 600 }}>The income-generating asset. The bike, car, phone, shop.</div>
+            <div style={{ fontSize: 14, color: 'var(--m-green-deep)', fontFamily: 'inherit', letterSpacing: '.04em', fontWeight: 600 }}>The income-generating asset. The bike, car, phone, shop.</div>
           </div>
         </div>
 
@@ -169,7 +169,7 @@ const CompetitiveLandscape = () => {
 
 const MissionPointV2 = ({ n, t, d }) =>
 <div>
-    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.14em', color: 'var(--m-green-ink)', marginBottom: 20 }}>{n}</div>
+    <div style={{ fontFamily: 'inherit', fontSize: 11, letterSpacing: '.14em', color: 'var(--m-green-ink)', marginBottom: 20 }}>{n}</div>
     <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 22, letterSpacing: '-.02em', margin: '0 0 12px' }}>{t}</h3>
     <p style={{ fontSize: 15.5, color: 'var(--m-ink-2)', lineHeight: 1.55, margin: 0 }}>{d}</p>
   </div>;

@@ -108,7 +108,7 @@ const ImpactPillars = () => {
                 transition:'transform .15s, box-shadow .15s, border-color .15s',
               }}>
                 <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:10}}>
-                  <span style={{fontFamily:'var(--font-mono)', fontSize:11, fontWeight:700, letterSpacing:'.14em', color:'var(--m-muted)'}}>{p.n}</span>
+                  <span style={{fontFamily: 'inherit', fontSize:11, fontWeight:700, letterSpacing:'.14em', color:'var(--m-muted)'}}>{p.n}</span>
                   <span style={{width:10, height:10, borderRadius:999, background: p.accent}}/>
                 </div>
                 <div style={{fontSize:15, fontWeight:700, lineHeight:1.25}}>{p.eyebrow}</div>
@@ -143,7 +143,7 @@ const ImpactPillars = () => {
               }}>
                 {/* TEXT */}
                 <div style={{order: flip ? 2 : 1}}>
-                  <div style={{display:'inline-flex', alignItems:'center', gap:10, padding:'6px 12px', borderRadius:999, background:`${p.accent}1a`, color: p.accent, fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', fontWeight:700, marginBottom: 20}}>
+                  <div style={{display:'inline-flex', alignItems:'center', gap:10, padding:'6px 12px', borderRadius:999, background:`${p.accent}1a`, color: p.accent, fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', fontWeight:700, marginBottom: 20}}>
                     <span style={{fontWeight:900}}>{p.n}</span>
                     <span style={{opacity:.4}}>·</span>
                     <span>{p.badge}</span>
@@ -164,7 +164,7 @@ const ImpactPillars = () => {
 
                   {p.partners && (
                     <div style={{marginBottom: 28}}>
-                      <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700, marginBottom:10}}>Partners</div>
+                      <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700, marginBottom:10}}>Partners</div>
                       <div style={{display:'flex', flexWrap:'wrap', gap:8}}>
                         {p.partners.map(pt => (
                           <span key={pt} style={{padding:'6px 12px', borderRadius:999, background:'#fff', border:'1px solid var(--m-line-2)', fontSize:13, fontWeight:600}}>{pt}</span>
@@ -191,10 +191,10 @@ const ImpactPillars = () => {
                          style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}
                          onError={(e)=>{e.currentTarget.style.display='none';}}/>
                     <div style={{position:'absolute', inset:0, background:`linear-gradient(180deg, transparent 55%, rgba(0,0,0,.45) 100%)`}}/>
-                    <div style={{position:'absolute', top:16, left:16, padding:'6px 12px', borderRadius:999, background:'rgba(255,255,255,.92)', color:'var(--m-ink)', fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', fontWeight:700}}>
+                    <div style={{position:'absolute', top:16, left:16, padding:'6px 12px', borderRadius:999, background:'rgba(255,255,255,.92)', color:'var(--m-ink)', fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', fontWeight:700}}>
                       {p.n} / {String(IMPACT_PILLARS.length).padStart(2,'0')}
                     </div>
-                    <div style={{position:'absolute', bottom:16, left:16, right:16, color:'#fff', fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.12em', textTransform:'uppercase'}}>
+                    <div style={{position:'absolute', bottom:16, left:16, right:16, color:'#fff', fontSize:12, fontFamily: 'inherit', letterSpacing:'.12em', textTransform:'uppercase'}}>
                       Photo · {photoTag}
                     </div>
                   </div>
@@ -231,7 +231,7 @@ const ReportPreview = ({reportUrl, onTryInline}) => (
       <div style={{height: 8, background:'var(--m-green)'}}/>
       <div style={{flex:1, padding:'14px 12px', display:'flex', flexDirection:'column', justifyContent:'space-between', textAlign:'left'}}>
         <div>
-          <div style={{fontFamily:'var(--font-mono)', fontSize:8, letterSpacing:'.12em', color:'var(--m-muted)', fontWeight:700, marginBottom:8}}>MOGO · ESG 2026</div>
+          <div style={{fontFamily: 'inherit', fontSize:8, letterSpacing:'.12em', color:'var(--m-muted)', fontWeight:700, marginBottom:8}}>MOGO · ESG 2026</div>
           <div style={{fontFamily:'var(--font-display)', fontSize:13, fontWeight:800, lineHeight:1.1, color:'var(--m-ink)'}}>Impact<br/>Report</div>
         </div>
         <div style={{display:'flex', flexDirection:'column', gap:3}}>

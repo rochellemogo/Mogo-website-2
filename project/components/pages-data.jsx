@@ -67,7 +67,7 @@ const MOGO_PAGES = {
               {eyebrow:'Head office',      title:'Westlands, Nairobi', body:'Mogo Auto Ltd · Kenya head office. Branches in 6 regions.', action:{label:'See all branches', href:'../index.html#branches'}, accent:'#8B5CF6'},
             ].map((c,i) => (
               <div key={i} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding:32, border:'1px solid var(--m-line-2)', display:'flex', flexDirection:'column', gap:14}}>
-                <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color: c.accent, fontWeight:600}}>{c.eyebrow}</div>
+                <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color: c.accent, fontWeight:600}}>{c.eyebrow}</div>
                 <div style={{fontSize:32, fontWeight:600, letterSpacing:'-.02em', lineHeight:1.1, fontFamily:'var(--font-display)'}}>{c.title}</div>
                 <div style={{fontSize:14.5, color:'var(--m-ink-2)', lineHeight:1.55, flex:1}}>{c.body}</div>
                 <a href={c.action.href} style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:14, fontWeight:600, color:'var(--m-ink)', textDecoration:'none', marginTop:8}}>
@@ -98,14 +98,14 @@ const MOGO_PAGES = {
             ].map((m,i) => (
               <div key={i} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding:32, border:'1px solid var(--m-line-2)'}}>
                 <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:18}}>
-                  <span style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color: m.accent, fontWeight:600}}>{m.tag}</span>
+                  <span style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color: m.accent, fontWeight:600}}>{m.tag}</span>
                   <span style={{width:10, height:10, borderRadius:999, background: m.accent}}/>
                 </div>
                 <h3 style={{fontSize:32, fontWeight:600, letterSpacing:'-.02em', fontFamily:'var(--font-display)', marginBottom:20}}>{m.title}</h3>
                 <dl style={{display:'grid', gridTemplateColumns:'140px 1fr', rowGap:12, columnGap:16, margin:0}}>
                   {m.steps.map(([k,v],j) => (
                     <React.Fragment key={j}>
-                      <dt style={{fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-ink-2)', paddingTop:4}}>{k}</dt>
+                      <dt style={{fontSize:12, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-ink-2)', paddingTop:4}}>{k}</dt>
                       <dd style={{margin:0, fontSize:16, fontWeight:500, color:'var(--m-ink)'}}>{v}</dd>
                     </React.Fragment>
                   ))}
@@ -206,7 +206,7 @@ const MOGO_PAGES = {
                 <a key={i} href="mailto:careers@mogo.co.ke" style={{display:'grid', gridTemplateColumns:'2fr 2fr 1fr 40px', padding:'22px 28px', gap: 20, alignItems:'center', color:'var(--m-ink)', textDecoration:'none', borderBottom: i<arr.length-1 ? '1px solid var(--m-line-2)' : 'none'}}>
                   <div style={{fontSize:18, fontWeight:600}}>{r[0]}</div>
                   <div style={{fontSize:14, color:'var(--m-ink-2)'}}>{r[1]}</div>
-                  <div style={{fontSize:12, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:600}}>{r[2]}</div>
+                  <div style={{fontSize:12, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:600}}>{r[2]}</div>
                   <ArrowRight/>
                 </a>
               ))}
@@ -235,9 +235,9 @@ const MOGO_PAGES = {
                 Enter a chassis number, engine number or registration plate. If it's in our stolen database, SAKA will flag it — and help law enforcement get it back to its owner.
               </p>
               <div style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding: 28, border:'1px solid var(--m-line-2)'}}>
-                <label style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>Chassis / registration / engine number</label>
+                <label style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>Chassis / registration / engine number</label>
                 <div style={{display:'flex', gap:8, marginTop:12}}>
-                  <input placeholder="e.g. KMFG41BP..." style={{flex:1, padding:'14px 16px', fontSize:15, fontFamily:'var(--font-mono)', border:'1px solid var(--m-line-2)', borderRadius:10, background:'#fff', outline:'none', letterSpacing:'.04em'}}/>
+                  <input placeholder="e.g. KMFG41BP..." style={{flex:1, padding:'14px 16px', fontSize:15, fontFamily: 'inherit', border:'1px solid var(--m-line-2)', borderRadius:10, background:'#fff', outline:'none', letterSpacing:'.04em'}}/>
                   <button className="btn btn-dark" style={{flexShrink:0}}>Check SAKA</button>
                 </div>
                 <p style={{fontSize:12, color:'var(--m-ink-2)', marginTop:12, margin:'12px 0 0'}}>This is a demo form. For live lookups visit mogo.co.ke/saka.</p>
@@ -250,7 +250,7 @@ const MOGO_PAGES = {
                 Our emergency line runs 24/7. Call with your agreement number and the last known location — we'll file the report with authorities and add your vehicle to SAKA.
               </p>
               <div style={{background:'var(--m-ink)', borderRadius:'var(--r-xl)', padding: 32, color:'#fff'}}>
-                <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'#E96A3B', fontWeight:600, marginBottom:14}}>Emergency · 24/7</div>
+                <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'#E96A3B', fontWeight:600, marginBottom:14}}>Emergency · 24/7</div>
                 <div style={{fontSize:40, fontWeight:600, letterSpacing:'-.02em', fontFamily:'var(--font-display)', marginBottom:20}}>0719 089 999</div>
                 <a href="tel:0719089999" className="btn btn-primary">Call now <span className="arrow-pill"><ArrowRight/></span></a>
               </div>
@@ -353,7 +353,7 @@ const NewsPage = () => {
   return (
     <section style={{padding:'72px 0 120px', background:'#fff'}}>
       <div className="shell" style={{maxWidth: 1180}}>
-        <div style={{display:'flex', alignItems:'baseline', justifyContent:'space-between', borderBottom:'1px solid var(--m-line)', paddingBottom:20, marginBottom:8, fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
+        <div style={{display:'flex', alignItems:'baseline', justifyContent:'space-between', borderBottom:'1px solid var(--m-line)', paddingBottom:20, marginBottom:8, fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
           <span>{items.length} stories · newest first</span>
           <span>Updated {items[0]?.dateLong || ''}</span>
         </div>
@@ -365,11 +365,11 @@ const NewsPage = () => {
                 background: n.photo ? 'var(--m-cream)' : `linear-gradient(135deg, hsl(${(i*37)%360} 24% 78%), hsl(${(i*37+60)%360} 20% 58%))`}}>
                 {n.photo
                   ? <img src={n.photo} alt={n.title} style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}/>
-                  : <><div className="grain"/><div style={{position:'absolute', top:12, left:12, fontSize:10, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', padding:'5px 9px', background:'rgba(11,18,32,.55)', backdropFilter:'blur(10px)', color:'rgba(255,255,255,.9)', borderRadius:999}}>{n.tag}</div><div style={{position:'absolute', bottom:10, right:12, fontSize:9, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', color:'rgba(255,255,255,.82)'}}>Photo · {n.photoLabel}</div></>
+                  : <><div className="grain"/><div style={{position:'absolute', top:12, left:12, fontSize:10, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', padding:'5px 9px', background:'rgba(11,18,32,.55)', backdropFilter:'blur(10px)', color:'rgba(255,255,255,.9)', borderRadius:999}}>{n.tag}</div><div style={{position:'absolute', bottom:10, right:12, fontSize:9, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'rgba(255,255,255,.82)'}}>Photo · {n.photoLabel}</div></>
                 }
               </div>
               <div style={{paddingTop:4}}>
-                <div style={{fontSize:11, fontFamily:'var(--font-mono)', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:12, display:'flex', gap:12}}>
+                <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:12, display:'flex', gap:12}}>
                   <span>{n.date}</span>
                   <span style={{color:'var(--m-line)'}}>·</span>
                   <span>{n.tag}</span>

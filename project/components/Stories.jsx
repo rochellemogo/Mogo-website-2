@@ -9,10 +9,9 @@ const Stories = () => {
       <div className="shell">
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'end', marginBottom: 48, flexWrap:'wrap', gap:24}}>
           <div>
-            <div className="h-eyebrow"><span className="dot"/>Customer stories</div>
+            <a href="pages/our-stories.html" style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:13, fontWeight:600, letterSpacing:'.06em', textTransform:'uppercase', color:'var(--m-green-ink)', textDecoration:'none', marginBottom:14}}>Watch our stories <ArrowRight size={13}/></a>
             <h2 className="mega-head">Real Kenyans.<br/><em>Real</em> businesses.</h2>
           </div>
-          <a href="#" className="btn btn-ghost">Read more stories <ArrowRight/></a>
         </div>
 
         <div data-stories-grid style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 20}}>
@@ -31,7 +30,7 @@ const Stories = () => {
                     <div style={{fontWeight:600, fontSize:15}}>{s.name}</div>
                     <div style={{fontSize:12.5, color:'var(--m-muted)', marginTop:2}}>{s.role}</div>
                   </div>
-                  <div style={{fontSize:10.5, fontFamily:'var(--font-mono)', letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 10px', borderRadius: 6, background:'var(--m-green-soft)', color:'var(--m-green-deep)'}}>{s.product}</div>
+                  <div style={{fontSize:10.5, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', padding:'5px 10px', borderRadius: 6, background:'var(--m-green-soft)', color:'var(--m-green-deep)'}}>{s.product}</div>
                 </div>
               </div>
             </article>

@@ -19,7 +19,7 @@ const Mission = () => (
 
 const MissionPoint = ({n,t,d}) => (
   <div>
-    <div style={{fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'.14em', color:'var(--m-green-ink)', marginBottom:20}}>{n}</div>
+    <div style={{fontFamily: 'inherit', fontSize:11, letterSpacing:'.14em', color:'var(--m-green-ink)', marginBottom:20}}>{n}</div>
     <h3 style={{fontFamily:'var(--font-display)', fontWeight:600, fontSize:22, letterSpacing:'-.02em', margin:'0 0 12px'}}>{t}</h3>
     <p style={{fontSize:15.5, color:'var(--m-ink-2)', lineHeight:1.55, margin:0}}>{d}</p>
   </div>
