@@ -30,16 +30,11 @@ const HeroV2 = () =>
     </div>
 
     <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '120px 28px 180px' }}>
-      <div data-hero-tag style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '8px 14px', borderRadius: 999, background: 'rgba(255,255,255,.1)', border: '1px solid rgba(255,255,255,.15)', backdropFilter: 'blur(10px)', marginBottom: 32, fontSize: 13 }}>
-        <span style={{ width: 7, height: 7, borderRadius: 999, background: 'var(--m-green)', boxShadow: '0 0 0 3px rgba(122,184,0,.25)' }} />
-        Productivity financing · 100,000+ Kenyans backed · 84 branches
-      </div>
-
-      <h1 className="h-display" style={{ fontSize: 'clamp(64px, 9vw, 168px)', lineHeight: .9, letterSpacing: '-.045em', margin: '0 0 8px', maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
+      <h1 className="h-display" style={{ fontSize: 'clamp(72px, 10vw, 190px)', lineHeight: .9, letterSpacing: '-.045em', margin: '0 0 8px', maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
         Finance
         <span style={{ color: 'var(--m-green)' }}> your future.</span>
       </h1>
-      <div data-hero-jenga style={{ fontFamily: 'var(--font-accent)', fontStyle: 'italic', fontSize: 'clamp(28px, 3.2vw, 52px)', color: 'rgba(255,255,255,.85)', margin: '18px 0 0', letterSpacing: '-.01em' }}>
+      <div data-hero-jenga style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(26px, 3vw, 46px)', color: 'rgba(255,255,255,.8)', margin: '18px 0 0', letterSpacing: '-.02em' }}>
         Jenga kesho yako.
       </div>
 

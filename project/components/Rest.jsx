@@ -1,271 +1,142 @@
-const BRANCHES_FALLBACK = [
+const Branches = () => {
+  // Organised by region. Coordinates are approximate lat/lng for a simple KE-shaped map.
+  const regions = [
   { name: "Nairobi Metro", colour: "#7AB800", branches: [
-    { n: "Nairobi CBD",    addr: "Kimathi Street, CBD" }, { n: "Industrial Area", addr: "Enterprise Road" },
-    { n: "Westlands",      addr: "Waiyaki Way" },         { n: "Ngara",          addr: "Ngara Road" },
-    { n: "Kasarani",       addr: "Thika Superhighway" },  { n: "Embakasi",       addr: "Airport North Road" },
-    { n: "Kitengela",      addr: "Namanga Road" },        { n: "Rongai",         addr: "Magadi Road" },
-    { n: "Kiambu",         addr: "Kiambu Road" },         { n: "Kikuyu",         addr: "Kikuyu–Limuru Road" },
-    { n: "Thika",          addr: "Kenyatta Highway" },    { n: "Ruiru",          addr: "Ruiru Bypass" },
-    { n: "Limuru",         addr: "Limuru Town" },         { n: "Juja",           addr: "Thika Superhighway" },
-    { n: "Machakos",       addr: "Mombasa Road" },        { n: "Athi River",     addr: "Mombasa Road" }]
+    { n: "Nairobi CBD", x: .53, y: .55, addr: "Kimathi Street, CBD" }, { n: "Industrial Area", x: .54, y: .57, addr: "Enterprise Road" },
+    { n: "Westlands", x: .52, y: .54, addr: "Waiyaki Way" }, { n: "Ngara", x: .53, y: .54, addr: "Ngara Road" },
+    { n: "Kasarani", x: .54, y: .52, addr: "Thika Superhighway" }, { n: "Embakasi", x: .55, y: .57, addr: "Airport North Road" },
+    { n: "Kitengela", x: .55, y: .60, addr: "Namanga Road" }, { n: "Rongai", x: .52, y: .58, addr: "Magadi Road" },
+    { n: "Kiambu", x: .52, y: .52, addr: "Kiambu Road" }, { n: "Kikuyu", x: .51, y: .55, addr: "Kikuyu–Limuru Road" },
+    { n: "Thika", x: .56, y: .50, addr: "Kenyatta Highway" }, { n: "Ruiru", x: .55, y: .53, addr: "Ruiru Bypass" },
+    { n: "Limuru", x: .50, y: .53, addr: "Limuru Town" }, { n: "Juja", x: .56, y: .52, addr: "Thika Superhighway" },
+    { n: "Machakos", x: .58, y: .60, addr: "Mombasa Road" }, { n: "Athi River", x: .56, y: .59, addr: "Mombasa Road" }]
   },
   { name: "Coast", colour: "#E96A3B", branches: [
-    { n: "Mombasa",   addr: "Moi Avenue, Mombasa" }, { n: "Nyali",     addr: "Links Road, Nyali" },
-    { n: "Likoni",    addr: "Likoni Ferry Road" },    { n: "Kilifi",    addr: "Mombasa–Malindi Road" },
-    { n: "Malindi",   addr: "Lamu Road" },            { n: "Mtwapa",    addr: "Mombasa–Malindi Road" },
-    { n: "Ukunda",    addr: "Diani Beach Road" },     { n: "Voi",       addr: "Mombasa–Nairobi Highway" },
-    { n: "Mariakani", addr: "Mombasa–Nairobi Highway" }]
+    { n: "Mombasa", x: .76, y: .78, addr: "Moi Avenue, Mombasa" }, { n: "Nyali", x: .77, y: .77, addr: "Links Road, Nyali" },
+    { n: "Likoni", x: .76, y: .79, addr: "Likoni Ferry Road" }, { n: "Kilifi", x: .78, y: .74, addr: "Mombasa–Malindi Road" },
+    { n: "Malindi", x: .80, y: .72, addr: "Lamu Road" }, { n: "Mtwapa", x: .77, y: .77, addr: "Mombasa–Malindi Road" },
+    { n: "Ukunda", x: .75, y: .82, addr: "Diani Beach Road" }, { n: "Voi", x: .68, y: .72, addr: "Mombasa–Nairobi Highway" },
+    { n: "Mariakani", x: .74, y: .77, addr: "Mombasa–Nairobi Highway" }]
   },
   { name: "Central", colour: "#F4B93A", branches: [
-    { n: "Nyeri",    addr: "Kenyatta Road" },  { n: "Karatina", addr: "Karatina Town" },
-    { n: "Muranga",  addr: "Murang'a Town" },  { n: "Kerugoya", addr: "Kutus Road" },
-    { n: "Embu",     addr: "Embu–Meru Road" }, { n: "Meru",     addr: "Meru–Maua Road" },
-    { n: "Chuka",    addr: "Embu–Meru Road" }, { n: "Maua",     addr: "Maua Town" },
-    { n: "Nanyuki",  addr: "Nanyuki–Nyeri Road" }]
+    { n: "Nyeri", x: .52, y: .45, addr: "Kenyatta Road" }, { n: "Karatina", x: .53, y: .46, addr: "Karatina Town" },
+    { n: "Muranga", x: .54, y: .48, addr: "Murang'a Town" }, { n: "Kerugoya", x: .55, y: .47, addr: "Kutus Road" },
+    { n: "Embu", x: .57, y: .48, addr: "Embu–Meru Road" }, { n: "Meru", x: .58, y: .44, addr: "Meru–Maua Road" },
+    { n: "Chuka", x: .57, y: .46, addr: "Embu–Meru Road" }, { n: "Maua", x: .60, y: .43, addr: "Maua Town" },
+    { n: "Nanyuki", x: .54, y: .42, addr: "Nanyuki–Nyeri Road" }]
   },
   { name: "Rift Valley", colour: "#3B7CC9", branches: [
-    { n: "Nakuru",    addr: "Kenyatta Avenue" },      { n: "Naivasha",  addr: "Moi South Lake Road" },
-    { n: "Eldoret",   addr: "Uganda Road" },          { n: "Kitale",    addr: "Kitale–Eldoret Road" },
-    { n: "Kericho",   addr: "Kericho–Nakuru Road" },  { n: "Bomet",     addr: "Sotik–Bomet Road" },
-    { n: "Narok",     addr: "Maasai Mara Road" },     { n: "Kapsabet",  addr: "Kapsabet–Eldoret Road" },
-    { n: "Iten",      addr: "Iten–Kabarnet Road" },   { n: "Nyahururu", addr: "Nyahururu–Nakuru Road" },
-    { n: "Molo",      addr: "Molo–Elburgon Road" }]
+    { n: "Nakuru", x: .42, y: .52, addr: "Kenyatta Avenue" }, { n: "Naivasha", x: .47, y: .54, addr: "Moi South Lake Road" },
+    { n: "Eldoret", x: .34, y: .42, addr: "Uganda Road" }, { n: "Kitale", x: .32, y: .38, addr: "Kitale–Eldoret Road" },
+    { n: "Kericho", x: .36, y: .54, addr: "Kericho–Nakuru Road" }, { n: "Bomet", x: .37, y: .56, addr: "Sotik–Bomet Road" },
+    { n: "Narok", x: .42, y: .58, addr: "Maasai Mara Road" }, { n: "Kapsabet", x: .34, y: .46, addr: "Kapsabet–Eldoret Road" },
+    { n: "Iten", x: .36, y: .40, addr: "Iten–Kabarnet Road" }, { n: "Nyahururu", x: .48, y: .46, addr: "Nyahururu–Nakuru Road" },
+    { n: "Molo", x: .40, y: .53, addr: "Molo–Elburgon Road" }]
   },
   { name: "Western & Nyanza", colour: "#8B5CF6", branches: [
-    { n: "Kisumu",   addr: "Oginga Odinga Street" }, { n: "Kakamega", addr: "Kakamega–Kisumu Road" },
-    { n: "Bungoma",  addr: "Bungoma–Webuye Road" },  { n: "Busia",    addr: "Busia–Malaba Road" },
-    { n: "Webuye",   addr: "Webuye–Bungoma Road" },  { n: "Mumias",   addr: "Mumias–Bungoma Road" },
-    { n: "Kisii",    addr: "Kisii–Migori Road" },    { n: "Migori",   addr: "Migori–Isebania Road" },
-    { n: "Homa Bay", addr: "Homa Bay–Kisumu Road" }, { n: "Siaya",    addr: "Siaya–Bondo Road" },
-    { n: "Awendo",   addr: "Awendo–Migori Road" }]
+    { n: "Kisumu", x: .30, y: .52, addr: "Oginga Odinga Street" }, { n: "Kakamega", x: .29, y: .46, addr: "Kakamega–Kisumu Road" },
+    { n: "Bungoma", x: .28, y: .42, addr: "Bungoma–Webuye Road" }, { n: "Busia", x: .24, y: .44, addr: "Busia–Malaba Road" },
+    { n: "Webuye", x: .30, y: .44, addr: "Webuye–Bungoma Road" }, { n: "Mumias", x: .27, y: .46, addr: "Mumias–Bungoma Road" },
+    { n: "Kisii", x: .32, y: .58, addr: "Kisii–Migori Road" }, { n: "Migori", x: .30, y: .62, addr: "Migori–Isebania Road" },
+    { n: "Homa Bay", x: .30, y: .58, addr: "Homa Bay–Kisumu Road" }, { n: "Siaya", x: .27, y: .50, addr: "Siaya–Bondo Road" },
+    { n: "Awendo", x: .31, y: .60, addr: "Awendo–Migori Road" }]
   },
   { name: "Eastern & North", colour: "#D946A3", branches: [
-    { n: "Kitui",   addr: "Kitui–Mwingi Road" }, { n: "Mwingi",  addr: "Mwingi–Garissa Road" },
-    { n: "Garissa", addr: "Garissa Town" },       { n: "Isiolo",  addr: "Isiolo–Meru Road" }]
-  }
-];
+    { n: "Kitui", x: .62, y: .58, addr: "Kitui–Mwingi Road" }, { n: "Mwingi", x: .63, y: .54, addr: "Mwingi–Garissa Road" },
+    { n: "Garissa", x: .72, y: .54, addr: "Garissa Town" }, { n: "Isiolo", x: .60, y: .40, addr: "Isiolo–Meru Road" }]
+  }];
 
-const Branches = () => {
-  const [regions, setRegions]   = React.useState(BRANCHES_FALLBACK);
-  const [active, setActive]     = React.useState("All");
-  const [q, setQ]               = React.useState("");
-  const [selKey, setSelKey]     = React.useState(null);
-  const [mapReady, setMapReady] = React.useState(false);
-  const mapDivRef  = React.useRef(null);
-  const leafletRef = React.useRef(null);
-  const markersRef = React.useRef({});
 
-  // ── Load branches from CMS JSON ──────────────────────────────────────────
-  React.useEffect(() => {
-    const base = window.__MOGO_SUBPAGE ? '../' : '';
-    fetch(base + 'content/branches.json')
-      .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
-      .then(function(data) {
-        const r = data.regions || data;
-        if (Array.isArray(r) && r.length) setRegions(r);
-      })
-      .catch(function() {});
-  }, []);
+  const total = regions.reduce((a, r) => a + r.branches.length, 0);
+  const [active, setActive] = React.useState("All");
+  const [q, setQ] = React.useState("");
 
-  // ── Load Leaflet & init map ───────────────────────────────────────────────
-  React.useEffect(() => {
-    if (!document.getElementById('leaflet-css')) {
-      const link = document.createElement('link');
-      link.id = 'leaflet-css'; link.rel = 'stylesheet';
-      link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-      document.head.appendChild(link);
-    }
-    function initMap() {
-      if (!mapDivRef.current || leafletRef.current) return;
-      const L = window.L;
-      const map = L.map(mapDivRef.current, {
-        center: [-0.8, 37.5], zoom: 6, scrollWheelZoom: false,
-      });
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
-        subdomains: 'abcd', maxZoom: 19,
-      }).addTo(map);
-      leafletRef.current = map;
-      setMapReady(true);
-    }
-    if (window.L) { initMap(); }
-    else {
-      const s = document.createElement('script');
-      s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-      s.onload = initMap;
-      document.head.appendChild(s);
-    }
-    return function() {
-      if (leafletRef.current) { leafletRef.current.remove(); leafletRef.current = null; }
-    };
-  }, []);
+  const filtered = regions.
+  filter((r) => active === "All" || r.name === active).
+  map((r) => ({ ...r, branches: r.branches.filter((b) => b.n.toLowerCase().includes(q.toLowerCase())) })).
+  filter((r) => r.branches.length);
 
-  // ── Sync markers when regions load or map initialises ────────────────────
-  React.useEffect(() => {
-    const map = leafletRef.current;
-    const L   = window.L;
-    if (!map || !L) return;
-    // Remove old markers
-    Object.values(markersRef.current).forEach(function(m) { m.remove(); });
-    markersRef.current = {};
-    // Add fresh markers — all MOGO green
-    regions.forEach(function(region) {
-      (region.branches || []).forEach(function(b) {
-        if (!b.lat || !b.lng) return;
-        const key = region.name + ':' + b.n;
-        const marker = L.circleMarker([b.lat, b.lng], {
-          radius: 8, fillColor: '#7AB800',
-          color: '#fff', weight: 2.5, opacity: 1, fillOpacity: 0.88,
-        });
-        marker.bindPopup(
-          '<div style="font-family:sans-serif;min-width:140px">' +
-          '<strong style="font-size:14px">' + b.n + '</strong>' +
-          '<br/><span style="font-size:12px;color:#555;margin-top:4px;display:block">' + (b.addr || '') + '</span>' +
-          '<span style="font-size:11px;color:#7AB800;font-weight:600;margin-top:6px;display:block">' + region.name + '</span>' +
-          '</div>'
-        );
-        marker.on('click', function() {
-          setSelKey(key);
-          setActive(region.name);
-          setTimeout(function() {
-            const el = document.querySelector('[data-bkey="' + key + '"]');
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 100);
-        });
-        marker.addTo(map);
-        markersRef.current[key] = marker;
-      });
-    });
-  }, [regions, mapReady]);
-
-  function flyTo(region, b) {
-    const key = region.name + ':' + b.n;
-    setSelKey(key);
-    if (b.lat && b.lng && leafletRef.current && window.L) {
-      leafletRef.current.flyTo([b.lat, b.lng], 14, { duration: 0.7 });
-      var mk = markersRef.current[key];
-      if (mk) setTimeout(function() { mk.openPopup(); }, 750);
-    }
-  }
-
-  const total    = regions.reduce(function(a, r) { return a + (r.branches || []).length; }, 0);
-  const filtered = regions
-    .filter(function(r) { return active === 'All' || r.name === active; })
-    .map(function(r) { return Object.assign({}, r, { branches: (r.branches || []).filter(function(b) { return b.n.toLowerCase().includes(q.toLowerCase()); }) }); })
-    .filter(function(r) { return r.branches.length; });
-  const activeColour = active === 'All' ? '#7AB800' : (regions.find(function(r) { return r.name === active; }) || {}).colour || '#7AB800';
+  const activeColour = active === "All" ? "#7AB800" : regions.find((r) => r.name === active)?.colour || "#7AB800";
 
   return (
     <section id="branches" style={{ padding: '100px 0', background: '#fff' }}>
       <div className="shell">
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 40, marginBottom: 48, flexWrap: 'wrap' }}>
           <div style={{ maxWidth: 640 }}>
-            <div className="h-eyebrow"><span className="dot" />Find us</div>
             <h2 className="mega-head" style={{ fontSize: 'clamp(42px, 5.5vw, 80px)' }}>
-              {total}+ branches,<br />one <em>handshake</em> away.
+              <span style={{ color: '#7ab800' }}>84+ branches</span>
             </h2>
-            <p style={{ fontSize: 17, lineHeight: 1.55, color: 'var(--m-ink-2)', maxWidth: 520, margin: '28px 0 0' }}>
-              Click any branch below to pin it on the map.
+            <p style={{ fontSize: 17, lineHeight: 1.55, color: 'var(--m-ink-2)', maxWidth: 520, margin: '28px 0 0' }}>Find us in person at one of the locations below.
+
             </p>
-          </div>
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            <a href="#apply" className="btn btn-dark">Apply now <span className="arrow-pill"><ArrowRight /></span></a>
-            <a href="tel:0768469112" className="btn btn-ghost">Call 0768 469 112</a>
           </div>
         </div>
 
         <div data-branches-grid style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 40, alignItems: 'stretch' }}>
-
-          {/* ── MAP ─────────────────────────────────────────────────────── */}
-          <div data-branches-map style={{ borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-            <div style={{ padding: '14px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--m-cream)', borderBottom: '1px solid var(--m-line-2)' }}>
-              <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.12em', color: 'var(--m-ink-2)' }}>Mogo Kenya · branch network</span>
-              <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--m-ink-2)' }}>{total} locations</span>
-            </div>
-
-            {/* Leaflet map */}
-            <div ref={mapDivRef} style={{ flex: 1, minHeight: 380 }} />
-
-            {/* Region filter pills */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, padding: '14px 20px', borderTop: '1px solid var(--m-line-2)', background: 'var(--m-cream)' }}>
-              <button onClick={function() { setActive('All'); setSelKey(null); if (leafletRef.current) leafletRef.current.setView([-0.8, 37.5], 6); }}
-                style={{ padding: '6px 12px', background: active === 'All' ? 'var(--m-ink)' : '#fff', color: active === 'All' ? '#fff' : 'var(--m-ink)', border: '1px solid var(--m-line-2)', borderRadius: 999, fontSize: 11, fontWeight: 600, cursor: 'pointer' }}>
-                All · {total}
-              </button>
-              {regions.map(function(r) {
-                const on = active === r.name;
-                return (
-                  <button key={r.name} onClick={function() { setActive(r.name); setSelKey(null); }}
-                    style={{ padding: '6px 12px', background: on ? r.colour : '#fff', color: on ? '#fff' : 'var(--m-ink)', border: '1px solid var(--m-line-2)', borderRadius: 999, fontSize: 11, fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-                    <span style={{ width: 7, height: 7, borderRadius: 999, background: on ? '#fff' : r.colour }} />
-                    {r.name} · {(r.branches || []).length}
-                  </button>
-                );
-              })}
+          {/* MAP */}
+          <div data-branches-map style={{ background: 'var(--m-cream)', borderRadius: 'var(--r-xl)', padding: 32, border: '1px solid var(--m-line-2)', position: 'relative' }}>
+            <div style={{ position: 'relative', aspectRatio: '4/5', borderRadius: 'var(--r-lg)', overflow: 'hidden', border: '1px solid var(--m-line-2)' }}>
+              {/* Google Maps embed — Kenya overview. For custom per-branch
+                  pins clustered by region, swap this iframe for the JS Maps
+                  API and provide a Google Maps key. */}
+              <iframe
+                title="Mogo Kenya branch network"
+                src="https://www.google.com/maps?q=Mogo+Kenya&hl=en&z=6&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0, display: 'block', filter: 'saturate(.9) contrast(.95)' }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </div>
 
-          {/* ── LIST ────────────────────────────────────────────────────── */}
+          {/* LIST */}
           <div data-branches-list style={{ background: '#fff', borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-            <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--m-line-2)', display: 'flex', alignItems: 'center', gap: 10, background: 'var(--m-cream)' }}>
-              <span>🔍</span>
-              <input value={q} onChange={function(e) { setQ(e.target.value); }}
+            <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--m-line-2)', display: 'flex', alignItems: 'center', gap: 12, background: 'var(--m-cream)' }}>
+              <span style={{ fontSize: 14 }}>🔍</span>
+              <input
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
                 placeholder="Search a town or neighbourhood…"
-                style={{ flex: 1, border: 'none', background: 'transparent', fontSize: 14, outline: 'none', color: 'var(--m-ink)' }} />
-              {q && <button onClick={function() { setQ(''); }} style={{ border: 'none', background: 'transparent', fontSize: 13, color: 'var(--m-ink-2)', cursor: 'pointer' }}>Clear</button>}
+                style={{ flex: 1, border: 'none', background: 'transparent', fontSize: 15, fontFamily: 'var(--font-sans)', outline: 'none', color: 'var(--m-ink)' }} />
+              
+              {q && <button onClick={() => setQ("")} style={{ border: 'none', background: 'transparent', fontSize: 13, color: 'var(--m-ink-2)', cursor: 'pointer' }}>Clear</button>}
             </div>
-
-            <div style={{ flex: 1, maxHeight: 460, overflowY: 'auto' }}>
-              {filtered.length === 0 && (
-                <div style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--m-ink-2)' }}>
+            <div style={{ flex: 1, maxHeight: 560, overflowY: 'auto', padding: '8px 0' }}>
+              {filtered.length === 0 &&
+              <div style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--m-ink-2)' }}>
                   No branches match "{q}". Try Mombasa, Kisii or Meru.
                 </div>
-              )}
-              {filtered.map(function(r) {
-                return (
-                  <div key={r.name}>
-                    <div style={{ padding: '12px 20px 8px', display: 'flex', alignItems: 'center', gap: 8, position: 'sticky', top: 0, background: '#fff', zIndex: 1, borderBottom: '1px solid var(--m-line-2)' }}>
-                      <span style={{ width: 8, height: 8, borderRadius: 999, background: r.colour }} />
-                      <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.14em' }}>{r.name}</span>
-                      <span style={{ fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--m-ink-2)', marginLeft: 'auto' }}>{r.branches.length}</span>
-                    </div>
-                    {r.branches.map(function(b) {
-                      const key = r.name + ':' + b.n;
-                      const isSel = selKey === key;
-                      const hasPin = !!(b.lat && b.lng);
-                      return (
-                        <button key={b.n} data-bkey={key}
-                          onClick={function() { flyTo(r, b); }}
-                          title={hasPin ? 'Show on map' : b.addr}
-                          style={{ padding: '12px 20px', display: 'flex', alignItems: 'flex-start', gap: 10, borderBottom: '1px solid var(--m-line-2)', color: 'var(--m-ink)', background: isSel ? r.colour + '1a' : 'transparent', border: 'none', width: '100%', cursor: hasPin ? 'pointer' : 'default', textAlign: 'left', transition: 'background .15s' }}>
-                          <span style={{ width: 8, height: 8, borderRadius: 999, background: r.colour, marginTop: 5, flexShrink: 0 }} />
-                          <div style={{ flex: 1 }}>
-                            <div style={{ fontSize: 14, fontWeight: isSel ? 700 : 600, lineHeight: 1.3 }}>{b.n}</div>
-                            <div style={{ fontSize: 12, color: 'var(--m-muted)', marginTop: 2 }}>{b.addr || '—'}</div>
-                          </div>
-                          {hasPin && <span style={{ fontSize: 13, opacity: isSel ? 1 : 0.4, marginTop: 2, flexShrink: 0 }}>📍</span>}
-                        </button>
-                      );
-                    })}
+              }
+              {filtered.map((r) =>
+              <div key={r.name}>
+                  <div style={{ padding: '14px 24px 8px', display: 'flex', alignItems: 'center', gap: 8, position: 'sticky', top: 0, background: '#fff', zIndex: 1, borderBottom: '1px solid var(--m-line-2)' }}>
+                    <span style={{ width: 8, height: 8, borderRadius: 999, background: r.colour }} />
+                    <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.14em', color: 'var(--m-ink)' }}>{r.name}</span>
                   </div>
-                );
-              })}
-            </div>
-
-            <div style={{ padding: '12px 20px', borderTop: '1px solid var(--m-line-2)', background: 'var(--m-cream)', fontSize: 12, color: 'var(--m-ink-2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span>Tap a branch to see it on the map</span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, color: activeColour }}>
-                {filtered.reduce(function(a, r) { return a + r.branches.length; }, 0)} shown
-              </span>
+                  <div data-branch-row style={{ display: 'flex', flexDirection: 'column' }}>
+                    {r.branches.map((b) =>
+                  <a key={b.n} href="#apply" style={{ padding: '14px 24px', display: 'flex', alignItems: 'flex-start', gap: 12, borderBottom: '1px solid var(--m-line-2)', color: 'var(--m-ink)', textDecoration: 'none' }}>
+                        <span style={{ width: 8, height: 8, borderRadius: 999, background: r.colour, marginTop: 6, flexShrink: 0 }} />
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontSize: 14.5, fontWeight: 600, lineHeight: 1.3 }}>{b.n}</div>
+                          <div style={{ fontSize: 12.5, color: 'var(--m-muted)', lineHeight: 1.4, marginTop: 2 }}>{b.addr || '—'}</div>
+                        </div>
+                        <span style={{ fontSize: 11, color: 'var(--m-muted)', fontFamily: 'var(--font-mono)', marginTop: 4 }}>→</span>
+                      </a>
+                  )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-
         </div>
       </div>
-    </section>
-  );
-};
+    </section>);
 
+};
 
 const CTA = () =>
 <section id="apply" style={{ padding: '80px 0', background: 'var(--m-cream)' }}>
@@ -281,8 +152,7 @@ const CTA = () =>
           </svg>
         </div>
         <div style={{ position: 'relative', maxWidth: 700 }}>
-          <div className="h-eyebrow" style={{ color: 'var(--m-green)' }}><span className="dot" />Start today</div>
-          <h2 className="h-display" style={{ fontSize: 'clamp(48px, 6.5vw, 96px)', color: '#fff', margin: '24px 0 24px', fontWeight: 600, letterSpacing: '-.035em', lineHeight: .98 }}>
+          <h2 className="h-display" style={{ fontSize: 'clamp(48px, 6.5vw, 96px)', color: '#fff', margin: '0 0 24px', fontWeight: 600, letterSpacing: '-.035em', lineHeight: .98 }}>
             Your wheels<br />are <em style={{ fontStyle: 'italic', color: 'var(--m-green)', fontFamily: 'var(--font-accent)', fontWeight: 400 }}>waiting.</em>
           </h2>
           <p style={{ fontSize: 18, color: 'rgba(255,255,255,.72)', lineHeight: 1.55, marginBottom: 40, maxWidth: 520 }}>

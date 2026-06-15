@@ -1,66 +1,26 @@
-// PhotoBanner — continuous left-scrolling photo strip.
-// Photos are editable in the CMS under 📷 Photos & Media → Homepage photo strip.
-const CAROUSEL_FALLBACK = [
-  { src: '/uploads/Boda crowd.jpg',   alt: 'Boda riders' },
-  { src: '/uploads/women photo.jpg',  alt: 'MOGO customers' },
-  { src: '/uploads/Boda riders.jpg',  alt: 'Boda riders on the road' },
-  { src: '/uploads/csr.jpg',          alt: 'Community activity' },
-  { src: '/uploads/boda front.jpg',   alt: 'Boda financing' },
-  { src: '/uploads/tree planting.jpg',alt: 'Tree planting' },
-  { src: '/uploads/oppo launch.jpg',  alt: 'Product launch event' },
-  { src: '/uploads/women backs.jpg',  alt: 'MOGO event' },
-  { src: '/uploads/meeting.jpg',      alt: 'Team meeting' },
-  { src: '/uploads/boda stage.jpg',   alt: 'Boda stage' },
-  { src: '/uploads/stage.jpg',        alt: 'MOGO stage event' },
-];
-
+// PhotoBand — a calm editorial brand moment. Replaces the old scrolling
+// marquee with a single full-width feature photo and a headline overlaid on
+// a gradient scrim. Component keeps the name PhotoCarousel so the page mount
+// in index-v2.html stays unchanged.
 const PhotoCarousel = () => {
-  const [slides, setSlides] = React.useState(
-    (window.MOGO_MEDIA && window.MOGO_MEDIA.carousel) || CAROUSEL_FALLBACK
-  );
-
-  React.useEffect(() => {
-    const onUpdate = () => {
-      const m = window.MOGO_MEDIA;
-      if (m && Array.isArray(m.carousel) && m.carousel.length) {
-        setSlides(m.carousel);
-      }
-    };
-    window.addEventListener('mogo-media-updated', onUpdate);
-    return () => window.removeEventListener('mogo-media-updated', onUpdate);
-  }, []);
+  const feature = (window.__resources && window.__resources.homeFeature) || 'assets/home-feature.jpg';
 
   return (
-    <section style={{ padding: '0', background: '#fff' }}>
-      <div style={{ overflow: 'hidden' }}>
-        <div className="photo-marquee">
-          {[...slides, ...slides].map((slide, i) => (
-            <div key={i} style={{
-              flex: '0 0 auto',
-              width: 'clamp(280px, 26vw, 420px)',
-              aspectRatio: '4 / 3',
-              overflow: 'hidden',
-              background: '#0B1220',
-            }}>
-              <img src={slide.src} alt={slide.alt || ''}
-                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+    <section style={{ padding: '100px 0', background: '#fff' }}>
+      <div className="shell">
+        <div style={{ position: 'relative', borderRadius: 'var(--r-xl)', overflow: 'hidden', background: '#0B1220', height: 'clamp(460px, 64vh, 700px)' }}>
+          <img src={feature} alt="Mogo boda riders in their branded vests, Nairobi"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 62%' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,18,32,.88) 0%, rgba(11,18,32,.5) 38%, rgba(11,18,32,0) 72%)' }} />
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: 'clamp(28px, 4.5vw, 64px)', display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ textAlign: 'right', maxWidth: 760 }}>
+              <h2 className="h-display" style={{ color: '#fff', fontSize: 'clamp(32px, 4.4vw, 64px)', lineHeight: 1.03, letterSpacing: '-.03em', fontWeight: 600, margin: 0, textWrap: 'balance' }}>
+                Backing the people who <em style={{ fontFamily: 'inherit', fontStyle: 'italic', color: 'var(--m-green)', fontWeight: 600 }}>move Kenya.</em>
+              </h2>
             </div>
-          ))}
+          </div>
         </div>
       </div>
-      <style>{`
-        .photo-marquee {
-          display: flex;
-          gap: 4px;
-          width: max-content;
-          animation: photo-scroll 80s linear infinite;
-        }
-        .photo-marquee:hover { animation-play-state: paused; }
-        @keyframes photo-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-      `}</style>
     </section>
   );
 };

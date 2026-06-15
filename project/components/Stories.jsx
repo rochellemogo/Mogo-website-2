@@ -1,28 +1,9 @@
 const Stories = () => {
-  const FALLBACK = [
-    { name:"Julius", city:"Nairobi", role:"Boda rider · since 2024",    quote:"I got my Boxer in 2 hours. 14 months later I owned it. My daily take-home is now 3× what it was.", product:"New Boda Loan",  theme:"sunset" },
-    { name:"Mary",   city:"Nakuru",  role:"Salon owner · since 2025",    quote:"The buyoff saved me KES 8,400 every month. Same car, same logbook — just lower payments.",          product:"Buyoff Logbook",theme:"lilac"  },
-    { name:"Elijah", city:"Thika",   role:"Tuk-Tuk operator · since 2023",quote:"My tuk-tuk logbook funds my parts inventory. Next week I'm financing my second vehicle.",          product:"Tuk-Tuk Logbook",theme:"peach" },
+  const stories = [
+    { name:"Julius", city:"Nairobi", role:"Boda rider · since 2024", quote:"I got my Boxer in 2 hours. 14 months later I owned it. My daily take-home is now 3× what it was.", product:"New Boda Loan", theme:"sunset" },
+    { name:"Mary", city:"Nakuru", role:"Salon owner · since 2025", quote:"The buyoff saved me KES 8,400 every month. Same car, same logbook — just lower payments.", product:"Buyoff Logbook", theme:"lilac" },
+    { name:"Elijah", city:"Thika", role:"Tuk-Tuk operator · since 2023", quote:"My tuk-tuk logbook funds my parts inventory. Next week I'm financing my second vehicle.", product:"Tuk-Tuk Logbook", theme:"peach" },
   ];
-  const [stories, setStories] = React.useState(FALLBACK);
-
-  React.useEffect(() => {
-    const base = window.__MOGO_SUBPAGE ? '../' : '';
-    fetch(base + 'content/stories.json')
-      .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
-      .then(function(data) {
-        const s = data.stories || data;
-        if (Array.isArray(s) && s.length) setStories(s);
-      })
-      .catch(function() {});
-
-    const handler = function() {
-      if (window.MOGO_STORIES_DATA && window.MOGO_STORIES_DATA.length) setStories(window.MOGO_STORIES_DATA);
-    };
-    window.addEventListener('mogo-stories-updated', handler);
-    return function() { window.removeEventListener('mogo-stories-updated', handler); };
-  }, []);
-
   return (
     <section id="stories" style={{padding:'100px 0', background:'var(--m-cream)'}}>
       <div className="shell">
@@ -31,7 +12,7 @@ const Stories = () => {
             <div className="h-eyebrow"><span className="dot"/>Customer stories</div>
             <h2 className="mega-head">Real Kenyans.<br/><em>Real</em> businesses.</h2>
           </div>
-          <a href="pages/our-stories.html" className="btn btn-ghost">Read more stories <ArrowRight/></a>
+          <a href="#" className="btn btn-ghost">Read more stories <ArrowRight/></a>
         </div>
 
         <div data-stories-grid style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 20}}>
@@ -39,11 +20,8 @@ const Stories = () => {
             <article key={s.name} style={{background:'#fff', borderRadius:'var(--r-xl)', overflow:'hidden', border:'1px solid var(--m-line-2)', display:'flex', flexDirection:'column'}}>
               <div style={{padding: 10, paddingBottom: 0}}>
                 <div style={{position:'relative', aspectRatio:'4/3', borderRadius:'var(--r-lg)', overflow:'hidden'}}>
-                  {s.photo
-                    ? <img src={s.photo} alt={s.name} style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}/>
-                    : <ProductImage theme={s.theme}/>
-                  }
-                  <div className="ph-tag">{s.name.toUpperCase()} · {(s.city||'').toUpperCase()}</div>
+                  <ProductImage theme={s.theme}/>
+                  <div className="ph-tag">{s.name.toUpperCase()} · {s.city.toUpperCase()}</div>
                 </div>
               </div>
               <div style={{padding:'24px 28px 28px', display:'flex', flexDirection:'column', flex:1}}>

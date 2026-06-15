@@ -36,10 +36,10 @@ document.title = page.eyebrow + " · MOGO Kenya";
 const App = () => (
   <>
     <Nav/>
-    <PageHero eyebrow={page.eyebrow} title={page.title} kicker={page.kicker}/>
     {page.render()}
     <Footer/>
     <ApplyModal/>
+    <DealersModal/>
     <TweaksPanel/>
   </>
 );

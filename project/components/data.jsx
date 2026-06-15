@@ -46,16 +46,16 @@ const MOGO_PRODUCTS = [
   },
   {
     slug: "tuk-tuk-loans",
-    name: "Tuk-Tuk Loans",
-    short: "Tuk-Tuk Loans",
-    category: "Vehicles",
-    tagline: "Scale up without slowing down.",
-    headline: "Cargo and passenger tuk-tuks, financed.",
-    desc: "Bajaj, Piaggio, TVS, Atul and more — new or logbook. Built for cargo, passengers, and the small business owner scaling up.",
-    tag: "Cargo & passenger",
-    price: "Up to KES 250k",
-    term: "Up to 24 months",
-    turnaround: "Same day",
+    name: "Tuk-Tuk Logbook Loans",
+    short: "Tuk-Tuk Logbook",
+    category: "Logbook",
+    tagline: "Your tuk-tuk. Your cash. Keep working.",
+    headline: "Unlock cash against your cargo tuk-tuk.",
+    desc: "Use your cargo tuk-tuk logbook as collateral. Loans from KES 50,000 to KES 250,000 — pay from as little as KES 349 a day over 52, 65 or 78 weeks, approved in just 2 hours. Best Price Guarantee on logbook lending.",
+    tag: "Best Price Guarantee",
+    price: "KES 50k – 250k",
+    term: "52 / 65 / 78 weeks",
+    turnaround: "Approved in 2 hours",
     theme: "peach",
   },
   {
@@ -65,11 +65,11 @@ const MOGO_PRODUCTS = [
     category: "Vehicles",
     tagline: "Any make. Any age. Your car.",
     headline: "Finance up to 80% of your next car.",
-    desc: "New or used. Local or imported. From KES 500,000 to KES 3.25M. Honest rates, flexible terms — from saloon to SUV.",
-    tag: "Up to 80% financed",
-    price: "KES 500k – 3.25M",
-    term: "Up to 48 months",
-    turnaround: "Same-day approval",
+    desc: "Any car, any age, make or model — local or imported. Borrow up to KES 2,500,000 with a down payment from just 20%, approved in 1 hour and repaid over up to 24 months. Best Price Guarantee on every car we finance.",
+    tag: "Best Price Guarantee",
+    price: "Up to KES 2.5M",
+    term: "Up to 24 months",
+    turnaround: "Approved in 1 hour",
     theme: "cool",
   },
   {
@@ -79,11 +79,11 @@ const MOGO_PRODUCTS = [
     category: "Cash",
     tagline: "Salary-secured cash. Low rates.",
     headline: "Cash for life's big moments — direct from your payslip.",
-    desc: "Employer-backed loans repaid straight from your salary. Lower rates. Longer terms. Zero paperwork drama.",
-    tag: "For salaried workers",
-    price: "Up to KES 2M",
-    term: "Up to 60 months",
-    turnaround: "48 hours",
+    desc: "For GoK, TSC and County employees. Borrow from KES 5,000 to KES 2,000,000 at the best rates in the market — instant approval, funds within 24 hours, repaid over 3 to 120 months straight from your salary.",
+    tag: "GoK · TSC · County",
+    price: "KES 5k – 2M",
+    term: "3 – 120 months",
+    turnaround: "Funds within 24 hrs",
     theme: "lilac",
     isNew: true,
   },
@@ -126,17 +126,17 @@ const MOGO_PRODUCTS = [
     category: "Logbook",
     tagline: "Your car. Your cash. Keep driving.",
     headline: "Unlock cash without parking your car.",
-    desc: "Use your existing car as collateral. Get working capital from KES 100,000 to KES 3M — keep driving while you repay.",
-    tag: "Existing car owners",
-    price: "KES 100k – 3M",
-    term: "Up to 36 months",
-    turnaround: "24 hours",
+    desc: "Use your car logbook as collateral and access up to 80% of its value — KES 70,000 to KES 3,250,000, any age, make or model. Zero upfront costs, same-day approval, and you keep driving while you repay.",
+    tag: "Best Price Guarantee",
+    price: "KES 70k – 3.25M",
+    term: "Up to 24 months",
+    turnaround: "Same-day approval",
     theme: "navy",
   },
   {
     slug: "msme-loans",
-    name: "MSME Loans",
-    short: "MSME Loans",
+    name: "Business Loans",
+    short: "Business Loans",
     category: "Business",
     tagline: "Working capital for Kenyan hustlers.",
     headline: "The cash your small business needs to grow.",
@@ -165,7 +165,6 @@ window.MOGO_PRODUCTS = MOGO_PRODUCTS;
 })();
 
 // Load CMS products from content/products.json — overrides the defaults above.
-// Components listen for 'mogo-products-updated' to re-render with new data.
 (function() {
   var base = window.__MOGO_SUBPAGE ? '../' : '';
   fetch(base + 'content/products.json')
@@ -180,8 +179,7 @@ window.MOGO_PRODUCTS = MOGO_PRODUCTS;
     .catch(function() {});
 })();
 
-// Load CMS media from content/media.json (carousel + impact photos).
-// Components listen for 'mogo-media-updated' to re-render with new photos.
+// Load CMS media from content/media.json
 (function() {
   var base = window.__MOGO_SUBPAGE ? '../' : '';
   fetch(base + 'content/media.json')
@@ -189,6 +187,30 @@ window.MOGO_PRODUCTS = MOGO_PRODUCTS;
     .then(function(data) {
       window.MOGO_MEDIA = data;
       window.dispatchEvent(new CustomEvent('mogo-media-updated'));
+    })
+    .catch(function() {});
+})();
+
+// Load CMS About Us page content from content/about.json
+(function() {
+  var base = window.__MOGO_SUBPAGE ? '../' : '';
+  fetch(base + 'content/about.json')
+    .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+    .then(function(data) {
+      window.MOGO_ABOUT = data;
+      window.dispatchEvent(new CustomEvent('mogo-about-updated'));
+    })
+    .catch(function() {});
+})();
+
+// Load CMS Impact page content from content/impact.json
+(function() {
+  var base = window.__MOGO_SUBPAGE ? '../' : '';
+  fetch(base + 'content/impact.json')
+    .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+    .then(function(data) {
+      window.MOGO_IMPACT = data;
+      window.dispatchEvent(new CustomEvent('mogo-impact-updated'));
     })
     .catch(function() {});
 })();

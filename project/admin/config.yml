@@ -196,11 +196,13 @@ collections:
             required: false
             hint: "Value for the Authorization header, e.g. Bearer your-token. Use a read-limited key — this value is stored in the repository."
 
-          - label: "Impact Report PDF URL"
+          - label: "Impact Report PDF"
             name: "impact_report_url"
-            widget: "string"
+            widget: "file"
             required: false
-            hint: "Full HTTPS URL to the ESG / Impact Report PDF. Must be publicly accessible. Update this whenever a new report is published."
+            hint: "Upload the ESG / Impact Report PDF here. Use the 'Choose file' button to upload a new version each year."
+            media_folder: "project/uploads"
+            public_folder: "/uploads"
 
   # ─── PRODUCTS ─────────────────────────────────────────────────────────────
   - name: "products"
@@ -497,6 +499,58 @@ collections:
                 name: "alt"
                 widget: "string"
                 required: false
+
+  # ─── ABOUT US PAGE ────────────────────────────────────────────────────────
+  - name: "about"
+    label: "🏢 About Us Page"
+    files:
+      - name: "about_page"
+        label: "About Us page content"
+        file: "project/content/about.json"
+        fields:
+          - {label: "Hero eyebrow",   name: "hero_eyebrow", widget: "string", hint: "Small label above the headline, e.g. About us"}
+          - {label: "Hero headline",  name: "hero_title",   widget: "string", hint: "Main heading. Use <em>text</em> for italic emphasis."}
+          - {label: "Hero kicker",    name: "hero_kicker",  widget: "text",   hint: "One or two sentences below the headline."}
+          - {label: "Mission headline", name: "mission_headline", widget: "string", hint: "Use <em>text</em> for italic and <br/> for line breaks."}
+          - {label: "Mission body",     name: "mission_body",     widget: "text",   hint: "Separate paragraphs with a blank line."}
+          - {label: "Stat 1 — number",  name: "stat1_n",     widget: "string", hint: "e.g. 100K+"}
+          - {label: "Stat 1 — label",   name: "stat1_label", widget: "string"}
+          - {label: "Stat 2 — number",  name: "stat2_n",     widget: "string"}
+          - {label: "Stat 2 — label",   name: "stat2_label", widget: "string"}
+          - {label: "Stat 3 — number",  name: "stat3_n",     widget: "string"}
+          - {label: "Stat 3 — label",   name: "stat3_label", widget: "string"}
+          - {label: "Eleving section headline", name: "eleving_title",  widget: "string", hint: "Use <em>text</em> for italic."}
+          - {label: "Eleving body paragraph 1", name: "eleving_body1",  widget: "text"}
+          - {label: "Eleving body paragraph 2", name: "eleving_body2",  widget: "text",   required: false}
+          - {label: "Award recognition text",   name: "award_text",     widget: "text"}
+          - label: "Award badge image"
+            name: "award_badge_image"
+            widget: "image"
+            required: false
+            hint: "Optional. Upload the FT award badge or similar."
+          - {label: "Countries (comma-separated)", name: "countries", widget: "string", hint: "e.g. Kenya,Uganda,Tanzania,Latvia — displayed as country pills"}
+          - {label: "CTA headline",  name: "cta_title",    widget: "string", hint: "Use <em>text</em> for italic."}
+          - {label: "CTA subtitle",  name: "cta_subtitle", widget: "string"}
+
+  # ─── IMPACT PAGE ──────────────────────────────────────────────────────────
+  - name: "impact"
+    label: "🌱 Impact Page"
+    files:
+      - name: "impact_page"
+        label: "Mogo Impact page content"
+        file: "project/content/impact.json"
+        fields:
+          - {label: "Hero eyebrow",   name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero headline",  name: "hero_title",   widget: "string", hint: "Use <em>text</em> for italic and <br/> for line breaks."}
+          - {label: "Hero kicker",    name: "hero_kicker",  widget: "text"}
+          - {label: "Stat 1 — number",  name: "stat1_n",     widget: "string"}
+          - {label: "Stat 1 — label",   name: "stat1_label", widget: "string"}
+          - {label: "Stat 2 — number",  name: "stat2_n",     widget: "string"}
+          - {label: "Stat 2 — label",   name: "stat2_label", widget: "string"}
+          - {label: "Stat 3 — number",  name: "stat3_n",     widget: "string"}
+          - {label: "Stat 3 — label",   name: "stat3_label", widget: "string"}
+          - {label: "Lending headline", name: "lending_headline", widget: "string", hint: "Use <em>text</em> for italic and <br/> for line breaks."}
+          - {label: "Lending body",     name: "lending_body",     widget: "text",   hint: "Separate paragraphs with a blank line."}
 
   # ─── FAQ ──────────────────────────────────────────────────────────────────
   - name: "faq"
