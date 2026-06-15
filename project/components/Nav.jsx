@@ -161,7 +161,7 @@ const Nav = () => {
 
         <div className="nav-cta" style={{display:'flex', alignItems:'center', gap:10}}>
           <a href={isSubpage ? '../index-v2.html#apply' : '#apply'} className="btn btn-primary">
-            <span className="nav-cta-full">Apply now</span><span className="nav-cta-short">Apply</span> <span className="arrow-pill"><ArrowRight/></span>
+            Apply now <span className="arrow-pill"><ArrowRight/></span>
           </a>
         </div>
 
@@ -171,7 +171,7 @@ const Nav = () => {
           aria-label="Open menu"
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); setMobileOpen(true); }}
           style={{
-            width: 44, height: 44, borderRadius: 999,
+            display: 'none', width: 44, height: 44, borderRadius: 999,
             background: lightMode ? 'rgba(11,18,32,.06)' : 'rgba(255,255,255,.14)',
             border: lightMode ? '1px solid var(--m-line)' : '1px solid rgba(255,255,255,.2)',
             color: 'inherit', cursor: 'pointer', alignItems: 'center', justifyContent: 'center',
