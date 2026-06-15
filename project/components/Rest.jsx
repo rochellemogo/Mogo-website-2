@@ -59,23 +59,21 @@ const Branches = () => {
   const activeColour = active === "All" ? "#7AB800" : regions.find((r) => r.name === active)?.colour || "#7AB800";
 
   return (
-    <section id="branches" style={{ padding: '100px 0', background: '#fff' }}>
+    <section id="branches" style={{ padding: '60px 0', background: '#fff' }}>
       <div className="shell">
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 40, marginBottom: 48, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, marginBottom: 24, flexWrap: 'wrap' }}>
           <div style={{ maxWidth: 640 }}>
-            <h2 className="mega-head" style={{ fontSize: 'clamp(42px, 5.5vw, 80px)' }}>
+            <h2 className="mega-head" style={{ fontSize: 'clamp(34px, 4.5vw, 60px)' }}>
               <span style={{ color: '#7ab800' }}>84+ branches</span>
             </h2>
-            <p style={{ fontSize: 17, lineHeight: 1.55, color: 'var(--m-ink-2)', maxWidth: 520, margin: '28px 0 0' }}>Find us in person at one of the locations below.
-
-            </p>
+            <p style={{ fontSize: 16, lineHeight: 1.55, color: 'var(--m-ink-2)', maxWidth: 520, margin: '16px 0 0' }}>Find us in person at one of the locations below.</p>
           </div>
         </div>
 
-        <div data-branches-grid style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 40, alignItems: 'stretch' }}>
+        <div data-branches-grid style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 24, alignItems: 'stretch' }}>
           {/* MAP */}
-          <div data-branches-map style={{ background: 'var(--m-cream)', borderRadius: 'var(--r-xl)', padding: 32, border: '1px solid var(--m-line-2)', position: 'relative' }}>
-            <div style={{ position: 'relative', aspectRatio: '4/5', borderRadius: 'var(--r-lg)', overflow: 'hidden', border: '1px solid var(--m-line-2)' }}>
+          <div data-branches-map style={{ background: 'var(--m-cream)', borderRadius: 'var(--r-xl)', padding: 16, border: '1px solid var(--m-line-2)', position: 'relative' }}>
+            <div style={{ position: 'relative', aspectRatio: '1/1', borderRadius: 'var(--r-lg)', overflow: 'hidden', border: '1px solid var(--m-line-2)' }}>
               {/* Google Maps embed — Kenya overview. For custom per-branch
                   pins clustered by region, swap this iframe for the JS Maps
                   API and provide a Google Maps key. */}
@@ -94,39 +92,38 @@ const Branches = () => {
 
           {/* LIST */}
           <div data-branches-list style={{ background: '#fff', borderRadius: 'var(--r-xl)', border: '1px solid var(--m-line-2)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-            <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--m-line-2)', display: 'flex', alignItems: 'center', gap: 12, background: 'var(--m-cream)' }}>
-              <span style={{ fontSize: 14 }}>🔍</span>
+            <div style={{ padding: '13px 18px', borderBottom: '1px solid var(--m-line-2)', display: 'flex', alignItems: 'center', gap: 10, background: 'var(--m-cream)' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--m-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="Search a town or neighbourhood…"
-                style={{ flex: 1, border: 'none', background: 'transparent', fontSize: 15, fontFamily: 'var(--font-sans)', outline: 'none', color: 'var(--m-ink)' }} />
-              
-              {q && <button onClick={() => setQ("")} style={{ border: 'none', background: 'transparent', fontSize: 13, color: 'var(--m-ink-2)', cursor: 'pointer' }}>Clear</button>}
+                style={{ flex: 1, border: 'none', background: 'transparent', fontSize: 14, fontFamily: 'inherit', outline: 'none', color: 'var(--m-ink)' }} />
+              {q && <button onClick={() => setQ("")} style={{ border: 'none', background: 'transparent', fontSize: 12, color: 'var(--m-ink-2)', cursor: 'pointer' }}>Clear</button>}
             </div>
-            <div style={{ flex: 1, maxHeight: 560, overflowY: 'auto', padding: '8px 0' }}>
+            <div style={{ flex: 1, maxHeight: 480, overflowY: 'auto', padding: '4px 0' }}>
               {filtered.length === 0 &&
-              <div style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--m-ink-2)' }}>
+                <div style={{ padding: '48px 20px', textAlign: 'center', color: 'var(--m-ink-2)', fontSize: 14 }}>
                   No branches match "{q}". Try Mombasa, Kisii or Meru.
                 </div>
               }
               {filtered.map((r) =>
-              <div key={r.name}>
-                  <div style={{ padding: '14px 24px 8px', display: 'flex', alignItems: 'center', gap: 8, position: 'sticky', top: 0, background: '#fff', zIndex: 1, borderBottom: '1px solid var(--m-line-2)' }}>
-                    <span style={{ width: 8, height: 8, borderRadius: 999, background: r.colour }} />
-                    <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.14em', color: 'var(--m-ink)' }}>{r.name}</span>
+                <div key={r.name}>
+                  <div style={{ padding: '9px 18px 6px', display: 'flex', alignItems: 'center', gap: 8, position: 'sticky', top: 0, background: '#fff', zIndex: 1, borderBottom: '1px solid var(--m-line-2)' }}>
+                    <span style={{ width: 7, height: 7, borderRadius: 999, background: r.colour, flexShrink: 0 }} />
+                    <span style={{ fontSize: 10.5, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.1em', color: 'var(--m-ink-2)' }}>{r.name}</span>
+                    <span style={{ marginLeft: 'auto', fontSize: 10.5, color: 'var(--m-muted)' }}>{r.branches.length}</span>
                   </div>
-                  <div data-branch-row style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div>
                     {r.branches.map((b) =>
-                  <a key={b.n} href="#apply" style={{ padding: '14px 24px', display: 'flex', alignItems: 'flex-start', gap: 12, borderBottom: '1px solid var(--m-line-2)', color: 'var(--m-ink)', textDecoration: 'none' }}>
-                        <span style={{ width: 8, height: 8, borderRadius: 999, background: r.colour, marginTop: 6, flexShrink: 0 }} />
+                      <a key={b.n} href="#apply" style={{ padding: '10px 18px', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid var(--m-line-2)', color: 'var(--m-ink)', textDecoration: 'none' }}>
+                        <span style={{ width: 6, height: 6, borderRadius: 999, background: r.colour, flexShrink: 0 }} />
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontSize: 14.5, fontWeight: 600, lineHeight: 1.3 }}>{b.n}</div>
-                          <div style={{ fontSize: 12.5, color: 'var(--m-muted)', lineHeight: 1.4, marginTop: 2 }}>{b.addr || '—'}</div>
+                          <div style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.25 }}>{b.n}</div>
+                          <div style={{ fontSize: 12, color: 'var(--m-muted)', marginTop: 1 }}>{b.addr || '—'}</div>
                         </div>
-                        <span style={{ fontSize: 11, color: 'var(--m-muted)', fontFamily: 'inherit', marginTop: 4 }}>→</span>
                       </a>
-                  )}
+                    )}
                   </div>
                 </div>
               )}
