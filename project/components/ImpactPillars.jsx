@@ -12,7 +12,7 @@ const IMPACT_PILLARS = [
     badge: 'For boda chairmen',
     photoTag: 'Chairman training · Nairobi',
     photoId: 'impact01',
-    photoPath: '../uploads/women photo-c433c1c0.jpg',
+    photoPath: '../uploads/mogo-impact-training.jpg',
     bullets: [
       'Quarterly chairman workshops across 32 counties',
       'Financial-management curriculum co-built with Eleving SMART',
@@ -29,7 +29,7 @@ const IMPACT_PILLARS = [
     badge: 'With our partners',
     photoTag: 'Service clinic · Mombasa Road',
     photoId: 'impact05',
-    photoPath: '../uploads/boda stage-a0c0b0d0.jpg',
+    photoPath: '../uploads/mogo-impact-activation.jpg',
     bullets: [
       'Free service clinics & bike health checks',
       'Flour donations and family-support drives',
@@ -47,7 +47,7 @@ const IMPACT_PILLARS = [
     badge: 'Long-term investment',
     photoTag: 'Boda shade · under construction',
     photoId: 'impact02',
-    photoPath: '../uploads/csr-2f61378b.jpg',
+    photoPath: '../uploads/mogo-impact-boda-stage.jpg',
     bullets: [
       'Boda boda shades for stages in high-density routes',
       'Chairman offices with secure storage & meeting space',
@@ -64,7 +64,7 @@ const IMPACT_PILLARS = [
     badge: 'Staff-led',
     photoTag: 'Tree planting · Aberdares',
     photoId: 'impact03',
-    photoPath: '../uploads/tree planting-8ba64093.jpg',
+    photoPath: '../uploads/mogo-impact-csr-community.jpg',
     bullets: [
       'Tree-planting drives with Kenya Forest Service',
       'School supplies, hospital and emergency donations',

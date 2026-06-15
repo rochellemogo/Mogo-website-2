@@ -20,11 +20,21 @@
 
 /* NAV */
 @media (max-width: 860px) {
+  header[data-mogo-nav] {
+    position: fixed !important;
+    top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,.97) !important;
+    color: var(--m-ink) !important;
+    border-bottom: 1px solid var(--m-line) !important;
+    z-index: 50;
+  }
   header[data-mogo-nav] > .shell > nav { display: none !important; }
   header[data-mogo-nav] > .shell > .nav-cta { display: none !important; }
   header[data-mogo-nav] > .shell { padding: 14px 20px !important; }
   .mobile-nav-toggle { display: inline-grid !important; }
   .mogo-mobile-burger { display: inline-flex !important; }
+  /* Push content below fixed nav */
+  body { padding-top: 62px; }
 }
 @media (min-width: 861px) {
   .mobile-nav-toggle, .mobile-nav-drawer { display: none !important; }
