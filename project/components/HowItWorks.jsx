@@ -28,7 +28,7 @@ const HowItWorks = () => {
         <div className="section-intro">
           <div>
             <div className="h-eyebrow"><span className="dot" />How it works</div>
-            <h2 className="mega-head">Four steps from<br />application to <em>ownership.</em></h2>
+            <h2 className="mega-head">Four steps from<br />application to <em style={{fontFamily:'inherit', fontStyle:'italic', fontWeight:400, color:'var(--m-green-ink)'}}>ownership.</em></h2>
           </div>
           <p style={{ fontSize: 17, color: 'var(--m-ink-2)', lineHeight: 1.55, maxWidth: 440, margin: 0 }}>
             No paperwork mountain. No surprises. Just an honest process built around the fastest path to your wheels.
