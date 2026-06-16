@@ -229,7 +229,7 @@ const Products = () => {
                   <span style={{ display: 'block', fontSize: 13, fontFamily: 'var(--font-sans)', fontWeight: 500, letterSpacing: '0', color: isActive ? 'var(--m-green)' : 'var(--m-green-ink)' }}>{p.price}</span>
                 </span>
                 <span aria-hidden="true" style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-                  <span style={{ fontSize: 9.5, fontFamily: 'inherit', letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 600, color: isActive ? 'var(--m-green)' : 'var(--m-muted)', whiteSpace: 'nowrap' }}>
+                  <span className="product-mini-label" style={{ fontSize: 9.5, fontFamily: 'inherit', letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 600, color: isActive ? 'var(--m-green)' : 'var(--m-muted)', whiteSpace: 'nowrap' }}>
                     {isActive ? 'Close' : 'Details'}
                   </span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"

@@ -101,6 +101,9 @@ body.mobile-nav-open { overflow: hidden; }
   section#products [data-tile-grid] .tile h3 { font-size: 19px !important; }
   section#products [data-tile-grid] .tile [data-tile-body] { padding: 16px 16px 20px !important; }
   section#products [data-tile-grid] .tile [data-tile-body] p { font-size: 13.5px !important; }
+  /* Tighten mini tile padding so name isn't clipped; hide label text, keep chevron */
+  section#products .product-mini { padding: 12px 12px !important; gap: 10px !important; }
+  section#products .product-mini .product-mini-label { display: none !important; }
 }
 @media (max-width: 480px) {
   section#products [data-tile-grid] { grid-template-columns: 1fr !important; }
