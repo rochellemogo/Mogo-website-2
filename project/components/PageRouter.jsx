@@ -62,7 +62,7 @@ const SakaCheck = () => {
       <label style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-ink-2)'}}>
         {mode === 'plate' ? 'Registration plate' : 'Chassis number'}
       </label>
-      <div style={{display:'flex', gap:8, marginTop:12}}>
+      <div className="saka-check-row" style={{display:'flex', gap:8, marginTop:12}}>
         <input value={value} placeholder={placeholder}
           onChange={(e) => { setValue(e.target.value); setResult(null); }}
           onKeyDown={(e) => { if (e.key === 'Enter') check(); }}
@@ -282,6 +282,7 @@ const NewsList = () => {
             const i = start + idx;
             return (
               <a key={n.slug} href={`./news-article.html?slug=${n.slug}`}
+                 className="news-row"
                  style={{display:'grid', gridTemplateColumns:'220px 1fr auto', gap: 40, padding:'32px 0', borderBottom:'1px solid var(--m-line-2)', textDecoration:'none', color:'var(--m-ink)', alignItems:'start'}}>
                 <div style={{aspectRatio:'4/3', background:`linear-gradient(135deg, hsl(${(i*37)%360} 24% 78%), hsl(${(i*37+60)%360} 20% 58%))`, borderRadius:'var(--r-lg)', position:'relative', overflow:'hidden'}}>
                   <div className="grain"/>
@@ -653,7 +654,7 @@ const MOGO_PAGES = {
     kicker: "SAKA is Mogo Kenya's stolen-vehicle database — a free tool to check any boda, tuk-tuk or car before you buy it, and to report stolen assets if the worst happens.",
     render: () => (
       <>
-        <section style={{padding:'96px 0', background:'#fff'}}>
+        <section data-saka-section style={{padding:'96px 0', background:'#fff'}}>
           <div data-saka-grid className="shell" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap: 48, alignItems:'start'}}>
             <div>
               <h2 className="mega-head" style={{fontSize:'clamp(36px, 4.5vw, 60px)', marginTop:12, marginBottom:24}}>Check <em>a vehicle.</em></h2>

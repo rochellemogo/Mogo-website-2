@@ -76,7 +76,7 @@ const NewsArticle = () => {
       {/* Prev / Next nav */}
       <section style={{padding:'0 0 96px', background:'#fff'}}>
         <div className="shell" style={{maxWidth: 1040}}>
-          <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:20, borderTop:'1px solid var(--m-line)', paddingTop: 32}}>
+          <div className="news-article-nav" style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:20, borderTop:'1px solid var(--m-line)', paddingTop: 32}}>
             {prev ? (
               <a href={`./news-article.html?slug=${prev.slug}`} style={{display:'block', padding:'28px 32px', background:'var(--m-cream)', borderRadius:'var(--r-lg)', textDecoration:'none', color:'var(--m-ink)', border:'1px solid var(--m-line-2)'}}>
                 <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-ink-2)', marginBottom:10}}>← Newer · {prev.date}</div>

@@ -351,11 +351,28 @@ body.mobile-nav-open { overflow: hidden; }
   section[data-prose] h2 { font-size: clamp(28px, 7vw, 42px) !important; }
 }
 
+/* ─── NEWS PAGE ─────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  /* News list — each row stacks image → text, hides "Read story" label */
+  .news-row { grid-template-columns: 1fr !important; gap: 14px !important; padding: 24px 0 !important; }
+  .news-row > div:nth-child(3) { display: none !important; }
+  .news-row > div:first-child { width: 100% !important; max-width: 100% !important; border-radius: 10px !important; }
+  .news-row h3 { font-size: clamp(20px, 5vw, 26px) !important; }
+  .news-row p  { font-size: 14.5px !important; }
+  /* Article prev/next nav — stack to single column */
+  .news-article-nav { grid-template-columns: 1fr !important; gap: 12px !important; }
+}
+
 /* ─── SAKA PAGE ──────────────────────────────────────────────────────────── */
 @media (max-width: 860px) {
-  [data-saka-grid] { grid-template-columns: 1fr !important; gap: 48px !important; }
+  [data-saka-section] { padding: 56px 0 !important; }
+  [data-saka-grid] { grid-template-columns: 1fr !important; gap: 40px !important; }
   [data-theft-row] { grid-template-columns: 1fr !important; }
   .saka-emergency-num { font-size: 28px !important; }
+  /* Check input row — stack input full-width on very narrow screens */
+  .saka-check-row { flex-wrap: wrap !important; }
+  .saka-check-row input { flex: 0 0 100% !important; order: 2; }
+  .saka-check-row .btn { flex: 1 !important; justify-content: center !important; order: 3; }
 }
 
 /* ─── CARDS COMPONENT ────────────────────────────────────────────────────── */
