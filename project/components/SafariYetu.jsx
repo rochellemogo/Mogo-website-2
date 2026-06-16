@@ -1,3 +1,43 @@
+// FT / Statista award badge — rendered inline to match the official badge design
+const FTBadge = ({ title }) => (
+  <div style={{
+    display:'inline-flex', alignItems:'stretch',
+    border:'2px solid #F2BFA0', borderRadius:8,
+    background:'#fff', overflow:'hidden',
+    fontSize:0, // reset
+  }}>
+    {/* Left: FT + Statista logos */}
+    <div style={{
+      display:'flex', flexDirection:'column', justifyContent:'center', gap:8,
+      padding:'10px 14px', borderRight:'1.5px solid #e8cbb8',
+    }}>
+      <div style={{display:'flex', alignItems:'center', gap:7}}>
+        <div style={{
+          background:'#F2BFA0', width:28, height:28, display:'grid', placeItems:'center',
+          fontFamily:'Georgia, serif', fontWeight:900, fontSize:15, color:'#1a1a1a', flexShrink:0,
+        }}>FT</div>
+        <div style={{fontSize:8.5, fontWeight:700, letterSpacing:'.05em', lineHeight:1.3, color:'#1a1a1a'}}>
+          FINANCIAL<br/>TIMES
+        </div>
+      </div>
+      <div style={{display:'flex', alignItems:'center', gap:4}}>
+        <span style={{fontSize:11, fontWeight:700, color:'#003478', letterSpacing:'-.01em'}}>statista</span>
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="#003478"><path d="M2 14h4v4H2zM8 9h4v9H8zM14 4h4v14h-4z"/></svg>
+      </div>
+    </div>
+    {/* Divider + title */}
+    <div style={{
+      display:'flex', alignItems:'center',
+      padding:'10px 14px',
+    }}>
+      <div style={{
+        fontSize:10, fontWeight:900, lineHeight:1.25, color:'#1a1a1a',
+        letterSpacing:'.02em', whiteSpace:'pre-line', textTransform:'uppercase',
+      }}>{title}</div>
+    </div>
+  </div>
+);
+
 // "Safari Yetu" — Mogo Kenya company timeline
 // Horizontal scrollable on desktop with alternating above/below nodes.
 // Stacks vertically on mobile (handled in mobile.css).
@@ -29,6 +69,10 @@ const SafariYetu = () => {
             <p style={{fontSize:17, color:'var(--m-ink-2)', lineHeight:1.6, marginTop:18, maxWidth:600}}>
               From a single product in 2019 to 88 branches and 300,000+ customers — here's how Mogo Kenya grew alongside the people we finance.
             </p>
+            <div style={{display:'flex', gap:12, marginTop:24, flexWrap:'wrap'}}>
+              <FTBadge title={'EUROPE\'S\nLONG-TERM GROWTH\nCHAMPIONS 2025'} />
+              <FTBadge title={'1000 EUROPE\'S\nFASTEST GROWING\nCOMPANIES'} />
+            </div>
           </div>
           <div className="safari-arrows" style={{display:'flex', gap:8}}>
             <button onClick={()=>scrollBy(-1)} aria-label="Previous milestone" style={arrowBtnStyle}><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
@@ -49,7 +93,8 @@ const SafariYetu = () => {
           position:'relative',
           display:'flex',
           minHeight: 700,
-          padding:'0 max(40px, 6vw)',
+          paddingLeft: 'max(120px, 10vw)',
+          paddingRight: 'max(40px, 6vw)',
           width:'max-content',
         }}>
           {/* Horizontal spine */}
