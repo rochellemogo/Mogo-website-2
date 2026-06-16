@@ -225,7 +225,7 @@ const Products = () => {
                   <ProductIcon slug={p.slug} size={22} />
                 </span>
                 <span style={{ minWidth: 0, flex: 1 }}>
-                  <span style={{ display: 'block', fontFamily: 'var(--font-display)', fontSize: 15.5, fontWeight: 600, letterSpacing: '-.02em', lineHeight: 1.15, marginBottom: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.short || p.name}</span>
+                  <span className="product-mini-name" style={{ display: 'block', fontFamily: 'var(--font-display)', fontSize: 15.5, fontWeight: 600, letterSpacing: '-.02em', lineHeight: 1.15, marginBottom: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.short || p.name}</span>
                   <span style={{ display: 'block', fontSize: 13, fontFamily: 'var(--font-sans)', fontWeight: 500, letterSpacing: '0', color: isActive ? 'var(--m-green)' : 'var(--m-green-ink)' }}>{p.price}</span>
                 </span>
                 <span aria-hidden="true" style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
