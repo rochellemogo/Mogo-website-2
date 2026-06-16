@@ -9,7 +9,7 @@ const Mission = () => (
         </h2>
       </div>
       <div style={{marginTop: 72, display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap: 40, paddingTop: 40, borderTop:'1px solid var(--m-line)'}}>
-        <MissionPoint n="01" t="Financing for the real economy" d="We back riders, drivers and shopkeepers — not just credit scores. Over 70% of our customers are self-employed."/>
+        <MissionPoint n="01" t="Financing for the real economy" d="We lend to riders, drivers and shopkeepers — not just people with credit scores. Over 70% of our customers are self-employed."/>
         <MissionPoint n="02" t="Honest terms. Best price." d="Zero hidden fees. Best price guarantee."/>
         <MissionPoint n="03" t="Face-to-face, in your town" d="84 branches from Mombasa to Eldoret. "/>
       </div>

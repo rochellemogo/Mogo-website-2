@@ -152,7 +152,7 @@ const CTA = () =>
             Your wheels<br />are <em style={{ fontStyle: 'italic', color: 'var(--m-green)', fontWeight: 400 }}>waiting.</em>
           </h2>
           <p style={{ fontSize: 18, color: 'rgba(255,255,255,.72)', lineHeight: 1.55, marginBottom: 40, maxWidth: 520 }}>
-            Three-minute form. Real call from a MOGO officer same day. Get your loan today.
+            Three-minute form. A Mogo officer will call you the same day to confirm your terms.
           </p>
           <div data-cta-buttons style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <a href="#" className="btn btn-primary btn-lg">Apply online <span className="arrow-pill"><ArrowRight /></span></a>
@@ -172,7 +172,7 @@ const Footer = () =>
         <div>
           <img src={(window.__resources && window.__resources.mogoLogo) || (window.__MOGO_SUBPAGE ? "../assets/mogo-logo.svg" : "assets/mogo-logo.svg")} alt="mogo" style={{ height: 28, marginBottom: 20 }} />
           <p style={{ fontSize: 14, lineHeight: 1.6, maxWidth: 340 }}>
-            Mogo Auto Kenya Ltd. Part of Eleving Group — a fintech operating in 15 countries across three continents. Building a Kenya where every hustle has the wheels it needs.
+            Mogo Auto Kenya Ltd. Part of Eleving Group — a fintech operating in 15 countries across three continents.
           </p>
 
           {/* Contact details */}

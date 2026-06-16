@@ -3,13 +3,13 @@
 // Stacks vertically on mobile (handled in mobile.css).
 
 const SAFARI_YETU = [
-  { year:'2019', title:'A Bold Entry into Africa', body:'We began with a vision to make vehicle ownership accessible. Entered Kenya & Uganda markets. Focused on car financing & car logbook loans. Enabled mobility for ride-hailing drivers.', issuance:'KES 349M', customers:'737' },
-  { year:'2020', title:'Unlocking Everyday Income', body:'We expanded access to products that generate livelihoods. Launched boda boda financing. Opened financing to a wider customer base. Empowered informal sector entrepreneurs.', issuance:'KES 1.4B', customers:'12,051' },
-  { year:'2021', title:'Building the Foundation',     body:'We strengthened our base to support long-term growth. Expanded into new regions. Grew team and operational capacity. Strengthened internal processes.', issuance:'KES 4.7B', customers:'50,001' },
-  { year:'2022', title:'Strengthening the Core',     body:'We refined how we work to serve better. Improved operational efficiency. Optimised product structure. Focused on sustainable growth.', issuance:'KES 4.5B', customers:'86,552' },
-  { year:'2023', title:'Choosing Resilience',         body:'In a tough economy, we chose sustainability over scale. Navigated rising cost of living & currency depreciation. Tightened credit policies. Reduced costs and optimised operations.', issuance:'KES 3.7B', customers:'116,774' },
-  { year:'2024', title:'Building Trust & Expanding Horizons', body:'We strengthened credibility and introduced new opportunities. Achieved CBK approval as a digital lender. Launched boda boda & tuk tuk logbook loans. Reached 1,000+ new product issuances.', issuance:'KES 5.3B', customers:'143,063' },
-  { year:'2025', title:'Accelerating Impact',         body:'We scaled our reach, our team, and our solutions. Presence in 32 counties with 88 branches. Team growth: 600 → 1,500+ employees. Launched Check-Off Loans, Smartphone Loans and the MyMOGO App.', issuance:'KES 10.7B', customers:'302,496' },
+  { year:'2019', title:'A Bold Entry into Africa', body:'Entered Kenya and Uganda markets with car financing and car logbook loans. Built for ride-hailing drivers and daily commuters.', issuance:'KES 349M', customers:'737' },
+  { year:'2020', title:'Unlocking Everyday Income', body:'Launched boda boda financing and opened to a wider customer base beyond ride-hailing. 12,000+ customers by year end.', issuance:'KES 1.4B', customers:'12,051' },
+  { year:'2021', title:'Building the Foundation',     body:'Expanded into new regions. Grew team and operational capacity across the country.', issuance:'KES 4.7B', customers:'50,001' },
+  { year:'2022', title:'Strengthening the Core',     body:'Improved operational efficiency and optimised product structure. Focused on reaching sustainable scale.', issuance:'KES 4.5B', customers:'86,552' },
+  { year:'2023', title:'Choosing Resilience',         body:'A difficult year — rising cost of living and currency depreciation. Tightened credit policies, reduced costs, and kept the business stable.', issuance:'KES 3.7B', customers:'116,774' },
+  { year:'2024', title:'Building Trust & Expanding Horizons', body:'Achieved CBK approval as a digital lender. Launched boda boda and tuk-tuk logbook loans. Over 1,000 new product issuances in the year.', issuance:'KES 5.3B', customers:'143,063' },
+  { year:'2025', title:'Accelerating Impact',         body:'Presence in 32 counties with 88 branches. Team grew from 600 to 1,500+ employees. Launched Check-Off Loans, Smartphone Loans and the MyMOGO App.', issuance:'KES 10.7B', customers:'302,496' },
 ];
 
 const SafariYetu = () => {

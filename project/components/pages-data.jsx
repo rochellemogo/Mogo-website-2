@@ -15,9 +15,9 @@ const MOGO_PAGES = {
           }
           right={
             <p style={{fontSize:18, lineHeight:1.65, color:'var(--m-ink-2)'}}>
-              We facilitate upward social mobility across Kenyan communities by creating access to innovative and sustainable financial solutions — from Boda bodas and tuk-tuks to used cars, logbook loans, check-off and business financing.
+              Mogo lends to people who use the money to earn — boda riders, car owners, teachers, traders and small-business owners across Kenya. We offer the products that help them own their tools of trade and grow their income.
               <br/><br/>
-              Our customers are hustlers, civil servants, traders, teachers, boda riders and shopkeepers. Our job is to help them own their tools of trade, grow their businesses, and build a future.
+              Our customers are civil servants, traders, teachers, boda riders and shopkeepers. Our job is to help them own their tools of trade, grow their businesses, and build a future.
             </p>
           }
         />
@@ -37,8 +37,8 @@ const MOGO_PAGES = {
           ]}
         />
         <Prose title="Part of the <em>Eleving</em> Group.">
-          <p>Mogo is a reliable and internationally trusted partner offering car financing and logbook loans to its customers in 17 countries across Europe, Asia, and Africa. Over 100,000 satisfied customers have chosen Mogo — and we hope you'll soon be one of them.</p>
-          <p style={{marginTop:18}}>Mogo processes loan requests within 24 hours and provides repayment terms of up to 60 months. We are one of the very few financial companies globally that finance vehicles of any age, brand or model, and we give our customers the privilege to choose from a vast network of trusted dealerships.</p>
+          <p>Mogo is part of Eleving Group, which operates car financing and logbook loans in 17 countries across Europe, Asia and Africa. Over 100,000 customers have used Mogo globally.</p>
+          <p style={{marginTop:18}}>Mogo processes loan requests within 24 hours, with repayment terms of up to 60 months. We finance vehicles of any age, brand or model, and work with dealerships across Kenya.</p>
           <div style={{marginTop:36, display:'flex', flexWrap:'wrap', gap:8}}>
             {['Kenya','Uganda','Tanzania','Latvia','Lithuania','Estonia','Romania','Moldova','Georgia','Armenia','Uzbekistan'].map(c =>
               <span key={c} style={{padding:'6px 12px', border:'1px solid var(--m-line-2)', borderRadius:999, fontSize:13, fontWeight:500}}>{c}</span>
@@ -173,7 +173,7 @@ const MOGO_PAGES = {
   'careers': {
     title: 'Build <em>Mogo</em><br/>with us.',
     eyebrow: 'Careers',
-    kicker: "We're building Kenya's most trusted financing business — and we need teammates who take the job personally.",
+    kicker: "We're building Kenya's most accessible financing business — and we're looking for people who care about the work.",
     render: () => (
       <>
         <Cards
@@ -182,7 +182,7 @@ const MOGO_PAGES = {
           cards={[
             {label:'01', title:'Real customers, real impact', body:'Every loan we make funds a hustle: a rider, a shopkeeper, a teacher. You see the impact on the street the same week.'},
             {label:'02', title:'Grow across the group', body:'Mogo is part of Eleving Group, operating in 17 countries. Strong performers get moved up — and sometimes moved abroad.'},
-            {label:'03', title:'Own your work', body:"We're a lean, informal team. Bring the idea, bring the ownership, and we'll back it. Less politics, more shipping."},
+            {label:'03', title:'Own your work', body:"We're a lean team. If you have an idea, bring it. We make decisions quickly and give people room to run with things."},
           ]}
         />
         <section style={{padding:'96px 0', background:'var(--m-cream)'}}>
@@ -274,7 +274,7 @@ const MOGO_PAGES = {
   'mogo-impact': {
     title: "Unlocking <em>progress,</em><br/>one loan at a time.",
     eyebrow: 'Mogo Impact',
-    kicker: "The money we lend doesn't sit still. It buys a boda. Pays school fees. Stocks a shop. Feeds a family. This is what our lending looks like on the ground.",
+    kicker: "The money we lend goes straight to work — buying a boda, paying fees, stocking a shop. This is what our lending looks like on the ground.",
     render: () => (
       <>
         <StatsBand accent="var(--m-green)" stats={[
@@ -286,7 +286,7 @@ const MOGO_PAGES = {
           eyebrow="Where the money goes"
           title="A loan is a <em>tool.</em>"
           cards={[
-            {label:'Mobility',   title:'Putting wheels under earners', body:"Over 100,000 bodas, tuk-tuks and cars financed on Kenyan roads — every one of them a small business on two or four wheels."},
+            {label:'Mobility',   title:'Putting wheels under earners', body:"Over 100,000 bodas, tuk-tuks and cars financed on Kenyan roads. Most customers use the vehicle as their primary source of income."},
             {label:'Livelihood', title:'Working capital for MSMEs',    body:'We finance shops, salons, kiosks and mama-mbogas. The median MSME loan restocks inventory or buys equipment that pays for itself in weeks.'},
             {label:'Stability',  title:'Salary loans for civil servants',  body:'Check-off loans for civil servants and private-sector workers. Affordable, fixed-rate, no CRB games.'},
           ]}
