@@ -197,11 +197,30 @@ body.mobile-nav-open { overflow: hidden; }
 
 /* ─── STATS BAND ────────────────────────────────────────────────────────── */
 @media (max-width: 860px) {
-  section[data-stats-band] { padding: 60px 0 !important; }
-  section[data-stats-band] > .shell > div { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
-}
-@media (max-width: 480px) {
-  section[data-stats-band] > .shell > div { grid-template-columns: 1fr !important; }
+  section[data-stats-band] { padding: 52px 0 !important; }
+  /* Stack stats vertically; show number + label as a flex row */
+  section[data-stats-band] > .shell > div { grid-template-columns: 1fr !important; gap: 0 !important; }
+  section[data-stats-band] > .shell > div > div {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+    border-left: none !important;
+    border-bottom: 1px solid rgba(255,255,255,.12) !important;
+    padding: 18px 0 !important;
+  }
+  section[data-stats-band] > .shell > div > div:last-child { border-bottom: none !important; }
+  /* Number — fixed width so labels always align */
+  section[data-stats-band] > .shell > div > div > div:first-child {
+    font-size: 44px !important;
+    flex-shrink: 0 !important;
+    min-width: 100px !important;
+    line-height: 1 !important;
+  }
+  /* Label — remove top margin inherited from desktop */
+  section[data-stats-band] > .shell > div > div > div:last-child {
+    margin-top: 0 !important;
+    max-width: none !important;
+  }
 }
 
 /* ─── TWO COL ────────────────────────────────────────────────────────────── */

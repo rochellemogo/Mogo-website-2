@@ -18,7 +18,7 @@ const CONSENTS = [
   {
     id: 'marketing',
     required: false,
-    label: 'Marketing communications (optional)',
+    label: 'Marketing communications',
     text: `I hereby consent to receiving marketing communications from Mogo Auto Ltd and contact me via various channels, including but not limited to SMS, email, phone calls, and other electronic means, to provide information about offers, promotions, and other relevant updates from Mogo Auto Ltd and its affiliate companies. See more on our privacy policy page.`,
   },
 ];
@@ -156,9 +156,9 @@ const ApplyModal = () => {
   return (
     <div role="dialog" aria-modal="true"
       onClick={() => setOpen(false)}
-      style={{ position:'fixed', inset:0, zIndex:9999, background:'rgba(11,18,32,.55)', backdropFilter:'blur(6px)', display:'flex', alignItems:'flex-start', justifyContent:'center', padding:'48px 24px', overflowY:'auto', animation:'apply-fade .2s ease' }}
+      style={{ position:'fixed', inset:0, zIndex:9999, background:'rgba(11,18,32,.55)', backdropFilter:'blur(6px)', display:'flex', alignItems:'center', justifyContent:'center', padding:'24px', animation:'apply-fade .2s ease' }}
     >
-      <div onClick={(e)=>e.stopPropagation()} style={{ background:'#fff', borderRadius:'var(--r-xl)', maxWidth: 560, width:'100%', padding:'40px', boxShadow:'0 30px 80px rgba(11,18,32,.35)', position:'relative', margin:'auto', animation:'apply-pop .25s ease' }}>
+      <div onClick={(e)=>e.stopPropagation()} style={{ background:'#fff', borderRadius:'var(--r-xl)', maxWidth: 560, width:'100%', padding:'40px', boxShadow:'0 30px 80px rgba(11,18,32,.35)', position:'relative', margin:'auto', animation:'apply-pop .25s ease', maxHeight:'calc(100vh - 48px)', overflowY:'auto' }}>
         <button onClick={() => setOpen(false)} aria-label="Close"
           style={{ position:'absolute', top:16, right:16, width:36, height:36, borderRadius:999, border:'none', background:'var(--m-cream)', color:'var(--m-ink)', cursor:'pointer', display:'grid', placeItems:'center', fontSize:18, zIndex: 2 }}>
           ×

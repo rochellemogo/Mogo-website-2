@@ -200,7 +200,9 @@ const Products = () => {
           <div>
             <h2 className="mega-head">What we <em>finance.</em></h2>
           </div>
-          <p style={{ fontSize: 16, color: 'var(--m-ink-2)', lineHeight: 1.55, maxWidth: 420, margin: 0 }}>Best known for bodas — now financing tuk-tuks, cars, phones and the working capital Kenyan businesses need to grow. Tap any product to see it.
+          <p style={{ fontSize: 16, color: 'var(--m-ink-2)', lineHeight: 1.55, maxWidth: 420, margin: 0 }}>
+            Best known for bodas — now financing tuk-tuks, cars, phones and the working capital Kenyan businesses need to grow.<br/>
+            <strong style={{color:'var(--m-green-ink)', fontWeight:700}}>Tap any product to see details.</strong>
           </p>
         </div>
 
