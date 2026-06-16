@@ -228,11 +228,15 @@ const Products = () => {
                   <span style={{ display: 'block', fontFamily: 'var(--font-display)', fontSize: 15.5, fontWeight: 600, letterSpacing: '-.02em', lineHeight: 1.15, marginBottom: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.short || p.name}</span>
                   <span style={{ display: 'block', fontSize: 13, fontFamily: 'var(--font-sans)', fontWeight: 500, letterSpacing: '0', color: isActive ? 'var(--m-green)' : 'var(--m-green-ink)' }}>{p.price}</span>
                 </span>
-                {isActive &&
-                  <span aria-hidden="true" style={{ flexShrink: 0, color: 'var(--m-green)', display: 'grid', placeItems: 'center' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                <span aria-hidden="true" style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                  <span style={{ fontSize: 9.5, fontFamily: 'inherit', letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 600, color: isActive ? 'var(--m-green)' : 'var(--m-muted)', whiteSpace: 'nowrap' }}>
+                    {isActive ? 'Close' : 'Details'}
                   </span>
-                }
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                    style={{ color: isActive ? 'var(--m-green)' : 'var(--m-muted)', transition: 'transform .2s', transform: isActive ? 'rotate(180deg)' : 'none' }}>
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </span>
               </button>
             );
             if (active && i === insertAfter) {
