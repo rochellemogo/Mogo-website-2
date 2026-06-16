@@ -21,21 +21,18 @@ const Stories = () => {
   return (
     <section id="stories" style={{padding:'100px 0', background:'var(--m-cream)'}}>
       <div className="shell">
-        <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-end', marginBottom:16, flexWrap:'wrap', gap:24}}>
+        <div style={{marginBottom:16}}>
           <h2 className="mega-head">Real Kenyans.<br/><em>Real</em> businesses.</h2>
-          <div style={{display:'flex', gap:8}}>
-            <button onClick={()=>scroll(-1)} style={arrowStyle} aria-label="Previous">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </button>
-            <button onClick={()=>scroll(1)} style={arrowStyle} aria-label="Next">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            </button>
-          </div>
         </div>
 
         <a href="pages/our-stories.html" style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:13, fontWeight:600, letterSpacing:'.06em', textTransform:'uppercase', color:'var(--m-green-ink)', textDecoration:'none', marginBottom:32}}>Watch our stories <ArrowRight size={13}/></a>
 
-        <div ref={scrollRef} data-stories-carousel style={{display:'flex', gap:20, overflowX:'auto', scrollSnapType:'x mandatory', scrollbarWidth:'none', WebkitOverflowScrolling:'touch'}}>
+        <div style={{display:'flex', alignItems:'center', gap:12}}>
+          <button onClick={()=>scroll(-1)} style={arrowStyle} aria-label="Previous">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
+
+        <div ref={scrollRef} data-stories-carousel style={{flex:1, display:'flex', gap:20, overflowX:'auto', scrollSnapType:'x mandatory', scrollbarWidth:'none', WebkitOverflowScrolling:'touch'}}>
           <style>{`[data-stories-carousel]::-webkit-scrollbar{display:none}`}</style>
           {stories.map(s => (
             <article key={s.name} style={{flex:'0 0 calc(33.333% - 14px)', scrollSnapAlign:'start', background:'#fff', borderRadius:'var(--r-xl)', overflow:'hidden', border:'1px solid var(--m-line-2)', display:'flex', flexDirection:'column', minWidth:0}}>
@@ -57,6 +54,11 @@ const Stories = () => {
               </div>
             </article>
           ))}
+        </div>
+
+          <button onClick={()=>scroll(1)} style={arrowStyle} aria-label="Next">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </button>
         </div>
       </div>
     </section>
