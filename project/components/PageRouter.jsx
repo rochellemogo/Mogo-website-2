@@ -1,5 +1,39 @@
 // Page content for all About / Impact sub-pages
 
+// FT / Statista award badge — inline recreation of the official badge design
+const FTBadge = ({ title }) => (
+  <div style={{
+    display:'inline-flex', alignItems:'stretch',
+    border:'2px solid #F2BFA0', borderRadius:8,
+    background:'#fff', overflow:'hidden',
+  }}>
+    <div style={{
+      display:'flex', flexDirection:'column', justifyContent:'center', gap:8,
+      padding:'10px 14px', borderRight:'1.5px solid #e8cbb8',
+    }}>
+      <div style={{display:'flex', alignItems:'center', gap:7}}>
+        <div style={{
+          background:'#F2BFA0', width:28, height:28, display:'grid', placeItems:'center',
+          fontFamily:'Georgia, serif', fontWeight:900, fontSize:15, color:'#1a1a1a', flexShrink:0,
+        }}>FT</div>
+        <div style={{fontSize:8.5, fontWeight:700, letterSpacing:'.05em', lineHeight:1.3, color:'#1a1a1a'}}>
+          FINANCIAL<br/>TIMES
+        </div>
+      </div>
+      <div style={{display:'flex', alignItems:'center', gap:4}}>
+        <span style={{fontSize:11, fontWeight:700, color:'#003478', letterSpacing:'-.01em'}}>statista</span>
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="#003478"><path d="M2 14h4v4H2zM8 9h4v9H8zM14 4h4v14h-4z"/></svg>
+      </div>
+    </div>
+    <div style={{display:'flex', alignItems:'center', padding:'10px 14px'}}>
+      <div style={{
+        fontSize:10, fontWeight:900, lineHeight:1.25, color:'#1a1a1a',
+        letterSpacing:'.02em', whiteSpace:'pre-line', textTransform:'uppercase',
+      }}>{title}</div>
+    </div>
+  </div>
+);
+
 // ---------- Customer story videos ----------
 // Pulled from the official MOGO Kenya channel (youtube.com/@MOGOKenya).
 // The channel uploads playlist (UU…) lets the featured player and each card
@@ -391,12 +425,15 @@ const AboutPageBody = () => {
           </div>
 
           {/* Award block — flat, no rounded corners */}
-          <div className="ft-award-block" style={{marginTop:48, display:'grid', gridTemplateColumns:'1fr auto', gap:40, alignItems:'center', padding:'32px 0', borderTop:'1px solid var(--m-line-2)', borderBottom:'1px solid var(--m-line-2)'}}>
-            <div>
-              <div style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:700, marginBottom:14}}>Recognition</div>
+          <div className="ft-award-block" style={{marginTop:48, padding:'32px 0', borderTop:'1px solid var(--m-line-2)', borderBottom:'1px solid var(--m-line-2)'}}>
+            <div style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:700, marginBottom:14}}>Recognition</div>
+            <div style={{display:'grid', gridTemplateColumns:'1fr auto', gap:40, alignItems:'center'}}>
               <p style={{fontSize:15.5, lineHeight:1.6, color:'var(--m-ink)', margin:0}}>{d.award_text}</p>
+              <div style={{display:'flex', flexDirection:'column', gap:10, flexShrink:0}}>
+                <FTBadge title={'EUROPE\'S\nLONG-TERM GROWTH\nCHAMPIONS 2025'} />
+                <FTBadge title={'1000 EUROPE\'S\nFASTEST GROWING\nCOMPANIES'} />
+              </div>
             </div>
-            {d.award_badge_image && <img src={d.award_badge_image} alt="Award badge" style={{maxWidth:160, display:'block'}}/>}
           </div>
 
           {/* Countries — plain text list, no pills */}
