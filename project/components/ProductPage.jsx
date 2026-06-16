@@ -252,9 +252,10 @@ const ProductPage = ({product}) => {
                   </div>
                 ))}
               </div>
-              <div style={{display:'flex', gap:10, flexWrap:'wrap'}}>
+              <div className="pp-hero-cta" style={{display:'flex', gap:10, flexWrap:'wrap'}}>
                 <a href={primaryCtaHref} className="btn btn-primary btn-lg">{primaryCtaLabel} <span className="arrow-pill"><ArrowRight/></span></a>
-                {showBranchCta && <a href="#branch-map" className="btn btn-ghost btn-lg">Visit a branch</a>}                <a href="tel:0709719000" className="btn btn-ghost btn-lg">Call 0709 719 000</a>
+                {showBranchCta && <a href="#branch-map" className="btn btn-ghost btn-lg">Visit a branch</a>}
+                <a href="tel:0709719000" className="btn btn-ghost btn-lg">Call 0709 719 000</a>
               </div>
             </div>
 

@@ -244,7 +244,7 @@ body.mobile-nav-open { overflow: hidden; }
   [data-product-page] > section { padding: 56px 0 !important; }
   [data-product-page] > section:first-child { padding: 44px 0 60px !important; }
   .pp-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-  .pp-hero-media { aspect-ratio: 3/2 !important; }
+  .pp-hero-media { aspect-ratio: 3/2 !important; border-radius: 12px !important; }
   .pp-hero-stats { grid-template-columns: repeat(3, 1fr) !important; gap: 12px !important; }
   .pp-hero-stats > div > div:last-child { font-size: 18px !important; }
   .pp-steps { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
@@ -255,14 +255,44 @@ body.mobile-nav-open { overflow: hidden; }
   .pp-cards-3 { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
   .pp-bp-bullets { grid-template-columns: 1fr !important; gap: 20px !important; }
   .pp-darkcard { padding: 40px 24px !important; }
-  .catalogue-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .catalogue-row { min-width: 560px; }
-  .catalogue-head { min-width: 560px; }
+  /* Catalogue — horizontal scroll on medium-small mobile */
+  .catalogue-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  .catalogue-row, .catalogue-head { min-width: 520px; }
 }
+
+/* Catalogue — card layout on small screens */
+@media (max-width: 560px) {
+  .catalogue-table-wrap { overflow: visible !important; border: none !important; border-radius: 0 !important; background: transparent !important; }
+  .catalogue-head { display: none !important; }
+  .catalogue-row {
+    min-width: 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2px 12px !important;
+    padding: 16px !important;
+    border-radius: 10px !important;
+    margin-bottom: 8px !important;
+    border-top: none !important;
+  }
+  /* Brand name — full width, prominent */
+  .catalogue-row > div:nth-child(1) { grid-column: 1 / -1 !important; font-size: 17px !important; font-weight: 700 !important; padding-bottom: 4px !important; }
+  /* Spec — full width, small muted */
+  .catalogue-row > div:nth-child(2) { grid-column: 1 / -1 !important; font-size: 12.5px !important; color: var(--m-muted) !important; padding-bottom: 8px !important; font-weight: 400 !important; }
+  /* Down payment — left */
+  .catalogue-row > div:nth-child(3) { font-size: 14px !important; font-weight: 600 !important; color: var(--m-ink) !important; }
+  /* Daily payment — right, green */
+  .catalogue-row > div:nth-child(4) { font-size: 16px !important; font-weight: 700 !important; color: var(--m-green-ink) !important; text-align: right !important; }
+  /* Term — full width, small */
+  .catalogue-row > div:nth-child(5) { grid-column: 1 / -1 !important; font-size: 12px !important; color: var(--m-muted) !important; padding-top: 4px !important; }
+}
+
 @media (max-width: 480px) {
   .pp-steps { grid-template-columns: 1fr !important; }
   .pp-cards-3 { grid-template-columns: 1fr !important; }
   .pp-hero-stats { grid-template-columns: 1fr 1fr !important; }
+  /* Hero CTA buttons — stack full width */
+  .pp-hero-cta { flex-direction: column !important; align-items: stretch !important; }
+  .pp-hero-cta .btn { justify-content: center !important; }
 }
 
 /* ─── ABOUT PAGE ─────────────────────────────────────────────────────────── */
