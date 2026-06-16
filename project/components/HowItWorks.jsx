@@ -30,7 +30,7 @@ const HowItWorks = () => {
             <h2 className="mega-head">Four steps from<br />application to <em style={{fontFamily:'inherit', fontStyle:'italic', fontWeight:400, color:'var(--m-green-ink)'}}>ownership.</em></h2>
           </div>
           <p style={{ fontSize: 17, color: 'var(--m-ink-2)', lineHeight: 1.55, maxWidth: 440, margin: 0 }}>
-            No paperwork mountain. No surprises. Just an honest process built around the fastest path to your wheels.
+            No unnecessary paperwork and no hidden fees. A clear, straightforward process from application to ownership.
           </p>
         </div>
 
@@ -67,7 +67,7 @@ const Impact = () =>
           </h2>
         </div>
         <p style={{ fontSize: 16, color: 'rgba(255,255,255,.6)', lineHeight: 1.6, maxWidth: 380, margin: 0 }}>
-          Seven years of putting Kenyans behind the wheel — and behind the counter.
+          Seven years of financing the tools Kenyans earn with — from bodas and cars to phones and shop stock.
         </p>
       </div>
 

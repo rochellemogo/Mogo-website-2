@@ -38,8 +38,7 @@ const HeroV2 = () =>
         Jenga kesho.
       </div>
 
-      <p data-hero-blurb style={{ fontSize: 20, lineHeight: 1.5, color: 'rgba(255,255,255,.78)', maxWidth: 620, margin: '36px 0 40px' }}>We back the bike, the car, the phone, the shop — the tools Kenyans actually earn with.
-
+      <p data-hero-blurb style={{ fontSize: 20, lineHeight: 1.5, color: 'rgba(255,255,255,.78)', maxWidth: 620, margin: '36px 0 40px' }}>We finance the bike, the car, the phone and the shop — the assets Kenyans use to earn.
     </p>
 
       <div data-hero-cta style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>

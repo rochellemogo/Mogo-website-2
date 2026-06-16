@@ -13,8 +13,8 @@ const MissionV2 = () =>
 
       <div data-mission-points style={{ marginTop: 80, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40, paddingTop: 48, borderTop: '1px solid var(--m-line)' }}>
         <MissionPointV2 n="01" t="Access" d="Available to every working Kenyan with an ID and an M-Pesa number." />
-        <MissionPointV2 n="02" t="Earn" d="We finance the asset, not the lifestyle. Over 70% of our customers are self-employed — the bike, tuk-tuk, car or phone pays for itself." />
-        <MissionPointV2 n="03" t="Grow" d="From first boda to second branch. Customers graduate from asset finance to logbook unlocks to working capital." />
+        <MissionPointV2 n="02" t="Earn" d="Over 70% of our customers are self-employed. The asset they finance — a bike, tuk-tuk, car or phone — is what they use to earn their income." />
+        <MissionPointV2 n="03" t="Grow" d="Customers who start with a boda or tuk-tuk loan often return for a logbook loan or working capital as their income grows." />
       </div>
     </div>
   </section>;
