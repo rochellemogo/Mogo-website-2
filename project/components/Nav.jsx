@@ -95,15 +95,18 @@ const Nav = () => {
               const href = it.external ? it.external : hrefFn(it.slug);
               const target = it.external ? '_blank' : undefined;
               const rel = it.external ? 'noopener noreferrer' : undefined;
+              const isSpecial = it.slug === 'special-offers';
               return (
                 <a key={it.slug} href={href} target={target} rel={rel} onClick={()=>setOpen(null)} style={{
-                  padding:'14px 16px', borderRadius: 10, transition:'background .15s', textDecoration:'none', color:'inherit',
+                  padding:'14px 16px', borderRadius: 10, transition:'background .15s, border-color .15s', textDecoration:'none', color:'inherit',
+                  ...(isSpecial ? {border:'1.5px solid var(--m-green)', background:'rgba(122,184,0,.07)'} : {border:'1.5px solid transparent'}),
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.background='var(--m-cream)'}
-                onMouseLeave={(e) => e.currentTarget.style.background='transparent'}
+                onMouseEnter={(e) => e.currentTarget.style.background= isSpecial ? 'rgba(122,184,0,.14)' : 'var(--m-cream)'}
+                onMouseLeave={(e) => e.currentTarget.style.background= isSpecial ? 'rgba(122,184,0,.07)' : 'transparent'}
                 >
                   <div style={{display:'flex', alignItems:'center', gap:8}}>
-                    <strong style={{fontWeight:600, fontSize: 15}}>{it.name}</strong>
+                    <strong style={{fontWeight:600, fontSize: 15, ...(isSpecial ? {color:'var(--m-green-deep)'} : {})}}>{it.name}</strong>
+                    {isSpecial && <span style={{fontSize:10, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', background:'var(--m-green)', color:'#fff', padding:'2px 7px', borderRadius:999, fontWeight:700}}>New</span>}
                     {it.external && <ArrowUpRight size={12}/>}
                   </div>
                   <div style={{fontSize: 13, color:'var(--m-muted)', marginTop: 2, lineHeight:1.4}}>{it.tagline}</div>
@@ -289,7 +292,7 @@ const Nav = () => {
           <Panel
             eyebrow="7 ways we finance"
             blurb="From KES 50/day phone plans to KES 5M business loans — built for Kenyan earners."
-            items={window.MOGO_PRODUCTS}
+            items={[...(window.MOGO_PRODUCTS||[]).filter(p=>p.slug!=='special-offers'), ...(window.MOGO_PRODUCTS||[]).filter(p=>p.slug==='special-offers')]}
             hrefFn={productHref}
             showBadges
           />
@@ -393,8 +396,9 @@ const MobileNavToggle = ({ isSubpage, aboutItems, impactItems, pageHref, product
               </button>
               {section==='prod' && (
                 <div className="mobile-nav-drawer__sub">
-                  {window.MOGO_PRODUCTS?.map(p => (
-                    <a key={p.slug} href={productHref(p.slug)} onClick={close}>
+                  {[...(window.MOGO_PRODUCTS||[]).filter(p=>p.slug!=='special-offers'), ...(window.MOGO_PRODUCTS||[]).filter(p=>p.slug==='special-offers')]?.map(p => (
+                    <a key={p.slug} href={productHref(p.slug)} onClick={close}
+                      style={p.slug==='special-offers' ? {borderTop:'1px solid var(--m-line)', color:'var(--m-green-deep)', fontWeight:600} : {}}>
                       {p.name}<small>{p.tagline}</small>
                     </a>
                   ))}
