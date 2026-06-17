@@ -420,7 +420,7 @@ const ProductPage = ({product}) => {
             <div className="shell">
               <div className="h-eyebrow" style={{marginBottom:14}}><span className="dot"/>Brands we finance</div>
               <h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 52px)', margin:'0 0 36px'}}>Phones we <em>back.</em></h2>
-              <div style={{display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap:16}}>
+              <div data-brands-grid style={{display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap:16}}>
                 {['Samsung','Xiaomi','Tecno','Infinix','Itel'].map(brand => (
                   <div key={brand} style={{padding:'28px 20px', background:'#fff', border:'1px solid var(--m-line-2)', borderRadius:'var(--r-xl)', textAlign:'center', display:'flex', flexDirection:'column', alignItems:'center', gap:12}}>
                     <div style={{width:48, height:48, borderRadius:14, background:'var(--m-cream)', display:'grid', placeItems:'center'}}>
