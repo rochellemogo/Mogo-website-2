@@ -8,7 +8,7 @@ const HeroV2 = () =>
     </div>
 
     <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '12px 28px 280px' }}>
-      <h1 className="h-display" style={{ fontSize: 'clamp(56px, 7.5vw, 148px)', lineHeight: .9, letterSpacing: '-.045em', margin: '0 0 6px', maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
+      <h1 className="h-display" style={{ fontSize: 'clamp(46px, 6.2vw, 122px)', lineHeight: .9, letterSpacing: '-.045em', margin: '0 0 6px', maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
         Finance
         <span style={{ color: 'var(--m-green)' }}> your future.</span>
       </h1>
