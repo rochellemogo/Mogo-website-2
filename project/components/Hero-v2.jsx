@@ -3,11 +3,11 @@ const HeroV2 = () =>
 <section data-mogo-hero data-screen-label="Hero" style={{ position: 'relative', overflow: 'hidden', marginTop: -80, paddingTop: 80, background: 'var(--m-ink)', color: '#fff' }}>
     <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
       <img src="/uploads/mogo-outdoor-shoot-28.jpg" alt=""
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 55%' }} />
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 70%' }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,18,32,.72) 0%, rgba(11,18,32,.42) 45%, rgba(11,18,32,.78) 100%)' }} />
     </div>
 
-    <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '120px 28px 180px' }}>
+    <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '52px 28px 220px' }}>
       <h1 className="h-display" style={{ fontSize: 'clamp(72px, 10vw, 190px)', lineHeight: .9, letterSpacing: '-.045em', margin: '0 0 8px', maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
         Finance
         <span style={{ color: 'var(--m-green)' }}> your future.</span>
