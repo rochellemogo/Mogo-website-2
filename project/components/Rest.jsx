@@ -134,34 +134,30 @@ const Branches = () => {
 
 };
 
-const CTA = () =>
-<section id="apply" style={{ padding: '80px 0', background: 'var(--m-cream)' }}>
+const CTA = () => {
+  const faqHref = (typeof window !== 'undefined' && window.__MOGO_SUBPAGE) ? '../pages/faq.html' : 'pages/faq.html';
+  return (
+  <section id="apply" style={{ padding: '80px 0', background: 'var(--m-cream)' }}>
     <div className="shell">
       <div data-cta-card style={{ background: 'var(--m-ink)', borderRadius: 'var(--r-xl)', padding: '96px 56px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', right: -100, top: -100, width: 360, height: 360, borderRadius: 999, background: 'var(--m-green)', opacity: .22, filter: 'blur(80px)' }} />
-        <div data-cta-spinner style={{ position: 'absolute', right: 48, top: 48, width: 160, height: 160, animation: 'spin 20s linear infinite' }}>
-          <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
-            <defs><path id="cp2" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" /></defs>
-            <text fontFamily="JetBrains Mono" fontSize="6.5" letterSpacing="1.6" fill="#7AB800">
-              <textPath href="#cp2" startOffset="0">APPLY · GET APPROVED · RIDE HOME · OWN IT ·  </textPath>
-            </text>
-          </svg>
-        </div>
         <div style={{ position: 'relative', maxWidth: 700 }}>
           <h2 className="h-display" style={{ fontSize: 'clamp(48px, 6.5vw, 96px)', color: '#fff', margin: '0 0 24px', fontWeight: 600, letterSpacing: '-.035em', lineHeight: .98 }}>
-            Your wheels<br />are <em style={{ fontStyle: 'italic', color: 'var(--m-green)', fontWeight: 400 }}>waiting.</em>
+            Need <em style={{ fontStyle: 'italic', color: 'var(--m-green)', fontWeight: 400 }}>assistance?</em>
           </h2>
           <p style={{ fontSize: 18, color: 'rgba(255,255,255,.72)', lineHeight: 1.55, marginBottom: 40, maxWidth: 520 }}>
-            Three-minute form. A Mogo officer will call you the same day to confirm your terms.
+            Check our FAQ for quick answers, or call us on 0768 469 112 — open 24 hours, every day.
           </p>
           <div data-cta-buttons style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a href="#" className="btn btn-primary btn-lg">Apply online <span className="arrow-pill"><ArrowRight /></span></a>
-            <a href="tel:0709719000" className="btn btn-ghost-light btn-lg">Call · 0709 719 000</a>
+            <a href={faqHref} className="btn btn-primary btn-lg">Check our FAQ <span className="arrow-pill"><ArrowRight /></span></a>
+            <a href="tel:0768469112" className="btn btn-ghost-light btn-lg">Call · 0768 469 112</a>
           </div>
         </div>
       </div>
     </div>
-  </section>;
+  </section>
+  );
+};
 
 
 const Footer = () =>

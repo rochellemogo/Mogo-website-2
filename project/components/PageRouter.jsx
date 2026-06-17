@@ -538,6 +538,43 @@ const MOGO_PAGES = {
     kicker: "M-Pesa, USSD, WhatsApp or bank transfer. To get precise payment information, please refer to your loan agreement.",
     render: () => (
       <>
+        <section style={{padding:'72px 0 0', background:'#fff'}}>
+          <div className="shell">
+            <div style={{background:'var(--m-ink)', color:'#fff', borderRadius:'var(--r-xl)', padding:'36px 44px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:32, flexWrap:'wrap'}}>
+              <div style={{flex:1, minWidth:0}}>
+                <div style={{fontSize:11, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-green)', fontWeight:600, marginBottom:12}}>Fastest option</div>
+                <h3 style={{fontSize:28, fontWeight:600, letterSpacing:'-.02em', fontFamily:'var(--font-display)', margin:'0 0 10px', color:'#fff'}}>Pay via the Mogo App</h3>
+                <p style={{fontSize:15, color:'rgba(255,255,255,.7)', lineHeight:1.5, margin:'0 0 20px', maxWidth:480}}>
+                  Check your balance, make repayments and restructure your loan — all from one place. Available on Android and iOS.
+                </p>
+                <div style={{display:'flex', gap:12, flexWrap:'wrap'}}>
+                  <a href="https://play.google.com/store/apps/details?id=com.mogo.kenya" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'10px 16px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:8, textDecoration:'none', color:'#fff'}}>
+                    <svg width="20" height="22" viewBox="0 0 22 24" fill="none" aria-hidden="true">
+                      <path d="M1.4.5l11.2 11.5L1.4 23.5a1.5 1.5 0 01-.9-1.4V1.9a1.5 1.5 0 01.9-1.4z" fill="#00d2ff"/>
+                      <path d="M16.4 8.4l-3.8 3.6 3.8 3.6 4.2-2.4a1.5 1.5 0 000-2.4l-4.2-2.4z" fill="#ffce00"/>
+                      <path d="M1.4.5l11.2 11.5 3.8-3.6L3.3.4a1.5 1.5 0 00-1.9.1z" fill="#00f076"/>
+                      <path d="M1.4 23.5l11.2-11.5 3.8 3.6L3.3 23.6a1.5 1.5 0 01-1.9-.1z" fill="#ff3a44"/>
+                    </svg>
+                    <div style={{lineHeight:1.1}}>
+                      <div style={{fontSize:9, color:'rgba(255,255,255,.7)'}}>Get it on</div>
+                      <div style={{fontSize:14, fontWeight:600}}>Google Play</div>
+                    </div>
+                  </a>
+                  <a href="https://apps.apple.com/ke/app/mogo/id1234567890" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'10px 16px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:8, textDecoration:'none', color:'#fff'}}>
+                    <svg width="16" height="20" viewBox="0 0 18 22" fill="white" aria-hidden="true"><path d="M14.97 11.5c-.02-2.45 2-3.63 2.09-3.69-1.14-1.66-2.9-1.89-3.53-1.91-1.49-.15-2.93.88-3.69.88-.77 0-1.94-.87-3.19-.84-1.63.02-3.14.95-3.98 2.4-1.7 2.95-.44 7.3 1.22 9.69.81 1.17 1.78 2.47 3.04 2.42 1.22-.05 1.68-.78 3.16-.78 1.47 0 1.9.78 3.18.75 1.32-.02 2.15-1.18 2.95-2.35.93-1.35 1.31-2.66 1.33-2.73-.03-.01-2.56-.98-2.58-3.84zm-2.41-7.07c.67-.82 1.13-1.95.99-3.09-1 .04-2.2.67-2.91 1.47-.64.74-1.2 1.91-1.05 3.04 1.1.08 2.23-.56 2.97-1.42z"/></svg>
+                    <div style={{lineHeight:1.1}}>
+                      <div style={{fontSize:9, color:'rgba(255,255,255,.7)'}}>Download on the</div>
+                      <div style={{fontSize:14, fontWeight:600}}>App Store</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div style={{width:90, height:150, background:'rgba(255,255,255,.06)', borderRadius:20, border:'1px solid rgba(255,255,255,.15)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0}}>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.35)" strokeWidth="1.5" strokeLinecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 17.5h.01"/></svg>
+              </div>
+            </div>
+          </div>
+        </section>
         <section style={{padding:'96px 0', background:'#fff'}}>
           <div className="shell" style={{display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 20}}>
             {[
@@ -724,6 +761,66 @@ const MOGO_PAGES = {
             {label:'Dealers',  title:'Clean your stock',       body:'Dealers can bulk-check incoming stock against SAKA. If a vehicle is flagged, we work with police to return it to the rightful owner.'},
           ]}
         />
+        <section style={{padding:'80px 0', background:'var(--m-cream)'}}>
+          <div className="shell">
+            <div data-saka-about style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:48, alignItems:'start'}}>
+              <div>
+                <div className="h-eyebrow" style={{marginBottom:12}}><span className="dot"/>About SAKA</div>
+                <h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 52px)', margin:'0 0 20px'}}>24/7 emergency <em>response.</em></h2>
+                <p style={{fontSize:17, color:'var(--m-ink-2)', lineHeight:1.65, margin:'0 0 32px'}}>
+                  SAKA is a 24/7 emergency line allowing for real-time reporting, immediate action and coordination, and continuous customer support. The moment a theft is reported, the vehicle is flagged across our network and law enforcement coordination begins.
+                </p>
+                <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:16}}>
+                  {[
+                    {n:'60%', label:'Recovery rate on reported stolen vehicles'},
+                    {n:'3,400+', label:'Cases reported to date across Kenya'},
+                  ].map(({n, label}) => (
+                    <div key={n} style={{background:'var(--m-ink)', color:'#fff', borderRadius:'var(--r-lg)', padding:'28px 24px'}}>
+                      <div style={{fontFamily:'var(--font-display)', fontSize:44, fontWeight:900, color:'var(--m-green)', letterSpacing:'-.02em', lineHeight:1}}>{n}</div>
+                      <div style={{fontSize:13.5, color:'rgba(255,255,255,.65)', lineHeight:1.4, marginTop:12}}>{label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div style={{display:'flex', flexDirection:'column', gap:20}}>
+                {[
+                  {
+                    name: 'John Bitok', location: 'Boda Financing Client · Nandi Hills',
+                    events: [
+                      {icon:'📢', label:'Report', text:'Motorbike was reported stolen 26th January 2026 at 2am in Nandi Hills'},
+                      {icon:'🔍', label:'Theft Category', text:'Normal theft case — bike was left unlocked at his plot'},
+                      {icon:'🚀', label:'Recovery', text:'Motorbike recovered at a car wash in Kisumu at 7am, 27th January 2026'},
+                    ]
+                  },
+                  {
+                    name: 'Noah Simiyu', location: 'Boda Financing Client · Bungoma',
+                    events: [
+                      {icon:'📢', label:'Report', text:'Motorbike was reported stolen 17th February 2026 at 6.51pm at Daraja Giywa in Kimili, Bungoma'},
+                      {icon:'🔍', label:'Theft Category', text:'Armed robbery by 2 armed men & 1 lady'},
+                      {icon:'🚀', label:'Recovery', text:'Motorbike recovered at a bush at 10.59pm, Lwakhaba Uganda border'},
+                    ]
+                  }
+                ].map(client => (
+                  <div key={client.name} style={{background:'#fff', borderRadius:'var(--r-xl)', border:'1px solid var(--m-line-2)', padding:'24px 28px'}}>
+                    <div style={{marginBottom:16, paddingBottom:16, borderBottom:'1px solid var(--m-line-2)'}}>
+                      <div style={{fontFamily:'var(--font-display)', fontSize:20, fontWeight:700}}>{client.name}</div>
+                      <div style={{fontSize:12.5, color:'var(--m-muted)', marginTop:3}}>{client.location}</div>
+                    </div>
+                    {client.events.map(({icon, label, text}) => (
+                      <div key={label} style={{display:'flex', gap:14, padding:'12px 0', borderBottom:'1px solid var(--m-line-2)'}}>
+                        <div style={{width:36, height:36, borderRadius:10, background:'var(--m-cream)', display:'grid', placeItems:'center', flexShrink:0, fontSize:16}}>{icon}</div>
+                        <div>
+                          <div style={{fontSize:10.5, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', fontWeight:700, color:'var(--m-muted)', marginBottom:4}}>{label}</div>
+                          <div style={{fontSize:14, color:'var(--m-ink)', lineHeight:1.45}}>{text}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
       </>
     ),
   },

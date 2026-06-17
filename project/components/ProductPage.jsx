@@ -1,4 +1,82 @@
+const LoanCalculator = ({ product }) => {
+  const calcConfig = {
+    'boda-financing':     { minAmt:50000,   maxAmt:300000,  defAmt:150000, stepAmt:10000, minT:6,  maxT:24,  defT:14, rate:0.045, weekly:true  },
+    'boda-logbook-loans': { minAmt:40000,   maxAmt:90000,   defAmt:65000,  stepAmt:5000,  minT:6,  maxT:24,  defT:12, rate:0.045, weekly:true  },
+    'check-off-loans':    { minAmt:5000,    maxAmt:2000000, defAmt:200000, stepAmt:5000,  minT:3,  maxT:120, defT:24, rate:0.028, weekly:false },
+    'car-loans':          { minAmt:100000,  maxAmt:2500000, defAmt:800000, stepAmt:50000, minT:6,  maxT:24,  defT:12, rate:0.035, weekly:false },
+    'car-logbook-loans':  { minAmt:70000,   maxAmt:3250000, defAmt:500000, stepAmt:50000, minT:6,  maxT:24,  defT:12, rate:0.035, weekly:false },
+    'tuk-tuk-loans':      { minAmt:50000,   maxAmt:250000,  defAmt:150000, stepAmt:10000, minT:13, maxT:20,  defT:16, rate:0.045, weekly:false },
+  }[product.slug];
+  if (!calcConfig) return null;
+
+  const [amt, setAmt] = React.useState(calcConfig.defAmt);
+  const [term, setTerm] = React.useState(calcConfig.defT);
+
+  const totalRepayable = amt * (1 + calcConfig.rate * term);
+  const monthlyPmt = totalRepayable / term;
+  const weeklyPmt = monthlyPmt / 4.33;
+  const payment = calcConfig.weekly ? weeklyPmt : monthlyPmt;
+
+  const fmtKES = (n) => 'KES ' + Math.round(n).toLocaleString();
+  const fmtAmt = (n) => n >= 1000000 ? (n/1000000).toFixed(1) + 'M' : Math.round(n/1000) + 'K';
+
+  return (
+    <section style={{padding:'80px 0', background:'var(--m-cream)'}}>
+      <div className="shell">
+        <div style={{maxWidth:760, margin:'0 auto', background:'#fff', borderRadius:'var(--r-xl)', padding:'44px 40px', border:'1px solid var(--m-line-2)', boxShadow:'0 4px 24px rgba(0,0,0,.04)'}}>
+          <div className="h-eyebrow" style={{marginBottom:12}}><span className="dot"/>Loan Calculator</div>
+          <h2 className="mega-head" style={{fontSize:'clamp(28px, 3.5vw, 44px)', marginBottom:6}}>Estimate your <em>{calcConfig.weekly ? 'weekly' : 'monthly'} payment.</em></h2>
+          <p style={{fontSize:15, color:'var(--m-ink-2)', marginBottom:36, lineHeight:1.5}}>Adjust the sliders to see an indicative {calcConfig.weekly ? 'weekly' : 'monthly'} payment.</p>
+
+          <div style={{marginBottom:28}}>
+            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12}}>
+              <label style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700}}>Loan Amount</label>
+              <span style={{fontFamily:'var(--font-display)', fontSize:22, fontWeight:700, color:'var(--m-ink)'}}>KES {amt.toLocaleString()}</span>
+            </div>
+            <input type="range" min={calcConfig.minAmt} max={calcConfig.maxAmt} step={calcConfig.stepAmt} value={amt}
+              onChange={e => setAmt(Number(e.target.value))}
+              style={{width:'100%', accentColor:'var(--m-green)', cursor:'pointer', height:4}}/>
+            <div style={{display:'flex', justifyContent:'space-between', fontSize:11, color:'var(--m-muted)', marginTop:6}}>
+              <span>KES {fmtAmt(calcConfig.minAmt)}</span><span>KES {fmtAmt(calcConfig.maxAmt)}</span>
+            </div>
+          </div>
+
+          <div style={{marginBottom:36}}>
+            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:12}}>
+              <label style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700}}>Loan Term</label>
+              <span style={{fontFamily:'var(--font-display)', fontSize:22, fontWeight:700, color:'var(--m-ink)'}}>{term} months</span>
+            </div>
+            <input type="range" min={calcConfig.minT} max={calcConfig.maxT} step={1} value={term}
+              onChange={e => setTerm(Number(e.target.value))}
+              style={{width:'100%', accentColor:'var(--m-green)', cursor:'pointer', height:4}}/>
+            <div style={{display:'flex', justifyContent:'space-between', fontSize:11, color:'var(--m-muted)', marginTop:6}}>
+              <span>{calcConfig.minT} months</span><span>{calcConfig.maxT} months</span>
+            </div>
+          </div>
+
+          <div style={{background:'var(--m-ink)', borderRadius:'var(--r-lg)', padding:'28px 32px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:20, flexWrap:'wrap'}}>
+            <div>
+              <div style={{fontSize:11, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'rgba(255,255,255,.5)', marginBottom:8}}>
+                Estimated {calcConfig.weekly ? 'weekly' : 'monthly'} payment
+              </div>
+              <div style={{fontFamily:'var(--font-display)', fontSize:'clamp(32px, 4vw, 48px)', fontWeight:700, color:'#fff', letterSpacing:'-.02em', lineHeight:1}}>
+                {fmtKES(payment)}
+              </div>
+              <div style={{fontSize:12.5, color:'rgba(255,255,255,.45)', marginTop:8}}>
+                Total repayable: {fmtKES(totalRepayable)}
+              </div>
+            </div>
+            <a href="../index-v2.html#apply" className="btn btn-primary btn-lg">Apply now <span className="arrow-pill"><ArrowRight/></span></a>
+          </div>
+          <p style={{fontSize:12, color:'var(--m-muted)', marginTop:14, textAlign:'center', fontFamily:'inherit', letterSpacing:'.04em'}}>* Indicative figures only. Final rate and terms are confirmed at branch based on your profile and the asset being financed.</p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const ProductPage = ({product}) => {
+  const [showBPModal, setShowBPModal] = React.useState(false);
   const others = window.MOGO_PRODUCTS.filter(p => p.slug !== product.slug).slice(0, 3);
 
   const faqs = {
@@ -47,6 +125,12 @@ const ProductPage = ({product}) => {
   const isPhone = product.slug === "smartphone-loans";
   const isBodaLogbook = product.slug === "boda-logbook-loans";
   const showBranchCta = isBodaLogbook || product.slug === "tuk-tuk-loans" || product.slug === "check-off-loans" || product.slug === "car-logbook-loans";
+  const isMSME = product.slug === 'msme-loans';
+  const showBestPriceTag = !isPhone && !isMSME;
+  const showCalc = !isPhone && !isMSME;
+  const showAppDownload = !isPhone && !isMSME;
+  const showBranchMap = !isPhone && !isMSME;
+  const isWeeklyCalc = ['boda-financing', 'boda-logbook-loans'].includes(product.slug);
 
   // Smartphone loans are applied for in person at a participating phone shop,
   // so the primary CTA points to the dealer map instead of the online form.
@@ -234,6 +318,14 @@ const ProductPage = ({product}) => {
             <a href="../index-v2.html#products" style={{color:'var(--m-muted)'}}>Products</a>
             <span>›</span>
             <span style={{color:'var(--m-ink)'}}>{product.name}</span>
+            {showBestPriceTag && (
+              <button
+                onClick={() => setShowBPModal(true)}
+                style={{marginLeft:4, display:'inline-flex', alignItems:'center', gap:5, padding:'4px 10px', borderRadius:999, background:'var(--m-green-soft)', color:'var(--m-green-deep)', fontSize:10.5, fontWeight:700, letterSpacing:'.05em', textTransform:'uppercase', border:'1px solid rgba(122,184,0,.4)', cursor:'pointer', fontFamily:'inherit'}}>
+                <svg width="10" height="10" viewBox="0 0 14 14" fill="none"><path d="M7 1L8.8 5.2l4.5.6-3.3 3.1.8 4.4L7 11.1l-3.8 2.2.8-4.4L.7 5.8l4.5-.6L7 1z" fill="currentColor"/></svg>
+                Best Price Guarantee · Find out more
+              </button>
+            )}
           </div>
 
           <div className="pp-hero-grid" style={{display:'grid', gridTemplateColumns:'1.1fr 1fr', gap: 60, alignItems:'center'}}>
@@ -245,7 +337,10 @@ const ProductPage = ({product}) => {
                 {product.desc}
               </p>
               <div className="pp-hero-stats" style={{display:'grid', gridTemplateColumns:'repeat(3, auto)', gap:32, paddingTop: 28, borderTop:'1px solid var(--m-line)', marginBottom: 36}}>
-                {[['Amount', product.price],['Term', product.term],['Turnaround', product.turnaround]].map(([l,v]) => (
+                {(isPhone || isMSME
+                  ? [['Amount', product.price],['Term', product.term],['Turnaround', product.turnaround]]
+                  : [['Amount', product.price],['Term', product.term]]
+                ).map(([l,v]) => (
                   <div key={l}>
                     <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-muted)', marginBottom:6}}>{l}</div>
                     <div style={{fontFamily:'var(--font-display)', fontSize:22, letterSpacing:'-.02em', fontWeight:600}}>{v}</div>
@@ -290,6 +385,45 @@ const ProductPage = ({product}) => {
         </div>
       </section>
 
+      {showAppDownload && (
+        <section style={{padding:'60px 0', background:'var(--m-cream)', borderTop:'1px solid var(--m-line-2)'}}>
+          <div className="shell">
+            <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', gap:40, flexWrap:'wrap'}}>
+              <div style={{maxWidth:520}}>
+                <div className="h-eyebrow" style={{marginBottom:14}}><span className="dot"/>Mogo App</div>
+                <h3 className="h-display" style={{fontSize:'clamp(24px, 3vw, 40px)', fontWeight:600, letterSpacing:'-.025em', margin:'0 0 14px', lineHeight:1.1}}>View balance, repay<br/>&amp; restructure from your phone.</h3>
+                <p style={{fontSize:15.5, color:'var(--m-ink-2)', lineHeight:1.55, margin:'0 0 24px'}}>Download the Mogo app to check your loan balance, make repayments and apply for a restructure — without visiting a branch.</p>
+                <div style={{display:'flex', gap:12, flexWrap:'wrap'}}>
+                  <a href="https://play.google.com/store/apps/details?id=com.mogo.kenya" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'10px 16px', background:'#000', borderRadius:10, textDecoration:'none', color:'#fff'}}>
+                    <svg width="20" height="22" viewBox="0 0 22 24" fill="none" aria-hidden="true">
+                      <path d="M1.4.5l11.2 11.5L1.4 23.5a1.5 1.5 0 01-.9-1.4V1.9a1.5 1.5 0 01.9-1.4z" fill="#00d2ff"/>
+                      <path d="M16.4 8.4l-3.8 3.6 3.8 3.6 4.2-2.4a1.5 1.5 0 000-2.4l-4.2-2.4z" fill="#ffce00"/>
+                      <path d="M1.4.5l11.2 11.5 3.8-3.6L3.3.4a1.5 1.5 0 00-1.9.1z" fill="#00f076"/>
+                      <path d="M1.4 23.5l11.2-11.5 3.8 3.6L3.3 23.6a1.5 1.5 0 01-1.9-.1z" fill="#ff3a44"/>
+                    </svg>
+                    <div style={{lineHeight:1.1}}>
+                      <div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Get it on</div>
+                      <div style={{fontSize:14, fontWeight:600}}>Google Play</div>
+                    </div>
+                  </a>
+                  <a href="https://apps.apple.com/ke/app/mogo/id1234567890" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'10px 16px', background:'#000', borderRadius:10, textDecoration:'none', color:'#fff'}}>
+                    <svg width="16" height="20" viewBox="0 0 18 22" fill="white" aria-hidden="true"><path d="M14.97 11.5c-.02-2.45 2-3.63 2.09-3.69-1.14-1.66-2.9-1.89-3.53-1.91-1.49-.15-2.93.88-3.69.88-.77 0-1.94-.87-3.19-.84-1.63.02-3.14.95-3.98 2.4-1.7 2.95-.44 7.3 1.22 9.69.81 1.17 1.78 2.47 3.04 2.42 1.22-.05 1.68-.78 3.16-.78 1.47 0 1.9.78 3.18.75 1.32-.02 2.15-1.18 2.95-2.35.93-1.35 1.31-2.66 1.33-2.73-.03-.01-2.56-.98-2.58-3.84zm-2.41-7.07c.67-.82 1.13-1.95.99-3.09-1 .04-2.2.67-2.91 1.47-.64.74-1.2 1.91-1.05 3.04 1.1.08 2.23-.56 2.97-1.42z"/></svg>
+                    <div style={{lineHeight:1.1}}>
+                      <div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Download on the</div>
+                      <div style={{fontSize:14, fontWeight:600}}>App Store</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div style={{width:120, aspectRatio:'9/16', background:'var(--m-ink)', borderRadius:24, border:'2px solid rgba(255,255,255,.1)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0, position:'relative', overflow:'hidden'}}>
+                <div style={{position:'absolute', inset:0, background:'linear-gradient(180deg, rgba(122,184,0,.2), transparent)', pointerEvents:'none'}}/>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" strokeWidth="1.5" strokeLinecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 17.5h.01"/></svg>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Requirements */}
       <section style={{padding:'80px 0', background:'var(--m-cream)'}}>
         <div className="shell">
@@ -312,6 +446,8 @@ const ProductPage = ({product}) => {
           </div>
         </div>
       </section>
+
+      {showCalc && <LoanCalculator product={product}/>}
 
       {/* Best Price Guarantee */}
       {bestPrice && (
@@ -475,6 +611,8 @@ const ProductPage = ({product}) => {
         </div>
       </section>
 
+      {showBranchMap && <Branches/>}
+
       {/* CTA */}
       <section style={{padding:'80px 0', background:'#fff'}}>
         <div className="shell">
@@ -495,6 +633,71 @@ const ProductPage = ({product}) => {
           </div>
         </div>
       </section>
+      {showBPModal && (
+        <div style={{position:'fixed', inset:0, background:'rgba(0,0,0,.65)', zIndex:200, display:'flex', alignItems:'center', justifyContent:'center', padding:20}} onClick={() => setShowBPModal(false)}>
+          <div style={{background:'#fff', borderRadius:'var(--r-xl)', maxWidth:860, width:'100%', maxHeight:'88vh', overflowY:'auto'}} onClick={e => e.stopPropagation()}>
+            <div style={{padding:'32px 36px'}}>
+              <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:24}}>
+                <div>
+                  <h2 style={{fontFamily:'var(--font-display)', fontSize:22, fontWeight:700, letterSpacing:'-.02em', margin:'0 0 6px'}}>Why Pay More for the Same Loan?</h2>
+                  <p style={{fontSize:14.5, color:'var(--m-ink-2)', margin:0}}>See how Mogo compares on a KES 500,000 loan over 24 months.</p>
+                </div>
+                <button onClick={() => setShowBPModal(false)} style={{width:36, height:36, borderRadius:999, border:'1px solid var(--m-line)', background:'transparent', cursor:'pointer', display:'grid', placeItems:'center', flexShrink:0, fontSize:16}}>&#x2715;</button>
+              </div>
+              <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:32, alignItems:'start'}}>
+                {/* Comparison table */}
+                <div style={{overflowX:'auto'}}>
+                  <table style={{width:'100%', borderCollapse:'collapse', fontSize:13.5}}>
+                    <thead>
+                      <tr style={{background:'var(--m-ink)', color:'#fff'}}>
+                        <th style={{padding:'12px 14px', textAlign:'left', fontWeight:600, fontSize:12}}>  </th>
+                        <th style={{padding:'12px 14px', textAlign:'left', fontWeight:600, fontSize:12, background:'var(--m-green)', color:'var(--m-ink)'}}>MOGO Kenya</th>
+                        <th style={{padding:'12px 14px', textAlign:'left', fontWeight:600, fontSize:12}}>Lender A</th>
+                        <th style={{padding:'12px 14px', textAlign:'left', fontWeight:600, fontSize:12}}>Lender B</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        ['Loan Amount', 'KES 500,000', 'KES 500,000', 'KES 500,000'],
+                        ['Upfront Costs', 'None', 'None', 'Valuation + Tracker'],
+                        ['Take Home', 'KES 500,000', 'KES 500,000', 'KES 470,000'],
+                        ['Loan Tenure', '24 months', '24 months', '24 months'],
+                        ['Interest Type', 'Reducing balance', 'Flat rate', 'Reducing balance'],
+                        ['Monthly Rate', '5.75%', '4.25%', '6%'],
+                        ['Monthly Payment', 'KES 40,870', 'KES 42,083 ↑', 'KES 41,786 ↑'],
+                        ['Total Repaid', 'KES 974,031', 'KES 1,010,000 ↑', 'KES 1,002,854 ↑'],
+                      ].map(([label, mogo, a, b], i) => (
+                        <tr key={label} style={{background: i%2===0 ? '#fff' : 'var(--m-cream)'}}>
+                          <td style={{padding:'11px 14px', fontWeight:600, fontSize:12.5, color:'var(--m-ink-2)'}}>{label}</td>
+                          <td style={{padding:'11px 14px', fontWeight:600, color:'var(--m-green-deep)', background:'rgba(122,184,0,.08)'}}>{mogo}</td>
+                          <td style={{padding:'11px 14px', color: a.includes('↑') ? '#B23410' : 'var(--m-ink)'}}>{a}</td>
+                          <td style={{padding:'11px 14px', color: b.includes('↑') ? '#B23410' : 'var(--m-ink)'}}>{b}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <p style={{fontSize:11.5, color:'var(--m-muted)', marginTop:12, fontFamily:'inherit', letterSpacing:'.03em'}}>* Indicative comparison. Actual rates depend on your profile and vehicle valuation.</p>
+                </div>
+                {/* Right panel */}
+                <div style={{display:'flex', flexDirection:'column', gap:20}}>
+                  <div style={{padding:'24px', background:'var(--m-cream)', borderRadius:'var(--r-lg)', border:'1px solid var(--m-line-2)'}}>
+                    <h3 style={{fontFamily:'var(--font-display)', fontSize:18, fontWeight:700, margin:'0 0 12px'}}>We Don&#39;t Just Say It — We Show It</h3>
+                    <p style={{fontSize:14.5, color:'var(--m-ink-2)', lineHeight:1.6, margin:'0 0 16px'}}>
+                      At MOGO, we believe in making our loans fair and transparent. Other lenders often hide fees — application fees, processing fees, hidden deductions that reduce your cash or inflate your repayment.
+                    </p>
+                    <p style={{fontSize:14.5, color:'var(--m-ink-2)', lineHeight:1.6, margin:'0 0 20px'}}>
+                      With MOGO, what you see is what you get. <strong>No hidden charges. Just honest, affordable financing.</strong> Always take time to look beyond the interest rate — those extra fees can make a big difference.
+                    </p>
+                    <a href="../index-v2.html#apply" className="btn btn-primary" onClick={() => setShowBPModal(false)}>
+                      Apply now <span className="arrow-pill"><ArrowRight/></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

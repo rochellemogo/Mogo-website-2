@@ -159,7 +159,10 @@ const Nav = () => {
           ); })()}
         </nav>
 
-        <div className="nav-cta" style={{display:'flex', alignItems:'center', gap:10}}>
+        <div className="nav-cta" style={{display:'flex', alignItems:'center', gap:12}}>
+          <a href="tel:0768469112" style={{fontSize:13, fontWeight:500, color:'inherit', textDecoration:'none', whiteSpace:'nowrap', letterSpacing:'.01em'}}>
+            0768 469 112
+          </a>
           <a href={isSubpage ? '../index-v2.html#apply' : '#apply'} className="btn btn-primary">
             Apply now <span className="arrow-pill"><ArrowRight/></span>
           </a>
