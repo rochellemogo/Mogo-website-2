@@ -7,16 +7,16 @@ const HeroV2 = () =>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,18,32,.72) 0%, rgba(11,18,32,.42) 45%, rgba(11,18,32,.78) 100%)' }} />
     </div>
 
-    <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '52px 28px 220px' }}>
-      <h1 className="h-display" style={{ fontSize: 'clamp(72px, 10vw, 190px)', lineHeight: .9, letterSpacing: '-.045em', margin: '0 0 8px', maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
+    <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '12px 28px 280px' }}>
+      <h1 className="h-display" style={{ fontSize: 'clamp(56px, 7.5vw, 148px)', lineHeight: .9, letterSpacing: '-.045em', margin: '0 0 6px', maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
         Finance
         <span style={{ color: 'var(--m-green)' }}> your future.</span>
       </h1>
-      <div data-hero-jenga style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(26px, 3vw, 46px)', color: 'rgba(255,255,255,.8)', margin: '18px 0 0', letterSpacing: '-.02em' }}>
+      <div data-hero-jenga style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(22px, 2.5vw, 38px)', color: 'rgba(255,255,255,.8)', margin: '10px 0 0', letterSpacing: '-.02em' }}>
         Jenga kesho.
       </div>
 
-      <p data-hero-blurb style={{ fontSize: 20, lineHeight: 1.5, color: 'rgba(255,255,255,.78)', maxWidth: 620, margin: '36px 0 40px' }}>We finance the bike, the car, the phone and the shop — the assets Kenyans use to earn.
+      <p data-hero-blurb style={{ fontSize: 18, lineHeight: 1.5, color: 'rgba(255,255,255,.78)', maxWidth: 580, margin: '22px 0 28px' }}>We finance the bike, the car, the phone and the shop — the assets Kenyans use to earn.
     </p>
 
       <div data-hero-cta style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
