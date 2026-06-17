@@ -751,19 +751,10 @@ const MOGO_PAGES = {
             </div>
           </div>
         </section>
-        <Cards
-          bg="var(--m-cream)"
-          eyebrow="How SAKA helps"
-          title="One <em>database,</em> three users."
-          cards={[
-            {label:'Buyers',   title:'Verify before you pay', body:'Never buy a stolen boda, tuk-tuk or car. A 30-second SAKA check saves you the cost of the vehicle — and the legal trouble.'},
-            {label:'Owners',   title:'Report and recover',     body:"If your vehicle is stolen, reporting it to SAKA puts it on every dealer's screen within minutes. We've recovered hundreds this way."},
-            {label:'Dealers',  title:'Clean your stock',       body:'Dealers can bulk-check incoming stock against SAKA. If a vehicle is flagged, we work with police to return it to the rightful owner.'},
-          ]}
-        />
-        <section style={{padding:'80px 0', background:'var(--m-cream)'}}>
+        {/* About SAKA — moved above the cards */}
+        <section style={{padding:'80px 0', background:'#fff'}}>
           <div className="shell">
-            <div data-saka-about style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:48, alignItems:'start'}}>
+            <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:56, alignItems:'start'}}>
               <div>
                 <div className="h-eyebrow" style={{marginBottom:12}}><span className="dot"/>About SAKA</div>
                 <h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 52px)', margin:'0 0 20px'}}>24/7 emergency <em>response.</em></h2>
@@ -782,45 +773,90 @@ const MOGO_PAGES = {
                   ))}
                 </div>
               </div>
-              <div style={{display:'flex', flexDirection:'column', gap:20}}>
+              <div style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding:'32px', display:'flex', flexDirection:'column', gap:16}}>
+                <div style={{fontSize:11, fontFamily:'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700}}>How it works</div>
                 {[
-                  {
-                    name: 'John Bitok', location: 'Boda Financing Client · Nandi Hills',
-                    events: [
-                      {icon:'📢', label:'Report', text:'Motorbike was reported stolen 26th January 2026 at 2am in Nandi Hills'},
-                      {icon:'🔍', label:'Theft Category', text:'Normal theft case — bike was left unlocked at his plot'},
-                      {icon:'🚀', label:'Recovery', text:'Motorbike recovered at a car wash in Kisumu at 7am, 27th January 2026'},
-                    ]
-                  },
-                  {
-                    name: 'Noah Simiyu', location: 'Boda Financing Client · Bungoma',
-                    events: [
-                      {icon:'📢', label:'Report', text:'Motorbike was reported stolen 17th February 2026 at 6.51pm at Daraja Giywa in Kimili, Bungoma'},
-                      {icon:'🔍', label:'Theft Category', text:'Armed robbery by 2 armed men & 1 lady'},
-                      {icon:'🚀', label:'Recovery', text:'Motorbike recovered at a bush at 10.59pm, Lwakhaba Uganda border'},
-                    ]
-                  }
-                ].map(client => (
-                  <div key={client.name} style={{background:'#fff', borderRadius:'var(--r-xl)', border:'1px solid var(--m-line-2)', padding:'24px 28px'}}>
-                    <div style={{marginBottom:16, paddingBottom:16, borderBottom:'1px solid var(--m-line-2)'}}>
-                      <div style={{fontFamily:'var(--font-display)', fontSize:20, fontWeight:700}}>{client.name}</div>
-                      <div style={{fontSize:12.5, color:'var(--m-muted)', marginTop:3}}>{client.location}</div>
+                  {n:'01', t:'Theft reported', d:'Customer calls 0719 089 999 — our 24/7 line — and reports the stolen vehicle with their agreement number and last known location.'},
+                  {n:'02', t:'Vehicle flagged', d:'The vehicle is immediately added to the SAKA database, visible to dealers, police and our branch network across Kenya.'},
+                  {n:'03', t:'Recovery coordinated', d:'Our team works with law enforcement to track and recover the vehicle. Customers receive updates throughout the process.'},
+                ].map(({n,t,d}) => (
+                  <div key={n} style={{display:'flex', gap:16, padding:'16px 0', borderBottom:'1px solid var(--m-line-2)'}}>
+                    <div style={{fontSize:11, fontFamily:'inherit', letterSpacing:'.1em', color:'var(--m-green-ink)', fontWeight:700, flexShrink:0, paddingTop:2}}>{n}</div>
+                    <div>
+                      <div style={{fontWeight:600, fontSize:15, marginBottom:4}}>{t}</div>
+                      <div style={{fontSize:13.5, color:'var(--m-ink-2)', lineHeight:1.5}}>{d}</div>
                     </div>
-                    {client.events.map(({icon, label, text}) => (
-                      <div key={label} style={{display:'flex', gap:14, padding:'12px 0', borderBottom:'1px solid var(--m-line-2)'}}>
-                        <div style={{width:36, height:36, borderRadius:10, background:'var(--m-cream)', display:'grid', placeItems:'center', flexShrink:0, fontSize:16}}>{icon}</div>
-                        <div>
-                          <div style={{fontSize:10.5, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', fontWeight:700, color:'var(--m-muted)', marginBottom:4}}>{label}</div>
-                          <div style={{fontSize:14, color:'var(--m-ink)', lineHeight:1.45}}>{text}</div>
-                        </div>
-                      </div>
-                    ))}
                   </div>
                 ))}
               </div>
             </div>
           </div>
         </section>
+
+        {/* Client recovery examples — anonymised, full width with image placeholder */}
+        <section style={{padding:'80px 0', background:'var(--m-cream)'}}>
+          <div className="shell">
+            <div className="h-eyebrow" style={{marginBottom:12}}><span className="dot"/>Recovery stories</div>
+            <h2 className="mega-head" style={{fontSize:'clamp(28px, 3.5vw, 46px)', margin:'0 0 40px'}}>Real recoveries. <em>Real results.</em></h2>
+            <div style={{display:'flex', flexDirection:'column', gap:24}}>
+              {[
+                {
+                  tag:'Case 001', location:'Boda Financing Client · Nandi Hills',
+                  events: [
+                    {icon:'📢', label:'Report', text:'Motorbike reported stolen at 2am. Client called the SAKA emergency line immediately.'},
+                    {icon:'🔍', label:'Theft category', text:'Normal theft — bike was left unlocked at client\'s plot overnight.'},
+                    {icon:'🚀', label:'Recovery', text:'Motorbike recovered at a car wash in a nearby town within 5 hours of the report.'},
+                  ]
+                },
+                {
+                  tag:'Case 002', location:'Boda Financing Client · Bungoma',
+                  events: [
+                    {icon:'📢', label:'Report', text:'Armed robbery reported at 6.51pm — client was intercepted by three individuals on a rural road.'},
+                    {icon:'🔍', label:'Theft category', text:'Armed robbery. Client was unharmed. Vehicle taken by force.'},
+                    {icon:'🚀', label:'Recovery', text:'Motorbike recovered 4 hours later near the Uganda border, coordinated with local law enforcement.'},
+                  ]
+                }
+              ].map((client, ci) => (
+                <div key={client.tag} style={{background:'#fff', borderRadius:'var(--r-xl)', border:'1px solid var(--m-line-2)', display:'grid', gridTemplateColumns:'280px 1fr', overflow:'hidden'}}>
+                  {/* Image placeholder */}
+                  <div style={{background:'var(--m-ink)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12, padding:32, minHeight:240}}>
+                    <div style={{width:72, height:72, borderRadius:999, background:'rgba(122,184,0,.15)', border:'2px dashed rgba(122,184,0,.4)', display:'grid', placeItems:'center'}}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(122,184,0,.7)" strokeWidth="1.5" strokeLinecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div style={{fontSize:10, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'rgba(255,255,255,.35)', textAlign:'center', lineHeight:1.5}}>Photo<br/>placeholder</div>
+                    <div style={{marginTop:8, textAlign:'center'}}>
+                      <div style={{fontFamily:'var(--font-display)', fontSize:16, fontWeight:700, color:'#fff'}}>{client.tag}</div>
+                      <div style={{fontSize:11.5, color:'rgba(255,255,255,.5)', marginTop:3}}>{client.location}</div>
+                    </div>
+                  </div>
+                  {/* Events */}
+                  <div style={{padding:'28px 32px', display:'flex', flexDirection:'column', justifyContent:'center', gap:0}}>
+                    {client.events.map(({icon, label, text}, i) => (
+                      <div key={label} style={{display:'flex', gap:14, padding:'14px 0', borderBottom: i < client.events.length-1 ? '1px solid var(--m-line-2)' : 'none'}}>
+                        <div style={{width:36, height:36, borderRadius:10, background:'var(--m-cream)', display:'grid', placeItems:'center', flexShrink:0, fontSize:16}}>{icon}</div>
+                        <div>
+                          <div style={{fontSize:10.5, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', fontWeight:700, color:'var(--m-muted)', marginBottom:4}}>{label}</div>
+                          <div style={{fontSize:14.5, color:'var(--m-ink)', lineHeight:1.5}}>{text}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <Cards
+          bg="#fff"
+          eyebrow="How SAKA helps"
+          title="One <em>database,</em> three users."
+          cards={[
+            {label:'Buyers',   title:'Verify before you pay', body:'Never buy a stolen boda, tuk-tuk or car. A 30-second SAKA check saves you the cost of the vehicle — and the legal trouble.'},
+            {label:'Owners',   title:'Report and recover',     body:"If your vehicle is stolen, reporting it to SAKA puts it on every dealer's screen within minutes. We've recovered hundreds this way."},
+            {label:'Dealers',  title:'Clean your stock',       body:'Dealers can bulk-check incoming stock against SAKA. If a vehicle is flagged, we work with police to return it to the rightful owner.'},
+          ]}
+        />
       </>
     ),
   },

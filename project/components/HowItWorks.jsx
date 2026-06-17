@@ -72,7 +72,7 @@ const Impact = () =>
       <div data-impact-grid style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
         <ImpactNum icon="cash" kicker="Lending" n="KES 12B+" l="Disbursed to Kenyans since 2018" />
         <ImpactNum icon="vehicle" kicker="Assets financed" n="100,000+" l="Bodas, tuk-tuks and cars on the road" />
-        <ImpactNum icon="pin" kicker="Nationwide" n="84+" l="Branches from Mombasa to Eldoret" />
+        <ImpactNum icon="people" kicker="Customer impact" n="63%" l="of customers report using their loans for income generation" />
       </div>
     </div>
     <style>{`
@@ -86,6 +86,7 @@ const IMPACT_ICONS = {
   cash: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="6" width="20" height="12" rx="2" /><circle cx="12" cy="12" r="2.6" /><path d="M5 9.5h.01M19 14.5h.01" /></svg>,
   vehicle: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 13l1.6-4.6A2 2 0 0 1 7.5 7h9a2 2 0 0 1 1.9 1.4L20 13" /><path d="M3 13h18v4h-1.5" /><path d="M6.5 17H4v-4" /><circle cx="7.5" cy="17" r="1.7" /><circle cx="16.5" cy="17" r="1.7" /></svg>,
   pin: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" /><circle cx="12" cy="10" r="2.5" /></svg>,
+  people: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>,
 };
 
 const ImpactNum = ({ icon, kicker, n, l }) =>
