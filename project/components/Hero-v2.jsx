@@ -7,21 +7,20 @@ const HeroV2 = () =>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,18,32,.72) 0%, rgba(11,18,32,.42) 45%, rgba(11,18,32,.78) 100%)' }} />
     </div>
 
-    <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '12px 28px 280px' }}>
-      <h1 className="h-display" style={{ fontSize: 'clamp(46px, 6.2vw, 122px)', lineHeight: .9, letterSpacing: '-.045em', margin: '0 0 6px', maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
+    <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '12px 28px 52px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 'clamp(480px, 78vh, 760px)' }}>
+      <h1 className="h-display" style={{ fontSize: 'clamp(46px, 6.2vw, 122px)', lineHeight: .9, letterSpacing: '-.045em', margin: 0, maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
         Finance
         <span style={{ color: 'var(--m-green)' }}> your future.</span>
       </h1>
-      <div data-hero-jenga style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(22px, 2.5vw, 38px)', color: 'rgba(255,255,255,.8)', margin: '10px 0 0', letterSpacing: '-.02em' }}>
-        Jenga kesho.
-      </div>
-
-      <p data-hero-blurb style={{ fontSize: 18, lineHeight: 1.5, color: 'rgba(255,255,255,.78)', maxWidth: 580, margin: '22px 0 28px' }}>We finance the bike, the car, the phone and the shop — the assets Kenyans use to earn.
-    </p>
-
-      <div data-hero-cta style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-        <a href="#apply" className="btn btn-primary btn-lg">Start here. Go further. <span className="arrow-pill"><ArrowRight /></span></a>
-        <a href="#products" className="btn btn-ghost-light btn-lg">What we finance</a>
+      <div>
+        <div data-hero-jenga style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(22px, 2.5vw, 38px)', color: 'rgba(255,255,255,.8)', margin: '0 0 16px', letterSpacing: '-.02em' }}>
+          Jenga kesho.
+        </div>
+        <p data-hero-blurb style={{ fontSize: 18, lineHeight: 1.5, color: 'rgba(255,255,255,.78)', maxWidth: 580, margin: '0 0 24px' }}>We finance the bike, the car, the phone and the shop — the assets Kenyans use to earn.</p>
+        <div data-hero-cta style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          <a href="#apply" className="btn btn-primary btn-lg">Start here. Go further. <span className="arrow-pill"><ArrowRight /></span></a>
+          <a href="#products" className="btn btn-ghost-light btn-lg">What we finance</a>
+        </div>
       </div>
     </div>
 
