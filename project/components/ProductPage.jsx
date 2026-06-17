@@ -134,8 +134,8 @@ const ProductPage = ({product}) => {
 
   // Smartphone loans are applied for in person at a participating phone shop,
   // so the primary CTA points to the dealer map instead of the online form.
-  const primaryCtaHref = isPhone ? "#dealers" : "../index-v2.html#apply";
-  const primaryCtaLabel = isPhone ? "See eligible dealers" : "Apply now";
+  const primaryCtaHref = "../index-v2.html#apply";
+  const primaryCtaLabel = "Apply now";
 
   // Models we currently finance, with product-specific wording.
   const modelsBlock = {
@@ -337,7 +337,7 @@ const ProductPage = ({product}) => {
                 {product.desc}
               </p>
               <div className="pp-hero-stats" style={{display:'grid', gridTemplateColumns:'repeat(3, auto)', gap:32, paddingTop: 28, borderTop:'1px solid var(--m-line)', marginBottom: 36}}>
-                {(isPhone || isMSME
+                {(isMSME
                   ? [['Amount', product.price],['Term', product.term],['Turnaround', product.turnaround]]
                   : [['Amount', product.price],['Term', product.term]]
                 ).map(([l,v]) => (
@@ -362,65 +362,99 @@ const ProductPage = ({product}) => {
         </div>
       </section>
 
-      {/* How it works */}
-      <section style={{padding:'100px 0', background:'#fff'}}>
-        <div className="shell">
-          <div style={{maxWidth: 900, marginBottom: 48}}>
-            <h2 className="mega-head" style={{fontSize:'clamp(38px, 4.5vw, 64px)'}}>How it <em style={{fontStyle:'italic', color:'var(--m-green-ink)', fontWeight:400}}>works.</em></h2>
-            {isPhone && (
-              <p style={{fontSize:17, color:'var(--m-ink-2)', lineHeight:1.55, marginTop: 18, maxWidth: 560}}>
-                The whole process takes <strong style={{color:'var(--m-ink)'}}>30 minutes or less</strong> — done in person at a participating phone shop.
-              </p>
-            )}
-          </div>
-          <div className="pp-steps" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap: 20}}>
-            {steps.map(([n,t,d]) => (
-              <div key={n} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding:'32px 28px', minHeight: 220}}>
-                <div style={{fontFamily: 'inherit', fontSize:12, color:'var(--m-green-ink)', letterSpacing:'.12em', marginBottom: 20}}>{n}</div>
-                <h3 className="h-display" style={{fontSize:22, fontWeight:600, letterSpacing:'-.02em', margin:'0 0 8px'}}>{t}</h3>
-                <p style={{fontSize:14, color:'var(--m-ink-2)', lineHeight:1.5, margin:0}}>{d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {isPhone && (
-        <section style={{padding:'72px 0', background:'var(--m-ink)', color:'#fff', position:'relative', overflow:'hidden'}}>
-          <div style={{position:'absolute', top:-80, right:-60, width:320, height:320, borderRadius:999, background:'var(--m-green)', opacity:.1, filter:'blur(80px)', pointerEvents:'none'}}/>
-          <div className="shell" style={{position:'relative'}}>
-            <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center'}}>
-              <div>
-                <div className="h-eyebrow" style={{color:'var(--m-green)', marginBottom:14}}><span className="dot" style={{background:'var(--m-green)'}}/>Mogo App · Fully digital</div>
-                <h2 className="h-display" style={{fontSize:'clamp(28px, 3.5vw, 48px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.05, margin:'0 0 16px', color:'#fff'}}>
-                  Manage your device loan<br/><em style={{fontStyle:'italic', color:'var(--m-green)', fontWeight:400}}>from your phone.</em>
-                </h2>
-                <p style={{fontSize:15.5, color:'rgba(255,255,255,.7)', lineHeight:1.6, margin:'0 0 28px'}}>Check your balance, make repayments via M-Pesa, and apply for a loan restructure — all from the Mogo app, no branch visit needed.</p>
-                <div style={{display:'flex', gap:12, flexWrap:'wrap'}}>
-                  <a href="https://play.google.com/store/apps/details?id=com.mogo.kenya" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'11px 18px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:10, textDecoration:'none', color:'#fff'}}>
-                    <svg width="20" height="22" viewBox="0 0 22 24" fill="none" aria-hidden="true"><path d="M1.4.5l11.2 11.5L1.4 23.5a1.5 1.5 0 01-.9-1.4V1.9a1.5 1.5 0 01.9-1.4z" fill="#00d2ff"/><path d="M16.4 8.4l-3.8 3.6 3.8 3.6 4.2-2.4a1.5 1.5 0 000-2.4l-4.2-2.4z" fill="#ffce00"/><path d="M1.4.5l11.2 11.5 3.8-3.6L3.3.4a1.5 1.5 0 00-1.9.1z" fill="#00f076"/><path d="M1.4 23.5l11.2-11.5 3.8 3.6L3.3 23.6a1.5 1.5 0 01-1.9-.1z" fill="#ff3a44"/></svg>
-                    <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Get it on</div><div style={{fontSize:14, fontWeight:600}}>Google Play</div></div>
-                  </a>
-                  <a href="https://apps.apple.com/ke/app/mogo/id1234567890" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'11px 18px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:10, textDecoration:'none', color:'#fff'}}>
-                    <svg width="16" height="20" viewBox="0 0 18 22" fill="white" aria-hidden="true"><path d="M14.97 11.5c-.02-2.45 2-3.63 2.09-3.69-1.14-1.66-2.9-1.89-3.53-1.91-1.49-.15-2.93.88-3.69.88-.77 0-1.94-.87-3.19-.84-1.63.02-3.14.95-3.98 2.4-1.7 2.95-.44 7.3 1.22 9.69.81 1.17 1.78 2.47 3.04 2.42 1.22-.05 1.68-.78 3.16-.78 1.47 0 1.9.78 3.18.75 1.32-.02 2.15-1.18 2.95-2.35.93-1.35 1.31-2.66 1.33-2.73-.03-.01-2.56-.98-2.58-3.84zm-2.41-7.07c.67-.82 1.13-1.95.99-3.09-1 .04-2.2.67-2.91 1.47-.64.74-1.2 1.91-1.05 3.04 1.1.08 2.23-.56 2.97-1.42z"/></svg>
-                    <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Download on the</div><div style={{fontSize:14, fontWeight:600}}>App Store</div></div>
-                  </a>
+      {/* How it works — hidden for phone (rendered after brands instead) */}
+      {!isPhone && (
+        <section style={{padding:'100px 0', background:'#fff'}}>
+          <div className="shell">
+            <div style={{maxWidth: 900, marginBottom: 48}}>
+              <h2 className="mega-head" style={{fontSize:'clamp(38px, 4.5vw, 64px)'}}>How it <em style={{fontStyle:'italic', color:'var(--m-green-ink)', fontWeight:400}}>works.</em></h2>
+            </div>
+            <div className="pp-steps" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap: 20}}>
+              {steps.map(([n,t,d]) => (
+                <div key={n} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding:'32px 28px', minHeight: 220}}>
+                  <div style={{fontFamily: 'inherit', fontSize:12, color:'var(--m-green-ink)', letterSpacing:'.12em', marginBottom: 20}}>{n}</div>
+                  <h3 className="h-display" style={{fontSize:22, fontWeight:600, letterSpacing:'-.02em', margin:'0 0 8px'}}>{t}</h3>
+                  <p style={{fontSize:14, color:'var(--m-ink-2)', lineHeight:1.5, margin:0}}>{d}</p>
                 </div>
-              </div>
-              <div>
-                <div style={{fontSize:11, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'rgba(255,255,255,.45)', marginBottom:20, fontWeight:700}}>Brands we finance</div>
-                <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:12}}>
-                  {['Samsung','Xiaomi','Tecno','Infinix','iPhone','Itel'].map(brand => (
-                    <div key={brand} style={{padding:'18px 16px', background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.1)', borderRadius:14, textAlign:'center'}}>
-                      <div style={{fontSize:14, fontWeight:600, color:'#fff', letterSpacing:'-.01em'}}>{brand}</div>
-                    </div>
-                  ))}
-                </div>
-                <p style={{fontSize:13, color:'rgba(255,255,255,.45)', marginTop:14, lineHeight:1.5}}>Walk out with your phone same day. Installments from KES 50/day over 6–12 months.</p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
+      )}
+
+      {isPhone && (
+        <>
+          {/* Mogo App section */}
+          <section style={{padding:'72px 0', background:'var(--m-ink)', color:'#fff', position:'relative', overflow:'hidden'}}>
+            <div style={{position:'absolute', top:-80, right:-60, width:320, height:320, borderRadius:999, background:'var(--m-green)', opacity:.1, filter:'blur(80px)', pointerEvents:'none'}}/>
+            <div className="shell" style={{position:'relative'}}>
+              <div className="h-eyebrow" style={{color:'var(--m-green)', marginBottom:20}}><span className="dot" style={{background:'var(--m-green)'}}/>Mogo App · Fully digital</div>
+              <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center'}}>
+                <div>
+                  <h2 className="h-display" style={{fontSize:'clamp(28px, 3.5vw, 48px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.05, margin:'0 0 16px', color:'#fff'}}>
+                    Manage your device loan<br/><em style={{fontStyle:'italic', color:'var(--m-green)', fontWeight:400}}>from your phone.</em>
+                  </h2>
+                  <p style={{fontSize:15.5, color:'rgba(255,255,255,.7)', lineHeight:1.6, margin:'0 0 28px'}}>Check your balance, make repayments via M-Pesa, and apply for a loan restructure — all from the Mogo app, no branch visit needed.</p>
+                  <div style={{display:'flex', gap:12, flexWrap:'wrap'}}>
+                    <a href="https://play.google.com/store/apps/details?id=com.mogo.kenya" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'11px 18px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:10, textDecoration:'none', color:'#fff'}}>
+                      <svg width="20" height="22" viewBox="0 0 22 24" fill="none" aria-hidden="true"><path d="M1.4.5l11.2 11.5L1.4 23.5a1.5 1.5 0 01-.9-1.4V1.9a1.5 1.5 0 01.9-1.4z" fill="#00d2ff"/><path d="M16.4 8.4l-3.8 3.6 3.8 3.6 4.2-2.4a1.5 1.5 0 000-2.4l-4.2-2.4z" fill="#ffce00"/><path d="M1.4.5l11.2 11.5 3.8-3.6L3.3.4a1.5 1.5 0 00-1.9.1z" fill="#00f076"/><path d="M1.4 23.5l11.2-11.5 3.8 3.6L3.3 23.6a1.5 1.5 0 01-1.9-.1z" fill="#ff3a44"/></svg>
+                      <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Get it on</div><div style={{fontSize:14, fontWeight:600}}>Google Play</div></div>
+                    </a>
+                    <a href="https://apps.apple.com/ke/app/mogo/id1234567890" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'11px 18px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:10, textDecoration:'none', color:'#fff'}}>
+                      <svg width="16" height="20" viewBox="0 0 18 22" fill="white" aria-hidden="true"><path d="M14.97 11.5c-.02-2.45 2-3.63 2.09-3.69-1.14-1.66-2.9-1.89-3.53-1.91-1.49-.15-2.93.88-3.69.88-.77 0-1.94-.87-3.19-.84-1.63.02-3.14.95-3.98 2.4-1.7 2.95-.44 7.3 1.22 9.69.81 1.17 1.78 2.47 3.04 2.42 1.22-.05 1.68-.78 3.16-.78 1.47 0 1.9.78 3.18.75 1.32-.02 2.15-1.18 2.95-2.35.93-1.35 1.31-2.66 1.33-2.73-.03-.01-2.56-.98-2.58-3.84zm-2.41-7.07c.67-.82 1.13-1.95.99-3.09-1 .04-2.2.67-2.91 1.47-.64.74-1.2 1.91-1.05 3.04 1.1.08 2.23-.56 2.97-1.42z"/></svg>
+                      <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Download on the</div><div style={{fontSize:14, fontWeight:600}}>App Store</div></div>
+                    </a>
+                  </div>
+                </div>
+                <div style={{display:'grid', placeItems:'center'}}>
+                  <div style={{width:140, aspectRatio:'9/19', background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.15)', borderRadius:32, display:'flex', alignItems:'center', justifyContent:'center'}}>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" strokeWidth="1.5" strokeLinecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 17.5h.01"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Brands we finance — bigger, full section, no iPhone */}
+          <section style={{padding:'72px 0', background:'var(--m-cream)'}}>
+            <div className="shell">
+              <div className="h-eyebrow" style={{marginBottom:14}}><span className="dot"/>Brands we finance</div>
+              <h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 52px)', margin:'0 0 36px'}}>Phones we <em>back.</em></h2>
+              <div style={{display:'grid', gridTemplateColumns:'repeat(5, 1fr)', gap:16}}>
+                {['Samsung','Xiaomi','Tecno','Infinix','Itel'].map(brand => (
+                  <div key={brand} style={{padding:'28px 20px', background:'#fff', border:'1px solid var(--m-line-2)', borderRadius:'var(--r-xl)', textAlign:'center', display:'flex', flexDirection:'column', alignItems:'center', gap:12}}>
+                    <div style={{width:48, height:48, borderRadius:14, background:'var(--m-cream)', display:'grid', placeItems:'center'}}>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--m-ink-2)" strokeWidth="1.5" strokeLinecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 17.5h.01"/></svg>
+                    </div>
+                    <div style={{fontFamily:'var(--font-display)', fontSize:18, fontWeight:700, letterSpacing:'-.02em', color:'var(--m-ink)'}}>{brand}</div>
+                  </div>
+                ))}
+              </div>
+              <p style={{fontSize:14, color:'var(--m-muted)', marginTop:20}}>Walk out with your phone same day. Installments from KES 50/day over 6–12 months.</p>
+            </div>
+          </section>
+
+          {/* How it works — phone position: after brands */}
+          <section style={{padding:'80px 0', background:'#fff'}}>
+            <div className="shell">
+              <div style={{maxWidth: 900, marginBottom: 48}}>
+                <h2 className="mega-head" style={{fontSize:'clamp(38px, 4.5vw, 64px)'}}>How it <em style={{fontStyle:'italic', color:'var(--m-green-ink)', fontWeight:400}}>works.</em></h2>
+                <p style={{fontSize:17, color:'var(--m-ink-2)', lineHeight:1.55, marginTop: 18, maxWidth: 560}}>
+                  The whole process takes <strong style={{color:'var(--m-ink)'}}>30 minutes or less</strong> — walk into a participating phone shop and walk out with your device.
+                </p>
+              </div>
+              <div className="pp-steps" style={{display:'grid', gridTemplateColumns:'repeat(4, 1fr)', gap: 20}}>
+                {steps.map(([n,t,d]) => (
+                  <div key={n} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding:'32px 28px', minHeight: 220}}>
+                    <div style={{fontFamily: 'inherit', fontSize:12, color:'var(--m-green-ink)', letterSpacing:'.12em', marginBottom: 20}}>{n}</div>
+                    <h3 className="h-display" style={{fontSize:22, fontWeight:600, letterSpacing:'-.02em', margin:'0 0 8px'}}>{t}</h3>
+                    <p style={{fontSize:14, color:'var(--m-ink-2)', lineHeight:1.5, margin:0}}>{d}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
       )}
 
       {showAppDownload && (
@@ -583,7 +617,7 @@ const ProductPage = ({product}) => {
       )}
 
       {/* Catalogue */}
-      {product.catalogue && (
+      {product.catalogue && !isPhone && (
         <section style={{padding:'100px 0', background:'#fff'}}>
           <div className="shell">
             <div style={{display:'flex', justifyContent:'space-between', alignItems:'end', marginBottom: 40, flexWrap:'wrap', gap:24}}>
