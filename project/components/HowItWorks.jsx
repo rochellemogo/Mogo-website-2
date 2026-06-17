@@ -56,9 +56,7 @@ const HowItWorks = () => {
 };
 
 const Impact = () =>
-<section data-mogo-impact style={{ padding: '100px 0', background: 'var(--m-ink)', color: '#fff', position: 'relative', overflow: 'hidden' }}>
-    <div style={{ position: 'absolute', top: -120, right: -120, width: 420, height: 420, borderRadius: 999, background: 'var(--m-green)', opacity: .15, filter: 'blur(110px)' }} />
-    <div style={{ position: 'absolute', bottom: -180, left: -160, width: 440, height: 440, borderRadius: 999, background: 'var(--m-green)', opacity: .08, filter: 'blur(130px)' }} />
+<section data-mogo-impact style={{ padding: '100px 0', background: '#fff', position: 'relative', overflow: 'hidden' }}>
     <div className="shell" style={{ position: 'relative' }}>
       <div className="section-intro" data-impact-head style={{ marginBottom: 52, alignItems: 'end' }}>
         <div>
@@ -66,7 +64,7 @@ const Impact = () =>
             Fueling <em style={{ fontStyle: 'italic', color: 'var(--m-green)', fontWeight: 400 }}>200,000+</em><br />Kenyan livelihoods.
           </h2>
         </div>
-        <p style={{ fontSize: 16, color: 'rgba(255,255,255,.6)', lineHeight: 1.6, maxWidth: 380, margin: 0 }}>
+        <p style={{ fontSize: 16, color: 'var(--m-ink-2)', lineHeight: 1.6, maxWidth: 380, margin: 0 }}>
           Seven years of financing the tools Kenyans earn with — from bodas and cars to phones and shop stock.
         </p>
       </div>
@@ -78,8 +76,8 @@ const Impact = () =>
       </div>
     </div>
     <style>{`
-      .impact-stat { transition: transform .2s ease, border-color .2s ease, background .2s ease; }
-      .impact-stat:hover { transform: translateY(-3px); border-color: rgba(122,184,0,.5); background: rgba(255,255,255,.06); }
+      .impact-stat { transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+      .impact-stat:hover { transform: translateY(-3px); border-color: rgba(122,184,0,.5); box-shadow: 0 8px 28px rgba(0,0,0,.07); }
     `}</style>
   </section>;
 
@@ -91,13 +89,13 @@ const IMPACT_ICONS = {
 };
 
 const ImpactNum = ({ icon, kicker, n, l }) =>
-<div className="impact-stat" style={{ position: 'relative', padding: '28px 28px 26px', borderRadius: 'var(--r-lg)', background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.1)', display: 'flex', flexDirection: 'column', minHeight: 230 }}>
+<div className="impact-stat" style={{ position: 'relative', padding: '28px 28px 26px', borderRadius: 'var(--r-lg)', background: 'var(--m-cream)', border: '1px solid var(--m-line-2)', display: 'flex', flexDirection: 'column', minHeight: 230 }}>
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <span style={{ display: 'grid', placeItems: 'center', width: 46, height: 46, borderRadius: 12, background: 'rgba(122,184,0,.14)', color: 'var(--m-green)' }}>{IMPACT_ICONS[icon]}</span>
     </div>
-    <div className="h-display" data-impact-n style={{ fontSize: 'clamp(40px, 4.4vw, 60px)', lineHeight: 1, letterSpacing: '-.035em', fontWeight: 500, color: '#fff', marginTop: 'auto' }}>{n}</div>
+    <div className="h-display" data-impact-n style={{ fontSize: 'clamp(40px, 4.4vw, 60px)', lineHeight: 1, letterSpacing: '-.035em', fontWeight: 500, color: 'var(--m-ink)', marginTop: 'auto' }}>{n}</div>
     <div style={{ width: 36, height: 2, background: 'var(--m-green)', margin: '18px 0 14px', borderRadius: 2 }} />
-    <div style={{ fontSize: 13.5, color: 'rgba(255,255,255,.6)', lineHeight: 1.5, maxWidth: 230 }}>{l}</div>
+    <div style={{ fontSize: 13.5, color: 'var(--m-ink-2)', lineHeight: 1.5, maxWidth: 230 }}>{l}</div>
   </div>;
 
 
