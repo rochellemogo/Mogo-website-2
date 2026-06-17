@@ -385,6 +385,44 @@ const ProductPage = ({product}) => {
         </div>
       </section>
 
+      {isPhone && (
+        <section style={{padding:'72px 0', background:'var(--m-ink)', color:'#fff', position:'relative', overflow:'hidden'}}>
+          <div style={{position:'absolute', top:-80, right:-60, width:320, height:320, borderRadius:999, background:'var(--m-green)', opacity:.1, filter:'blur(80px)', pointerEvents:'none'}}/>
+          <div className="shell" style={{position:'relative'}}>
+            <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:64, alignItems:'center'}}>
+              <div>
+                <div className="h-eyebrow" style={{color:'var(--m-green)', marginBottom:14}}><span className="dot" style={{background:'var(--m-green)'}}/>Mogo App · Fully digital</div>
+                <h2 className="h-display" style={{fontSize:'clamp(28px, 3.5vw, 48px)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1.05, margin:'0 0 16px', color:'#fff'}}>
+                  Manage your device loan<br/><em style={{fontStyle:'italic', color:'var(--m-green)', fontWeight:400}}>from your phone.</em>
+                </h2>
+                <p style={{fontSize:15.5, color:'rgba(255,255,255,.7)', lineHeight:1.6, margin:'0 0 28px'}}>Check your balance, make repayments via M-Pesa, and apply for a loan restructure — all from the Mogo app, no branch visit needed.</p>
+                <div style={{display:'flex', gap:12, flexWrap:'wrap'}}>
+                  <a href="https://play.google.com/store/apps/details?id=com.mogo.kenya" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'11px 18px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:10, textDecoration:'none', color:'#fff'}}>
+                    <svg width="20" height="22" viewBox="0 0 22 24" fill="none" aria-hidden="true"><path d="M1.4.5l11.2 11.5L1.4 23.5a1.5 1.5 0 01-.9-1.4V1.9a1.5 1.5 0 01.9-1.4z" fill="#00d2ff"/><path d="M16.4 8.4l-3.8 3.6 3.8 3.6 4.2-2.4a1.5 1.5 0 000-2.4l-4.2-2.4z" fill="#ffce00"/><path d="M1.4.5l11.2 11.5 3.8-3.6L3.3.4a1.5 1.5 0 00-1.9.1z" fill="#00f076"/><path d="M1.4 23.5l11.2-11.5 3.8 3.6L3.3 23.6a1.5 1.5 0 01-1.9-.1z" fill="#ff3a44"/></svg>
+                    <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Get it on</div><div style={{fontSize:14, fontWeight:600}}>Google Play</div></div>
+                  </a>
+                  <a href="https://apps.apple.com/ke/app/mogo/id1234567890" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'11px 18px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:10, textDecoration:'none', color:'#fff'}}>
+                    <svg width="16" height="20" viewBox="0 0 18 22" fill="white" aria-hidden="true"><path d="M14.97 11.5c-.02-2.45 2-3.63 2.09-3.69-1.14-1.66-2.9-1.89-3.53-1.91-1.49-.15-2.93.88-3.69.88-.77 0-1.94-.87-3.19-.84-1.63.02-3.14.95-3.98 2.4-1.7 2.95-.44 7.3 1.22 9.69.81 1.17 1.78 2.47 3.04 2.42 1.22-.05 1.68-.78 3.16-.78 1.47 0 1.9.78 3.18.75 1.32-.02 2.15-1.18 2.95-2.35.93-1.35 1.31-2.66 1.33-2.73-.03-.01-2.56-.98-2.58-3.84zm-2.41-7.07c.67-.82 1.13-1.95.99-3.09-1 .04-2.2.67-2.91 1.47-.64.74-1.2 1.91-1.05 3.04 1.1.08 2.23-.56 2.97-1.42z"/></svg>
+                    <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Download on the</div><div style={{fontSize:14, fontWeight:600}}>App Store</div></div>
+                  </a>
+                </div>
+              </div>
+              <div>
+                <div style={{fontSize:11, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'rgba(255,255,255,.45)', marginBottom:20, fontWeight:700}}>Brands we finance</div>
+                <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:12}}>
+                  {['Samsung','Xiaomi','Tecno','Infinix','iPhone','Itel'].map(brand => (
+                    <div key={brand} style={{padding:'18px 16px', background:'rgba(255,255,255,.06)', border:'1px solid rgba(255,255,255,.1)', borderRadius:14, textAlign:'center'}}>
+                      <div style={{fontSize:14, fontWeight:600, color:'#fff', letterSpacing:'-.01em'}}>{brand}</div>
+                    </div>
+                  ))}
+                </div>
+                <p style={{fontSize:13, color:'rgba(255,255,255,.45)', marginTop:14, lineHeight:1.5}}>Walk out with your phone same day. Installments from KES 50/day over 6–12 months.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {showAppDownload && (
         <section style={{padding:'60px 0', background:'var(--m-cream)', borderTop:'1px solid var(--m-line-2)'}}>
           <div className="shell">
