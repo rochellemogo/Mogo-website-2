@@ -164,7 +164,7 @@ const ShopSilhouette = () =>
 
 
 const Products = () => {
-  const products = window.MOGO_PRODUCTS;
+  const products = window.MOGO_PRODUCTS.filter((p) => p.slug !== 'special-offers');
   const featured = products.find((p) => p.featured) || products[0];
   const [activeSlug, setActiveSlug] = React.useState(null);
   const active = products.find((p) => p.slug === activeSlug);
