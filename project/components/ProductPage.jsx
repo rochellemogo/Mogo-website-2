@@ -497,7 +497,7 @@ const ProductPage = ({product}) => {
       )}
 
       {/* Requirements */}
-      <section style={{padding:'80px 0', background:'#fff'}}>
+      <section style={{padding:'80px 0', background: isPhone ? 'var(--m-cream)' : '#fff'}}>
         <div className="shell">
           <div className="pp-split" style={{display:'grid', gridTemplateColumns:'1fr 1.2fr', gap: 80, alignItems:'start'}}>
             <div>
