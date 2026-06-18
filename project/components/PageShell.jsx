@@ -37,7 +37,7 @@ const StatsBand = ({stats, bg='var(--m-ink)', fg='#fff', accent='var(--m-green)'
             return (
               <div key={i} data-stat-card style={{position:'relative', padding:'34px 30px', borderRadius:'var(--r-xl)', background:'rgba(255,255,255,.05)', border:'1px solid rgba(255,255,255,.1)', overflow:'hidden'}}>
                 <div style={{position:'absolute', top:0, left:0, right:0, height:4, background: ac}}/>
-                <div data-stat-n style={{fontSize:'clamp(48px, 6vw, 88px)', fontFamily:'var(--font-display)', fontWeight:700, letterSpacing:'-.03em', lineHeight:1, color: ac}}>{s.n}</div>
+                <div data-stat-n style={{fontSize:'clamp(34px, 3.4vw, 54px)', fontFamily:'var(--font-display)', fontWeight:700, letterSpacing:'-.025em', lineHeight:1, color: ac}}>{s.n}</div>
                 <div style={{fontSize:14, lineHeight:1.5, color:'rgba(255,255,255,.72)', marginTop:14, maxWidth: 220}}>{s.label}</div>
               </div>
             );
@@ -169,7 +169,7 @@ const StoriesLive = () => {
     const l = live && live[i];
     return { ...s, videoId: l ? l.id : null, title: l && l.title ? l.title : s.tagline };
   });
-  const grid = items.slice(1);
+  const grid = items.slice(1, 4);
   return (
     <>
       <section style={{background:'#0B1220', padding:'clamp(28px,4vw,56px) 0'}}>

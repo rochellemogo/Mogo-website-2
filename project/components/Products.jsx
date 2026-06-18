@@ -105,6 +105,9 @@ const ProductImage = ({ theme, slug }) => {
       {icon.includes('check') && <CashSilhouette />}
       {icon.includes('smart') && <PhoneSilhouette />}
       {icon.includes('msme') && <ShopSilhouette />}
+
+      {/* Light watermark marking this as a photo placeholder */}
+      <text x="200" y="160" textAnchor="middle" fill="rgba(255,255,255,.62)" fontSize="14" fontFamily="var(--font-display)" fontWeight="600" letterSpacing="2.5">PHOTO PLACEHOLDER</text>
     </svg>);
 
 };

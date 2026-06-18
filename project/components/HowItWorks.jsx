@@ -96,7 +96,7 @@ const ImpactNum = ({ icon, kicker, n, l }) =>
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <span style={{ display: 'grid', placeItems: 'center', width: 46, height: 46, borderRadius: 12, background: 'rgba(122,184,0,.14)', color: 'var(--m-green)' }}>{IMPACT_ICONS[icon]}</span>
     </div>
-    <div className="h-display" data-impact-n style={{ fontSize: 'clamp(40px, 4.4vw, 60px)', lineHeight: 1, letterSpacing: '-.035em', fontWeight: 500, color: 'var(--m-ink)', marginTop: 'auto' }}>{n}</div>
+    <div className="h-display" data-impact-n style={{ fontSize: 'clamp(32px, 3.2vw, 50px)', lineHeight: 1, letterSpacing: '-.03em', fontWeight: 500, color: 'var(--m-ink)', marginTop: 'auto' }}>{n}</div>
     <div style={{ width: 36, height: 2, background: 'var(--m-green)', margin: '18px 0 14px', borderRadius: 2 }} />
     <div style={{ fontSize: 13.5, color: 'var(--m-ink-2)', lineHeight: 1.5, maxWidth: 230 }}>{l}</div>
   </div>;

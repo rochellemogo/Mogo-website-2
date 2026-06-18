@@ -185,22 +185,21 @@ body.mobile-nav-open { overflow: hidden; }
 /* ─── STORIES CAROUSEL ─────────────────────────────────────────────────── */
 @media (max-width: 860px) {
   section#stories { padding: 72px 0 !important; }
-  /* Hide arrow buttons — swipe to scroll on mobile */
+  /* Keep arrows on both sides; squish cards so they sit between the arrows */
   section#stories button[aria-label="Previous"],
-  section#stories button[aria-label="Next"] { display: none !important; }
-  /* One clean card per view, slight peek of the next */
-  section#stories [data-stories-carousel] { gap: 14px !important; scroll-padding-left: 0 !important; }
-  section#stories [data-stories-carousel] article { flex: 0 0 86vw !important; }
+  section#stories button[aria-label="Next"] { width: 34px !important; height: 34px !important; }
+  section#stories [data-stories-carousel] { gap: 12px !important; }
+  section#stories [data-stories-carousel] article { flex: 0 0 66vw !important; }
   section#stories [data-stories-carousel] [data-story-img] { padding: 10px 10px 0 !important; }
   section#stories [data-stories-carousel] [data-story-img] > div { aspect-ratio: 4/3 !important; }
   /* Quote — smaller so the card isn't overly tall and nothing clips */
-  section#stories [data-stories-carousel] article > div:last-child { padding: 20px 22px 22px !important; }
-  section#stories [data-stories-carousel] article > div:last-child p { font-size: 16.5px !important; line-height: 1.4 !important; margin-bottom: 18px !important; }
+  section#stories [data-stories-carousel] article > div:last-child { padding: 18px 18px 20px !important; }
+  section#stories [data-stories-carousel] article > div:last-child p { font-size: 15.5px !important; line-height: 1.4 !important; margin-bottom: 16px !important; }
   /* Footer row — allow product tag to wrap instead of clipping */
   section#stories [data-stories-carousel] article > div:last-child > div:last-child { flex-wrap: wrap !important; gap: 10px !important; }
 }
 @media (max-width: 480px) {
-  section#stories [data-stories-carousel] article { flex: 0 0 88vw !important; }
+  section#stories [data-stories-carousel] article { flex: 0 0 74vw !important; }
 }
 
 /* ─── PAGE HERO ─────────────────────────────────────────────────────────── */
@@ -210,16 +209,18 @@ body.mobile-nav-open { overflow: hidden; }
   section[data-page-hero] p { font-size: 17px !important; }
 }
 
-/* ─── STATS BAND (fun stat cards) ───────────────────────────────────────── */
+/* ─── STATS BAND (clean, modern stat cards) ─────────────────────────────── */
 @media (max-width: 860px) {
-  section[data-stats-band] { padding: 56px 0 !important; }
-  [data-stats-grid] { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
-  [data-stat-card] { padding: 22px 18px !important; }
-  [data-stat-n] { font-size: clamp(36px, 11vw, 54px) !important; }
-  [data-stat-card] > div:last-child { font-size: 12.5px !important; margin-top: 10px !important; }
+  section[data-stats-band] { padding: 52px 0 !important; }
+  [data-stats-grid] { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  [data-stat-card] { padding: 20px 16px !important; }
+  /* Reduced so long figures (e.g. 500,000+) never run off screen */
+  [data-stat-n] { font-size: clamp(24px, 6.4vw, 34px) !important; white-space: nowrap !important; letter-spacing: -.02em !important; }
+  [data-stat-card] > div:last-child { font-size: 12px !important; line-height: 1.45 !important; margin-top: 8px !important; max-width: none !important; }
 }
 @media (max-width: 480px) {
   [data-stats-grid] { grid-template-columns: 1fr !important; }
+  [data-stat-n] { font-size: 36px !important; }
 }
 
 /* ─── TWO COL ────────────────────────────────────────────────────────────── */
@@ -544,4 +545,9 @@ body.mobile-nav-open { overflow: hidden; }
 }
 @media (max-width: 480px) {
   [data-offers-grid] { grid-template-columns: 1fr !important; }
+}
+
+/* ─── OUR STORIES PAGE — video grid ─────────────────────────────────────── */
+@media (max-width: 860px) {
+  .our-stories-grid { grid-template-columns: 1fr !important; gap: 18px !important; }
 }

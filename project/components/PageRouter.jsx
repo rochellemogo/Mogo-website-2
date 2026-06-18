@@ -412,7 +412,12 @@ const AboutPageBody = () => {
         </div>
       </section>
 
-      <StatsBand stats={[{n:d.stat1_n,label:d.stat1_label},{n:d.stat2_n,label:d.stat2_label},{n:d.stat3_n,label:d.stat3_label}]}/>
+      <StatsBand stats={[
+        {n:'KES 12B+', label:'Disbursed to Kenyans since 2018'},
+        {n:'100,000+', label:'Boda, tuk-tuks and cars on the road'},
+        {n:'63%',      label:'Of customers report using their loans for income generation'},
+        {n:'500,000+', label:'Phones financed across East Africa'},
+      ]}/>
       <SafariYetu/>
 
       {/* Eleving Group section */}

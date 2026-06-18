@@ -7,7 +7,7 @@ const HeroV2 = () =>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,18,32,.72) 0%, rgba(11,18,32,.42) 45%, rgba(11,18,32,.78) 100%)' }} />
     </div>
 
-    <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '12px 28px 52px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 'clamp(480px, 78vh, 760px)' }}>
+    <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '12px 28px 52px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 'calc(100vh - 144px)' }}>
       <h1 className="h-display" style={{ fontSize: 'clamp(46px, 6.2vw, 122px)', lineHeight: .9, letterSpacing: '-.045em', margin: 0, maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
         Finance
         <span style={{ color: 'var(--m-green)' }}> your future.</span>
