@@ -1,13 +1,13 @@
 // v2 Hero — applies "Finance Your Future / Jenga Kesho" brand strategy
 const HeroV2 = () =>
-<section data-mogo-hero data-screen-label="Hero" style={{ position: 'relative', overflow: 'hidden', marginTop: -80, paddingTop: 80, background: 'var(--m-ink)', color: '#fff' }}>
+<section data-mogo-hero data-screen-label="Hero" style={{ position: 'relative', overflow: 'hidden', marginTop: -80, paddingTop: 80, background: 'var(--m-ink)', color: '#fff', display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
     <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
       <img src="/uploads/mogo-outdoor-shoot-28.jpg" alt=""
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 70%' }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,18,32,.72) 0%, rgba(11,18,32,.42) 45%, rgba(11,18,32,.78) 100%)' }} />
     </div>
 
-    <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '12px 28px 52px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 'calc(100vh - 144px)' }}>
+    <div className="shell" style={{ position: 'relative', zIndex: 2, padding: '12px 28px 52px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1, minHeight: 0 }}>
       <h1 className="h-display" style={{ fontSize: 'clamp(46px, 6.2vw, 122px)', lineHeight: .9, letterSpacing: '-.045em', margin: 0, maxWidth: 1240, textTransform: 'uppercase', fontWeight: 700 }}>
         Finance
         <span style={{ color: 'var(--m-green)' }}> your future.</span>
