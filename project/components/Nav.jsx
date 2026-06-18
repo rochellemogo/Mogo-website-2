@@ -171,24 +171,28 @@ const Nav = () => {
           </a>
         </div>
 
-        {/* Inline mobile hamburger — visibility controlled entirely by mobile.css */}
-        <button
-          type="button"
-          aria-label="Open menu"
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setMobileOpen(true); }}
-          style={{
-            display: 'none', width: 44, height: 44, borderRadius: 999,
-            background: lightMode ? 'rgba(11,18,32,.06)' : 'rgba(255,255,255,.14)',
-            border: lightMode ? '1px solid var(--m-line)' : '1px solid rgba(255,255,255,.2)',
-            color: 'inherit', cursor: 'pointer', alignItems: 'center', justifyContent: 'center',
-            position: 'relative', zIndex: 60,
-          }}
-          className="mogo-mobile-burger"
-        >
-          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
-            <path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-          </svg>
-        </button>
+        {/* Mobile: phone number + hamburger — both controlled by mobile.css */}
+        <div className="mobile-nav-right" style={{display:'none', alignItems:'center', gap:8, flexShrink:0}}>
+          <a href="tel:0768469112" style={{fontSize:13, fontWeight:500, color:'inherit', textDecoration:'none', whiteSpace:'nowrap', letterSpacing:'.01em'}}>
+            0768 469 112
+          </a>
+          <button
+            type="button"
+            aria-label="Open menu"
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setMobileOpen(true); }}
+            style={{
+              display:'flex', width:44, height:44, borderRadius:999,
+              background: lightMode ? 'rgba(11,18,32,.06)' : 'rgba(255,255,255,.14)',
+              border: lightMode ? '1px solid var(--m-line)' : '1px solid rgba(255,255,255,.2)',
+              color:'inherit', cursor:'pointer', alignItems:'center', justifyContent:'center',
+              flexShrink:0,
+            }}
+          >
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+              <path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+            </svg>
+          </button>
+        </div>
 
         {mobileOpen && (
           <div className="mobile-nav-drawer open" role="dialog" aria-modal="true">
@@ -211,9 +215,12 @@ const Nav = () => {
                 </button>
                 {mobileSection==='prod' && (
                   <div className="mobile-nav-drawer__sub">
-                    {window.MOGO_PRODUCTS?.map(p => (
-                      <a key={p.slug} href={productHref(p.slug)} onClick={() => setMobileOpen(false)}>
-                        {p.name}<small>{p.tagline}</small>
+                    {[...(window.MOGO_PRODUCTS||[]).filter(p=>p.slug!=='special-offers'), ...(window.MOGO_PRODUCTS||[]).filter(p=>p.slug==='special-offers')].map(p => (
+                      <a key={p.slug} href={productHref(p.slug)} onClick={() => setMobileOpen(false)}
+                        style={p.slug==='special-offers' ? {borderTop:'1px solid var(--m-line)', color:'var(--m-green-deep)', fontWeight:600} : {}}>
+                        {p.name}
+                        {p.slug==='special-offers' && <span style={{fontSize:10, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', background:'var(--m-green)', color:'#fff', padding:'2px 6px', borderRadius:999, fontWeight:700, marginLeft:6}}>New</span>}
+                        <small>{p.tagline}</small>
                       </a>
                     ))}
                   </div>

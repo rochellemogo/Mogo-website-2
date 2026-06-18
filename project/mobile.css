@@ -33,12 +33,14 @@
   header[data-mogo-nav] > .shell { padding: 14px 20px !important; }
   .mobile-nav-toggle { display: inline-grid !important; }
   .mogo-mobile-burger { display: inline-flex !important; }
+  .mobile-nav-right { display: flex !important; }
   /* Push content below fixed nav */
   body { padding-top: 62px; }
 }
 @media (min-width: 861px) {
   .mobile-nav-toggle, .mobile-nav-drawer { display: none !important; }
   .mogo-mobile-burger { display: none !important; }
+  .mobile-nav-right { display: none !important; }
 }
 .nav-cta-short { display: none; }
 @media (max-width: 1080px) {
@@ -429,4 +431,54 @@ body.mobile-nav-open { overflow: hidden; }
 }
 @media (max-width: 480px) {
   [data-brands-grid] { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* ─── MOBILE NAV ─────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .nav-cta-full { display: none; }
+}
+
+/* ─── NEWS CAROUSEL IMPROVEMENTS ────────────────────────────────────────── */
+@media (max-width: 860px) {
+  section#news [data-news-carousel] article p { display: none !important; }
+  section#news [data-news-carousel] article h3 { font-size: 15px !important; }
+  section#news [data-news-carousel] article > div:last-child { padding: 14px 16px 16px !important; }
+}
+
+/* ─── PRODUCT PAGE DARK APP SECTION ─────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-pp-app-dark] { padding: 64px 0 !important; }
+  section[data-pp-app-dark] > .shell > div[style*="grid"] { grid-template-columns: 1fr !important; gap: 32px !important; }
+  section[data-pp-app-dark] > .shell > div > div:last-child { display: none !important; }
+}
+@media (max-width: 480px) {
+  section[data-pp-app-dark] > .shell > div > div > div[style*="flex-direction: column"] { gap: 8px !important; }
+}
+
+/* ─── SAKA ABOUT SECTION ─────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-saka-about] { padding: 56px 0 !important; }
+  [data-saka-about-grid] { grid-template-columns: 1fr !important; gap: 32px !important; }
+  [data-saka-about-grid] > div > div[style*="1fr 1fr"] { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ─── SAKA CLIENT RECOVERY CARDS ─────────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-saka-clients] { padding: 56px 0 !important; }
+  [data-client-card] { grid-template-columns: 1fr !important; }
+  [data-client-card] > div:first-child { min-height: 140px !important; padding: 24px !important; flex-direction: row !important; justify-content: flex-start !important; gap: 16px !important; }
+  [data-client-card] > div:last-child { padding: 20px !important; }
+}
+
+/* ─── GENERAL SECTION SPACING MOBILE ────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-mogo-impact] { padding: 64px 0 !important; }
+  section[data-mission-v2] .mega-head { font-size: clamp(32px, 9vw, 52px) !important; }
+  /* Reduce excessive vertical padding on product pages */
+  [data-product-page] > section { padding: 48px 0 !important; }
+  [data-product-page] > section:first-child { padding: 36px 0 52px !important; }
+}
+@media (max-width: 480px) {
+  /* Emergency number — reduce size for small screens */
+  .saka-emergency-num { font-size: 24px !important; }
 }

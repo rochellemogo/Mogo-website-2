@@ -752,9 +752,9 @@ const MOGO_PAGES = {
           </div>
         </section>
         {/* About SAKA — moved above the cards */}
-        <section style={{padding:'80px 0', background:'#fff'}}>
+        <section data-saka-about style={{padding:'80px 0', background:'#fff'}}>
           <div className="shell">
-            <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:56, alignItems:'start'}}>
+            <div data-saka-about-grid style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:56, alignItems:'start'}}>
               <div>
                 <div className="h-eyebrow" style={{marginBottom:12}}><span className="dot"/>About SAKA</div>
                 <h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 52px)', margin:'0 0 20px'}}>24/7 emergency <em>response.</em></h2>
@@ -794,7 +794,7 @@ const MOGO_PAGES = {
         </section>
 
         {/* Client recovery examples — anonymised, full width with image placeholder */}
-        <section style={{padding:'80px 0', background:'var(--m-cream)'}}>
+        <section data-saka-clients style={{padding:'80px 0', background:'var(--m-cream)'}}>
           <div className="shell">
             <div className="h-eyebrow" style={{marginBottom:12}}><span className="dot"/>Recovery stories</div>
             <h2 className="mega-head" style={{fontSize:'clamp(28px, 3.5vw, 46px)', margin:'0 0 40px'}}>Real recoveries. <em>Real results.</em></h2>
@@ -817,7 +817,7 @@ const MOGO_PAGES = {
                   ]
                 }
               ].map((client, ci) => (
-                <div key={client.tag} style={{background:'#fff', borderRadius:'var(--r-xl)', border:'1px solid var(--m-line-2)', display:'grid', gridTemplateColumns:'280px 1fr', overflow:'hidden'}}>
+                <div key={client.tag} data-client-card style={{background:'#fff', borderRadius:'var(--r-xl)', border:'1px solid var(--m-line-2)', display:'grid', gridTemplateColumns:'280px 1fr', overflow:'hidden'}}>
                   {/* Image placeholder */}
                   <div style={{background:'var(--m-ink)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12, padding:32, minHeight:240}}>
                     <div style={{width:72, height:72, borderRadius:999, background:'rgba(122,184,0,.15)', border:'2px dashed rgba(122,184,0,.4)', display:'grid', placeItems:'center'}}>
