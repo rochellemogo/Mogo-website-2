@@ -26,20 +26,27 @@ const Prose = ({children, title, tight}) => (
   </section>
 );
 
-const StatsBand = ({stats, bg='var(--m-ink)', fg='#fff', accent='var(--m-green)'}) => (
-  <section data-stats-band style={{background: bg, color: fg, padding:'88px 0'}}>
-    <div className="shell">
-      <div style={{display:'grid', gridTemplateColumns:`repeat(${stats.length}, 1fr)`, gap: 40}}>
-        {stats.map((s,i) => (
-          <div key={i} style={{borderLeft:'1px solid rgba(255,255,255,.15)', paddingLeft: 24}}>
-            <div style={{fontSize:'clamp(52px, 6vw, 88px)', fontFamily:'var(--font-display)', fontWeight:600, letterSpacing:'-.03em', lineHeight:1, color: accent}}>{s.n}</div>
-            <div style={{fontSize:14, lineHeight:1.5, color:'rgba(255,255,255,.7)', marginTop:16, maxWidth: 220}}>{s.label}</div>
-          </div>
-        ))}
+const StatsBand = ({stats, bg='var(--m-ink)', fg='#fff', accent='var(--m-green)'}) => {
+  const accents = ['var(--m-green)', '#FFB37A', '#7FB5FF', '#C9A8F0'];
+  return (
+    <section data-stats-band style={{background: bg, color: fg, padding:'88px 0'}}>
+      <div className="shell">
+        <div data-stats-grid style={{display:'grid', gridTemplateColumns:`repeat(${stats.length}, 1fr)`, gap: 20}}>
+          {stats.map((s,i) => {
+            const ac = accents[i % accents.length];
+            return (
+              <div key={i} data-stat-card style={{position:'relative', padding:'34px 30px', borderRadius:'var(--r-xl)', background:'rgba(255,255,255,.05)', border:'1px solid rgba(255,255,255,.1)', overflow:'hidden'}}>
+                <div style={{position:'absolute', top:0, left:0, right:0, height:4, background: ac}}/>
+                <div data-stat-n style={{fontSize:'clamp(48px, 6vw, 88px)', fontFamily:'var(--font-display)', fontWeight:700, letterSpacing:'-.03em', lineHeight:1, color: ac}}>{s.n}</div>
+                <div style={{fontSize:14, lineHeight:1.5, color:'rgba(255,255,255,.72)', marginTop:14, maxWidth: 220}}>{s.label}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const TwoCol = ({left, right, bg='#fff'}) => (
   <section data-two-col style={{padding:'96px 0', background: bg}}>

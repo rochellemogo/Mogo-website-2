@@ -14,9 +14,6 @@ const AppSection = () => {
 
           {/* Left: content */}
           <div>
-            <div style={{display:'inline-flex', alignItems:'center', gap:8, padding:'5px 12px', borderRadius:999, background:'rgba(122,184,0,.15)', border:'1px solid rgba(122,184,0,.3)', fontSize:11, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-green)', fontWeight:700, marginBottom:20}}>
-              Mogo · Fintech
-            </div>
             <h2 className="h-display" style={{fontSize:'clamp(36px, 4.5vw, 72px)', lineHeight:.98, letterSpacing:'-.035em', margin:'0 0 20px', fontWeight:600, color:'#fff'}}>
               Your loan,<br/><em style={{fontStyle:'italic', color:'var(--m-green)', fontWeight:400}}>fully digital.</em>
             </h2>
@@ -50,10 +47,10 @@ const AppSection = () => {
                 </div>
               </a>
               <a href="https://apps.apple.com/ke/app/mogo/id1234567890" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:12, padding:'12px 18px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:10, textDecoration:'none', color:'#fff'}}>
-                <svg width="18" height="22" viewBox="0 0 18 22" fill="white" aria-hidden="true"><path d="M14.97 11.5c-.02-2.45 2-3.63 2.09-3.69-1.14-1.66-2.9-1.89-3.53-1.91-1.49-.15-2.93.88-3.69.88-.77 0-1.94-.87-3.19-.84-1.63.02-3.14.95-3.98 2.4-1.7 2.95-.44 7.3 1.22 9.69.81 1.17 1.78 2.47 3.04 2.42 1.22-.05 1.68-.78 3.16-.78 1.47 0 1.9.78 3.18.75 1.32-.02 2.15-1.18 2.95-2.35.93-1.35 1.31-2.66 1.33-2.73-.03-.01-2.56-.98-2.58-3.84zm-2.41-7.07c.67-.82 1.13-1.95.99-3.09-1 .04-2.2.67-2.91 1.47-.64.74-1.2 1.91-1.05 3.04 1.1.08 2.23-.56 2.97-1.42z"/></svg>
+                <svg width="20" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="#FF6A00"/><path d="M12 19.5v-7.2" stroke="#fff" strokeWidth="1.4" strokeLinecap="round"/><path d="M12 12.3c-.7-2.3-2.8-3.3-4.9-2.7.3 2.1 2.5 3.3 4.9 2.7Z" fill="#fff"/><path d="M12 12.3c.6-2.6 3-3.6 5.2-3-.3 2.2-2.7 3.5-5.2 3Z" fill="#fff"/><path d="M12 12.3c-.9-1.9 0-4 1.9-4.9.9 1.7 0 3.9-1.9 4.9Z" fill="#fff" opacity=".8"/></svg>
                 <div style={{lineHeight:1.1}}>
-                  <div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Download on the</div>
-                  <div style={{fontSize:15, fontWeight:600}}>App Store</div>
+                  <div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Available on</div>
+                  <div style={{fontSize:15, fontWeight:600}}>PalmStore</div>
                 </div>
               </a>
             </div>

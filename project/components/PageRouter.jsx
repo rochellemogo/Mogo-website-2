@@ -427,7 +427,7 @@ const AboutPageBody = () => {
           {/* Award block — flat, no rounded corners */}
           <div className="ft-award-block" style={{marginTop:48, padding:'32px 0', borderTop:'1px solid var(--m-line-2)', borderBottom:'1px solid var(--m-line-2)'}}>
             <div style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-green-ink)', fontWeight:700, marginBottom:14}}>Recognition</div>
-            <div style={{display:'grid', gridTemplateColumns:'1fr auto', gap:40, alignItems:'center'}}>
+            <div data-recognition-grid style={{display:'grid', gridTemplateColumns:'1fr auto', gap:40, alignItems:'center'}}>
               <p style={{fontSize:15.5, lineHeight:1.6, color:'var(--m-ink)', margin:0}}>{d.award_text}</p>
               <div style={{display:'flex', flexDirection:'column', gap:10, flexShrink:0}}>
                 <FTBadge title={'EUROPE\'S\nLONG-TERM GROWTH\nCHAMPIONS 2025'} />
@@ -498,7 +498,7 @@ const MOGO_PAGES = {
     render: () => (
       <>
         <section style={{padding:'96px 0', background:'#fff'}}>
-          <div className="shell" style={{display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 20}}>
+          <div className="shell" data-contact-grid style={{display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 20}}>
             {[
               {eyebrow:'General enquiries', title:'0768 469 112', body:'Mon to Sun · 24 hours', action:{label:'Call now', href:'tel:0768469112'}, accent:'var(--m-green)'},
               {eyebrow:'WhatsApp',         title:'+254 768 469 112', body:'Check loan balance, make payments, ask anything.', action:{label:'Open WhatsApp', href:'https://wa.me/2540768469112'}, accent:'#25D366'},
@@ -506,7 +506,7 @@ const MOGO_PAGES = {
               {eyebrow:'USSD',             title:'*695#', body:'Check loan balance and make payments from any phone.', action:{label:'Dial now', href:'tel:*695#'}, accent:'var(--m-navy)'},
               {eyebrow:'Email',            title:'info@mogo.co.ke', body:'For written enquiries, partnerships and documentation.', action:{label:'Send email', href:'mailto:info@mogo.co.ke'}, accent:'var(--m-ink)'},
               {eyebrow:'Head office',      title:'Pinetree Plaza, Kilimani, Nairobi', body:'Mogo Auto Ltd · Kenya head office. Branches in 6 regions.', action:{label:'See all branches', href:'branches.html'}, accent:'#8B5CF6'},
-              {eyebrow:'Media · press enquiries', title:'Becky', body:'Press, interviews and media partnerships. Call or WhatsApp.', action:{label:'Call Becky', href:'tel:0727826832'}, accent:'#003478', subtitle:'0727 826 832'},
+              {eyebrow:'Media · press enquiries', title:'Rebecca Ngigi', body:'Press, interviews and media partnerships. Call or WhatsApp.', action:{label:'Call Rebecca Ngigi', href:'tel:0727826832'}, accent:'#003478', subtitle:'0727 826 832'},
             ].map((c,i) => (
               <div key={i} style={{background:'var(--m-cream)', borderRadius:'var(--r-xl)', padding:32, border:'1px solid var(--m-line-2)', display:'flex', flexDirection:'column', gap:14}}>
                 <div style={{fontSize:11, fontFamily: 'inherit', letterSpacing:'.14em', textTransform:'uppercase', color: c.accent, fontWeight:600}}>{c.eyebrow}</div>
@@ -561,10 +561,10 @@ const MOGO_PAGES = {
                     </div>
                   </a>
                   <a href="https://apps.apple.com/ke/app/mogo/id1234567890" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'10px 16px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:8, textDecoration:'none', color:'#fff'}}>
-                    <svg width="16" height="20" viewBox="0 0 18 22" fill="white" aria-hidden="true"><path d="M14.97 11.5c-.02-2.45 2-3.63 2.09-3.69-1.14-1.66-2.9-1.89-3.53-1.91-1.49-.15-2.93.88-3.69.88-.77 0-1.94-.87-3.19-.84-1.63.02-3.14.95-3.98 2.4-1.7 2.95-.44 7.3 1.22 9.69.81 1.17 1.78 2.47 3.04 2.42 1.22-.05 1.68-.78 3.16-.78 1.47 0 1.9.78 3.18.75 1.32-.02 2.15-1.18 2.95-2.35.93-1.35 1.31-2.66 1.33-2.73-.03-.01-2.56-.98-2.58-3.84zm-2.41-7.07c.67-.82 1.13-1.95.99-3.09-1 .04-2.2.67-2.91 1.47-.64.74-1.2 1.91-1.05 3.04 1.1.08 2.23-.56 2.97-1.42z"/></svg>
+                    <svg width="18" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="#FF6A00"/><path d="M12 19.5v-7.2" stroke="#fff" strokeWidth="1.4" strokeLinecap="round"/><path d="M12 12.3c-.7-2.3-2.8-3.3-4.9-2.7.3 2.1 2.5 3.3 4.9 2.7Z" fill="#fff"/><path d="M12 12.3c.6-2.6 3-3.6 5.2-3-.3 2.2-2.7 3.5-5.2 3Z" fill="#fff"/><path d="M12 12.3c-.9-1.9 0-4 1.9-4.9.9 1.7 0 3.9-1.9 4.9Z" fill="#fff" opacity=".8"/></svg>
                     <div style={{lineHeight:1.1}}>
-                      <div style={{fontSize:9, color:'rgba(255,255,255,.7)'}}>Download on the</div>
-                      <div style={{fontSize:14, fontWeight:600}}>App Store</div>
+                      <div style={{fontSize:9, color:'rgba(255,255,255,.7)'}}>Available on</div>
+                      <div style={{fontSize:14, fontWeight:600}}>PalmStore</div>
                     </div>
                   </a>
                 </div>
@@ -576,7 +576,7 @@ const MOGO_PAGES = {
           </div>
         </section>
         <section style={{padding:'96px 0', background:'#fff'}}>
-          <div className="shell" style={{display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 20}}>
+          <div className="shell" data-payments-grid style={{display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap: 20}}>
             {[
               {tag:'Most used', title:'M-Pesa', steps:[['Paybill Number','7034211'],['Account Number','Your agreement number']], accent:'#00A551'},
               {tag:'Fastest',   title:'USSD · *695#', steps:[['Dial','*695#'],['Options','Check balance · Make payment']], accent:'var(--m-green)'},
@@ -796,8 +796,7 @@ const MOGO_PAGES = {
         {/* Client recovery examples — anonymised, full width with image placeholder */}
         <section data-saka-clients style={{padding:'80px 0', background:'var(--m-cream)'}}>
           <div className="shell">
-            <div className="h-eyebrow" style={{marginBottom:12}}><span className="dot"/>Recovery stories</div>
-            <h2 className="mega-head" style={{fontSize:'clamp(28px, 3.5vw, 46px)', margin:'0 0 40px'}}>Real recoveries. <em>Real results.</em></h2>
+            <h2 className="mega-head" style={{fontSize:'clamp(28px, 3.5vw, 46px)', margin:'0 0 40px'}}>Recovery <em>stories.</em></h2>
             <div style={{display:'flex', flexDirection:'column', gap:24}}>
               {[
                 {

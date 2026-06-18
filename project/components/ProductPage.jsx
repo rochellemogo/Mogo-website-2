@@ -21,9 +21,9 @@ const LoanCalculator = ({ product }) => {
   const fmtAmt = (n) => n >= 1000000 ? (n/1000000).toFixed(1) + 'M' : Math.round(n/1000) + 'K';
 
   return (
-    <section style={{padding:'80px 0', background:'var(--m-cream)'}}>
+    <section data-loan-calc style={{padding:'80px 0', background:'var(--m-cream)'}}>
       <div className="shell">
-        <div style={{maxWidth:760, margin:'0 auto', background:'#fff', borderRadius:'var(--r-xl)', padding:'44px 40px', border:'1px solid var(--m-line-2)', boxShadow:'0 4px 24px rgba(0,0,0,.04)'}}>
+        <div data-loan-calc-card style={{maxWidth:760, margin:'0 auto', background:'#fff', borderRadius:'var(--r-xl)', padding:'44px 40px', border:'1px solid var(--m-line-2)', boxShadow:'0 4px 24px rgba(0,0,0,.04)'}}>
           <div className="h-eyebrow" style={{marginBottom:12}}><span className="dot"/>Loan Calculator</div>
           <h2 className="mega-head" style={{fontSize:'clamp(28px, 3.5vw, 44px)', marginBottom:6}}>Estimate your <em>{calcConfig.weekly ? 'weekly' : 'monthly'} payment.</em></h2>
           <p style={{fontSize:15, color:'var(--m-ink-2)', marginBottom:36, lineHeight:1.5}}>Adjust the sliders to see an indicative {calcConfig.weekly ? 'weekly' : 'monthly'} payment.</p>
@@ -401,8 +401,8 @@ const ProductPage = ({product}) => {
                       <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Get it on</div><div style={{fontSize:14, fontWeight:600}}>Google Play</div></div>
                     </a>
                     <a href="https://apps.apple.com/ke/app/mogo/id1234567890" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'11px 18px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:10, textDecoration:'none', color:'#fff'}}>
-                      <svg width="16" height="20" viewBox="0 0 18 22" fill="white" aria-hidden="true"><path d="M14.97 11.5c-.02-2.45 2-3.63 2.09-3.69-1.14-1.66-2.9-1.89-3.53-1.91-1.49-.15-2.93.88-3.69.88-.77 0-1.94-.87-3.19-.84-1.63.02-3.14.95-3.98 2.4-1.7 2.95-.44 7.3 1.22 9.69.81 1.17 1.78 2.47 3.04 2.42 1.22-.05 1.68-.78 3.16-.78 1.47 0 1.9.78 3.18.75 1.32-.02 2.15-1.18 2.95-2.35.93-1.35 1.31-2.66 1.33-2.73-.03-.01-2.56-.98-2.58-3.84zm-2.41-7.07c.67-.82 1.13-1.95.99-3.09-1 .04-2.2.67-2.91 1.47-.64.74-1.2 1.91-1.05 3.04 1.1.08 2.23-.56 2.97-1.42z"/></svg>
-                      <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Download on the</div><div style={{fontSize:14, fontWeight:600}}>App Store</div></div>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="#FF6A00"/><path d="M12 19.5v-7.2" stroke="#fff" strokeWidth="1.4" strokeLinecap="round"/><path d="M12 12.3c-.7-2.3-2.8-3.3-4.9-2.7.3 2.1 2.5 3.3 4.9 2.7Z" fill="#fff"/><path d="M12 12.3c.6-2.6 3-3.6 5.2-3-.3 2.2-2.7 3.5-5.2 3Z" fill="#fff"/><path d="M12 12.3c-.9-1.9 0-4 1.9-4.9.9 1.7 0 3.9-1.9 4.9Z" fill="#fff" opacity=".8"/></svg>
+                      <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Available on</div><div style={{fontSize:14, fontWeight:600}}>PalmStore</div></div>
                     </a>
                   </div>
                 </div>
@@ -490,8 +490,8 @@ const ProductPage = ({product}) => {
                     <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Get it on</div><div style={{fontSize:14, fontWeight:600}}>Google Play</div></div>
                   </a>
                   <a href="https://apps.apple.com/ke/app/mogo/id1234567890" target="_blank" rel="noopener noreferrer" style={{display:'inline-flex', alignItems:'center', gap:10, padding:'11px 18px', background:'#000', border:'1px solid rgba(255,255,255,.2)', borderRadius:10, textDecoration:'none', color:'#fff'}}>
-                    <svg width="16" height="20" viewBox="0 0 18 22" fill="white" aria-hidden="true"><path d="M14.97 11.5c-.02-2.45 2-3.63 2.09-3.69-1.14-1.66-2.9-1.89-3.53-1.91-1.49-.15-2.93.88-3.69.88-.77 0-1.94-.87-3.19-.84-1.63.02-3.14.95-3.98 2.4-1.7 2.95-.44 7.3 1.22 9.69.81 1.17 1.78 2.47 3.04 2.42 1.22-.05 1.68-.78 3.16-.78 1.47 0 1.9.78 3.18.75 1.32-.02 2.15-1.18 2.95-2.35.93-1.35 1.31-2.66 1.33-2.73-.03-.01-2.56-.98-2.58-3.84zm-2.41-7.07c.67-.82 1.13-1.95.99-3.09-1 .04-2.2.67-2.91 1.47-.64.74-1.2 1.91-1.05 3.04 1.1.08 2.23-.56 2.97-1.42z"/></svg>
-                    <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Download on the</div><div style={{fontSize:14, fontWeight:600}}>App Store</div></div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="#FF6A00"/><path d="M12 19.5v-7.2" stroke="#fff" strokeWidth="1.4" strokeLinecap="round"/><path d="M12 12.3c-.7-2.3-2.8-3.3-4.9-2.7.3 2.1 2.5 3.3 4.9 2.7Z" fill="#fff"/><path d="M12 12.3c.6-2.6 3-3.6 5.2-3-.3 2.2-2.7 3.5-5.2 3Z" fill="#fff"/><path d="M12 12.3c-.9-1.9 0-4 1.9-4.9.9 1.7 0 3.9-1.9 4.9Z" fill="#fff" opacity=".8"/></svg>
+                    <div style={{lineHeight:1.1}}><div style={{fontSize:9, letterSpacing:'.06em', textTransform:'uppercase', color:'rgba(255,255,255,.7)'}}>Available on</div><div style={{fontSize:14, fontWeight:600}}>PalmStore</div></div>
                   </a>
                 </div>
               </div>
@@ -725,7 +725,7 @@ const ProductPage = ({product}) => {
                 </div>
                 <button onClick={() => setShowBPModal(false)} style={{width:36, height:36, borderRadius:999, border:'1px solid var(--m-line)', background:'transparent', cursor:'pointer', display:'grid', placeItems:'center', flexShrink:0, fontSize:16}}>&#x2715;</button>
               </div>
-              <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:32, alignItems:'start'}}>
+              <div data-bp-grid style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:32, alignItems:'start'}}>
                 {/* Comparison table */}
                 <div style={{overflowX:'auto'}}>
                   <table style={{width:'100%', borderCollapse:'collapse', fontSize:13.5}}>

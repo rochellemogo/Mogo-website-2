@@ -52,7 +52,7 @@ const App = () => {
         </section>
         <section style={{padding:'80px 0', background:'#fff'}}>
           <div className="shell">
-            <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:24}}>
+            <div data-offers-grid style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:24}}>
               {[1,2,3,4,5,6].map(n => (
                 <div key={n} style={{border:'2px dashed var(--m-line)', borderRadius:'var(--r-xl)', aspectRatio:'4/3', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:16, background:'var(--m-cream)', padding:32, textAlign:'center'}}>
                   <div style={{width:52, height:52, borderRadius:999, background:'var(--m-line)', display:'grid', placeItems:'center'}}>
