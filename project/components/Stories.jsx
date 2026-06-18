@@ -22,10 +22,10 @@ const Stories = () => {
     <section id="stories" style={{padding:'100px 0', background:'var(--m-cream)'}}>
       <div className="shell">
         <div style={{marginBottom:16}}>
-          <h2 className="mega-head">Real Kenyans.<br/><em>Real</em> businesses.</h2>
+          <h2 className="mega-head">Our <em>Stories.</em></h2>
         </div>
 
-        <a href="pages/our-stories.html" style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:13, fontWeight:600, letterSpacing:'.06em', textTransform:'uppercase', color:'var(--m-green-ink)', textDecoration:'none', marginBottom:32}}>Watch our stories <ArrowRight size={13}/></a>
+        <a href="pages/our-stories.html" style={{display:'inline-flex', alignItems:'center', gap:6, fontSize:13, fontWeight:600, letterSpacing:'.06em', textTransform:'uppercase', color:'var(--m-green-ink)', textDecoration:'none', marginBottom:32}}>Watch more here <ArrowRight size={13}/></a>
 
         <div style={{display:'flex', alignItems:'center', gap:12}}>
           <button onClick={()=>scroll(-1)} style={arrowStyle} aria-label="Previous">

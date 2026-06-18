@@ -472,7 +472,12 @@ const MogoImpactBody = () => {
   return (
     <>
       <PageHero eyebrow={d.hero_eyebrow} title={d.hero_title} kicker={d.hero_kicker}/>
-      <StatsBand accent="var(--m-green)" stats={[{n:d.stat1_n,label:d.stat1_label},{n:d.stat2_n,label:d.stat2_label},{n:d.stat3_n,label:d.stat3_label}]}/>
+      <StatsBand stats={[
+        {n:'KES 12B+', label:'Disbursed to Kenyans since 2018'},
+        {n:'100,000+', label:'Boda, tuk-tuks and cars on the road'},
+        {n:'63%',      label:'Of customers report using their loans for income generation'},
+        {n:'500,000+', label:'Phones financed across East Africa'},
+      ]}/>
       <TwoCol bg="var(--m-cream)"
         left={<><div className="h-eyebrow"><span className="dot"/>Responsible lending</div><h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 52px)', marginTop:12}} dangerouslySetInnerHTML={{__html:d.lending_headline}}/></>}
         right={<div style={{fontSize:17,lineHeight:1.65,color:'var(--m-ink-2)'}}>{lendingParas.map((p,i)=><p key={i} style={{margin:i>0?'18px 0 0':0}}>{p}</p>)}</div>}

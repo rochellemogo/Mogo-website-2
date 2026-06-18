@@ -185,13 +185,22 @@ body.mobile-nav-open { overflow: hidden; }
 /* ─── STORIES CAROUSEL ─────────────────────────────────────────────────── */
 @media (max-width: 860px) {
   section#stories { padding: 72px 0 !important; }
-  section#stories [data-stories-carousel] article { flex: 0 0 calc(80vw - 40px) !important; }
-  section#stories [data-stories-carousel] [data-story-img] { padding: 8px 8px 0 !important; }
-  section#stories [data-stories-carousel] [data-story-img] > div { aspect-ratio: 3/2 !important; }
-  section#stories [data-stories-carousel] article > div:last-child p { font-size: 18px !important; }
+  /* Hide arrow buttons — swipe to scroll on mobile */
+  section#stories button[aria-label="Previous"],
+  section#stories button[aria-label="Next"] { display: none !important; }
+  /* One clean card per view, slight peek of the next */
+  section#stories [data-stories-carousel] { gap: 14px !important; scroll-padding-left: 0 !important; }
+  section#stories [data-stories-carousel] article { flex: 0 0 86vw !important; }
+  section#stories [data-stories-carousel] [data-story-img] { padding: 10px 10px 0 !important; }
+  section#stories [data-stories-carousel] [data-story-img] > div { aspect-ratio: 4/3 !important; }
+  /* Quote — smaller so the card isn't overly tall and nothing clips */
+  section#stories [data-stories-carousel] article > div:last-child { padding: 20px 22px 22px !important; }
+  section#stories [data-stories-carousel] article > div:last-child p { font-size: 16.5px !important; line-height: 1.4 !important; margin-bottom: 18px !important; }
+  /* Footer row — allow product tag to wrap instead of clipping */
+  section#stories [data-stories-carousel] article > div:last-child > div:last-child { flex-wrap: wrap !important; gap: 10px !important; }
 }
 @media (max-width: 480px) {
-  section#stories [data-stories-carousel] article { flex: 0 0 calc(92vw - 36px) !important; }
+  section#stories [data-stories-carousel] article { flex: 0 0 88vw !important; }
 }
 
 /* ─── PAGE HERO ─────────────────────────────────────────────────────────── */
@@ -258,10 +267,18 @@ body.mobile-nav-open { overflow: hidden; }
 @media (max-width: 860px) {
   [data-product-page] > section { padding: 56px 0 !important; }
   [data-product-page] > section:first-child { padding: 44px 0 60px !important; }
-  .pp-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-  .pp-hero-media { aspect-ratio: 3/2 !important; border-radius: 12px !important; }
-  .pp-hero-stats { grid-template-columns: repeat(3, 1fr) !important; gap: 12px !important; }
-  .pp-hero-stats > div > div:last-child { font-size: 18px !important; }
+  /* Hero — modern, clean stacked layout: image first, then copy */
+  .pp-hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .pp-hero-media { order: -1 !important; aspect-ratio: 4/3 !important; border-radius: 18px !important; }
+  .pp-hero-grid h1 { font-size: clamp(32px, 8.5vw, 52px) !important; margin-bottom: 16px !important; }
+  .pp-hero-grid > div > p { font-size: 16px !important; margin-bottom: 24px !important; }
+  /* Amount / Term — tidy two-up with a divider */
+  .pp-hero-stats { grid-template-columns: 1fr 1fr !important; gap: 0 !important; padding-top: 20px !important; margin-bottom: 28px !important; }
+  .pp-hero-stats > div { padding: 4px 0 !important; }
+  .pp-hero-stats > div + div { padding-left: 18px !important; border-left: 1px solid var(--m-line) !important; }
+  .pp-hero-stats > div > div:last-child { font-size: 20px !important; }
+  /* Primary CTA full width for a clean modern hero */
+  .pp-hero-cta .btn:first-child { width: 100% !important; justify-content: center !important; }
   .pp-steps { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
   .pp-steps > div { min-height: 0 !important; padding: 24px 20px !important; }
   .pp-split { grid-template-columns: 1fr !important; gap: 32px !important; }
