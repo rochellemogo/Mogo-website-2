@@ -16,11 +16,7 @@ const HeroV2 = () =>
         <div data-hero-jenga style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(22px, 2.5vw, 38px)', color: 'rgba(255,255,255,.8)', margin: '0 0 16px', letterSpacing: '-.02em' }}>
           Jenga kesho yako.
         </div>
-        <p data-hero-blurb style={{ fontSize: 18, lineHeight: 1.5, color: 'rgba(255,255,255,.78)', maxWidth: 580, margin: '0 0 24px' }}>We finance the bike, the car, the phone and the shop — the assets Kenyans use to earn.</p>
-        <div data-hero-cta style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-          <a href="#apply" className="btn btn-primary btn-lg">Start here. Go further. <span className="arrow-pill"><ArrowRight /></span></a>
-          <a href="#products" className="btn btn-ghost-light btn-lg">What we finance</a>
-        </div>
+        <p data-hero-blurb style={{ fontSize: 18, lineHeight: 1.5, color: 'rgba(255,255,255,.78)', maxWidth: 580, margin: '0' }}>We finance the bike, the car, the phone and the shop — the assets Kenyans use to earn.</p>
       </div>
     </div>
 
