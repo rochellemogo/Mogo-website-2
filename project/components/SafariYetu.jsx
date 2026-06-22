@@ -236,6 +236,11 @@ const DealersModal = () => {
 
   React.useEffect(() => {
     window.openDealersModal = (v) => { setVariant(v || 'dealers'); setActive("All"); setQ(""); setOpen(true); };
+    // Design capture: open on load via ?state=dealers | branches | warehouses
+    const ds = new URLSearchParams(window.location.search).get('state');
+    if (ds === 'dealers' || ds === 'branches' || ds === 'warehouses') {
+      setVariant(ds); setActive("All"); setQ(""); setOpen(true);
+    }
     const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
     const onClick = (e) => {
       const a = e.target.closest('a');

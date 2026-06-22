@@ -22,6 +22,13 @@ const Nav = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Design capture: open a menu on load via ?nav=prod|about|impact|mobile
+  React.useEffect(() => {
+    const n = new URLSearchParams(window.location.search).get('nav');
+    if (n === 'prod' || n === 'about' || n === 'impact') setOpen(n);
+    else if (n === 'mobile') setMobileOpen(true);
+  }, []);
+
   // Close on outside click / Escape
   React.useEffect(() => {
     if (!open) return;

@@ -89,6 +89,10 @@ const ApplyModal = () => {
 
   React.useEffect(() => {
     window.openApplyModal = () => { setSubmitted(false); setOpen(true); };
+    // Design capture: open on load via ?state=apply (used for Figma imports)
+    if (new URLSearchParams(window.location.search).get('state') === 'apply') {
+      setSubmitted(false); setOpen(true);
+    }
     const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
     const onClick = (e) => {
       const a = e.target.closest('a');

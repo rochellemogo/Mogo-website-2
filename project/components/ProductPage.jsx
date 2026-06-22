@@ -79,6 +79,11 @@ const ProductPage = ({product}) => {
   const [showBPModal, setShowBPModal] = React.useState(false);
   const others = window.MOGO_PRODUCTS.filter(p => p.slug !== product.slug).slice(0, 3);
 
+  // Design capture: open the Best Price modal on load via ?state=bestprice
+  React.useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('state') === 'bestprice') setShowBPModal(true);
+  }, []);
+
   const faqs = {
     "boda-financing": [
       ["What bikes can I choose from?", "Boxer, TVS, Honda, Captain and other approved partner brands. Both 125cc commuter bikes and 150cc workhorses."],
@@ -784,7 +789,8 @@ const ProductPage = ({product}) => {
 };
 
 const FAQItem = ({q, a}) => {
-  const [open, setOpen] = React.useState(false);
+  // Design capture: start expanded when the page is loaded with ?faq=open
+  const [open, setOpen] = React.useState(() => new URLSearchParams(window.location.search).get('faq') === 'open');
   return (
     <div style={{borderBottom:'1px solid var(--m-line)'}}>
       <button onClick={() => setOpen(!open)} style={{width:'100%', textAlign:'left', padding:'24px 0', display:'flex', justifyContent:'space-between', alignItems:'center', gap:24}}>
