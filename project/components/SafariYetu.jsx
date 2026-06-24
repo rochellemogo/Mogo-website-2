@@ -14,6 +14,10 @@ const SAFARI_YETU = [
 
 const SafariYetu = () => {
   const scrollerRef = React.useRef(null);
+  // Design capture: ?safari=2 renders the second half of the timeline from the
+  // start, so the later milestones can be captured without horizontal scroll.
+  const secondHalf = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('safari') === '2';
+  const milestones = secondHalf ? SAFARI_YETU.slice(3) : SAFARI_YETU;
   const scrollBy = (dir) => {
     if (!scrollerRef.current) return;
     scrollerRef.current.scrollBy({left: dir * 480, behavior:'smooth'});
@@ -64,7 +68,7 @@ const SafariYetu = () => {
             zIndex: 0,
           }}/>
 
-          {SAFARI_YETU.map((m, i) => {
+          {milestones.map((m, i) => {
             const above = i % 2 === 0;
             // Card geometry: card height ~300, spine at y=340
             const CARD_H = 300;

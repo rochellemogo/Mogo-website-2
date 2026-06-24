@@ -22,11 +22,14 @@ const Nav = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Design capture: open a menu on load via ?nav=prod|about|impact|mobile
+  // Design capture: open a menu on load via ?nav=prod|about|impact|mobile (+ expanded sections)
   React.useEffect(() => {
     const n = new URLSearchParams(window.location.search).get('nav');
     if (n === 'prod' || n === 'about' || n === 'impact') setOpen(n);
     else if (n === 'mobile') setMobileOpen(true);
+    else if (n === 'mobile-prod')   { setMobileOpen(true); setMobileSection('prod'); }
+    else if (n === 'mobile-about')  { setMobileOpen(true); setMobileSection('about'); }
+    else if (n === 'mobile-impact') { setMobileOpen(true); setMobileSection('impact'); }
   }, []);
 
   // Close on outside click / Escape

@@ -169,7 +169,11 @@ const ShopSilhouette = () =>
 const Products = () => {
   const products = window.MOGO_PRODUCTS.filter((p) => p.slug !== 'special-offers');
   const featured = products.find((p) => p.featured) || products[0];
-  const [activeSlug, setActiveSlug] = React.useState(null);
+  // Design capture: pre-open a product's detail card via ?product=<slug>
+  const [activeSlug, setActiveSlug] = React.useState(() => {
+    const p = new URLSearchParams(window.location.search).get('product');
+    return p || null;
+  });
   const active = products.find((p) => p.slug === activeSlug);
   const tint = active ? tintFor(active.theme) : tintFor('warm');
   // Clicking a product opens its detail card directly below the row holding the

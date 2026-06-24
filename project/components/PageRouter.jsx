@@ -63,7 +63,8 @@ const SAKA_FLAGGED = {
 const SAKA_CONTACT = '0719 089 999';
 
 const SakaCheck = () => {
-  const [mode, setMode] = React.useState('plate'); // 'plate' | 'chassis'
+  // Design capture: ?saka=chassis opens with the chassis tab active
+  const [mode, setMode] = React.useState(() => new URLSearchParams(window.location.search).get('saka') === 'chassis' ? 'chassis' : 'plate'); // 'plate' | 'chassis'
   const [value, setValue] = React.useState('');
   const [result, setResult] = React.useState(null); // null | 'clean' | 'flagged'
 
