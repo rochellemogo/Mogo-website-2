@@ -9,6 +9,13 @@ const Nav = () => {
   const inProducts = _here.includes('/products/');
   const isSubpage = inPages || inProducts || (typeof window !== 'undefined' && window.__MOGO_SUBPAGE === true);
   const wrapRef = React.useRef(null);
+  // Design capture: when opened via ?nav=prod|about|impact, render the desktop
+  // dropdown in normal flow (not as an absolute overlay) and keep it open, so
+  // html.to.design captures it reliably.
+  const navCapture = (() => {
+    const n = (typeof window !== 'undefined') ? new URLSearchParams(window.location.search).get('nav') : null;
+    return n === 'prod' || n === 'about' || n === 'impact';
+  })();
 
   React.useEffect(() => {
     document.body.classList.toggle('mobile-nav-open', mobileOpen);
@@ -34,7 +41,7 @@ const Nav = () => {
 
   // Close on outside click / Escape
   React.useEffect(() => {
-    if (!open) return;
+    if (!open || navCapture) return;
     const onDown = (e) => {
       if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(null);
     };
@@ -87,7 +94,9 @@ const Nav = () => {
 
   const Panel = ({eyebrow, title, blurb, items, hrefFn, showBadges}) => (
     <div style={{
-      position:'absolute', top: '100%', left: 0, right: 0,
+      ...(navCapture
+        ? { position:'static' }
+        : { position:'absolute', top: '100%', left: 0, right: 0 }),
       background:'#fff', color:'var(--m-ink)',
       borderBottom:'1px solid var(--m-line)',
       boxShadow:'0 24px 48px rgba(0,0,0,.08)',
@@ -133,7 +142,7 @@ const Nav = () => {
     <header
       data-mogo-nav
       ref={wrapRef}
-      onMouseLeave={() => setOpen(null)}
+      onMouseLeave={navCapture ? undefined : () => setOpen(null)}
       style={{
         position:'sticky', top: 0, zIndex: 50,
         background: lightMode ? 'rgba(255,255,255,.96)' : 'transparent',

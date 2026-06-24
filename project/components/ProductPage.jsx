@@ -1,3 +1,21 @@
+// Custom slider with a real (capturable) green fill track + thumb. The native
+// range input sits transparently on top for interaction; the visible green bar
+// is plain DOM so it converts cleanly into Figma via html.to.design.
+const CalcSlider = ({ min, max, step, value, onChange }) => {
+  const pct = max > min ? Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100)) : 0;
+  return (
+    <div style={{ position: 'relative', height: 22, display: 'flex', alignItems: 'center' }}>
+      <div style={{ position: 'relative', width: '100%', height: 6, borderRadius: 999, background: 'var(--m-line-2)' }}>
+        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${pct}%`, background: 'var(--m-green)', borderRadius: 999 }} />
+        <div style={{ position: 'absolute', top: '50%', left: `${pct}%`, transform: 'translate(-50%, -50%)', width: 18, height: 18, borderRadius: 999, background: '#fff', border: '2px solid var(--m-green)', boxShadow: '0 1px 4px rgba(11,18,32,.25)' }} />
+      </div>
+      <input type="range" min={min} max={max} step={step} value={value}
+        onChange={e => onChange(Number(e.target.value))}
+        style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', margin: 0, opacity: 0, cursor: 'pointer' }} />
+    </div>
+  );
+};
+
 const LoanCalculator = ({ product }) => {
   const calcConfig = {
     'boda-financing':     { minAmt:50000,   maxAmt:300000,  defAmt:150000, stepAmt:10000, minT:6,  maxT:24,  defT:14, rate:0.045, weekly:true  },
@@ -33,9 +51,7 @@ const LoanCalculator = ({ product }) => {
               <label style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700}}>Loan Amount</label>
               <span style={{fontFamily:'var(--font-display)', fontSize:22, fontWeight:700, color:'var(--m-ink)'}}>KES {amt.toLocaleString()}</span>
             </div>
-            <input type="range" min={calcConfig.minAmt} max={calcConfig.maxAmt} step={calcConfig.stepAmt} value={amt}
-              onChange={e => setAmt(Number(e.target.value))}
-              style={{width:'100%', accentColor:'var(--m-green)', cursor:'pointer', height:4}}/>
+            <CalcSlider min={calcConfig.minAmt} max={calcConfig.maxAmt} step={calcConfig.stepAmt} value={amt} onChange={setAmt}/>
             <div style={{display:'flex', justifyContent:'space-between', fontSize:11, color:'var(--m-muted)', marginTop:6}}>
               <span>KES {fmtAmt(calcConfig.minAmt)}</span><span>KES {fmtAmt(calcConfig.maxAmt)}</span>
             </div>
@@ -46,9 +62,7 @@ const LoanCalculator = ({ product }) => {
               <label style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700}}>Loan Term</label>
               <span style={{fontFamily:'var(--font-display)', fontSize:22, fontWeight:700, color:'var(--m-ink)'}}>{term} months</span>
             </div>
-            <input type="range" min={calcConfig.minT} max={calcConfig.maxT} step={1} value={term}
-              onChange={e => setTerm(Number(e.target.value))}
-              style={{width:'100%', accentColor:'var(--m-green)', cursor:'pointer', height:4}}/>
+            <CalcSlider min={calcConfig.minT} max={calcConfig.maxT} step={1} value={term} onChange={setTerm}/>
             <div style={{display:'flex', justifyContent:'space-between', fontSize:11, color:'var(--m-muted)', marginTop:6}}>
               <span>{calcConfig.minT} months</span><span>{calcConfig.maxT} months</span>
             </div>
