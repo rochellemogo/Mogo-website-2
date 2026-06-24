@@ -51,11 +51,11 @@ const Nav = () => {
     {slug:'contact-us', name:'Contact us',     desc:'Call centre, WhatsApp, emergencies'},
     {slug:'payments',   name:'Payments',       desc:'M-Pesa, USSD, bank transfer'},
     {slug:'faq',        name:'FAQ',            desc:'Quick answers to common questions'},
+    {slug:'news',       name:'News',           desc:'Press coverage and updates'},
     {slug:'careers',    name:'Careers',        desc:'Work at Mogo Kenya'},
   ];
   const impactItems = [
     {slug:'mogo-impact', name:'Mogo Impact',             desc:"Our contribution to Kenya's communities"},
-    {slug:'news',        name:'News',                    desc:'Press coverage and updates'},
     {slug:'literacy',    name:'Financial literacy tool', desc:'Powered by Eleving SMART', external:'https://smart.eleving.com/en-ke/'},
   ];
   const pageHref = (slug) => {
