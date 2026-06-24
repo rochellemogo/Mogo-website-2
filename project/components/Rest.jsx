@@ -210,7 +210,7 @@ const Footer = () =>
         <FooterCol title="Products" links={["Boda Loan", "Boda Logbook", "Tuk-Tuk Logbook", "Car Logbook", "Car Loan", "Buyoff Logbook"]} />
         <FooterCol title="Company" links={["About MOGO", "Branches", "Careers", "Press", "Partners", "Eleving Group"]} />
         <FooterCol title="Support" links={["Help center", "Contact us", "FAQ", "Complaints", "Whistleblower"]} />
-        <FooterCol title="Legal" links={["Terms", "Privacy", "Best Price T&Cs", "CBK licence", "Data protection"]} />
+        <FooterCol title="Legal" links={["Terms", "Privacy", "Best Price T&Cs", "CBK licence", "Data protection", "Environment and Social Policy", "Suppliers Code of Conduct"]} />
       </div>
       <div data-footer-bottom style={{ paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 13, flexWrap: 'wrap', gap: 16 }}>
         <div>© 2026 Mogo Auto Kenya Ltd. All rights reserved.</div>
