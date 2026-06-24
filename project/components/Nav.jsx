@@ -29,10 +29,16 @@ const Nav = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Design capture: open a menu on load via ?nav=prod|about|impact|mobile (+ expanded sections)
+  // Design capture: open a menu on load via ?nav=...
+  // For prod/about/impact: at desktop width show the web dropdown; at phone
+  // width show the drawer with that section expanded (one URL = both views).
   React.useEffect(() => {
     const n = new URLSearchParams(window.location.search).get('nav');
-    if (n === 'prod' || n === 'about' || n === 'impact') setOpen(n);
+    const isWide = window.innerWidth > 860;
+    if (n === 'prod' || n === 'about' || n === 'impact') {
+      if (isWide) setOpen(n);
+      else { setMobileOpen(true); setMobileSection(n); }
+    }
     else if (n === 'mobile') setMobileOpen(true);
     else if (n === 'mobile-prod')   { setMobileOpen(true); setMobileSection('prod'); }
     else if (n === 'mobile-about')  { setMobileOpen(true); setMobileSection('about'); }
@@ -314,7 +320,7 @@ const Nav = () => {
           </div>
         )}
 
-        {open === 'prod' && (
+        {!navCapture && open === 'prod' && (
           <Panel
             eyebrow="7 ways we finance"
             blurb="From KES 50/day phone plans to KES 5M business loans — built for Kenyan earners."
@@ -323,7 +329,7 @@ const Nav = () => {
             showBadges
           />
         )}
-        {open === 'about' && (
+        {!navCapture && open === 'about' && (
           <Panel
             eyebrow="Company"
             title="About Mogo"
@@ -332,7 +338,7 @@ const Nav = () => {
             hrefFn={pageHref}
           />
         )}
-        {open === 'impact' && (
+        {!navCapture && open === 'impact' && (
           <Panel
             eyebrow="Impact & news"
             title="Our Impact"
@@ -342,6 +348,39 @@ const Nav = () => {
           />
         )}
       </div>
+
+      {/* Design capture: clean full-width dropdown rendered below the bar (web). */}
+      {navCapture && open && (
+        <div className="nav-capture-web">
+          {open === 'prod' && (
+            <Panel
+              eyebrow="7 ways we finance"
+              blurb="From KES 50/day phone plans to KES 5M business loans — built for Kenyan earners."
+              items={[...(window.MOGO_PRODUCTS||[]).filter(p=>p.slug!=='special-offers'), ...(window.MOGO_PRODUCTS||[]).filter(p=>p.slug==='special-offers')]}
+              hrefFn={productHref}
+              showBadges
+            />
+          )}
+          {open === 'about' && (
+            <Panel
+              eyebrow="Company"
+              title="About Mogo"
+              blurb="Reach our team, pay your loan, find answers, or explore a career with us."
+              items={aboutItems}
+              hrefFn={pageHref}
+            />
+          )}
+          {open === 'impact' && (
+            <Panel
+              eyebrow="Impact & news"
+              title="Our Impact"
+              blurb="Our footprint in Kenya, the latest news, and tools to help you grow."
+              items={impactItems}
+              hrefFn={pageHref}
+            />
+          )}
+        </div>
+      )}
     </header>
   );
 };

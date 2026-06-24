@@ -551,3 +551,10 @@ body.mobile-nav-open { overflow: hidden; }
 @media (max-width: 860px) {
   .our-stories-grid { grid-template-columns: 1fr !important; gap: 18px !important; }
 }
+
+/* ─── DESIGN CAPTURE: web nav dropdown block (Figma) ────────────────────── */
+.nav-capture-web { display: block; }
+@media (max-width: 860px) {
+  /* On phone width the mobile drawer is captured instead */
+  .nav-capture-web { display: none !important; }
+}
