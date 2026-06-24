@@ -489,6 +489,7 @@ const MogoImpactBody = () => {
       />
       <ImpactPillars/>
       <ImpactReport/>
+      <BodaBoomReport/>
     </>
   );
 };

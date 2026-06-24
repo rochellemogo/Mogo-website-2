@@ -309,3 +309,65 @@ const ImpactReport = () => {
 };
 
 Object.assign(window, { ImpactReport, ReportPreview });
+
+// ─── BodaBoomReport ──────────────────────────────────────────────────────────
+// Placeholder section for the "Boda-boda Boom" report. Once a PDF URL is set in
+// CMS settings (boda_boom_report_url) it shows real Read/Download buttons;
+// until then it shows a "Coming soon" state with an upload placeholder preview.
+const BodaBoomReport = () => {
+  const getUrl = () => (window.MOGO_SETTINGS && window.MOGO_SETTINGS.boda_boom_report_url) || '';
+  const [reportUrl, setReportUrl] = React.useState(getUrl());
+
+  React.useEffect(() => {
+    const onSettings = () => setReportUrl(getUrl());
+    window.addEventListener('mogo-settings-updated', onSettings);
+    return () => window.removeEventListener('mogo-settings-updated', onSettings);
+  }, []);
+
+  const hasReport = !!(reportUrl && reportUrl.trim());
+
+  return (
+    <section id="boda-boom-report" style={{padding:'96px 0', background:'var(--m-cream)', position:'relative', overflow:'hidden'}}>
+      <div className="shell impact-report-grid" style={{position:'relative', display:'grid', gridTemplateColumns:'1fr 1fr', gap: 56, alignItems:'center'}}>
+        {/* TEXT */}
+        <div>
+          <div className="h-eyebrow"><span className="dot"/>Report · Boda-boda Boom</div>
+          <h2 className="mega-head" style={{fontSize:'clamp(34px, 4.2vw, 56px)', lineHeight:1.02, marginTop:12, marginBottom:20}}>
+            The <em style={{fontStyle:'italic', color:'var(--m-green-ink)', fontWeight:400}}>Boda-boda Boom</em> report.
+          </h2>
+          <p style={{fontSize:17, lineHeight:1.65, color:'var(--m-ink-2)', margin:'0 0 28px', maxWidth: 520}}>
+            Our deep-dive into Kenya&rsquo;s boda-boda economy &mdash; the riders, the routes, and the role asset financing plays in turning a motorbike into a livelihood.
+          </p>
+
+          <div style={{display:'flex', flexWrap:'wrap', gap:12, marginBottom: 8}}>
+            {hasReport ? (
+              <>
+                <a href={reportUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
+                  Read the report <span className="arrow-pill"><ArrowRight/></span>
+                </a>
+                <a href={reportUrl} download className="btn btn-ghost btn-lg">Download PDF</a>
+              </>
+            ) : (
+              <span style={{display:'inline-flex', alignItems:'center', gap:10, padding:'14px 22px', borderRadius:999, background:'var(--m-green-soft)', color:'var(--m-green-deep)', fontSize:14, fontWeight:600, letterSpacing:'.04em'}}>
+                <span style={{width:8, height:8, borderRadius:999, background:'var(--m-green)'}}/> Coming soon
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* PREVIEW PLACEHOLDER */}
+        <div className="impact-report-frame" style={{position:'relative', borderRadius:'var(--r-xl)', overflow:'hidden', background:'#fff', border:'2px dashed var(--m-line)', aspectRatio:'3/4', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:16, textAlign:'center', padding:32}}>
+          <div style={{width:64, height:64, borderRadius:16, background:'var(--m-cream)', display:'grid', placeItems:'center'}}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--m-muted)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>
+          </div>
+          <div style={{fontSize:12.5, fontFamily:'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-muted)', lineHeight:1.6}}>
+            Boda-boda Boom report<br/>placeholder
+          </div>
+          <div style={{fontSize:13, color:'var(--m-muted)', maxWidth:240, lineHeight:1.5}}>Add the report PDF (boda_boom_report_url) to replace this placeholder.</div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+Object.assign(window, { BodaBoomReport });
