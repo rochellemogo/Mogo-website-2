@@ -276,19 +276,6 @@ const ImpactReport = () => {
               Download PDF
             </a>
           </div>
-
-          <ul style={{listStyle:'none', padding:0, margin:0, display:'grid', gridTemplateColumns:'1fr 1fr', gap:14, fontSize:13.5, color:'rgba(255,255,255,.7)'}}>
-            {[
-              ['📄', 'PDF · ~3 MB'],
-              ['📅', 'Published 2026'],
-              ['🌍', 'Group-wide policy'],
-              ['🛡️', 'CBK-licensed'],
-            ].map(([icon, label]) => (
-              <li key={label} style={{display:'flex', alignItems:'center', gap:10}}>
-                <span style={{fontSize:16}}>{icon}</span>{label}
-              </li>
-            ))}
-          </ul>
         </div>
 
         {/* PREVIEW CARD */}
@@ -340,17 +327,13 @@ const BodaBoomReport = () => {
           </p>
 
           <div style={{display:'flex', flexWrap:'wrap', gap:12, marginBottom: 8}}>
-            {hasReport ? (
+            {hasReport && (
               <>
                 <a href={reportUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
                   Read the report <span className="arrow-pill"><ArrowRight/></span>
                 </a>
                 <a href={reportUrl} download className="btn btn-ghost btn-lg">Download PDF</a>
               </>
-            ) : (
-              <span style={{display:'inline-flex', alignItems:'center', gap:10, padding:'14px 22px', borderRadius:999, background:'var(--m-green-soft)', color:'var(--m-green-deep)', fontSize:14, fontWeight:600, letterSpacing:'.04em'}}>
-                <span style={{width:8, height:8, borderRadius:999, background:'var(--m-green)'}}/> Coming soon
-              </span>
             )}
           </div>
         </div>
