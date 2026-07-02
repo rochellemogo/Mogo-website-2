@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Menu states (Figma capture) · MOGO Kenya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css"/>
+<link rel="stylesheet" href="../mobile.css"/>
+<script>window.__MOGO_SUBPAGE = true;</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="../components/data.jsx"></script>
+<script type="text/babel" src="../components/Nav.jsx"></script>
+<script type="text/babel">
+// Standalone, static render of the nav menus for Figma capture via html.to.design.
+// No sticky header / hero / overlays — just clean, plain DOM at any width.
+
+const ABOUT_ITEMS = [
+  {name:'About us',   desc:'Who we are and why we exist'},
+  {name:'Contact us', desc:'Call centre, WhatsApp, emergencies'},
+  {name:'Payments',   desc:'M-Pesa, USSD, bank transfer'},
+  {name:'FAQ',        desc:'Quick answers to common questions'},
+  {name:'News',       desc:'Press coverage and updates'},
+  {name:'Careers',    desc:'Work at Mogo Kenya'},
+];
+const IMPACT_ITEMS = [
+  {name:'Mogo Impact',             desc:"Our contribution to Kenya's communities"},
+  {name:'Financial literacy tool', desc:'Powered by Eleving SMART', external:true},
+];
+const MENU_META = {
+  prod:   {eyebrow:'7 ways we finance', title:null,          blurb:'From KES 50/day phone plans to KES 5M business loans — built for Kenyan earners.', label:'Products'},
+  about:  {eyebrow:'Company',           title:'About Mogo',   blurb:'Reach our team, pay your loan, find answers, or explore a career with us.',        label:'About us'},
+  impact: {eyebrow:'Impact & news',     title:'Our Impact',   blurb:'Our footprint in Kenya, the latest news, and tools to help you grow.',            label:'Our Impact'},
+};
+
+const itemsFor = (menu) => {
+  if (menu === 'prod') {
+    const ps = window.MOGO_PRODUCTS || [];
+    const ordered = [...ps.filter(p=>p.slug!=='special-offers'), ...ps.filter(p=>p.slug==='special-offers')];
+    return ordered.map(p => ({ name:p.name, desc:p.tagline, special:p.slug==='special-offers' }));
+  }
+  if (menu === 'about') return ABOUT_ITEMS;
+  return IMPACT_ITEMS;
+};
+
+// ── Web dropdown (mega menu) ───────────────────────────────────────────────
+const WebPanel = ({menu}) => {
+  const m = MENU_META[menu];
+  const items = itemsFor(menu);
+  return (
+    <div style={{background:'#fff', borderTop:'1px solid var(--m-line)', borderBottom:'1px solid var(--m-line)', boxShadow:'0 24px 48px rgba(0,0,0,.08)', padding:'32px 40px 40px'}}>
+      <div style={{maxWidth:1180, margin:'0 auto'}}>
+        <div className="menu-web-grid" style={{display:'grid', gridTemplateColumns:'220px 1fr', gap:48}}>
+          <div>
+            <div className="h-eyebrow"><span className="dot"/>{m.eyebrow}</div>
+            {m.title && <p style={{marginTop:14, fontSize:15, fontWeight:600, color:'var(--m-ink)'}}>{m.title}</p>}
+            <p style={{marginTop:m.title?6:14, fontSize:13, color:'var(--m-muted)', lineHeight:1.5, maxWidth:200}}>{m.blurb}</p>
+          </div>
+          <div className="menu-web-items" style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:4}}>
+            {items.map(it => (
+              <a key={it.name} href="#" onClick={e=>e.preventDefault()} style={{
+                padding:'14px 16px', borderRadius:10, textDecoration:'none', color:'inherit',
+                ...(it.special ? {border:'1.5px solid var(--m-green)', background:'rgba(122,184,0,.07)'} : {border:'1.5px solid transparent'}),
+              }}>
+                <div style={{display:'flex', alignItems:'center', gap:8}}>
+                  <strong style={{fontWeight:600, fontSize:15, ...(it.special ? {color:'var(--m-green-deep)'} : {})}}>{it.name}</strong>
+                  {it.special && <span style={{fontSize:10, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', background:'var(--m-green)', color:'#fff', padding:'2px 7px', borderRadius:999, fontWeight:700}}>New</span>}
+                  {it.external && <ArrowUpRight size={12}/>}
+                </div>
+                <div style={{fontSize:13, color:'var(--m-muted)', marginTop:2, lineHeight:1.4}}>{it.desc}</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ── Mobile menu (drawer, static phone frame) ───────────────────────────────
+const MobilePanel = ({menu}) => {
+  const items = itemsFor(menu);
+  const linkRow = {display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%', padding:'18px 16px', fontSize:17, fontWeight:500, color:'var(--m-ink)', textDecoration:'none', textTransform:'uppercase', letterSpacing:'.08em'};
+  const rows = [
+    {key:'prod',   label:'Products',   expandable:true},
+    {key:'branches', label:'Branches'},
+    {key:'about',  label:'About',      expandable:true},
+    {key:'impact', label:'Our Impact', expandable:true},
+    {key:'stories', label:'Our Stories'},
+    {key:'saka',   label:'SAKA'},
+  ];
+  return (
+    <div style={{width:390, maxWidth:'100%', margin:'0', border:'1px solid var(--m-line)', borderRadius:22, overflow:'hidden', background:'#fff', boxShadow:'0 24px 48px rgba(0,0,0,.10)', display:'flex', flexDirection:'column'}}>
+      <div className="mobile-nav-drawer__head">
+        <img src="../assets/mogo-logo.svg" alt="mogo" style={{height:24}}/>
+        <span style={{width:40, height:40, borderRadius:999, background:'var(--m-cream)', display:'grid', placeItems:'center'}}>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>
+        </span>
+      </div>
+      <div className="mobile-nav-drawer__body">
+        {rows.map(r => (
+          <div className="mobile-nav-drawer__group" key={r.key}>
+            {r.expandable ? (
+              <>
+                <button type="button" className="mobile-nav-drawer__row" aria-expanded={r.key===menu}>
+                  {r.label}
+                  <svg className="mobile-nav-drawer__chev" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>
+                </button>
+                {r.key===menu && (
+                  <div className="mobile-nav-drawer__sub">
+                    {items.map(it => (
+                      <a key={it.name} href="#" onClick={e=>e.preventDefault()}
+                        style={it.special ? {borderTop:'1px solid var(--m-line)', color:'var(--m-green-deep)', fontWeight:600} : {}}>
+                        {it.name}
+                        {it.special && <span style={{fontSize:10, fontFamily:'inherit', letterSpacing:'.1em', textTransform:'uppercase', background:'var(--m-green)', color:'#fff', padding:'2px 6px', borderRadius:999, fontWeight:700, marginLeft:6}}>New</span>}
+                        <small>{it.desc}</small>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <a href="#" onClick={e=>e.preventDefault()} style={linkRow}>{r.label}</a>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="mobile-nav-drawer__cta">
+        <a href="#" onClick={e=>e.preventDefault()} className="btn btn-primary">Apply now <span className="arrow-pill"><ArrowRight/></span></a>
+      </div>
+    </div>
+  );
+};
+
+const Label = ({children}) => (
+  <div style={{fontSize:12, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:700, margin:'44px 0 14px'}}>{children}</div>
+);
+
+const App = () => {
+  const menu = (new URLSearchParams(window.location.search).get('menu')) || 'prod';
+  const m = MENU_META[menu] || MENU_META.prod;
+  const key = MENU_META[menu] ? menu : 'prod';
+  return (
+    <div style={{background:'var(--m-cream)', minHeight:'100vh', padding:'40px 0 90px'}}>
+      <div className="shell" style={{maxWidth:1240}}>
+        <div className="h-eyebrow"><span className="dot"/>Figma capture</div>
+        <h1 style={{fontFamily:'var(--font-display)', fontSize:'clamp(26px,3vw,40px)', fontWeight:600, letterSpacing:'-.02em', margin:'10px 0 0'}}>{m.label} — menu states</h1>
+        <p style={{fontSize:14, color:'var(--m-ink-2)', marginTop:8}}>Static render of the {m.label} menu for design hand-off — web dropdown and mobile menu.</p>
+
+        <Label>Web dropdown</Label>
+        <WebPanel menu={key}/>
+
+        <Label>Mobile menu</Label>
+        <MobilePanel menu={key}/>
+      </div>
+    </div>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+<style>
+  /* Keep the web dropdown grid readable if this page itself is imported narrow */
+  @media (max-width: 860px) {
+    .menu-web-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .menu-web-items { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>
+</body>
+</html>
