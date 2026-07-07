@@ -552,6 +552,15 @@ body.mobile-nav-open { overflow: hidden; }
   .our-stories-grid { grid-template-columns: 1fr !important; gap: 18px !important; }
 }
 
+/* ─── AWARDS CAROUSEL (About page) ──────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-awards] { padding: 56px 0 !important; }
+  section[data-awards] [data-award-card] { flex: 0 0 66vw !important; }
+}
+@media (max-width: 480px) {
+  section[data-awards] [data-award-card] { flex: 0 0 78vw !important; }
+}
+
 /* ─── DESIGN CAPTURE: web nav dropdown (Figma) ──────────────────────────── */
 /* Rendered as a FIXED overlay pinned under the real nav bar so it sits over
    the actual hero in context — and html.to.design captures fixed overlays

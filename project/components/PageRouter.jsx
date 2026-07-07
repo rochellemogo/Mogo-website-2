@@ -387,6 +387,67 @@ const ABOUT_FALLBACK = {
   cta_subtitle: 'Find your nearest branch or start an application online.',
 };
 
+// Awards carousel (About page). Placeholder awards — edit MOGO_AWARDS or wire
+// to CMS later. Each card has an image placeholder, a title and a short blurb.
+const MOGO_AWARDS = [
+  { title: "FT Europe's Long-Term Growth Champions 2025", desc: 'Ranked #1 in Fintech, Financial Services & Insurance and 57th overall across Europe (Eleving Group).' },
+  { title: "Europe's 1,000 Fastest Growing Companies", desc: 'Recognised among the continent’s fastest-growing companies two years running (2020–2021).' },
+  { title: 'Award title', desc: 'Short description of the award and what it recognises.' },
+  { title: 'Award title', desc: 'Short description of the award and what it recognises.' },
+];
+
+const AwardsCarousel = () => {
+  const scrollRef = React.useRef(null);
+  const scroll = (dir) => {
+    if (!scrollRef.current) return;
+    const card = scrollRef.current.querySelector('[data-award-card]');
+    const w = card ? card.offsetWidth + 20 : 0;
+    scrollRef.current.scrollBy({ left: dir * w, behavior: 'smooth' });
+  };
+  const arrowStyle = { width:40, height:40, borderRadius:999, border:'1px solid var(--m-line-2)', background:'#fff', cursor:'pointer', display:'grid', placeItems:'center', color:'var(--m-ink)', flexShrink:0 };
+  const awards = (window.MOGO_AWARDS && window.MOGO_AWARDS.length) ? window.MOGO_AWARDS : MOGO_AWARDS;
+  return (
+    <section data-awards style={{padding:'88px 0', background:'var(--m-cream)'}}>
+      <div className="shell">
+        <div style={{display:'flex', alignItems:'flex-end', justifyContent:'space-between', gap:24, marginBottom:36, flexWrap:'wrap'}}>
+          <div>
+            <div className="h-eyebrow"><span className="dot"/>Awards &amp; recognition</div>
+            <h2 className="mega-head" style={{fontSize:'clamp(32px, 4vw, 52px)', marginTop:12}}>Mogo Kenya <em>awards.</em></h2>
+          </div>
+          <div style={{display:'flex', gap:8}}>
+            <button onClick={()=>scroll(-1)} style={arrowStyle} aria-label="Previous">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+            <button onClick={()=>scroll(1)} style={arrowStyle} aria-label="Next">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div ref={scrollRef} data-awards-track style={{display:'flex', gap:20, overflowX:'auto', scrollSnapType:'x mandatory', scrollbarWidth:'none', WebkitOverflowScrolling:'touch'}}>
+          <style>{`[data-awards-track]::-webkit-scrollbar{display:none}`}</style>
+          {awards.map((a, i) => (
+            <div key={i} data-award-card style={{flex:'0 0 calc(33.333% - 14px)', scrollSnapAlign:'start', background:'#fff', borderRadius:'var(--r-xl)', overflow:'hidden', border:'1px solid var(--m-line-2)', display:'flex', flexDirection:'column', minWidth:0}}>
+              {/* Image placeholder */}
+              <div style={{aspectRatio:'4/3', background:'var(--m-ink)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12, position:'relative'}}>
+                <div style={{width:56, height:56, borderRadius:16, background:'rgba(122,184,0,.15)', border:'2px dashed rgba(122,184,0,.4)', display:'grid', placeItems:'center'}}>
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(122,184,0,.8)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 6H5a2 2 0 0 0 0 4h1M17 6h2a2 2 0 0 1 0 4h-1"/></svg>
+                </div>
+                <div style={{fontSize:10, fontFamily:'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'rgba(255,255,255,.4)'}}>Photo placeholder</div>
+              </div>
+              <div style={{padding:'22px 24px 26px', flex:1, display:'flex', flexDirection:'column'}}>
+                <h3 style={{fontSize:17, fontWeight:600, lineHeight:1.3, letterSpacing:'-.01em', margin:'0 0 8px', fontFamily:'var(--font-display)'}}>{a.title}</h3>
+                <p style={{fontSize:13.5, color:'var(--m-ink-2)', lineHeight:1.5, margin:0}}>{a.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+Object.assign(window, { AwardsCarousel, MOGO_AWARDS });
+
 const AboutPageBody = () => {
   const [d, setD] = React.useState({...ABOUT_FALLBACK, ...(window.MOGO_ABOUT || {})});
   React.useEffect(() => {
@@ -449,6 +510,8 @@ const AboutPageBody = () => {
           </div>
         </div>
       </section>
+
+      <AwardsCarousel/>
 
       <CTAFooter title={d.cta_title} subtitle={d.cta_subtitle}/>
     </>
