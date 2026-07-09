@@ -848,7 +848,7 @@ const MOGO_PAGES = {
         <CareerMediaSection
           eyebrow="Recognition" title="Awards." bg="var(--m-cream)" note="Coming soon"
           blurb="Space to celebrate the recognition Mogo Kenya earns along the way."
-          format="photos-videos" count={4} />
+          format="photos-videos" count={3} />
       </>
     ),
   },
