@@ -6,71 +6,71 @@ const IMPACT_PILLARS = [
   {
     n: '01',
     eyebrow: 'Financial Literacy',
-    title: 'Equipping <em>chairmen</em> to lead.',
-    body: "We run training programmes for boda boda chairmen — the elected leaders of every stage in Kenya. They cover financial management, savings discipline, bookkeeping and how to support riders through loan decisions. Trained chairmen then pass on what they've learned to their stages.",
+    title: 'Understanding your loan,<br/>not just <em>paying it.</em>',
+    body: "Many riders take a loan and simply pay it each week, without ever seeing the full picture. In 2025 Mogo ran financial education sessions across Western, Nyanza and Coastal Kenya to change that — helping people understand how their loan actually works, plan for the difficult weeks, and use credit with confidence. As one participant put it, it is not just about taking a loan but knowing how to use it.",
     accent: '#7AB800',
-    badge: 'For boda chairmen',
-    photoTag: 'Chairman training · Nairobi',
+    badge: 'Rider education',
+    photoTag: 'A participant at a financial education session, Voi',
     photoId: 'impact01',
     photoPath: '../uploads/mogo-impact-training.jpg',
     bullets: [
-      'Quarterly chairman workshops across 32 counties',
-      'Financial-management curriculum co-built with Eleving SMART',
-      'Cascade model: trained chairmen brief their stages',
+      'Understanding how the loan works, beyond the repayment',
+      'Planning ahead and saving for the difficult weeks',
+      'Using credit with confidence',
     ],
-    stat: { n: '420+', label: 'Chairmen trained in 2024' },
+    stat: { n: '1,000+', label: 'Participants reached in 2025' },
   },
   {
     n: '02',
     eyebrow: 'Community Activations',
-    title: 'Service clinics &<br/><em>on-stage</em> outreach.',
-    body: "Working with our manufacturer and trade partners, we bring services directly to the stages — free bike health checks, oil changes, brake inspections, flour donations for stage members and on-the-spot product training. All services are offered free of charge.",
+    title: 'Working with <em>partners,</em><br/>close to riders.',
+    body: "Working with our manufacturer and trade partners, we bring services directly to the stages — free bike health checks, oil changes, brake inspections, food donations for stage members and on-the-spot product training. All services are offered free of charge.",
     accent: '#003478',
     badge: 'With our partners',
-    photoTag: 'Service clinic · Mombasa Road',
+    photoTag: 'Service clinic on stage',
     photoId: 'impact05',
     photoPath: '../uploads/mogo-impact-activation.jpg',
     bullets: [
-      'Free service clinics & bike health checks',
-      'Flour donations and family-support drives',
-      'Financial-literacy drives & product training',
+      'Free service clinics and bike health checks',
+      'Road safety drives & product training',
+      'Food donations and family-support drives',
     ],
     partners: ['Bajaj', 'TVS', 'Abson', 'Boda Association of Kenya'],
-    stat: { n: '60+', label: 'Activations run last year' },
+    stat: { n: '60+', label: 'Activations run' },
   },
   {
     n: '03',
     eyebrow: 'Community Building',
-    title: 'Real <em>structures.</em><br/>Real shelter.',
-    body: "We build what stages need: boda boda shades that keep riders out of the sun and rain between trips, and chairman offices that double as a meeting room, a charging station and a place to handle stage paperwork. We use local builders and local materials, and stages take over ongoing maintenance.",
+    title: 'Building what <em>riders</em> need.',
+    body: "We build the infrastructure stages depend on: boda boda shades that keep riders out of the sun and rain between trips, and chairman offices that double as a meeting room, a charging station and a place to handle stage paperwork. We use local builders and local materials, and stages take over ongoing maintenance.",
     accent: '#86BE07',
     badge: 'Long-term investment',
-    photoTag: 'Boda shade · under construction',
+    photoTag: 'Boda shade under construction',
     photoId: 'impact02',
     photoPath: '../uploads/mogo-impact-boda-stage.jpg',
     bullets: [
       'Boda boda shades for stages in high-density routes',
-      'Chairman offices with secure storage & meeting space',
+      'Chairman offices with secure storage and meeting space',
       'Built with local artisans and stage-led maintenance',
     ],
-    stat: { n: '18', label: 'Shades & offices completed' },
+    stat: { n: '18', label: 'Shades and offices completed' },
   },
   {
     n: '04',
     eyebrow: 'CSR Activities',
-    title: 'Tree planting,<br/><em>donations</em> & more.',
-    body: "From tree planting alongside KFS and county partners to school donations, hospital drives and disaster response — each branch picks at least one CSR cause each year. Our staff show up and do the work.",
+    title: 'More than financing,<br/><em>closer</em> to communities.',
+    body: "Beyond financing and the stages, Mogo supports the wider communities it works in. A standout partnership is with TechFix Training Institute, a Nairobi institute offering inclusive, hands-on training in mobile phone and computer repair, including for people with disabilities — Mogo donates equipment and raises funds for trainee scholarships. Alongside this, branches run local causes each year, from tree planting to school and emergency donations.",
     accent: '#B9D626',
     badge: 'Staff-led',
-    photoTag: 'Tree planting · Aberdares',
+    photoTag: 'Donation to TechFix Training Institute',
     photoId: 'impact03',
     photoPath: '../uploads/mogo-impact-csr-community.jpg',
     bullets: [
+      'Supporting TechFix Training Institute with equipment donations and scholarship fundraising, building practical repair skills',
       'Tree-planting drives with Kenya Forest Service',
-      'School supplies, hospital and emergency donations',
-      'Branch-led causes in every county we operate in',
+      'School supplies, hospital and emergency donations, branch-led in the counties we operate in',
     ],
-    stat: { n: '50K+', label: 'Trees planted to date' },
+    stat: { n: '100+', label: 'IT devices donated in 2026' },
   },
 ];
 
@@ -178,6 +178,7 @@ const ImpactPillars = () => {
                          style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}
                          onError={(e)=>{e.currentTarget.style.display='none';}}/>
                   </div>
+                  {photoAlt && <div style={{fontSize:12.5, color:'var(--m-muted)', marginTop:10, fontStyle:'italic', lineHeight:1.4}}>{photoAlt}</div>}
                 </div>
 
               </div>
@@ -188,7 +189,7 @@ const ImpactPillars = () => {
 
       <CTAFooter
         title="Partner with us on <em>impact.</em>"
-        subtitle="Stage chairmen, NGOs, county partners or manufacturers — if you've got an idea for the next activation, we want to hear it."
+        subtitle="Stage chairmen, NGOs, county partners or manufacturers — if you've got an idea for the next collaboration, we want to hear it."
         cta="Email the team"
         href="mailto:impact@mogo.co.ke"
       />

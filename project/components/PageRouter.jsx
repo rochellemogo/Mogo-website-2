@@ -533,13 +533,10 @@ const AboutPageBody = () => {
 // ─── MogoImpactBody — driven by content/impact.json ──────────────────────────
 const IMPACT_FALLBACK = {
   hero_eyebrow: 'Mogo Impact',
-  hero_title: "Unlocking <em>progress,</em><br/>one community at a time.",
-  hero_kicker: "The money we lend doesn\'t sit still. It buys a boda. Pays school fees. Stocks a shop. Feeds a family.",
-  stat1_n: '100K+',    stat1_label: 'Kenyans financed since we started',
-  stat2_n: 'KES 20B+', stat2_label: 'Lent into the Kenyan economy',
-  stat3_n: '84+',      stat3_label: 'Branches employing local staff',
-  lending_headline: 'We only <em>lend</em><br/>what you can repay.',
-  lending_body: "Every Mogo application is assessed against your real income and your real expenses. We build affordable repayment plans, disclose every fee up front, and we\'d rather restructure a loan than penalise you.\n\nThat\'s why over 100,000 Kenyans have trusted us — and why we\'re still growing.",
+  hero_title: "Unlocking <em>progress,</em><br/>one customer at a time.",
+  hero_kicker: "The money we lend doesn\'t sit still. It buys a boda. Connects a business. Stocks a shop. Builds a future.",
+  lending_headline: 'Customer-centered <em>lending.</em>',
+  lending_body: "Mogo puts the customer at the center of how it lends. Loan terms and charges are disclosed in advance, affordability is assessed before issuance, and structured onboarding calls help customers plan their first repayment. Customers can track balances and schedules through the Mogo App and reach accessible complaints and grievance channels throughout the loan.",
 };
 
 const MogoImpactBody = () => {
@@ -554,9 +551,9 @@ const MogoImpactBody = () => {
     <>
       <PageHero eyebrow={d.hero_eyebrow} title={d.hero_title} kicker={d.hero_kicker}/>
       <StatsBand stats={[
-        {n:'KES 12B+', label:'Disbursed to Kenyans since 2018'},
-        {n:'100,000+', label:'Boda, tuk-tuks and cars on the road'},
-        {n:'63%',      label:'Of customers report using their loans for income generation'},
+        {n:'KES 44B+', label:'Disbursed to Kenyans since 2018'},
+        {n:'500,000+', label:'Customers served in Kenya'},
+        {n:'63%',      label:'Use loans for income generation'},
         {n:'500,000+', label:'Phones financed across East Africa'},
       ]}/>
       <TwoCol bg="var(--m-cream)"
@@ -1011,9 +1008,9 @@ const MOGO_PAGES = {
   },
 
   'mogo-impact': {
-    title: "Unlocking <em>progress,</em><br/>one community at a time.",
+    title: "Unlocking <em>progress,</em><br/>one customer at a time.",
     eyebrow: 'Mogo Impact',
-    kicker: "The money we lend doesn't sit still. It buys a boda. Pays school fees. Stocks a shop. Feeds a family. And beyond the loans, we work side-by-side with boda associations, partners and local communities.",
+    kicker: "The money we lend doesn't sit still. It buys a boda. Connects a business. Stocks a shop. Builds a future.",
     render: () => <MogoImpactBody/>,
   },
 
