@@ -480,7 +480,14 @@ const AboutPageBody = () => {
         {n:'63%',      label:'Of customers report using their loans for income generation'},
         {n:'500,000+', label:'Phones financed across East Africa'},
       ]}/>
-      <SafariYetu/>
+      <section data-safari-yetu style={{padding:'80px 0', background:'#fff'}}>
+        <div className="shell">
+          <div data-safari-img-wrap style={{overflowX:'auto', WebkitOverflowScrolling:'touch'}}>
+            <img src="/uploads/safari-yetu-timeline.png" alt="Mogo Kenya — Safari Yetu, our journey timeline"
+              style={{display:'block', width:'100%', height:'auto'}}/>
+          </div>
+        </div>
+      </section>
 
       {/* Eleving Group section */}
       <section data-prose style={{padding:'88px 0', background:'#fff', borderBottom:'1px solid var(--m-line-2)'}}>
@@ -557,6 +564,49 @@ const MogoImpactBody = () => {
     </>
   );
 };
+
+// Media placeholder tile — video (play button) or photo, on a dark card.
+const MediaTile = ({ type }) => (
+  <div style={{ position:'relative', aspectRatio: type==='video' ? '16/9' : '4/3', borderRadius:'var(--r-lg)', overflow:'hidden', background:'var(--m-ink)', border:'1px solid var(--m-line-2)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12 }}>
+    {type === 'video' ? (
+      <div style={{ width:56, height:56, borderRadius:999, background:'rgba(255,255,255,.12)', border:'1px solid rgba(255,255,255,.25)', display:'grid', placeItems:'center' }}>
+        <svg width="20" height="20" viewBox="0 0 18 18" fill="rgba(255,255,255,.85)"><path d="M3 1l13 8-13 8z"/></svg>
+      </div>
+    ) : (
+      <div style={{ width:52, height:52, borderRadius:14, background:'rgba(122,184,0,.15)', border:'2px dashed rgba(122,184,0,.4)', display:'grid', placeItems:'center' }}>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(122,184,0,.8)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5L4 20"/></svg>
+      </div>
+    )}
+    <div style={{ fontSize:10.5, fontFamily:'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'rgba(255,255,255,.45)' }}>
+      {type === 'video' ? 'Video placeholder' : 'Photo placeholder'}
+    </div>
+  </div>
+);
+
+// Titled section with a placeholder grid — used on the careers page.
+const CareerMediaSection = ({ eyebrow, title, blurb, note, format, count = 3, bg = '#fff' }) => {
+  const tiles = Array.from({ length: count }, (_, i) => (format === 'video' ? 'video' : (i % 2 === 0 ? 'photo' : 'video')));
+  return (
+    <section style={{ padding:'88px 0', background: bg }}>
+      <div className="shell">
+        <div style={{ marginBottom:36, maxWidth:640 }}>
+          <div className="h-eyebrow"><span className="dot"/>{eyebrow}</div>
+          <h2 className="mega-head" style={{ fontSize:'clamp(30px, 3.6vw, 48px)', marginTop:12 }}>{title}</h2>
+          {blurb && <p style={{ fontSize:15.5, color:'var(--m-ink-2)', lineHeight:1.55, marginTop:14 }}>{blurb}</p>}
+          {note && (
+            <span style={{ display:'inline-flex', alignItems:'center', gap:8, marginTop:16, padding:'8px 16px', borderRadius:999, background:'var(--m-green-soft)', color:'var(--m-green-deep)', fontSize:12.5, fontWeight:600, letterSpacing:'.04em' }}>
+              <span style={{ width:7, height:7, borderRadius:999, background:'var(--m-green)' }}/> {note}
+            </span>
+          )}
+        </div>
+        <div data-media-grid style={{ display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:16 }}>
+          {tiles.map((t, i) => <MediaTile key={i} type={t} />)}
+        </div>
+      </div>
+    </section>
+  );
+};
+Object.assign(window, { MediaTile, CareerMediaSection });
 
 const MOGO_PAGES = {
   'about-us': {
@@ -774,6 +824,26 @@ const MOGO_PAGES = {
             </p>
           </div>
         </section>
+
+        <CareerMediaSection
+          eyebrow="Life at Mogo" title="Company events." bg="#fff"
+          blurb="Photos and videos from branch openings, team days, trainings and celebrations across Kenya."
+          format="photos-videos" count={6} />
+
+        <CareerMediaSection
+          eyebrow="Meet the teams" title="Department spotlights." bg="var(--m-cream)"
+          blurb="Short videos introducing each department — what they do and who does it."
+          format="video" count={3} />
+
+        <CareerMediaSection
+          eyebrow="Growth stories" title="Career Glow Up stories." bg="#fff"
+          blurb="Watch how Mogo teammates have grown their careers with us."
+          format="video" count={3} />
+
+        <CareerMediaSection
+          eyebrow="Recognition" title="Awards." bg="var(--m-cream)" note="Coming soon"
+          blurb="Space to celebrate the recognition Mogo Kenya earns along the way."
+          format="photos-videos" count={4} />
       </>
     ),
   },

@@ -561,6 +561,21 @@ body.mobile-nav-open { overflow: hidden; }
   section[data-awards] [data-award-card] { flex: 0 0 78vw !important; }
 }
 
+/* ─── SAFARI YETU IMAGE (About page) ────────────────────────────────────── */
+@media (max-width: 860px) {
+  section[data-safari-yetu] { padding: 52px 0 !important; }
+  /* Keep the wide infographic legible: scroll horizontally instead of shrinking */
+  [data-safari-img-wrap] img { min-width: 760px !important; }
+}
+
+/* ─── CAREERS MEDIA GRIDS ───────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  [data-media-grid] { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+}
+@media (max-width: 480px) {
+  [data-media-grid] { grid-template-columns: 1fr !important; }
+}
+
 /* ─── DESIGN CAPTURE: web nav dropdown (Figma) ──────────────────────────── */
 /* Rendered as a FIXED overlay pinned under the real nav bar so it sits over
    the actual hero in context — and html.to.design captures fixed overlays
