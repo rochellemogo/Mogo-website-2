@@ -483,7 +483,7 @@ const AboutPageBody = () => {
       <section data-safari-yetu style={{padding:'80px 0', background:'#fff'}}>
         <div className="shell">
           <div data-safari-img-wrap style={{overflowX:'auto', WebkitOverflowScrolling:'touch'}}>
-            <img src="/uploads/safari-yetu-timeline.png" alt="Mogo Kenya — Safari Yetu, our journey timeline"
+            <img src="/uploads/safari-yetu-timeline.jpg" alt="Mogo Kenya — Safari Yetu, our journey timeline"
               style={{display:'block', width:'100%', height:'auto'}}/>
           </div>
         </div>
@@ -567,7 +567,7 @@ const MogoImpactBody = () => {
 
 // Media placeholder tile — video (play button) or photo, on a dark card.
 const MediaTile = ({ type }) => (
-  <div style={{ position:'relative', aspectRatio: type==='video' ? '16/9' : '4/3', borderRadius:'var(--r-lg)', overflow:'hidden', background:'var(--m-ink)', border:'1px solid var(--m-line-2)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12 }}>
+  <div style={{ position:'relative', aspectRatio: '16/9', borderRadius:'var(--r-lg)', overflow:'hidden', background:'var(--m-ink)', border:'1px solid var(--m-line-2)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12 }}>
     {type === 'video' ? (
       <div style={{ width:56, height:56, borderRadius:999, background:'rgba(255,255,255,.12)', border:'1px solid rgba(255,255,255,.25)', display:'grid', placeItems:'center' }}>
         <svg width="20" height="20" viewBox="0 0 18 18" fill="rgba(255,255,255,.85)"><path d="M3 1l13 8-13 8z"/></svg>
