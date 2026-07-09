@@ -562,10 +562,15 @@ body.mobile-nav-open { overflow: hidden; }
 }
 
 /* ─── SAFARI YETU IMAGE (About page) ────────────────────────────────────── */
+/* Full-bleed on web (no shell), scroll hint hidden on desktop. */
+[data-safari-hint] { display: none; }
 @media (max-width: 860px) {
-  section[data-safari-yetu] { padding: 52px 0 !important; }
+  section[data-safari-yetu] { padding: 40px 0 !important; }
+  [data-safari-hint] { display: block !important; }
   /* Keep the wide infographic legible: scroll horizontally instead of shrinking */
-  [data-safari-img-wrap] img { min-width: 760px !important; }
+  [data-safari-scroll] img { min-width: 900px !important; }
+  /* Soft right-edge fade to signal there's more to scroll */
+  section[data-safari-yetu]::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 44px; background: linear-gradient(90deg, rgba(255,255,255,0), #fff); pointer-events: none; }
 }
 
 /* ─── CAREERS MEDIA GRIDS ───────────────────────────────────────────────── */

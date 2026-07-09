@@ -480,12 +480,17 @@ const AboutPageBody = () => {
         {n:'63%',      label:'Of customers report using their loans for income generation'},
         {n:'500,000+', label:'Phones financed across East Africa'},
       ]}/>
-      <section data-safari-yetu style={{padding:'80px 0', background:'#fff'}}>
-        <div className="shell">
-          <div data-safari-img-wrap style={{overflowX:'auto', WebkitOverflowScrolling:'touch'}}>
-            <img src="/uploads/safari-yetu-timeline.jpg" alt="Mogo Kenya — Safari Yetu, our journey timeline"
-              style={{display:'block', width:'100%', height:'auto'}}/>
-          </div>
+      <section data-safari-yetu style={{padding:'72px 0', background:'#fff', position:'relative'}}>
+        <div data-safari-hint className="shell" style={{marginBottom:16}}>
+          <span style={{display:'inline-flex', alignItems:'center', gap:8, fontSize:12, fontFamily:'inherit', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--m-muted)', fontWeight:600}}>
+            Scroll to explore the journey
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+        <div data-safari-scroll style={{overflowX:'auto', WebkitOverflowScrolling:'touch', scrollbarWidth:'none'}}>
+          <style>{`[data-safari-scroll]::-webkit-scrollbar{display:none}`}</style>
+          <img src="/uploads/safari-yetu-timeline.jpg" alt="Mogo Kenya — Safari Yetu, our journey timeline"
+            style={{display:'block', width:'100%', height:'auto'}}/>
         </div>
       </section>
 
