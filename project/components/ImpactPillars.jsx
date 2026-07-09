@@ -173,10 +173,12 @@ const ImpactPillars = () => {
 
                 {/* IMAGE — no rounded corners, no overlays */}
                 <div data-pillar-img style={{order: flip ? 1 : 2}}>
-                  <div style={{position:'relative', aspectRatio:'3/2', overflow:'hidden', background:'var(--m-cream)'}}>
-                    <img src={photoSrc} alt={photoAlt}
-                         style={{width:'100%', height:'100%', objectFit:'cover', display:'block'}}
-                         onError={(e)=>{e.currentTarget.style.display='none';}}/>
+                  <div style={{position:'relative', aspectRatio:'3/2', borderRadius:'var(--r-xl)', overflow:'hidden', background:'var(--m-ink)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:16}}>
+                    <div aria-hidden="true" style={{position:'absolute', inset:0, background:`radial-gradient(120% 120% at 80% 15%, ${p.accent}22, transparent 55%)`, pointerEvents:'none'}}/>
+                    <div style={{position:'relative', width:64, height:64, borderRadius:16, background:'rgba(255,255,255,.05)', border:`2px dashed ${p.accent}`, display:'grid', placeItems:'center'}}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={p.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5L4 20"/></svg>
+                    </div>
+                    <div style={{position:'relative', fontSize:10.5, fontFamily:'inherit', letterSpacing:'.14em', textTransform:'uppercase', color:'rgba(255,255,255,.45)'}}>Photo placeholder</div>
                   </div>
                   {photoAlt && <div style={{fontSize:12.5, color:'var(--m-muted)', marginTop:10, fontStyle:'italic', lineHeight:1.4}}>{photoAlt}</div>}
                 </div>

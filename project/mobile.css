@@ -244,7 +244,7 @@ body.mobile-nav-open { overflow: hidden; }
   .impact-pillar-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
   .impact-pillar-grid [data-pillar-text] { order: 1 !important; }
   .impact-pillar-grid [data-pillar-img] { order: 2 !important; }
-  .impact-pillar-grid [data-pillar-img] > div { aspect-ratio: 4/3 !important; }
+  .impact-pillar-grid [data-pillar-img] > div:first-child { aspect-ratio: 4/3 !important; }
   .impact-report-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
   .impact-report-frame { aspect-ratio: auto !important; min-height: 400px !important; }
 }
